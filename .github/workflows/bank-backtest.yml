@@ -1,4 +1,4 @@
-name: Benchmark archive download
+name: Extended benchmark archive download
 
 on:
   pull_request:
@@ -16,22 +16,29 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Download official Binance benchmark archives
+      - name: Download official Binance benchmark and control archives
         shell: bash
         run: |
           python - <<'PY'
+          from concurrent.futures import ThreadPoolExecutor, as_completed
           from datetime import date, timedelta
           from pathlib import Path
+          import urllib.error
           import urllib.request
 
-          root = Path('benchmark_archives')
-          symbols = ['AIAUSDT', 'VELVETUSDT']
-          start = date(2026, 6, 1)
-          end = date(2026, 7, 20)
-          for symbol in symbols:
-              day = start
-              while day <= end:
-                  stamp = day.isoformat()
+          root = Path('benchmark_archives_extended')
+          symbols = [
+              'AIAUSDT', 'VELVETUSDT',
+              'BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT',
+              'XRPUSDT', 'DOGEUSDT', 'AIOUSDT', 'PUMPUSDT',
+          ]
+          start = date(2026, 5, 1)
+          end = date(2026, 7, 19)
+          jobs = []
+          day = start
+          while day <= end:
+              stamp = day.isoformat()
+              for symbol in symbols:
                   for market, prefix in [
                       ('futures', 'futures/um/daily/klines'),
                       ('spot', 'spot/daily/klines'),
@@ -39,28 +46,44 @@ jobs:
                       filename = f'{symbol}-5m-{stamp}.zip'
                       url = f'https://data.binance.vision/data/{prefix}/{symbol}/5m/{filename}'
                       out = root / market / symbol / filename
-                      out.parent.mkdir(parents=True, exist_ok=True)
-                      try:
-                          with urllib.request.urlopen(url, timeout=30) as response:
-                              payload = response.read()
-                          out.write_bytes(payload)
-                          print('OK', market, symbol, stamp, len(payload))
-                      except Exception as exc:
-                          print('MISS', market, symbol, stamp, type(exc).__name__, exc)
-                  day += timedelta(days=1)
+                      jobs.append((url, out, market, symbol, stamp))
+              day += timedelta(days=1)
+
+          def fetch(job):
+              url, out, market, symbol, stamp = job
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as response:
+                      payload = response.read()
+                  out.parent.mkdir(parents=True, exist_ok=True)
+                  out.write_bytes(payload)
+                  return ('OK', market, symbol, stamp, len(payload))
+              except urllib.error.HTTPError as exc:
+                  return ('MISS', market, symbol, stamp, exc.code)
+              except Exception as exc:
+                  return ('ERROR', market, symbol, stamp, f'{type(exc).__name__}:{exc}')
+
+          counts = {'OK': 0, 'MISS': 0, 'ERROR': 0}
+          with ThreadPoolExecutor(max_workers=24) as executor:
+              futures = [executor.submit(fetch, job) for job in jobs]
+              for future in as_completed(futures):
+                  result = future.result()
+                  counts[result[0]] += 1
+                  print(*result)
+          print('SUMMARY', counts)
           PY
 
       - name: Inventory
         shell: bash
         run: |
-          find benchmark_archives -type f -printf '%p %s bytes\n' | sort | tee benchmark_inventory.txt
+          find benchmark_archives_extended -type f -printf '%p %s bytes\n' | sort | tee benchmark_inventory_extended.txt
+          du -sh benchmark_archives_extended || true
 
-      - name: Upload benchmark archives
+      - name: Upload extended archives
         uses: actions/upload-artifact@v4
         with:
-          name: benchmark-archives-aia-velvet
+          name: benchmark-archives-extended
           path: |
-            benchmark_archives/**
-            benchmark_inventory.txt
+            benchmark_archives_extended/**
+            benchmark_inventory_extended.txt
           if-no-files-found: warn
           retention-days: 7
