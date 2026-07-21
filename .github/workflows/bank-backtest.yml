@@ -1,4 +1,4 @@
-name: Extended benchmark archive download
+name: Frozen holdout archive download
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Download official Binance benchmark and control archives
+      - name: Download official Binance frozen holdout archives
         shell: bash
         run: |
           python - <<'PY'
@@ -26,11 +26,12 @@ jobs:
           import urllib.error
           import urllib.request
 
-          root = Path('benchmark_archives_extended')
+          root = Path('frozen_holdout_archives')
           symbols = [
-              'AIAUSDT', 'VELVETUSDT',
-              'BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT',
-              'XRPUSDT', 'DOGEUSDT', 'AIOUSDT', 'PUMPUSDT',
+              'ADAUSDT', 'AVAXUSDT', 'LINKUSDT', 'DOTUSDT', 'LTCUSDT',
+              'BCHUSDT', 'TRXUSDT', 'SUIUSDT', 'APTUSDT', 'ARBUSDT',
+              'OPUSDT', 'NEARUSDT', 'INJUSDT', 'SEIUSDT', 'WIFUSDT',
+              'PEPEUSDT', 'BONKUSDT', 'ENAUSDT', 'CRVUSDT', 'FILUSDT',
           ]
           start = date(2026, 5, 1)
           end = date(2026, 7, 19)
@@ -45,8 +46,7 @@ jobs:
                   ]:
                       filename = f'{symbol}-5m-{stamp}.zip'
                       url = f'https://data.binance.vision/data/{prefix}/{symbol}/5m/{filename}'
-                      out = root / market / symbol / filename
-                      jobs.append((url, out, market, symbol, stamp))
+                      jobs.append((url, root / market / symbol / filename, market, symbol, stamp))
               day += timedelta(days=1)
 
           def fetch(job):
@@ -63,7 +63,7 @@ jobs:
                   return ('ERROR', market, symbol, stamp, f'{type(exc).__name__}:{exc}')
 
           counts = {'OK': 0, 'MISS': 0, 'ERROR': 0}
-          with ThreadPoolExecutor(max_workers=24) as executor:
+          with ThreadPoolExecutor(max_workers=32) as executor:
               futures = [executor.submit(fetch, job) for job in jobs]
               for future in as_completed(futures):
                   result = future.result()
@@ -75,15 +75,15 @@ jobs:
       - name: Inventory
         shell: bash
         run: |
-          find benchmark_archives_extended -type f -printf '%p %s bytes\n' | sort | tee benchmark_inventory_extended.txt
-          du -sh benchmark_archives_extended || true
+          find frozen_holdout_archives -type f -printf '%p %s bytes\n' | sort | tee frozen_holdout_inventory.txt
+          du -sh frozen_holdout_archives || true
 
-      - name: Upload extended archives
+      - name: Upload frozen holdout archives
         uses: actions/upload-artifact@v4
         with:
-          name: benchmark-archives-extended
+          name: frozen-holdout-archives
           path: |
-            benchmark_archives_extended/**
-            benchmark_inventory_extended.txt
+            frozen_holdout_archives/**
+            frozen_holdout_inventory.txt
           if-no-files-found: warn
           retention-days: 7
