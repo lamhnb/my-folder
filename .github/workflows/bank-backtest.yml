@@ -1,4 +1,4 @@
-name: BANK historical backtest
+name: Benchmark archive download
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  backtest:
+  download:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -16,68 +16,51 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Decode scanner package
+      - name: Download official Binance benchmark archives
         shell: bash
         run: |
-          mkdir -p scanner_backtest/diagnostics
-          cat \
-            scanner_backtest/bank_bt_min.zip.b64 \
-            scanner_backtest/bank_bt_min.zip.b64.part01 \
-            scanner_backtest/bank_bt_min.zip.b64.part02a \
-            scanner_backtest/bank_bt_min.zip.b64.part02 \
-            scanner_backtest/bank_bt_min.zip.b64.part04 \
-            > scanner_backtest/bank_bt_min.complete.b64
-          wc -c scanner_backtest/bank_bt_min.complete.b64 | tee scanner_backtest/diagnostics/base64_size.txt
-          sha256sum scanner_backtest/bank_bt_min.complete.b64 | tee scanner_backtest/diagnostics/base64_sha256.txt
-          base64 -d scanner_backtest/bank_bt_min.complete.b64 > scanner_backtest/bank_bt_min.zip
-          wc -c scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/zip_size.txt
-          sha256sum scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/zip_sha256.txt
-          unzip -t scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/unzip_test.txt
-          cd scanner_backtest
-          unzip -q bank_bt_min.zip
-          mkdir -p bank_bt_min/scanner/recovery
-          cp recovery_models.py bank_bt_min/scanner/recovery/models.py
-          printf '"""Recovery domain contracts."""\n' > bank_bt_min/scanner/recovery/__init__.py
+          python - <<'PY'
+          from datetime import date, timedelta
+          from pathlib import Path
+          import urllib.request
 
-      - name: Install dependencies
+          root = Path('benchmark_archives')
+          symbols = ['AIAUSDT', 'VELVETUSDT']
+          start = date(2026, 6, 1)
+          end = date(2026, 7, 20)
+          for symbol in symbols:
+              day = start
+              while day <= end:
+                  stamp = day.isoformat()
+                  for market, prefix in [
+                      ('futures', 'futures/um/daily/klines'),
+                      ('spot', 'spot/daily/klines'),
+                  ]:
+                      filename = f'{symbol}-5m-{stamp}.zip'
+                      url = f'https://data.binance.vision/data/{prefix}/{symbol}/5m/{filename}'
+                      out = root / market / symbol / filename
+                      out.parent.mkdir(parents=True, exist_ok=True)
+                      try:
+                          with urllib.request.urlopen(url, timeout=30) as response:
+                              payload = response.read()
+                          out.write_bytes(payload)
+                          print('OK', market, symbol, stamp, len(payload))
+                      except Exception as exc:
+                          print('MISS', market, symbol, stamp, type(exc).__name__, exc)
+                  day += timedelta(days=1)
+          PY
+
+      - name: Inventory
         shell: bash
         run: |
-          python -m pip install --upgrade pip
-          pip install -r scanner_backtest/bank_bt_min/requirements.txt
+          find benchmark_archives -type f -printf '%p %s bytes\n' | sort | tee benchmark_inventory.txt
 
-      - name: Run BANKUSDT point-in-time replay
-        shell: bash
-        run: |
-          cd scanner_backtest/bank_bt_min
-          mkdir -p historical_reports historical_data/cache
-          python tools/run_historical_replay.py \
-            --symbol BANKUSDT \
-            --history-start 2026-06-01 \
-            --start 2026-07-01 \
-            --end 2026-07-20 \
-            --interval 5m \
-            --cache-dir historical_data/cache \
-            --output-dir historical_reports \
-            --config config.yaml 2>&1 | tee bank_backtest.log
-
-      - name: Inventory outputs
-        if: always()
-        shell: bash
-        run: |
-          mkdir -p scanner_backtest
-          find scanner_backtest -maxdepth 5 -type f -printf '%p %s bytes\n' | sort > scanner_backtest/output_inventory.txt
-          cat scanner_backtest/output_inventory.txt
-
-      - name: Upload BANK backtest report
-        if: always()
+      - name: Upload benchmark archives
         uses: actions/upload-artifact@v4
         with:
-          name: bank-backtest-result
+          name: benchmark-archives-aia-velvet
           path: |
-            scanner_backtest/bank_bt_min/historical_reports/**
-            scanner_backtest/bank_bt_min/bank_backtest.log
-            scanner_backtest/bank_bt_min/historical_data/cache/**
-            scanner_backtest/output_inventory.txt
-            scanner_backtest/diagnostics/**
+            benchmark_archives/**
+            benchmark_inventory.txt
           if-no-files-found: warn
           retention-days: 7
