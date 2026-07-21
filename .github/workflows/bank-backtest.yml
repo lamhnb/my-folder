@@ -20,9 +20,16 @@ jobs:
         shell: bash
         run: |
           mkdir -p scanner_backtest/diagnostics
-          wc -c scanner_backtest/bank_bt_min.zip.b64 | tee scanner_backtest/diagnostics/base64_size.txt
-          sha256sum scanner_backtest/bank_bt_min.zip.b64 | tee scanner_backtest/diagnostics/base64_sha256.txt
-          base64 -d scanner_backtest/bank_bt_min.zip.b64 > scanner_backtest/bank_bt_min.zip
+          cat \
+            scanner_backtest/bank_bt_min.zip.b64 \
+            scanner_backtest/bank_bt_min.zip.b64.part01 \
+            scanner_backtest/bank_bt_min.zip.b64.part02a \
+            scanner_backtest/bank_bt_min.zip.b64.part02 \
+            scanner_backtest/bank_bt_min.zip.b64.part04 \
+            > scanner_backtest/bank_bt_min.complete.b64
+          wc -c scanner_backtest/bank_bt_min.complete.b64 | tee scanner_backtest/diagnostics/base64_size.txt
+          sha256sum scanner_backtest/bank_bt_min.complete.b64 | tee scanner_backtest/diagnostics/base64_sha256.txt
+          base64 -d scanner_backtest/bank_bt_min.complete.b64 > scanner_backtest/bank_bt_min.zip
           wc -c scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/zip_size.txt
           sha256sum scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/zip_sha256.txt
           unzip -t scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/unzip_test.txt
@@ -66,6 +73,7 @@ jobs:
           path: |
             scanner_backtest/bank_bt_min/historical_reports/**
             scanner_backtest/bank_bt_min/bank_backtest.log
+            scanner_backtest/bank_bt_min/historical_data/cache/**
             scanner_backtest/output_inventory.txt
             scanner_backtest/diagnostics/**
           if-no-files-found: warn
