@@ -19,13 +19,13 @@ jobs:
       - name: Decode scanner package
         shell: bash
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import base64
-          src = Path('scanner_backtest/bank_bt_min.zip.b64')
-          raw = src.read_text(encoding='utf-8').strip()
-          Path('scanner_backtest/bank_bt_min.zip').write_bytes(base64.b64decode(raw))
-          PY
+          mkdir -p scanner_backtest/diagnostics
+          wc -c scanner_backtest/bank_bt_min.zip.b64 | tee scanner_backtest/diagnostics/base64_size.txt
+          sha256sum scanner_backtest/bank_bt_min.zip.b64 | tee scanner_backtest/diagnostics/base64_sha256.txt
+          base64 -d scanner_backtest/bank_bt_min.zip.b64 > scanner_backtest/bank_bt_min.zip
+          wc -c scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/zip_size.txt
+          sha256sum scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/zip_sha256.txt
+          unzip -t scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/unzip_test.txt
           cd scanner_backtest
           unzip -q bank_bt_min.zip
 
@@ -54,7 +54,8 @@ jobs:
         if: always()
         shell: bash
         run: |
-          find scanner_backtest/bank_bt_min -maxdepth 4 -type f -printf '%p %s bytes\n' | sort > scanner_backtest/output_inventory.txt
+          mkdir -p scanner_backtest
+          find scanner_backtest -maxdepth 5 -type f -printf '%p %s bytes\n' | sort > scanner_backtest/output_inventory.txt
           cat scanner_backtest/output_inventory.txt
 
       - name: Upload BANK backtest report
@@ -66,5 +67,6 @@ jobs:
             scanner_backtest/bank_bt_min/historical_reports/**
             scanner_backtest/bank_bt_min/bank_backtest.log
             scanner_backtest/output_inventory.txt
+            scanner_backtest/diagnostics/**
           if-no-files-found: warn
           retention-days: 7
