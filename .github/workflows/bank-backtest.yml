@@ -35,6 +35,9 @@ jobs:
           unzip -t scanner_backtest/bank_bt_min.zip | tee scanner_backtest/diagnostics/unzip_test.txt
           cd scanner_backtest
           unzip -q bank_bt_min.zip
+          mkdir -p bank_bt_min/scanner/recovery
+          cp recovery_models.py bank_bt_min/scanner/recovery/models.py
+          printf '"""Recovery domain contracts."""\n' > bank_bt_min/scanner/recovery/__init__.py
 
       - name: Install dependencies
         shell: bash
