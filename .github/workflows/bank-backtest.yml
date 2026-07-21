@@ -1,4 +1,4 @@
-name: TLM historical data download
+name: TAG historical data download
 
 on:
   pull_request:
@@ -16,26 +16,21 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Download official Binance TLMUSDT history
+      - name: Download official Binance TAGUSDT history
         shell: bash
         continue-on-error: true
         run: |
           python - <<'PY'
           from concurrent.futures import ThreadPoolExecutor, as_completed
-          from datetime import date, datetime, timedelta, timezone
+          from datetime import date, timedelta
           from pathlib import Path
-          import json, time, urllib.error, urllib.parse, urllib.request
+          import urllib.error
+          import urllib.request
 
-          UTC = timezone.utc
-          root = Path('tlm_history')
-          symbol = 'TLMUSDT'
-          start = date(2026, 5, 15)
-          end = date(2026, 7, 7)
-
-          def request_bytes(url):
-              req = urllib.request.Request(url, headers={'User-Agent': 'pump-scanner-replay/1.3.1'})
-              with urllib.request.urlopen(req, timeout=30) as response:
-                  return response.read()
+          root = Path('tag_history')
+          symbol = 'TAGUSDT'
+          start = date(2026, 3, 15)
+          end = date(2026, 5, 5)
 
           jobs = []
           day = start
@@ -50,10 +45,12 @@ jobs:
                   jobs.append((url, root / market / symbol / filename, market, stamp))
               day += timedelta(days=1)
 
-          def fetch_archive(job):
+          def fetch(job):
               url, out, market, stamp = job
               try:
-                  payload = request_bytes(url)
+                  req = urllib.request.Request(url, headers={'User-Agent': 'pump-scanner-replay/1.4.0'})
+                  with urllib.request.urlopen(req, timeout=30) as response:
+                      payload = response.read()
                   out.parent.mkdir(parents=True, exist_ok=True)
                   out.write_bytes(payload)
                   return ('OK', market, stamp, len(payload))
@@ -64,92 +61,31 @@ jobs:
 
           counts = {'OK': 0, 'MISS': 0, 'ERROR': 0}
           with ThreadPoolExecutor(max_workers=16) as executor:
-              futures = [executor.submit(fetch_archive, job) for job in jobs]
+              futures = [executor.submit(fetch, job) for job in jobs]
               for future in as_completed(futures):
                   result = future.result()
                   counts[result[0]] += 1
                   print(*result)
 
-          def get_json(path, params):
-              url = 'https://fapi.binance.com' + path + '?' + urllib.parse.urlencode(params)
-              for attempt in range(5):
-                  try:
-                      return json.loads(request_bytes(url).decode('utf-8'))
-                  except urllib.error.HTTPError as exc:
-                      if exc.code in (400, 404):
-                          return []
-                      if exc.code == 429:
-                          time.sleep(2 ** attempt)
-                          continue
-                      return []
-                  except Exception:
-                      if attempt == 4:
-                          return []
-                      time.sleep(2 ** attempt)
-              return []
-
-          start_ms = int(datetime(2026, 5, 15, tzinfo=UTC).timestamp() * 1000)
-          end_ms = int(datetime(2026, 7, 8, tzinfo=UTC).timestamp() * 1000) - 1
-
-          funding = []
-          cursor = start_ms
-          while cursor <= end_ms:
-              rows = get_json('/fapi/v1/fundingRate', {
-                  'symbol': symbol, 'startTime': cursor, 'endTime': end_ms, 'limit': 1000,
-              })
-              if not rows:
-                  break
-              funding.extend(rows)
-              nxt = int(rows[-1]['fundingTime']) + 1
-              if nxt <= cursor:
-                  break
-              cursor = nxt
-          (root / 'funding').mkdir(parents=True, exist_ok=True)
-          (root / 'funding' / f'{symbol}.json').write_text(json.dumps(funding), encoding='utf-8')
-
-          oi = []
-          cursor = int(datetime(2026, 6, 20, tzinfo=UTC).timestamp() * 1000)
-          while cursor <= end_ms:
-              rows = get_json('/futures/data/openInterestHist', {
-                  'symbol': symbol, 'period': '5m', 'startTime': cursor, 'endTime': end_ms, 'limit': 500,
-              })
-              if not rows:
-                  break
-              oi.extend(rows)
-              nxt = int(rows[-1]['timestamp']) + 300_000
-              if nxt <= cursor:
-                  break
-              cursor = nxt
-              time.sleep(0.05)
-          (root / 'open_interest').mkdir(parents=True, exist_ok=True)
-          (root / 'open_interest' / f'{symbol}.json').write_text(json.dumps(oi), encoding='utf-8')
-
-          metadata = {
-              'symbol': symbol,
-              'archive_counts': counts,
-              'funding_rows': len(funding),
-              'oi_rows': len(oi),
-              'start': start.isoformat(),
-              'end': end.isoformat(),
-          }
-          (root / 'metadata.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
-          print('METADATA', json.dumps(metadata))
+          root.mkdir(parents=True, exist_ok=True)
+          (root / 'summary.txt').write_text(str(counts), encoding='utf-8')
+          print('SUMMARY', counts)
           PY
 
       - name: Inventory
         if: always()
         shell: bash
         run: |
-          find tlm_history -type f -printf '%p %s bytes\n' | sort | tee tlm_history_inventory.txt
-          du -sh tlm_history || true
+          find tag_history -type f -printf '%p %s bytes\n' | sort | tee tag_history_inventory.txt
+          du -sh tag_history || true
 
-      - name: Upload TLM history
+      - name: Upload TAG history
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tlm-history-2026-07-01
+          name: tag-history-2026-04-30
           path: |
-            tlm_history/**
-            tlm_history_inventory.txt
+            tag_history/**
+            tag_history_inventory.txt
           if-no-files-found: warn
           retention-days: 7
