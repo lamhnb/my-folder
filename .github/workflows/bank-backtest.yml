@@ -1,4 +1,4 @@
-name: Binance current-tail probe
+name: Binance Futures tail probe
 
 on:
   pull_request:
@@ -14,55 +14,56 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Probe official Binance public market-data hosts
+      - name: Probe official Futures market-data routes
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
-          import json, urllib.parse, urllib.request, urllib.error
-          root=Path('current_tail'); root.mkdir(exist_ok=True)
+          import json, subprocess, urllib.parse
+          root=Path('futures_tail'); root.mkdir(exist_ok=True)
           symbols=['OPNUSDT','BANKUSDT']
-          hosts={
-            'spot_data':'https://data-api.binance.vision',
-            'spot_api1':'https://api1.binance.com',
-            'spot_api2':'https://api2.binance.com',
-            'spot_api3':'https://api3.binance.com',
-            'spot_api4':'https://api4.binance.com',
-            'futures':'https://fapi.binance.com',
-            'futures1':'https://fapi1.binance.com',
-            'futures2':'https://fapi2.binance.com',
-            'futures3':'https://fapi3.binance.com',
-            'futures4':'https://fapi4.binance.com',
-          }
+          routes=[]
+          for host in [
+            'https://data-api.binance.vision',
+            'https://fapi.binance.com',
+            'https://fapi1.binance.com',
+            'https://fapi2.binance.com',
+            'https://fapi3.binance.com',
+            'https://fapi4.binance.com',
+          ]:
+            for path in ['/fapi/v1/klines','/fapi/v1/continuousKlines']:
+              routes.append((host,path))
           report={}
-          def fetch(url):
-            req=urllib.request.Request(url,headers={'User-Agent':'scanner-regression-probe/1.6'})
-            try:
-              with urllib.request.urlopen(req,timeout=30) as r:
-                return r.status,r.read(),dict(r.headers)
-            except urllib.error.HTTPError as e:
-              return e.code,e.read(),dict(e.headers)
-            except Exception as e:
-              return -1,repr(e).encode(),{}
           for symbol in symbols:
             report[symbol]={}
-            for name,host in hosts.items():
-              if name.startswith('spot'):
-                path='/api/v3/klines'; params={'symbol':symbol,'interval':'5m','limit':1000}
+            for host,path in routes:
+              params={'interval':'5m','limit':'1500'}
+              if path.endswith('continuousKlines'):
+                params.update({'pair':symbol.replace('USDT','USDT'),'contractType':'PERPETUAL'})
               else:
-                path='/fapi/v1/klines'; params={'symbol':symbol,'interval':'5m','limit':1500}
+                params['symbol']=symbol
               url=host+path+'?'+urllib.parse.urlencode(params)
-              status,body,headers=fetch(url)
-              report[symbol][name]={'status':status,'bytes':len(body),'body_prefix':body[:300].decode('utf-8','replace')}
-              print(symbol,name,status,len(body),report[symbol][name]['body_prefix'][:100],flush=True)
-              if status==200:
-                (root/f'{symbol}-{name}.json').write_bytes(body)
+              key=(host.replace('https://','')+path).replace('/','_')
+              proc=subprocess.run([
+                'curl','-sS','-L','--compressed','--connect-timeout','15','--max-time','45',
+                '-H','Accept: application/json','-H','User-Agent: Mozilla/5.0',
+                '-w','\n__STATUS__:%{http_code}',url
+              ],capture_output=True)
+              payload=proc.stdout
+              marker=b'\n__STATUS__:'
+              body,status=(payload.rsplit(marker,1)+[b''])[:2] if marker in payload else (payload,b'')
+              try: status_int=int(status.decode().strip())
+              except: status_int=-1
+              report[symbol][key]={'status':status_int,'bytes':len(body),'prefix':body[:500].decode('utf-8','replace'),'stderr':proc.stderr.decode('utf-8','replace')[:300]}
+              print(symbol,key,status_int,len(body),report[symbol][key]['prefix'][:120],flush=True)
+              if status_int==200 and body.lstrip().startswith(b'['):
+                (root/f'{symbol}-{key}.json').write_bytes(body)
           (root/'probe_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: binance-current-tail-probe
-          path: current_tail/**
+          name: binance-futures-tail-probe
+          path: futures_tail/**
           if-no-files-found: error
           retention-days: 7
