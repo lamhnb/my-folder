@@ -1,4 +1,4 @@
-name: TAG historical data download
+name: Scanner regression raw data
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
 jobs:
   download:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -16,76 +16,221 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Download official Binance TAGUSDT history
+      - name: Download official Binance point-in-time data
         shell: bash
-        continue-on-error: true
         run: |
           python - <<'PY'
           from concurrent.futures import ThreadPoolExecutor, as_completed
-          from datetime import date, timedelta
+          from datetime import date, datetime, timedelta, timezone
           from pathlib import Path
+          import json
+          import time
           import urllib.error
+          import urllib.parse
           import urllib.request
 
-          root = Path('tag_history')
-          symbol = 'TAGUSDT'
-          start = date(2026, 3, 15)
-          end = date(2026, 5, 5)
+          UTC = timezone.utc
+          root = Path('regression_raw')
+          cases = {
+              'TAGUSDT': (date(2026, 3, 15), date(2026, 5, 5)),
+              'AIAUSDT': (date(2026, 4, 1), date(2026, 6, 10)),
+              'VELVETUSDT': (date(2026, 5, 1), date(2026, 7, 1)),
+              'TLMUSDT': (date(2026, 5, 15), date(2026, 7, 10)),
+              'BANKUSDT': (date(2026, 6, 20), date(2026, 7, 21)),
+              'OPNUSDT': (date(2026, 6, 20), date(2026, 7, 21)),
+          }
+
+          def request_bytes(url, attempts=5):
+              last = None
+              for attempt in range(attempts):
+                  try:
+                      req = urllib.request.Request(
+                          url,
+                          headers={'User-Agent': 'binance-scanner-regression/1.6.0'},
+                      )
+                      with urllib.request.urlopen(req, timeout=45) as response:
+                          return response.read()
+                  except urllib.error.HTTPError as exc:
+                      last = exc
+                      if exc.code in (400, 404):
+                          raise
+                      if exc.code in (418, 429):
+                          time.sleep(min(20, 2 ** attempt))
+                          continue
+                      time.sleep(1)
+                  except Exception as exc:
+                      last = exc
+                      time.sleep(min(10, 2 ** attempt))
+              raise last or RuntimeError('request failed')
 
           jobs = []
-          day = start
-          while day <= end:
-              stamp = day.isoformat()
-              for market, prefix in [
-                  ('futures', 'futures/um/daily/klines'),
-                  ('spot', 'spot/daily/klines'),
-              ]:
-                  filename = f'{symbol}-5m-{stamp}.zip'
-                  url = f'https://data.binance.vision/data/{prefix}/{symbol}/5m/{filename}'
-                  jobs.append((url, root / market / symbol / filename, market, stamp))
-              day += timedelta(days=1)
+          for symbol, (start, end) in cases.items():
+              day = start
+              while day <= end:
+                  stamp = day.isoformat()
+                  archives = [
+                      ('spot_klines', 'spot/daily/klines', f'{symbol}-5m-{stamp}.zip', f'{symbol}/5m'),
+                      ('futures_klines', 'futures/um/daily/klines', f'{symbol}-5m-{stamp}.zip', f'{symbol}/5m'),
+                      ('futures_metrics', 'futures/um/daily/metrics', f'{symbol}-metrics-{stamp}.zip', symbol),
+                  ]
+                  for kind, prefix, filename, suffix in archives:
+                      url = f'https://data.binance.vision/data/{prefix}/{suffix}/{filename}'
+                      out = root / symbol / kind / filename
+                      jobs.append((url, out, symbol, kind, stamp))
+                  day += timedelta(days=1)
 
-          def fetch(job):
-              url, out, market, stamp = job
+          def fetch_archive(job):
+              url, out, symbol, kind, stamp = job
               try:
-                  req = urllib.request.Request(url, headers={'User-Agent': 'pump-scanner-replay/1.4.0'})
-                  with urllib.request.urlopen(req, timeout=30) as response:
-                      payload = response.read()
+                  payload = request_bytes(url)
                   out.parent.mkdir(parents=True, exist_ok=True)
                   out.write_bytes(payload)
-                  return ('OK', market, stamp, len(payload))
+                  return ('OK', symbol, kind, stamp, len(payload))
               except urllib.error.HTTPError as exc:
-                  return ('MISS' if exc.code == 404 else 'ERROR', market, stamp, exc.code)
+                  return ('MISS' if exc.code == 404 else 'ERROR', symbol, kind, stamp, exc.code)
               except Exception as exc:
-                  return ('ERROR', market, stamp, f'{type(exc).__name__}:{exc}')
+                  return ('ERROR', symbol, kind, stamp, f'{type(exc).__name__}:{exc}')
 
           counts = {'OK': 0, 'MISS': 0, 'ERROR': 0}
-          with ThreadPoolExecutor(max_workers=16) as executor:
-              futures = [executor.submit(fetch, job) for job in jobs]
-              for future in as_completed(futures):
-                  result = future.result()
-                  counts[result[0]] += 1
-                  print(*result)
+          with ThreadPoolExecutor(max_workers=20) as executor:
+              pending = [executor.submit(fetch_archive, job) for job in jobs]
+              for future in as_completed(pending):
+                  row = future.result()
+                  counts[row[0]] += 1
+                  print(*row, flush=True)
+
+          def get_json(host, path, params):
+              url = host + path + '?' + urllib.parse.urlencode(params)
+              try:
+                  return json.loads(request_bytes(url).decode('utf-8'))
+              except urllib.error.HTTPError as exc:
+                  print('REST_HTTP', path, params.get('symbol'), exc.code, flush=True)
+                  return []
+              except Exception as exc:
+                  print('REST_ERROR', path, params.get('symbol'), type(exc).__name__, exc, flush=True)
+                  return []
+
+          now_ms = int(datetime.now(UTC).timestamp() * 1000)
+          for symbol, (start, end) in cases.items():
+              start_ms = int(datetime.combine(start, datetime.min.time(), tzinfo=UTC).timestamp() * 1000)
+              end_ms = min(
+                  now_ms,
+                  int((datetime.combine(end + timedelta(days=1), datetime.min.time(), tzinfo=UTC) - timedelta(milliseconds=1)).timestamp() * 1000),
+              )
+              rest_dir = root / symbol / 'rest'
+              rest_dir.mkdir(parents=True, exist_ok=True)
+
+              funding = []
+              cursor = start_ms
+              while cursor <= end_ms:
+                  rows = get_json('https://fapi.binance.com', '/fapi/v1/fundingRate', {
+                      'symbol': symbol, 'startTime': cursor, 'endTime': end_ms, 'limit': 1000,
+                  })
+                  if not rows:
+                      break
+                  funding.extend(rows)
+                  nxt = int(rows[-1]['fundingTime']) + 1
+                  if nxt <= cursor:
+                      break
+                  cursor = nxt
+                  time.sleep(0.05)
+              (rest_dir / 'funding.json').write_text(json.dumps(funding), encoding='utf-8')
+
+              oi_start = max(start_ms, now_ms - 30 * 86_400_000)
+              oi = []
+              cursor = oi_start
+              while cursor <= end_ms:
+                  rows = get_json('https://fapi.binance.com', '/futures/data/openInterestHist', {
+                      'symbol': symbol, 'period': '5m', 'startTime': cursor, 'endTime': end_ms, 'limit': 500,
+                  })
+                  if not rows:
+                      break
+                  oi.extend(rows)
+                  nxt = int(rows[-1]['timestamp']) + 300_000
+                  if nxt <= cursor:
+                      break
+                  cursor = nxt
+                  time.sleep(0.05)
+              (rest_dir / 'open_interest_5m.json').write_text(json.dumps(oi), encoding='utf-8')
+
+              for endpoint, filename in [
+                  ('globalLongShortAccountRatio', 'global_long_short_5m.json'),
+                  ('topLongShortAccountRatio', 'top_account_long_short_5m.json'),
+                  ('topLongShortPositionRatio', 'top_position_long_short_5m.json'),
+                  ('takerlongshortRatio', 'taker_long_short_5m.json'),
+              ]:
+                  rows_all = []
+                  cursor = oi_start
+                  while cursor <= end_ms:
+                      rows = get_json('https://fapi.binance.com', f'/futures/data/{endpoint}', {
+                          'symbol': symbol, 'period': '5m', 'startTime': cursor, 'endTime': end_ms, 'limit': 500,
+                      })
+                      if not rows:
+                          break
+                      rows_all.extend(rows)
+                      nxt = int(rows[-1]['timestamp']) + 300_000
+                      if nxt <= cursor:
+                          break
+                      cursor = nxt
+                      time.sleep(0.05)
+                  (rest_dir / filename).write_text(json.dumps(rows_all), encoding='utf-8')
+
+              tail_start = max(start_ms, int(datetime(2026, 7, 21, tzinfo=UTC).timestamp() * 1000))
+              if tail_start <= end_ms:
+                  spot_tail = get_json('https://api.binance.com', '/api/v3/klines', {
+                      'symbol': symbol, 'interval': '5m', 'startTime': tail_start, 'endTime': end_ms, 'limit': 1000,
+                  })
+                  futures_tail = get_json('https://fapi.binance.com', '/fapi/v1/klines', {
+                      'symbol': symbol, 'interval': '5m', 'startTime': tail_start, 'endTime': end_ms, 'limit': 1000,
+                  })
+                  (rest_dir / 'spot_klines_tail.json').write_text(json.dumps(spot_tail), encoding='utf-8')
+                  (rest_dir / 'futures_klines_tail.json').write_text(json.dumps(futures_tail), encoding='utf-8')
+
+              metadata = {
+                  'symbol': symbol,
+                  'requested_start': start.isoformat(),
+                  'requested_end': end.isoformat(),
+                  'fetch_time_utc': datetime.now(UTC).isoformat(),
+                  'funding_rows': len(funding),
+                  'oi_rows': len(oi),
+              }
+              (root / symbol / 'metadata.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
+              print('REST_SUMMARY', metadata, flush=True)
 
           root.mkdir(parents=True, exist_ok=True)
-          (root / 'summary.txt').write_text(str(counts), encoding='utf-8')
-          print('SUMMARY', counts)
+          (root / 'archive_summary.json').write_text(json.dumps(counts, indent=2), encoding='utf-8')
+          print('ARCHIVE_SUMMARY', counts, flush=True)
           PY
 
-      - name: Inventory
+      - name: Validate and inventory
         if: always()
         shell: bash
         run: |
-          find tag_history -type f -printf '%p %s bytes\n' | sort | tee tag_history_inventory.txt
-          du -sh tag_history || true
+          find regression_raw -type f -printf '%p %s bytes\n' | sort | tee regression_raw_inventory.txt
+          du -sh regression_raw || true
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root = Path('regression_raw')
+          summary = {}
+          for symbol_dir in sorted(p for p in root.iterdir() if p.is_dir()):
+              summary[symbol_dir.name] = {
+                  'spot_archives': len(list((symbol_dir / 'spot_klines').glob('*.zip'))),
+                  'futures_archives': len(list((symbol_dir / 'futures_klines').glob('*.zip'))),
+                  'metrics_archives': len(list((symbol_dir / 'futures_metrics').glob('*.zip'))),
+              }
+          Path('regression_raw_validation.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')
+          print(json.dumps(summary, indent=2))
+          PY
 
-      - name: Upload TAG history
+      - name: Upload regression raw data
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tag-history-2026-04-30
+          name: scanner-regression-raw-20260721
           path: |
-            tag_history/**
-            tag_history_inventory.txt
-          if-no-files-found: warn
+            regression_raw/**
+            regression_raw_inventory.txt
+            regression_raw_validation.json
+          if-no-files-found: error
           retention-days: 7
