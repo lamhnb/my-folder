@@ -1,4 +1,4 @@
-name: Binance Futures tail probe
+name: V16 cutoff spot fallback scan
 
 on:
   pull_request:
@@ -6,64 +6,179 @@ on:
   workflow_dispatch:
 
 jobs:
-  probe:
+  scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Probe official Futures market-data routes
+      - name: Install
+        run: pip install aiohttp
+      - name: Run point-in-time scan
         shell: bash
         run: |
-          python - <<'PY'
+          cat > /tmp/scan.py <<'PY'
+          import asyncio, aiohttp, json, math, statistics, time, csv
+          from datetime import datetime, timezone, timedelta
           from pathlib import Path
-          import json, subprocess, urllib.parse
-          root=Path('futures_tail'); root.mkdir(exist_ok=True)
-          symbols=['OPNUSDT','BANKUSDT']
-          routes=[]
-          for host in [
-            'https://data-api.binance.vision',
-            'https://fapi.binance.com',
-            'https://fapi1.binance.com',
-            'https://fapi2.binance.com',
-            'https://fapi3.binance.com',
-            'https://fapi4.binance.com',
-          ]:
-            for path in ['/fapi/v1/klines','/fapi/v1/continuousKlines']:
-              routes.append((host,path))
-          report={}
-          for symbol in symbols:
-            report[symbol]={}
-            for host,path in routes:
-              params={'interval':'5m','limit':'1500'}
-              if path.endswith('continuousKlines'):
-                params.update({'pair':symbol.replace('USDT','USDT'),'contractType':'PERPETUAL'})
-              else:
-                params['symbol']=symbol
-              url=host+path+'?'+urllib.parse.urlencode(params)
-              key=(host.replace('https://','')+path).replace('/','_')
-              proc=subprocess.run([
-                'curl','-sS','-L','--compressed','--connect-timeout','15','--max-time','45',
-                '-H','Accept: application/json','-H','User-Agent: Mozilla/5.0',
-                '-w','\n__STATUS__:%{http_code}',url
-              ],capture_output=True)
-              payload=proc.stdout
-              marker=b'\n__STATUS__:'
-              body,status=(payload.rsplit(marker,1)+[b''])[:2] if marker in payload else (payload,b'')
-              try: status_int=int(status.decode().strip())
-              except: status_int=-1
-              report[symbol][key]={'status':status_int,'bytes':len(body),'prefix':body[:500].decode('utf-8','replace'),'stderr':proc.stderr.decode('utf-8','replace')[:300]}
-              print(symbol,key,status_int,len(body),report[symbol][key]['prefix'][:120],flush=True)
-              if status_int==200 and body.lstrip().startswith(b'['):
-                (root/f'{symbol}-{key}.json').write_bytes(body)
-          (root/'probe_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+
+          BASE='https://data-api.binance.vision'
+          CUTOFF=int(datetime(2026,7,22,12,0,tzinfo=timezone.utc).timestamp()*1000)
+          NOW=int(time.time()*1000)
+          START=CUTOFF-48*3600_000
+          MIN_QV=2_000_000
+
+          def clamp(x,a=0,b=1): return max(a,min(b,x))
+          def median(xs): return statistics.median(xs) if xs else 0.0
+          def mad(xs):
+              if not xs:return 0.0
+              m=median(xs); return median([abs(x-m) for x in xs])
+          def robust_z(x,xs):
+              if len(xs)<12:return 0.0
+              m=median(xs); d=mad(xs)
+              return (x-m)/(1.4826*d) if d>1e-12 else 0.0
+          def mean(xs): return sum(xs)/len(xs) if xs else 0.0
+          def pct(a,b): return (a/b-1)*100 if b else 0.0
+
+          async def get(session,path,params=None,retries=6):
+              delay=.5
+              for i in range(retries):
+                  try:
+                      async with session.get(BASE+path,params=params) as r:
+                          txt=await r.text()
+                          if r.status in (418,429):
+                              await asyncio.sleep(delay);delay=min(8,delay*2);continue
+                          if r.status!=200: raise RuntimeError(f'HTTP {r.status} {txt[:120]}')
+                          return json.loads(txt)
+                  except Exception:
+                      if i==retries-1: raise
+                      await asyncio.sleep(delay);delay=min(8,delay*2)
+
+          def features(rows):
+              p=rows[-1]
+              closes=[float(r[4]) for r in rows]
+              highs=[float(r[2]) for r in rows]
+              lows=[float(r[3]) for r in rows]
+              qv=[float(r[7]) for r in rows]
+              buys=[float(r[10]) for r in rows]
+              sells=[max(0,q-b) for q,b in zip(qv,buys)]
+              trs=[]
+              for i,r in enumerate(rows):
+                  h,l=float(r[2]),float(r[3]);pc=closes[i-1] if i else float(r[1])
+                  trs.append(max(h-l,abs(h-pc),abs(l-pc)))
+              atr=max(1e-12,mean(trs[-24:]))
+              base=median(closes[-48:])
+              base_low=min(lows[-48:]);base_high=max(highs[-48:])
+              dist_atr=(closes[-1]-base)/atr
+              ret_1h=pct(closes[-1],closes[-13]) if len(closes)>=13 else 0
+              ret_4h=pct(closes[-1],closes[-49]) if len(closes)>=49 else 0
+
+              vol_1h=sum(qv[-12:]);vol_prev1h=sum(qv[-24:-12]);vol_4h=sum(qv[-48:]);vol_prev4h=sum(qv[-96:-48])
+              hourly=[sum(qv[i:i+12]) for i in range(max(0,len(qv)-288),len(qv)-11,12)]
+              vol_z=robust_z(vol_1h,hourly[:-1]) if len(hourly)>2 else 0
+              acc1=vol_1h/max(1,vol_prev1h);acc4=vol_4h/max(1,vol_prev4h)
+              vol_acc=clamp((acc1-1)/1.5)*.65+clamp((acc4-1)/1.0)*.35
+
+              ratios=[b/q if q>0 else .5 for b,q in zip(buys,qv)]
+              buy_ratio=sum(buys[-12:])/max(1,sum(qv[-12:]))
+              persistence=sum(x>=.52 for x in ratios[-12:])/12
+              consistency=1-clamp(statistics.pstdev(ratios[-12:])/.16) if len(ratios)>=12 else 0
+              net=sum(2*b-q for b,q in zip(buys[-12:],qv[-12:]))/max(1,sum(qv[-12:]))
+              spot_flow=clamp((buy_ratio-.48)/.12)*.35+persistence*.25+clamp((net+.08)/.25)*.20+vol_acc*.15+consistency*.05
+
+              sell_1h=sum(sells[-12:]);sell_hours=[sum(sells[i:i+12]) for i in range(max(0,len(sells)-288),len(sells)-11,12)]
+              sell_z=max(0,robust_z(sell_1h,sell_hours[:-1])) if len(sell_hours)>2 else 0
+              low_1h=min(lows[-12:]);down=max(0,(closes[-13]-low_1h)/atr) if len(closes)>=13 else 0
+              close_loc=(closes[-1]-min(lows[-12:]))/max(1e-12,max(highs[-12:])-min(lows[-12:]))
+              recovery=(closes[-1]-low_1h)/atr
+              pressure=clamp(sell_z/3)*.5+clamp(sell_1h/max(1,sum(sells[-48:])/4)-1)*.5
+              ineff=1-clamp(down/max(.35,pressure*2.2))
+              failed_break=1 if low_1h<base_low and closes[-1]>=base_low else 0
+              absorption=clamp(pressure*.30+ineff*.30+clamp(recovery/2)*.20+close_loc*.10+failed_break*.10)
+              resilience=clamp(ineff*.35+clamp(recovery/2)*.25+close_loc*.20+clamp((closes[-1]-base_low)/max(atr,base_high-base_low))*.20)
+
+              atr_1h=mean(trs[-12:]);atr_4h=mean(trs[-48:]);compression=clamp(1-atr_1h/max(1e-12,atr_4h*1.15))
+              anomaly=clamp(max(0,vol_z)/4*.35+vol_acc*.30+abs(net)*1.5*.20+compression*.15)
+
+              upper=[]
+              for r in rows[-6:]:
+                  o,h,l,c=map(float,[r[1],r[2],r[3],r[4]])
+                  upper.append((h-max(o,c))/max(1e-12,h-l))
+              upper_wick=mean(upper)
+              parabolic=clamp(max(0,ret_1h-2)/6)
+              late=clamp(max(0,dist_atr-1.4)/3*.45+parabolic*.35+clamp(max(0,vol_z-4)/5)*.20)
+              weak_close=1-close_loc
+              flow_div=clamp((.50-buy_ratio)/.10) if ret_1h>1 else 0
+              trap=clamp(upper_wick*.35+weak_close*.25+flow_div*.25+(1 if closes[-1]<base_low else 0)*.15)
+              entry_q=clamp((1-late)*.45+(1-trap)*.35+clamp(1-abs(dist_atr)/2.8)*.20)
+              score=clamp(.28*spot_flow+.24*absorption+.18*resilience+.14*anomaly+.10*entry_q+.06*compression-.22*late-.20*trap)
+              if late>=.55: state='EXPANSION';action='DO_NOT_CHASE'
+              elif trap>=.5: state='TRAP_RISK';action='NO_TRADE'
+              elif score>=.58 and spot_flow>=.56 and absorption>=.52: state='PRE_IGNITION';action='WAIT_FOR_RECLAIM'
+              elif absorption>=.60: state='SUPPLY_ABSORPTION';action='WATCH'
+              elif score>=.46: state='EARLY_WATCH';action='WATCH'
+              else: state='NORMAL';action='NO_TRADE'
+              return dict(score=score,state=state,action=action,spot_flow=spot_flow,absorption=absorption,resilience=resilience,anomaly=anomaly,compression=compression,late=late,trap=trap,entry_quality=entry_q,distance_atr=dist_atr,buy_ratio=buy_ratio,vol_z=vol_z,vol_acc=vol_acc,ret_1h=ret_1h,ret_4h=ret_4h,base=base,atr=atr,price=closes[-1])
+
+          async def one(session,sem,symbol):
+              async with sem:
+                  try:
+                      rs=await get(session,'/api/v3/klines',{'symbol':symbol,'interval':'5m','startTime':START,'endTime':NOW,'limit':1000})
+                      rs=[r for r in rs if int(r[6])<=NOW]
+                      pre=[r for r in rs if int(r[6])<=CUTOFF]
+                      post=[r for r in rs if int(r[6])>CUTOFF]
+                      if len(pre)<300:return {'symbol':symbol,'status':'SHORT_HISTORY'}
+                      q24=sum(float(r[7]) for r in pre if int(r[6])>CUTOFF-24*3600_000)
+                      if q24<MIN_QV:return {'symbol':symbol,'status':'LOW_LIQ'}
+                      best=None; latest=None
+                      begin=CUTOFF-11*3600_000
+                      for i,r in enumerate(pre):
+                          t=int(r[6])
+                          if t<begin or i<288:continue
+                          f=features(pre[max(0,i-575):i+1]);f['time']=t
+                          latest=f
+                          if f['late']<.42 and f['trap']<.42 and (best is None or f['score']>best['score']):best=f
+                      if not best:return {'symbol':symbol,'status':'NO_DECISION'}
+                      cp=float(pre[-1][4]); highs=[float(r[2]) for r in post];lows=[float(r[3]) for r in post];last=float(post[-1][4]) if post else cp
+                      return {'symbol':symbol,'status':'OK','q24':q24,'best':best,'latest':latest,'cutoff_price':cp,'post_max_pct':pct(max(highs),cp) if highs else 0,'post_min_pct':pct(min(lows),cp) if lows else 0,'post_last_pct':pct(last,cp),'post_bars':len(post)}
+                  except Exception as e:return {'symbol':symbol,'status':'ERROR','error':f'{type(e).__name__}: {e}'}
+
+          async def main():
+              timeout=aiohttp.ClientTimeout(total=45);conn=aiohttp.TCPConnector(limit=30)
+              async with aiohttp.ClientSession(timeout=timeout,connector=conn,headers={'User-Agent':'v16-cutoff-scan'}) as session:
+                  info,tickers=await asyncio.gather(get(session,'/api/v3/exchangeInfo'),get(session,'/api/v3/ticker/24hr'))
+                  syms=[x['symbol'] for x in info['symbols'] if x.get('status')=='TRADING' and x.get('quoteAsset')=='USDT' and x.get('isSpotTradingAllowed',True)]
+                  tm={x['symbol']:float(x.get('quoteVolume',0)) for x in tickers}
+                  syms.sort(key=lambda s:tm.get(s,0),reverse=True)
+                  sem=asyncio.Semaphore(10);tasks=[one(session,sem,s) for s in syms];rows=[]
+                  for i,task in enumerate(asyncio.as_completed(tasks),1):
+                      rows.append(await task)
+                      if i%50==0:print(f'[SCAN] {i}/{len(tasks)}',flush=True)
+              ok=[r for r in rows if r.get('status')=='OK']
+              candidates=[r for r in ok if r['best']['state'] in ('EARLY_WATCH','SUPPLY_ABSORPTION','PRE_IGNITION') and r['best']['score']>=.46]
+              candidates.sort(key=lambda r:r['best']['score'],reverse=True)
+              pumps=sorted([r for r in ok if r['post_max_pct']>=5],key=lambda r:r['post_max_pct'],reverse=True)
+              caught=[r for r in candidates if r['post_max_pct']>=5]
+              cset={r['symbol'] for r in caught};missed=[r for r in pumps if r['symbol'] not in cset]
+              def slim(r):
+                  b=r['best'];return {'symbol':r['symbol'],'best_time_ms':b['time'],'best_time_vn':datetime.fromtimestamp(b['time']/1000,timezone.utc).astimezone(timezone(timedelta(hours=7))).isoformat(),'state':b['state'],'action':b['action'],'score':b['score'],'spot_flow':b['spot_flow'],'absorption':b['absorption'],'resilience':b['resilience'],'anomaly':b['anomaly'],'compression':b['compression'],'late':b['late'],'trap':b['trap'],'distance_atr':b['distance_atr'],'buy_ratio':b['buy_ratio'],'vol_z':b['vol_z'],'vol_acc':b['vol_acc'],'price':b['price'],'base':b['base'],'cutoff_price':r['cutoff_price'],'post_max_pct':r['post_max_pct'],'post_min_pct':r['post_min_pct'],'post_last_pct':r['post_last_pct'],'q24':r['q24']}
+              report={'mode':'V1.6_FEATURE_FAMILY_SPOT_ONLY_FALLBACK','cutoff_vn':'2026-07-22T19:00:00+07:00','run_utc':datetime.now(timezone.utc).isoformat(),'universe':len(rows),'evaluated':len(ok),'candidate_count':len(candidates),'post19_pumps_5pct':len(pumps),'caught_pumps_5pct':len(caught),'warning':'USD-M Futures/OI/funding unavailable from runner region. Spot-only fallback; no LONG_ALLOWED.','caught_pumps':[slim(r) for r in caught],'top_candidates':[slim(r) for r in candidates[:40]],'missed_pumps':[slim(r) for r in missed[:40]],'all_pumps':[slim(r) for r in pumps[:60]],'status_counts':{s:sum(1 for r in rows if r.get('status')==s) for s in sorted(set(r.get('status') for r in rows))}}
+              Path('scan_output').mkdir(exist_ok=True);Path('scan_output/report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+              with Path('scan_output/summary.txt').open('w') as h:
+                  h.write(json.dumps({k:report[k] for k in ('mode','cutoff_vn','universe','evaluated','candidate_count','post19_pumps_5pct','caught_pumps_5pct','status_counts')},indent=2));h.write('\nCAUGHT\n')
+                  for r in caught:h.write(f"{r['symbol']} score={r['best']['score']:.3f} max={r['post_max_pct']:.2f}% state={r['best']['state']}\n")
+                  h.write('MISSED\n')
+                  for r in missed[:20]:h.write(f"{r['symbol']} score={r['best']['score']:.3f} max={r['post_max_pct']:.2f}% state={r['best']['state']}\n")
+              print(Path('scan_output/summary.txt').read_text())
+          asyncio.run(main())
           PY
-      - uses: actions/upload-artifact@v4
+          python /tmp/scan.py
+      - name: Upload results
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: binance-futures-tail-probe
-          path: futures_tail/**
-          if-no-files-found: error
+          name: v16-cutoff-1900-spot-fallback
+          path: scan_output/**
           retention-days: 7
