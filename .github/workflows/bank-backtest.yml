@@ -1,4 +1,4 @@
-name: V17 historical cutoff 20 July raw data
+name: V17 official full-data cutoff dataset
 
 on:
   pull_request:
@@ -8,80 +8,98 @@ on:
 jobs:
   download:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install
-        run: pip install aiohttp
-      - name: Download point-in-time Spot candles
+      - name: Download official Binance archives
         shell: bash
         run: |
-          cat > /tmp/download.py <<'PY'
-          import asyncio, aiohttp, gzip, json
-          from datetime import datetime, timezone
+          python - <<'PY'
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          from datetime import date, timedelta
           from pathlib import Path
+          import json, urllib.error, urllib.request, zipfile
 
-          BASE='https://data-api.binance.vision'
-          CUTOFF=int(datetime(2026,7,19,17,0,tzinfo=timezone.utc).timestamp()*1000) # 20/7 00:00 VN
-          START=CUTOFF-48*3600_000
-          END=CUTOFF+24*3600_000
+          symbols = [x.strip() for x in Path('scanner_validation/universe_20260719_spotproxy.txt').read_text(encoding='utf-8').splitlines() if x.strip()]
+          dates=[]
+          d=date(2026,7,17)
+          while d<=date(2026,7,20):
+              dates.append(d.isoformat()); d+=timedelta(days=1)
+          root=Path('official_cutoff20_raw')
+          jobs=[]
+          for symbol in symbols:
+              for stamp in dates:
+                  specs=[
+                    ('futures_klines', f'https://data.binance.vision/data/futures/um/daily/klines/{symbol}/5m/{symbol}-5m-{stamp}.zip', f'{symbol}-5m-{stamp}.zip'),
+                    ('spot_klines', f'https://data.binance.vision/data/spot/daily/klines/{symbol}/5m/{symbol}-5m-{stamp}.zip', f'{symbol}-5m-{stamp}.zip'),
+                    ('futures_metrics', f'https://data.binance.vision/data/futures/um/daily/metrics/{symbol}/{symbol}-metrics-{stamp}.zip', f'{symbol}-metrics-{stamp}.zip'),
+                  ]
+                  for kind,url,name in specs:
+                      jobs.append((symbol,stamp,kind,url,root/symbol/kind/name))
 
-          async def get(session,path,params=None,retries=7):
-              delay=.5
-              for i in range(retries):
-                  try:
-                      async with session.get(BASE+path,params=params) as r:
-                          txt=await r.text()
-                          if r.status in (418,429):
-                              await asyncio.sleep(delay); delay=min(10,delay*2); continue
-                          if r.status!=200: raise RuntimeError(f'HTTP {r.status}: {txt[:120]}')
-                          return json.loads(txt)
-                  except Exception:
-                      if i==retries-1: raise
-                      await asyncio.sleep(delay); delay=min(10,delay*2)
+          def fetch(job):
+              symbol,stamp,kind,url,out=job
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'scanner-v1.7-official-validation'})
+                  with urllib.request.urlopen(req,timeout=35) as r:
+                      data=r.read()
+                  out.parent.mkdir(parents=True,exist_ok=True)
+                  out.write_bytes(data)
+                  with zipfile.ZipFile(out) as z:
+                      bad=z.testzip()
+                      if bad: raise RuntimeError(f'bad zip member {bad}')
+                  return {'status':'OK','symbol':symbol,'date':stamp,'kind':kind,'bytes':len(data)}
+              except urllib.error.HTTPError as e:
+                  return {'status':'MISS' if e.code==404 else 'ERROR','symbol':symbol,'date':stamp,'kind':kind,'error':str(e.code)}
+              except Exception as e:
+                  return {'status':'ERROR','symbol':symbol,'date':stamp,'kind':kind,'error':f'{type(e).__name__}:{e}'}
 
-          async def fetch_symbol(session,sem,symbol,out):
-              async with sem:
-                  try:
-                      rows=await get(session,'/api/v3/klines',{
-                          'symbol':symbol,'interval':'5m','startTime':START,'endTime':END,'limit':1000
-                      })
-                      if len(rows)<300:
-                          return symbol,'SHORT',len(rows)
-                      payload=json.dumps(rows,separators=(',',':')).encode()
-                      with gzip.open(out/f'{symbol}.json.gz','wb',compresslevel=6) as h:h.write(payload)
-                      return symbol,'OK',len(rows)
-                  except Exception as e:
-                      return symbol,'ERROR',f'{type(e).__name__}:{e}'
+          results=[]
+          with ThreadPoolExecutor(max_workers=32) as pool:
+              fs=[pool.submit(fetch,j) for j in jobs]
+              for i,f in enumerate(as_completed(fs),1):
+                  results.append(f.result())
+                  if i%250==0: print(f'[DOWNLOAD] {i}/{len(fs)}',flush=True)
 
-          async def main():
-              out=Path('historical20_raw'); out.mkdir(exist_ok=True)
-              timeout=aiohttp.ClientTimeout(total=60); conn=aiohttp.TCPConnector(limit=25)
-              async with aiohttp.ClientSession(timeout=timeout,connector=conn,headers={'User-Agent':'v17-historical-cutoff'}) as s:
-                  info=await get(s,'/api/v3/exchangeInfo')
-                  syms=[x['symbol'] for x in info['symbols'] if x.get('status')=='TRADING' and x.get('quoteAsset')=='USDT' and x.get('isSpotTradingAllowed',True)]
-                  sem=asyncio.Semaphore(12)
-                  tasks=[fetch_symbol(s,sem,sym,out) for sym in syms]
-                  results=[]
-                  for i,t in enumerate(asyncio.as_completed(tasks),1):
-                      results.append(await t)
-                      if i%50==0: print(f'DOWNLOADED {i}/{len(tasks)}',flush=True)
-              meta={'cutoff_ms':CUTOFF,'start_ms':START,'end_ms':END,'universe_count':len(syms),'results':results}
-              (out/'metadata.json').write_text(json.dumps(meta,indent=2),encoding='utf-8')
-              ok=sum(r[1]=='OK' for r in results); print('SUMMARY',len(syms),ok)
-          asyncio.run(main())
+          universe=[]
+          for symbol in symbols:
+              probe=root/symbol/'futures_klines'/f'{symbol}-5m-2026-07-19.zip'
+              if probe.exists(): universe.append(symbol)
+              meta={
+                'symbol':symbol,
+                'source':'Binance Data Vision official daily archives',
+                'requested_dates':dates,
+                'download_run':'github-actions',
+              }
+              (root/symbol).mkdir(parents=True,exist_ok=True)
+              (root/symbol/'metadata.json').write_text(json.dumps(meta,indent=2),encoding='utf-8')
+              rest=root/symbol/'rest'; rest.mkdir(exist_ok=True)
+              for name in ('funding.json','open_interest_5m.json','global_long_short_5m.json','taker_long_short_5m.json','top_account_long_short_5m.json','top_position_long_short_5m.json'):
+                  (rest/name).write_text('[]',encoding='utf-8')
+
+          root.mkdir(exist_ok=True)
+          (root/'historical_futures_universe.txt').write_text('\n'.join(universe)+'\n',encoding='utf-8')
+          counts={}
+          for r in results:
+              key=f"{r['kind']}:{r['status']}"; counts[key]=counts.get(key,0)+1
+          summary={'input_symbols':len(symbols),'historical_futures_symbols':len(universe),'dates':dates,'counts':counts}
+          (root/'download_summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+          (root/'download_results.json').write_text(json.dumps(results),encoding='utf-8')
+          print(json.dumps(summary,indent=2))
           PY
-          python /tmp/download.py
-      - name: Inventory
+      - name: Inventory and size
+        shell: bash
         run: |
-          du -sh historical20_raw
-          find historical20_raw -type f | wc -l
-      - name: Upload raw dataset
+          find official_cutoff20_raw -type f | wc -l
+          du -sh official_cutoff20_raw
+          cat official_cutoff20_raw/download_summary.json
+      - name: Upload official cutoff dataset
         uses: actions/upload-artifact@v4
         with:
-          name: v17-historical-cutoff-20jul-spot-raw
-          path: historical20_raw/**
+          name: v17-official-full-data-cutoff20
+          path: official_cutoff20_raw/**
           retention-days: 7
+          compression-level: 0
