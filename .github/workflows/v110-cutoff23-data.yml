@@ -1,0 +1,137 @@
+name: V110 cutoff 23 July official data
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download official Binance archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          from pathlib import Path
+          from urllib.parse import quote
+          import json, time, urllib.error, urllib.request, zipfile
+
+          source = Path('scanner_validation/universe_20260719_spotproxy.txt')
+          symbols = [line.strip() for line in source.read_text(encoding='utf-8').splitlines() if line.strip()]
+          root = Path('v110_cutoff23_raw')
+          root.mkdir(parents=True, exist_ok=True)
+          replay_dates = ['2026-07-19', '2026-07-20', '2026-07-21', '2026-07-22']
+          outcome_date = '2026-07-23'
+
+          def archive_url(symbol, kind, stamp):
+              escaped = quote(symbol, safe='')
+              if kind == 'futures_klines':
+                  name = f'{symbol}-5m-{stamp}.zip'
+                  return f'https://data.binance.vision/data/futures/um/daily/klines/{escaped}/5m/{quote(name, safe="-._")}', name
+              if kind == 'spot_klines':
+                  name = f'{symbol}-5m-{stamp}.zip'
+                  return f'https://data.binance.vision/data/spot/daily/klines/{escaped}/5m/{quote(name, safe="-._")}', name
+              name = f'{symbol}-metrics-{stamp}.zip'
+              return f'https://data.binance.vision/data/futures/um/daily/metrics/{escaped}/{quote(name, safe="-._")}', name
+
+          def fetch(job):
+              symbol, kind, stamp = job
+              url, name = archive_url(symbol, kind, stamp)
+              out = root / symbol / kind / name
+              delay = 0.5
+              error = 'UNKNOWN'
+              for attempt in range(4):
+                  try:
+                      req = urllib.request.Request(url, headers={'User-Agent': 'v110-cutoff23-data'})
+                      with urllib.request.urlopen(req, timeout=40) as response:
+                          data = response.read()
+                      out.parent.mkdir(parents=True, exist_ok=True)
+                      out.write_bytes(data)
+                      with zipfile.ZipFile(out) as archive:
+                          bad = archive.testzip()
+                          if bad:
+                              raise RuntimeError(f'bad zip member {bad}')
+                      return {'status': 'OK', 'symbol': symbol, 'kind': kind, 'date': stamp, 'bytes': len(data)}
+                  except urllib.error.HTTPError as exc:
+                      if exc.code == 404:
+                          return {'status': 'MISS', 'symbol': symbol, 'kind': kind, 'date': stamp, 'error': '404'}
+                      error = f'HTTP {exc.code}'
+                  except Exception as exc:
+                      error = f'{type(exc).__name__}: {exc}'
+                  if attempt < 3:
+                      time.sleep(delay)
+                      delay = min(6.0, delay * 2)
+              return {'status': 'ERROR', 'symbol': symbol, 'kind': kind, 'date': stamp, 'error': error}
+
+          jobs = []
+          for symbol in symbols:
+              for stamp in replay_dates:
+                  jobs.extend((symbol, kind, stamp) for kind in ('futures_klines', 'spot_klines', 'futures_metrics'))
+              jobs.append((symbol, 'futures_klines', outcome_date))
+
+          results = []
+          with ThreadPoolExecutor(max_workers=32) as pool:
+              futures = [pool.submit(fetch, job) for job in jobs]
+              for index, future in enumerate(as_completed(futures), 1):
+                  results.append(future.result())
+                  if index % 250 == 0:
+                      print(f'[DOWNLOAD] {index}/{len(futures)}', flush=True)
+
+          universe = []
+          for symbol in symbols:
+              probe = root / symbol / 'futures_klines' / f'{symbol}-5m-2026-07-22.zip'
+              if not probe.exists():
+                  continue
+              universe.append(symbol)
+              symbol_root = root / symbol
+              rest = symbol_root / 'rest'
+              rest.mkdir(parents=True, exist_ok=True)
+              for name in (
+                  'funding.json', 'open_interest_5m.json', 'global_long_short_5m.json',
+                  'taker_long_short_5m.json', 'top_account_long_short_5m.json',
+                  'top_position_long_short_5m.json'
+              ):
+                  (rest / name).write_text('[]', encoding='utf-8')
+              (symbol_root / 'metadata.json').write_text(json.dumps({
+                  'source': 'Binance Data Vision official daily archives',
+                  'replay_dates': replay_dates,
+                  'outcome_date': outcome_date,
+                  'cutoff_utc': '2026-07-22T17:00:00+00:00',
+              }, indent=2), encoding='utf-8')
+
+          (root / 'historical_futures_universe.txt').write_text('\n'.join(universe) + '\n', encoding='utf-8')
+          counts = {}
+          for row in results:
+              key = f"{row['kind']}:{row['status']}"
+              counts[key] = counts.get(key, 0) + 1
+          summary = {
+              'input_symbols': len(symbols),
+              'historical_futures_symbols': len(universe),
+              'replay_dates': replay_dates,
+              'outcome_date': outcome_date,
+              'counts': counts,
+          }
+          (root / 'download_summary.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')
+          (root / 'download_results.json').write_text(json.dumps(results), encoding='utf-8')
+          print(json.dumps(summary, indent=2), flush=True)
+          PY
+      - name: Inventory
+        shell: bash
+        run: |
+          find v110_cutoff23_raw -type f | wc -l
+          du -sh v110_cutoff23_raw
+          cat v110_cutoff23_raw/download_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v110-cutoff23-official-data
+          path: v110_cutoff23_raw/**
+          retention-days: 7
+          compression-level: 0
