@@ -81,7 +81,7 @@ jobs:
           now_ms = int(time.time() * 1000)
           start_oi_ms = now_ms - 5 * 24 * 60 * 60 * 1000
           sem = asyncio.Semaphore(SEMAPHORE)
-          completed = 0
+          progress = {'completed': 0}
           errors = []
 
           async def call(base, path, params=None):
@@ -113,7 +113,6 @@ jobs:
               return [values[k] for k in sorted(values)]
 
           async def fetch_symbol(symbol: str):
-              nonlocal completed
               try:
                   tasks = [
                       call(FUTURES, '/fapi/v1/klines', {'symbol': symbol, 'interval': '5m', 'limit': 1000}),
@@ -142,9 +141,10 @@ jobs:
                       json.dump(payload, handle, ensure_ascii=False, separators=(',', ':'))
               except Exception as exc:
                   errors.append({'symbol': symbol, 'error': f'{type(exc).__name__}: {exc}'})
-              completed += 1
-              if completed % 25 == 0 or completed == len(universe):
-                  print(f'[FETCH] {completed}/{len(universe)} symbols, errors={len(errors)}', flush=True)
+              progress['completed'] += 1
+              done = progress['completed']
+              if done % 25 == 0 or done == len(universe):
+                  print(f'[FETCH] {done}/{len(universe)} symbols, errors={len(errors)}', flush=True)
 
           async def main():
               await asyncio.gather(*(fetch_symbol(symbol) for symbol in universe))
