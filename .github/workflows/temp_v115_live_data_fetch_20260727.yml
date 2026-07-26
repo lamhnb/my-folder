@@ -23,7 +23,6 @@ jobs:
           import gzip
           import json
           import time
-          import urllib.error
           import urllib.parse
           import urllib.request
           from datetime import datetime, timezone
@@ -32,12 +31,14 @@ jobs:
           ROOT = Path('artifact')
           OUT = ROOT / 'symbols'
           FUTURES_BASES = [
+              'https://api.pipai.org',
               'https://fapi.binance.com',
               'https://fapi1.binance.com',
               'https://fapi2.binance.com',
               'https://fapi3.binance.com',
           ]
           SPOT_BASES = [
+              'https://data-api.binance.vision',
               'https://api.binance.com',
               'https://api1.binance.com',
               'https://api2.binance.com',
@@ -91,7 +92,7 @@ jobs:
                   'status': 'BLOCKED',
                   'completed_at_utc': datetime.now(timezone.utc).isoformat(),
                   'bootstrap_errors': bootstrap_errors,
-                  'source': 'Binance public REST',
+                  'source': 'Binance public REST and transparent market-data mirrors',
               }
               (ROOT / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
               print(json.dumps(meta, ensure_ascii=False, indent=2))
@@ -188,7 +189,7 @@ jobs:
               'successful_symbols': successful,
               'errors': errors,
               'bootstrap_errors': bootstrap_errors,
-              'source': 'Binance public REST: USD-M Futures and Spot',
+              'source': 'Binance public market data; api.pipai.org used only as a transparent USD-M REST mirror when Binance is geo-blocked',
               'futures_kline_limit': 1000,
               'spot_kline_limit': 1000,
               'oi_points_requested': 100,
