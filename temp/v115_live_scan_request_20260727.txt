@@ -1,0 +1,3 @@
+request=v115-full-universe-current-scan
+requested_at_vn=2026-07-27T06:40:13+07:00
+mode=raw-data-only-no-telegram
