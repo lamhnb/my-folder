@@ -1,0 +1,149 @@
+name: V18 exact 48h outcome audit
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download official Futures klines and calculate 48h outcomes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p v18_48h_outcome/raw
+          python - <<'PY'
+          import csv, hashlib, io, json, statistics, time, urllib.error, urllib.request, zipfile
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          candidates=json.loads(Path('scanner_validation/v18_48h_candidates.json').read_text(encoding='utf-8'))
+          root=Path('v18_48h_outcome')
+          raw=root/'raw'
+          dates=['2026-07-18','2026-07-19','2026-07-20','2026-07-21']
+          windows=[6,12,24,36,48]
+          thresholds=[3,5,7,10]
+
+          def fetch(url, attempts=5):
+              delay=1.0
+              last=None
+              for _ in range(attempts):
+                  try:
+                      req=urllib.request.Request(url,headers={'User-Agent':'v18-48h-outcome-audit'})
+                      with urllib.request.urlopen(req,timeout=45) as r:
+                          return r.read()
+                  except Exception as e:
+                      last=e; time.sleep(delay); delay=min(8,delay*2)
+              raise last
+
+          def load_symbol(symbol):
+              bars=[]; files=[]
+              for stamp in dates:
+                  name=f'{symbol}-5m-{stamp}.zip'
+                  url=f'https://data.binance.vision/data/futures/um/daily/klines/{symbol}/5m/{name}'
+                  data=fetch(url)
+                  zpath=raw/name; zpath.write_bytes(data)
+                  checksum_status='UNAVAILABLE'
+                  try:
+                      c=fetch(url+'.CHECKSUM').decode('utf-8','replace').strip().split()[0]
+                      actual=hashlib.sha256(data).hexdigest()
+                      if actual!=c: raise RuntimeError(f'checksum mismatch {symbol} {stamp}')
+                      checksum_status='PASS'
+                  except urllib.error.HTTPError as e:
+                      if e.code!=404: raise
+                  with zipfile.ZipFile(io.BytesIO(data)) as z:
+                      bad=z.testzip()
+                      if bad: raise RuntimeError(f'bad zip member {bad}')
+                      member=[n for n in z.namelist() if n.lower().endswith('.csv')][0]
+                      text=z.read(member).decode('utf-8-sig','replace')
+                  count=0
+                  for row in csv.reader(io.StringIO(text)):
+                      if not row or not row[0].strip().isdigit(): continue
+                      bars.append({'open_ms':int(row[0]),'open':float(row[1]),'high':float(row[2]),'low':float(row[3]),'close':float(row[4]),'close_ms':int(row[6])})
+                      count+=1
+                  files.append({'date':stamp,'url':url,'bytes':len(data),'rows':count,'checksum':checksum_status,'sha256':hashlib.sha256(data).hexdigest()})
+              bars.sort(key=lambda x:x['open_ms'])
+              return bars,files
+
+          results=[]; manifests={}; errors=[]
+          for idx,c in enumerate(candidates,1):
+              symbol=c['symbol']; entry=float(c['price']); alert_ms=int(c['time_ms'])
+              try:
+                  bars,files=load_symbol(symbol); manifests[symbol]=files
+                  after=[b for b in bars if b['open_ms']>alert_ms and b['open_ms']<=alert_ms+48*3600_000]
+                  if not after: raise RuntimeError('no bars after alert')
+                  out=dict(c); out['bars_48h']=len(after)
+                  for h in windows:
+                      w=[b for b in after if b['open_ms']<=alert_ms+h*3600_000]
+                      if not w:
+                          out[f'mfe_{h}h_pct']=None; out[f'mae_{h}h_pct']=None; out[f'close_{h}h_pct']=None
+                          continue
+                      peak=max(w,key=lambda b:b['high']); trough=min(w,key=lambda b:b['low'])
+                      out[f'mfe_{h}h_pct']=(peak['high']/entry-1)*100
+                      out[f'mae_{h}h_pct']=(trough['low']/entry-1)*100
+                      out[f'close_{h}h_pct']=(w[-1]['close']/entry-1)*100
+                  peak=max(after,key=lambda b:b['high'])
+                  out['time_to_peak_hours']=(peak['open_ms']-alert_ms)/3600_000
+                  out['peak_time_utc']=datetime.fromtimestamp(peak['open_ms']/1000,tz=timezone.utc).isoformat()
+                  for t in thresholds:
+                      hit=next((b for b in after if (b['high']/entry-1)*100>=t),None)
+                      out[f'first_hit_{t}pct_hours']=None if hit is None else (hit['open_ms']-alert_ms)/3600_000
+                      if hit is None:
+                          out[f'mae_before_{t}pct_hit']=None
+                      else:
+                          pre=[b for b in after if b['open_ms']<=hit['open_ms']]
+                          out[f'mae_before_{t}pct_hit']=(min(b['low'] for b in pre)/entry-1)*100
+                      out[f'delayed_{t}pct_after_24h']=bool((out['mfe_24h_pct'] or -999)<t and (out['mfe_48h_pct'] or -999)>=t)
+                  results.append(out)
+                  print(f'[{idx}/{len(candidates)}] {symbol} MFE24={out["mfe_24h_pct"]:.2f}% MFE48={out["mfe_48h_pct"]:.2f}%',flush=True)
+              except Exception as e:
+                  errors.append({'symbol':symbol,'error':f'{type(e).__name__}: {e}'})
+                  print(f'[{idx}/{len(candidates)}] ERROR {symbol}: {e}',flush=True)
+
+          fieldnames=[]
+          for r in results:
+              for k in r:
+                  if k not in fieldnames: fieldnames.append(k)
+          with (root/'candidate_outcomes_48h.csv').open('w',newline='',encoding='utf-8-sig') as f:
+              w=csv.DictWriter(f,fieldnames=fieldnames); w.writeheader(); w.writerows(results)
+
+          summary={'generated_utc':datetime.now(timezone.utc).isoformat(),'source':'Binance Data Vision official USD-M Futures 5m daily klines','candidate_source':'Exact V1.8 first Telegram early alerts','candidate_count':len(candidates),'evaluated_count':len(results),'errors':errors,'thresholds':{}}
+          for t in thresholds:
+              hit24=sum((r.get('mfe_24h_pct') or -999)>=t for r in results)
+              hit48=sum((r.get('mfe_48h_pct') or -999)>=t for r in results)
+              delayed=sum(bool(r.get(f'delayed_{t}pct_after_24h')) for r in results)
+              summary['thresholds'][str(t)]={'hit_24h':hit24,'hit_48h':hit48,'additional_24_to_48h':delayed,'rate_24h_pct':100*hit24/len(results) if results else 0,'rate_48h_pct':100*hit48/len(results) if results else 0}
+          for metric in ['mfe_24h_pct','mfe_48h_pct','mae_24h_pct','mae_48h_pct','time_to_peak_hours']:
+              vals=[float(r[metric]) for r in results if r.get(metric) is not None]
+              summary[f'median_{metric}']=statistics.median(vals) if vals else None
+          delayed_symbols={str(t):[r['symbol'] for r in results if r.get(f'delayed_{t}pct_after_24h')] for t in thresholds}
+          summary['delayed_symbols']=delayed_symbols
+          (root/'summary_48h.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding='utf-8')
+          (root/'download_manifest.json').write_text(json.dumps(manifests,indent=2),encoding='utf-8')
+          (root/'frozen_candidates.json').write_text(json.dumps(candidates,indent=2),encoding='utf-8')
+
+          lines=['# V1.8 exact 48-hour outcome audit','',f"- Candidates: {len(candidates)}",f"- Evaluated: {len(results)}",'- Entry reference: exact first Telegram alert price','- Outcome source: official Binance USD-M Futures 5m klines','', '## 24h versus 48h']
+          lines.append('| Target | Hit 24h | Hit 48h | Chỉ đạt trong 24–48h |')
+          lines.append('|---:|---:|---:|---:|')
+          for t in thresholds:
+              s=summary['thresholds'][str(t)]; lines.append(f"| +{t}% | {s['hit_24h']} | {s['hit_48h']} | {s['additional_24_to_48h']} |")
+          lines += ['', '## Delayed symbols']
+          for t in thresholds: lines.append(f"- +{t}% after 24h: {', '.join(delayed_symbols[str(t)]) or 'None'}")
+          lines += ['',f"Median MFE 24h: {summary['median_mfe_24h_pct']:.2f}%",f"Median MFE 48h: {summary['median_mfe_48h_pct']:.2f}%",f"Median MAE 24h: {summary['median_mae_24h_pct']:.2f}%",f"Median MAE 48h: {summary['median_mae_48h_pct']:.2f}%",f"Median time to peak: {summary['median_time_to_peak_hours']:.2f} hours"]
+          (root/'REPORT_48H.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          print(json.dumps(summary,indent=2,ensure_ascii=False))
+          PY
+      - name: Upload 48h audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: v18-exact-48h-outcome-audit
+          path: v18_48h_outcome/**
+          retention-days: 14
+          compression-level: 6
