@@ -1,4 +1,4 @@
-name: Temporary Tokyo proxy route discovery
+name: Temporary TradingView Binance futures data probe
 
 on:
   pull_request:
@@ -9,55 +9,70 @@ permissions:
   contents: read
 
 jobs:
-  discover:
+  probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - name: Inspect Tokyo public server routes and TLS identity
+      - name: Probe TradingView Binance perpetual candles and OI
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p artifact
-          echo | openssl s_client -connect 52.69.48.142:443 -servername 52.69.48.142.nip.io 2>/dev/null | openssl x509 -noout -subject -issuer -ext subjectAltName > artifact/cert.txt || true
-          curl -k -L --max-time 60 -A 'Mozilla/5.0 V1.15-route-discovery' 'https://52.69.48.142.nip.io/' -o artifact/root.html -D artifact/root.headers || true
-          curl -L --max-time 60 -A 'Mozilla/5.0 V1.15-route-discovery' 'http://52.69.48.142.nip.io/' -o artifact/root_http.html -D artifact/root_http.headers || true
-          {
-            echo '=== CERT ==='; cat artifact/cert.txt || true
-            echo; echo '=== HTTPS HEADERS ==='; cat artifact/root.headers || true
-            echo; echo '=== HTTP HEADERS ==='; cat artifact/root_http.headers || true
-            echo; echo '=== API ROUTE CONTEXT HTTPS ==='; grep -n -C 5 -E 'scalper-msandwich|/api/debug|fetch\(|API_BASE|baseURL|ui-bundle' artifact/root.html | head -1000 || true
-            echo; echo '=== API ROUTE CONTEXT HTTP ==='; grep -n -C 5 -E 'scalper-msandwich|/api/debug|fetch\(|API_BASE|baseURL|ui-bundle' artifact/root_http.html | head -1000 || true
-          } > artifact/discovery.txt
-          python3 - <<'PY'
-          import json, ssl, urllib.request, urllib.error, pathlib, time
-          hosts=['52.69.48.142.nip.io','52.69.48.142','ec2-52-69-48-142.ap-northeast-1.compute.amazonaws.com']
-          paths=['/api/debug/scalper-msandwich-paper?symbol=BTCUSDT&interval=5m&limit=1000&capital=18&leverage=30','/apex/api/debug/scalper-msandwich-paper?symbol=BTCUSDT&interval=5m&limit=1000&capital=18&leverage=30','/deepthink/api/debug/scalper-msandwich-paper?symbol=BTCUSDT&interval=5m&limit=1000&capital=18&leverage=30','/api/ui-bundle','/api/health','/health','/status']
-          ctx=ssl._create_unverified_context(); rows=[]
-          for scheme in ['https','http']:
-            for host in hosts:
-              for path in paths:
-                url=f'{scheme}://{host}{path}'
-                start=time.time()
-                try:
-                  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-route-discovery','Accept':'application/json,text/html'})
-                  kwargs={'timeout':30}
-                  if scheme=='https': kwargs['context']=ctx
-                  with urllib.request.urlopen(req,**kwargs) as r:
-                    body=r.read(1000); rows.append({'url':url,'ok':True,'status':getattr(r,'status',None),'elapsed':round(time.time()-start,3),'content_type':r.headers.get('Content-Type'),'head':body.decode('utf-8',errors='replace')})
-                except urllib.error.HTTPError as exc:
-                  try: body=exc.read(1000).decode('utf-8',errors='replace')
-                  except Exception: body=''
-                  rows.append({'url':url,'ok':False,'status':exc.code,'elapsed':round(time.time()-start,3),'error':str(exc),'head':body})
-                except Exception as exc:
-                  rows.append({'url':url,'ok':False,'elapsed':round(time.time()-start,3),'error':f'{type(exc).__name__}: {exc}'})
-          pathlib.Path('artifact/route_probe.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2),encoding='utf-8')
-          print(json.dumps([r for r in rows if r.get('ok') or r.get('status') not in (404,None)],ensure_ascii=False,indent=2))
-          PY
-      - name: Upload route discovery
+          mkdir -p artifact tvprobe
+          cd tvprobe
+          npm init -y >/dev/null 2>&1
+          npm install --silent tvws
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import { connect, getCandles } from 'tvws';
+
+          const symbols = ['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT'];
+          const report = { checked_at_utc: new Date().toISOString(), package: 'tvws', results: [] };
+          let connection;
+          try {
+            connection = await connect({ endpoint: 'data' });
+            for (const symbol of symbols) {
+              const row = { symbol };
+              for (const [kind, tvSymbol] of [
+                ['price', `BINANCE:${symbol}.P`],
+                ['oi', `BINANCE:${symbol}.P_OI`],
+              ]) {
+                const started = Date.now();
+                try {
+                  const result = await getCandles({
+                    connection,
+                    symbols: [tvSymbol],
+                    amount: 1000,
+                    timeframe: '5',
+                  });
+                  row[kind] = {
+                    ok: true,
+                    elapsed_ms: Date.now() - started,
+                    type: Array.isArray(result) ? 'array' : typeof result,
+                    count: Array.isArray(result) ? result.length : null,
+                    keys: result && typeof result === 'object' && !Array.isArray(result) ? Object.keys(result) : null,
+                    sample_first: Array.isArray(result) ? result[0] : result,
+                    sample_last: Array.isArray(result) ? result[result.length - 1] : null,
+                  };
+                  fs.writeFileSync(`../artifact/${symbol}.${kind}.json`, JSON.stringify(result));
+                } catch (error) {
+                  row[kind] = { ok: false, elapsed_ms: Date.now() - started, error: `${error?.name || 'Error'}: ${error?.message || error}` };
+                }
+              }
+              report.results.push(row);
+            }
+          } catch (error) {
+            report.connection_error = `${error?.name || 'Error'}: ${error?.message || error}`;
+          } finally {
+            try { await connection?.close(); } catch {}
+          }
+          fs.writeFileSync('../artifact/tv_probe.json', JSON.stringify(report, null, 2));
+          console.log(JSON.stringify(report, null, 2));
+          JS
+      - name: Upload TradingView probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-tokyo-route-discovery-20260727
+          name: v115-tradingview-binance-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
