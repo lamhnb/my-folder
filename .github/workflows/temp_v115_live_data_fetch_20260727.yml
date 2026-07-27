@@ -71,12 +71,16 @@ jobs:
             except Exception as exc:
               return {'name':name,'url':url,'ok':False,'elapsed':round(time.time()-started,3),'error':f'{type(exc).__name__}: {exc}'}
 
-          http_results = [probe_http(n,u) for n,u in tests]
-          ws_results = asyncio.run(asyncio.gather(
-            one_event('futures_all_miniticker','wss://fstream.binance.com/market/ws/!miniTicker@arr'),
-            one_event('futures_all_ticker','wss://fstream.binance.com/market/ws/!ticker@arr'),
-            one_event('spot_all_miniticker','wss://data-stream.binance.vision/ws/!miniTicker@arr'),
-          ))
+          async def run_all():
+            http_task = asyncio.gather(*(asyncio.to_thread(probe_http, n, u) for n, u in tests))
+            ws_task = asyncio.gather(
+              one_event('futures_all_miniticker','wss://fstream.binance.com/market/ws/!miniTicker@arr'),
+              one_event('futures_all_ticker','wss://fstream.binance.com/market/ws/!ticker@arr'),
+              one_event('spot_all_miniticker','wss://data-stream.binance.vision/ws/!miniTicker@arr'),
+            )
+            return await asyncio.gather(http_task, ws_task)
+
+          http_results, ws_results = asyncio.run(run_all())
           report = {'completed_at_utc':datetime.now(timezone.utc).isoformat(),'http':http_results,'ws':ws_results}
           (OUT/'endpoint_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(report,ensure_ascii=False,indent=2))
