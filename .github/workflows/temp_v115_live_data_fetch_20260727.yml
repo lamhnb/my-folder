@@ -1,4 +1,4 @@
-name: Temporary V1.15 Binance archive probe
+name: Temporary V1.15 Binance WebSocket probe
 
 on:
   pull_request:
@@ -11,73 +11,97 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
-      - name: Probe official Binance Data Vision S3 bucket
+      - name: Probe Binance Futures and Spot WebSocket APIs
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m pip install --quiet 'websockets>=14,<16'
           mkdir -p artifact
           python3 - <<'PY'
-          import json, urllib.parse, urllib.request, xml.etree.ElementTree as ET
+          import asyncio, json, time
           from datetime import datetime, timezone
           from pathlib import Path
+          import websockets
 
           ROOT=Path('artifact')
-          LIST_BASE='https://s3-ap-northeast-1.amazonaws.com/data.binance.vision'
+          targets=[
+            ('futures_ws_api','wss://ws-fapi.binance.com/ws-fapi/v1',[
+              {'id':'f-time','method':'time','params':{}},
+              {'id':'f-exchange','method':'exchangeInfo','params':{}},
+              {'id':'f-ticker','method':'ticker.24hr','params':{'symbol':'BTCUSDT'}},
+              {'id':'f-klines','method':'klines','params':{'symbol':'BTCUSDT','interval':'5m','limit':5}},
+              {'id':'f-depth','method':'depth','params':{'symbol':'BTCUSDT','limit':20}},
+              {'id':'f-oi','method':'openInterest','params':{'symbol':'BTCUSDT'}},
+            ]),
+            ('spot_ws_api','wss://ws-api.binance.com:443/ws-api/v3',[
+              {'id':'s-time','method':'time','params':{}},
+              {'id':'s-exchange','method':'exchangeInfo','params':{}},
+              {'id':'s-ticker','method':'ticker.24hr','params':{'symbol':'BTCUSDT'}},
+              {'id':'s-klines','method':'klines','params':{'symbol':'BTCUSDT','interval':'5m','limit':5}},
+              {'id':'s-depth','method':'depth','params':{'symbol':'BTCUSDT','limit':20}},
+            ]),
+          ]
+          streams=[
+            ('futures_stream','wss://fstream.binance.com/ws/btcusdt@kline_5m'),
+            ('futures_market_stream','wss://fstream.binance.com/market/ws/btcusdt@kline_5m'),
+            ('spot_stream','wss://stream.binance.com:9443/ws/btcusdt@kline_5m'),
+            ('spot_data_stream','wss://data-stream.binance.vision/ws/btcusdt@kline_5m'),
+          ]
+          results=[]
 
-          def get(url, timeout=60):
-              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-archive-probe'})
-              with urllib.request.urlopen(req,timeout=timeout) as r:
-                  return r.read(), dict(r.headers)
-
-          def list_prefixes(prefix, filename):
-              url=LIST_BASE+'?'+urllib.parse.urlencode({'list-type':'2','prefix':prefix,'delimiter':'/'})
-              raw,_=get(url)
-              ROOT.joinpath(filename).write_bytes(raw)
-              root=ET.fromstring(raw)
-              ns={'s3':'http://s3.amazonaws.com/doc/2006-03-01/'}
-              prefixes=[node.text for node in root.findall('.//s3:CommonPrefixes/s3:Prefix',ns)]
-              if not prefixes:
-                  prefixes=[node.text for node in root.findall('.//CommonPrefixes/Prefix')]
-              return prefixes,url
-
-          fut_prefixes,fut_url=list_prefixes('data/futures/um/daily/klines/','futures_listing.xml')
-          spot_prefixes,spot_url=list_prefixes('data/spot/daily/klines/','spot_listing.xml')
-          futures_symbols=sorted({p.rstrip('/').split('/')[-1] for p in fut_prefixes})
-          spot_symbols=sorted({p.rstrip('/').split('/')[-1] for p in spot_prefixes})
-
-          probes=[]
-          for symbol in ['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT']:
-              for market,prefix in [('futures','futures/um/daily/klines'),('spot','spot/daily/klines')]:
-                  name=f'{symbol}-5m-2026-07-26.zip'
-                  url=f'https://data.binance.vision/data/{prefix}/{symbol}/5m/{name}'
+          async def probe_api(name,url,requests):
+            item={'name':name,'url':url,'connected':False,'responses':[]}
+            try:
+              async with websockets.connect(url,open_timeout=15,close_timeout=5,ping_interval=15,ping_timeout=10,max_size=20_000_000) as ws:
+                item['connected']=True
+                for req in requests:
+                  await ws.send(json.dumps(req,separators=(',',':')))
+                deadline=time.monotonic()+25
+                pending={r['id'] for r in requests}
+                while pending and time.monotonic()<deadline:
                   try:
-                      raw,headers=get(url)
-                      probes.append({'symbol':symbol,'market':market,'status':200,'bytes':len(raw),'last_modified':headers.get('Last-Modified'),'url':url})
-                  except Exception as exc:
-                      probes.append({'symbol':symbol,'market':market,'status':'ERROR','error':f'{type(exc).__name__}: {exc}','url':url})
+                    raw=await asyncio.wait_for(ws.recv(),timeout=max(.1,deadline-time.monotonic()))
+                  except asyncio.TimeoutError:
+                    break
+                  parsed=json.loads(raw)
+                  item['responses'].append(parsed)
+                  if isinstance(parsed,dict) and parsed.get('id') in pending:
+                    pending.remove(parsed['id'])
+                item['pending']=sorted(pending)
+            except Exception as exc:
+              item['error']=f'{type(exc).__name__}: {exc}'
+            return item
 
-          meta={
-              'status':'COMPLETED',
-              'completed_at_utc':datetime.now(timezone.utc).isoformat(),
-              'futures_listing_url':fut_url,
-              'spot_listing_url':spot_url,
-              'futures_symbol_count':len(futures_symbols),
-              'spot_symbol_count':len(spot_symbols),
-              'futures_symbols':futures_symbols,
-              'spot_symbols':spot_symbols,
-              'probes':probes,
-              'source':'Official Binance Data Vision public S3 bucket',
-          }
-          ROOT.joinpath('meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
+          async def probe_stream(name,url):
+            item={'name':name,'url':url,'connected':False}
+            try:
+              async with websockets.connect(url,open_timeout=15,close_timeout=5,ping_interval=15,ping_timeout=10,max_size=5_000_000) as ws:
+                item['connected']=True
+                raw=await asyncio.wait_for(ws.recv(),timeout=12)
+                parsed=json.loads(raw)
+                item['event']=parsed
+            except Exception as exc:
+              item['error']=f'{type(exc).__name__}: {exc}'
+            return item
+
+          async def main():
+            for name,url,requests in targets:
+              results.append(await probe_api(name,url,requests))
+            for name,url in streams:
+              results.append(await probe_stream(name,url))
+
+          asyncio.run(main())
+          meta={'completed_at_utc':datetime.now(timezone.utc).isoformat(),'results':results}
+          ROOT.joinpath('ws_probe.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(meta,ensure_ascii=False,indent=2))
           PY
-      - name: Upload probe
+      - name: Upload WebSocket probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-binance-archive-probe-20260727
+          name: v115-binance-ws-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
