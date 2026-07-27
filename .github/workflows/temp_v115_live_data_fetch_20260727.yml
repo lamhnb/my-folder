@@ -33,7 +33,7 @@ jobs:
           from tvDatafeed import TvDatafeed, Interval
 
           OUT=Path('artifact'); SD=OUT/'symbols'; SD.mkdir(parents=True,exist_ok=True)
-          DEEP_LIMIT=140; MAX_WORKERS=6
+          DEEP_LIMIT=150; MAX_WORKERS=6
           KNOWN={'AVAAIUSDT','ZAMAUSDT','EULUSDT','BANKUSDT','DIAUSDT','PRLUSDT','SAPIENUSDT','MMTUSDT','OPENUSDT','INJUSDT','SYNUSDT','PARTIUSDT','EIGENUSDT','NEOUSDT'}
           errors=[]; lock=threading.Lock()
 
@@ -57,16 +57,33 @@ jobs:
             async with websockets.connect(url,open_timeout=20,close_timeout=5,max_size=64_000_000,ping_interval=20,ping_timeout=20) as ws:
               return json.loads(await asyncio.wait_for(ws.recv(),timeout=40))
 
-          async def market_state():
-            return await asyncio.gather(
-              first('wss://fstream.binance.com/market/ws/!ticker@arr'),
-              first('wss://fstream.binance.com/market/ws/!markPrice@arr@1s'))
+          async def collect_tickers(seconds=15):
+            result={}; url='wss://fstream.binance.com/market/ws/!ticker@arr'
+            async with websockets.connect(url,open_timeout=20,close_timeout=5,max_size=64_000_000,ping_interval=20,ping_timeout=20) as ws:
+              deadline=time.monotonic()+seconds
+              while time.monotonic()<deadline:
+                remaining=max(0.2,deadline-time.monotonic())
+                try: message=json.loads(await asyncio.wait_for(ws.recv(),timeout=min(2.0,remaining)))
+                except asyncio.TimeoutError: continue
+                if isinstance(message,list):
+                  for row in message:
+                    if isinstance(row,dict) and str(row.get('s','')).endswith('USDT'): result[row['s']]=row
+            return result
 
-          tickers_raw, marks_raw=asyncio.run(market_state())
+          async def market_state():
+            ticker_task=collect_tickers(15)
+            mark_task=first('wss://fstream.binance.com/market/ws/!markPrice@arr@1s')
+            ticker_map, marks_raw=await asyncio.gather(ticker_task,mark_task)
+            return ticker_map,marks_raw
+
+          tickers,marks_raw=asyncio.run(market_state())
           captured_ms=int(time.time()*1000)
-          tickers={r.get('s'):r for r in tickers_raw if isinstance(r,dict) and str(r.get('s','')).endswith('USDT')}
           marks={r.get('s'):r for r in marks_raw if isinstance(r,dict) and str(r.get('s','')).endswith('USDT')}
-          universe=sorted(tickers)
+          universe=sorted(marks)
+          for s in universe:
+            if s not in tickers:
+              p=marks[s].get('p') or '0'
+              tickers[s]={'s':s,'c':p,'o':p,'h':p,'l':p,'v':'0','q':'0','P':'0'}
 
           spot_info=get_json('https://data-api.binance.vision/api/v3/exchangeInfo')
           spot_set={r.get('symbol') for r in spot_info.get('symbols',[]) if r.get('status')=='TRADING' and r.get('quoteAsset')=='USDT'}
@@ -78,20 +95,19 @@ jobs:
           def rg(s):
             r=tickers[s]; o=fnum(r.get('o')); return (fnum(r.get('h'))-fnum(r.get('l')))/o*100 if o>0 else 0
           by_v=sorted(universe,key=qv,reverse=True); by_g=sorted(universe,key=ch,reverse=True); by_l=sorted(universe,key=ch); by_r=sorted(universe,key=rg,reverse=True)
-          pools=[by_v[:95],by_g[:30],by_l[:30],by_r[:30],sorted(KNOWN & set(universe))]
+          pools=[by_v[:100],by_g[:35],by_l[:35],by_r[:35],sorted(KNOWN & set(universe))]
           union=set().union(*map(set,pools))
           ranks=[{s:i for i,s in enumerate(x)} for x in (by_v,by_g,by_l,by_r)]
           def priority(s): return (0 if s in KNOWN else 1,-sum(s in p for p in pools[:4]),min(x.get(s,9999) for x in ranks),ranks[0].get(s,9999),s)
           selected=sorted(union,key=priority)[:DEEP_LIMIT]
           for s in sorted(KNOWN & set(universe)):
-            if s not in selected:
-              selected.append(s)
+            if s not in selected: selected.append(s)
           selected=sorted(set(selected),key=priority)[:DEEP_LIMIT]
 
           rows=[]
           for s in universe:
             t=tickers[s]
-            rows.append({'symbol':s,'last_price':t.get('c'),'change_24h_pct':t.get('P'),'quote_volume_24h':t.get('q'),'high_24h':t.get('h'),'low_24h':t.get('l'),'range_24h_pct':rg(s),'deep_selected':int(s in selected),'has_binance_spot':int(s in spot_set),'known_case':int(s in KNOWN)})
+            rows.append({'symbol':s,'last_price':t.get('c'),'change_24h_pct':t.get('P'),'quote_volume_24h':t.get('q'),'high_24h':t.get('h'),'low_24h':t.get('l'),'range_24h_pct':rg(s),'ticker_observed':int(qv(s)>0),'deep_selected':int(s in selected),'has_binance_spot':int(s in spot_set),'known_case':int(s in KNOWN)})
           with (OUT/'full_universe_prefilter.csv').open('w',encoding='utf-8',newline='') as f:
             w=csv.DictWriter(f,fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
 
@@ -148,21 +164,21 @@ jobs:
               if i%10==0 or i==len(jobs): print(f'[CAPTURE] {i}/{len(jobs)}',flush=True)
 
           success=sorted(r['symbol'] for r in results if r.get('ok')); failed=sorted(r['symbol'] for r in results if not r.get('ok'))
-          meta={'status':'COMPLETED' if success else 'FAILED','captured_at_utc':datetime.fromtimestamp(captured_ms/1000,tz=timezone.utc).isoformat(),'completed_at_utc':datetime.now(timezone.utc).isoformat(),'full_futures_universe_count':len(universe),'deep_requested_count':len(selected),'deep_success_count':len(success),'deep_failed_count':len(failed),'deep_symbols':selected,'success_symbols':success,'failed_symbols':failed,'known_present':sorted(KNOWN & set(universe)),'known_missing':sorted(KNOWN-set(universe)),'depth_status':'NOT_CAPTURED_IN_STAGE_1','futures_taker_flow_mode':'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV','deep_results':sorted(results,key=lambda x:x['symbol']),'errors':errors,'notes':['Full-universe prefilter is current Binance Futures ticker stream.','Deep historical futures OHLCV/OI use TradingView Binance relay.','Historical Futures taker-buy is neutral-imputed; flow confidence is degraded.','Spot OHLCV is official Binance market-data-only.','Phase/lineage remains shadow-only.']}
+          meta={'status':'COMPLETED' if success else 'FAILED','captured_at_utc':datetime.fromtimestamp(captured_ms/1000,tz=timezone.utc).isoformat(),'completed_at_utc':datetime.now(timezone.utc).isoformat(),'full_futures_universe_count':len(universe),'ticker_union_count':sum(1 for s in universe if qv(s)>0),'deep_requested_count':len(selected),'deep_success_count':len(success),'deep_failed_count':len(failed),'deep_symbols':selected,'success_symbols':success,'failed_symbols':failed,'known_present':sorted(KNOWN & set(universe)),'known_missing':sorted(KNOWN-set(universe)),'depth_status':'NOT_CAPTURED_IN_STAGE_1','futures_taker_flow_mode':'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV','deep_results':sorted(results,key=lambda x:x['symbol']),'errors':errors,'notes':['Full universe is current Binance Futures mark-price stream; ticker statistics are unioned for 15 seconds.','Deep historical futures OHLCV/OI use TradingView Binance relay.','Historical Futures taker-buy is neutral-imputed; flow confidence is degraded.','Spot OHLCV is official Binance market-data-only.','Phase/lineage remains shadow-only.']}
           (OUT/'meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
           (OUT/'errors.json').write_text(json.dumps(errors,ensure_ascii=False,indent=2),encoding='utf-8')
           hashes=[]
           for p in sorted(OUT.rglob('*')):
             if p.is_file() and p.name!='SHA256SUMS.txt': hashes.append(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(OUT)}')
           (OUT/'SHA256SUMS.txt').write_text('\n'.join(hashes)+'\n',encoding='utf-8')
-          print(json.dumps({'universe':len(universe),'requested':len(selected),'success':len(success),'failed':len(failed),'errors':len(errors)},indent=2))
-          if len(success)<60: raise SystemExit(f'Insufficient deep coverage: {len(success)}')
+          print(json.dumps({'universe':len(universe),'ticker_union':sum(1 for s in universe if qv(s)>0),'requested':len(selected),'success':len(success),'failed':len(failed),'errors':len(errors)},indent=2))
+          if len(success)<70: raise SystemExit(f'Insufficient deep coverage: {len(success)}')
           PY
       - name: Upload current scan inputs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-current-scan-inputs-20260727
+          name: v115-current-scan-inputs-20260727-full
           path: artifact
           if-no-files-found: error
           compression-level: 6
