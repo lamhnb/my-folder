@@ -1,4 +1,4 @@
-name: Temporary tvDatafeed Binance futures probe
+name: Temporary V1.15 current full-universe prefilter and deep data capture
 
 on:
   pull_request:
@@ -9,48 +9,396 @@ permissions:
   contents: read
 
 jobs:
-  probe:
+  capture:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 55
     steps:
-      - name: Probe Binance perpetual and OI through TradingView protocol
+      - name: Capture current Binance Futures universe and deep V1.15 inputs
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p artifact
-          python3 -m pip install --quiet --upgrade --no-cache-dir git+https://github.com/rongardF/tvdatafeed.git
+          mkdir -p artifact/symbols
+          python3 -m pip install --quiet --upgrade --no-cache-dir \
+            git+https://github.com/rongardF/tvdatafeed.git \
+            'websockets>=14,<16' pandas
           python3 - <<'PY'
-          import json, time
+          from __future__ import annotations
+
+          import asyncio
+          import concurrent.futures
+          import csv
+          import gzip
+          import hashlib
+          import json
+          import math
+          import threading
+          import time
+          import urllib.parse
+          import urllib.request
           from datetime import datetime, timezone
           from pathlib import Path
+          from typing import Any
+
+          import pandas as pd
+          import websockets
           from tvDatafeed import TvDatafeed, Interval
 
-          tv=TvDatafeed()
-          symbols=['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT']
-          report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'results':[]}
-          for symbol in symbols:
-            row={'symbol':symbol}
-            for kind,ticker in [('price',f'{symbol}.P'),('oi',f'{symbol}.P_OI')]:
-              start=time.time()
+          OUT = Path('artifact')
+          SYMBOL_DIR = OUT / 'symbols'
+          SYMBOL_DIR.mkdir(parents=True, exist_ok=True)
+          DEEP_LIMIT = 180
+          MAX_WORKERS = 8
+          KNOWN = {
+              'AVAAIUSDT','ZAMAUSDT','EULUSDT','BANKUSDT','DIAUSDT','PRLUSDT',
+              'SAPIENUSDT','MMTUSDT','OPENUSDT','INJUSDT','SYNUSDT',
+              'PARTIUSDT','EIGENUSDT','NEOUSDT'
+          }
+          errors: list[dict[str, Any]] = []
+          lock = threading.Lock()
+
+          def fnum(value: Any, default: float = 0.0) -> float:
               try:
-                df=tv.get_hist(symbol=ticker,exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
-                if df is None:
-                  row[kind]={'ok':False,'elapsed':round(time.time()-start,3),'error':'None result'}
-                else:
-                  path=Path(f'artifact/{symbol}.{kind}.csv')
-                  df.to_csv(path)
-                  row[kind]={'ok':True,'elapsed':round(time.time()-start,3),'rows':len(df),'columns':list(df.columns),'first_index':str(df.index[0]) if len(df) else None,'last_index':str(df.index[-1]) if len(df) else None,'first':df.iloc[0].to_dict() if len(df) else None,'last':df.iloc[-1].to_dict() if len(df) else None}
+                  x = float(value)
+                  return x if math.isfinite(x) else default
+              except Exception:
+                  return default
+
+          def http_json(url: str, attempts: int = 4, timeout: int = 45) -> Any:
+              delay = 1.0
+              last: Exception | None = None
+              for attempt in range(attempts):
+                  try:
+                      req = urllib.request.Request(
+                          url,
+                          headers={
+                              'User-Agent': 'Mozilla/5.0 V1.15-current-scan',
+                              'Accept': 'application/json',
+                          },
+                      )
+                      with urllib.request.urlopen(req, timeout=timeout) as response:
+                          return json.loads(response.read().decode('utf-8'))
+                  except Exception as exc:
+                      last = exc
+                      if attempt + 1 < attempts:
+                          time.sleep(delay)
+                          delay *= 2
+              raise last or RuntimeError('HTTP request failed')
+
+          async def ws_first(url: str, timeout: int = 30) -> Any:
+              async with websockets.connect(
+                  url,
+                  open_timeout=20,
+                  close_timeout=5,
+                  max_size=64_000_000,
+                  ping_interval=20,
+                  ping_timeout=20,
+              ) as ws:
+                  return json.loads(await asyncio.wait_for(ws.recv(), timeout=timeout))
+
+          async def capture_market_state() -> tuple[list[dict], list[dict]]:
+              futures_task = ws_first('wss://fstream.binance.com/market/ws/!ticker@arr', 35)
+              mark_task = ws_first('wss://fstream.binance.com/market/ws/!markPrice@arr@1s', 35)
+              futures, marks = await asyncio.gather(futures_task, mark_task)
+              return futures, marks
+
+          async def capture_depth(symbols: list[str]) -> dict[str, dict]:
+              url = 'wss://ws-fapi.binance.com/ws-fapi/v1'
+              pending = {f'd-{symbol}': symbol for symbol in symbols}
+              result: dict[str, dict] = {}
+              async with websockets.connect(
+                  url,
+                  open_timeout=20,
+                  close_timeout=5,
+                  max_size=64_000_000,
+                  ping_interval=20,
+                  ping_timeout=20,
+              ) as ws:
+                  for request_id, symbol in pending.items():
+                      await ws.send(json.dumps({
+                          'id': request_id,
+                          'method': 'depth',
+                          'params': {'symbol': symbol, 'limit': 100},
+                      }))
+                  deadline = time.monotonic() + 150
+                  while pending and time.monotonic() < deadline:
+                      try:
+                          message = json.loads(await asyncio.wait_for(ws.recv(), timeout=20))
+                      except asyncio.TimeoutError:
+                          continue
+                      request_id = str(message.get('id', ''))
+                      symbol = pending.pop(request_id, None)
+                      if symbol is None:
+                          continue
+                      if int(message.get('status', 0)) == 200 and isinstance(message.get('result'), dict):
+                          result[symbol] = message['result']
+                      else:
+                          errors.append({'symbol': symbol, 'source': 'depth_ws', 'error': message})
+              for symbol in pending.values():
+                  errors.append({'symbol': symbol, 'source': 'depth_ws', 'error': 'timeout'})
+              return result
+
+          futures_tickers_raw, mark_prices_raw = asyncio.run(capture_market_state())
+          captured_at_ms = int(time.time() * 1000)
+          futures_tickers = {
+              row.get('s'): row for row in futures_tickers_raw
+              if isinstance(row, dict) and str(row.get('s', '')).endswith('USDT')
+          }
+          mark_prices = {
+              row.get('s'): row for row in mark_prices_raw
+              if isinstance(row, dict) and str(row.get('s', '')).endswith('USDT')
+          }
+          universe = sorted(futures_tickers)
+
+          spot_exchange = http_json('https://data-api.binance.vision/api/v3/exchangeInfo')
+          spot_symbols = {
+              row.get('symbol') for row in spot_exchange.get('symbols', [])
+              if row.get('status') == 'TRADING' and row.get('quoteAsset') == 'USDT'
+          }
+          spot_ticker_rows = http_json('https://data-api.binance.vision/api/v3/ticker/24hr')
+          spot_tickers = {
+              row.get('symbol'): row for row in spot_ticker_rows
+              if isinstance(row, dict) and row.get('symbol') in spot_symbols
+          }
+
+          def change(row: dict) -> float:
+              return fnum(row.get('P'))
+
+          def quote_volume(row: dict) -> float:
+              return fnum(row.get('q'))
+
+          def range_pct(row: dict) -> float:
+              low = fnum(row.get('l'))
+              high = fnum(row.get('h'))
+              open_price = fnum(row.get('o'))
+              return ((high - low) / open_price * 100.0) if open_price > 0 else 0.0
+
+          by_volume = sorted(universe, key=lambda s: quote_volume(futures_tickers[s]), reverse=True)
+          by_gain = sorted(universe, key=lambda s: change(futures_tickers[s]), reverse=True)
+          by_loss = sorted(universe, key=lambda s: change(futures_tickers[s]))
+          by_range = sorted(universe, key=lambda s: range_pct(futures_tickers[s]), reverse=True)
+
+          pools = [by_volume[:110], by_gain[:35], by_loss[:35], by_range[:35], sorted(KNOWN & set(universe))]
+          selected_set = set().union(*map(set, pools))
+          rank_maps = [
+              {symbol: rank for rank, symbol in enumerate(by_volume)},
+              {symbol: rank for rank, symbol in enumerate(by_gain)},
+              {symbol: rank for rank, symbol in enumerate(by_loss)},
+              {symbol: rank for rank, symbol in enumerate(by_range)},
+          ]
+
+          def priority(symbol: str) -> tuple:
+              known = 0 if symbol in KNOWN else 1
+              frequency = -sum(symbol in pool for pool in pools[:4])
+              best_rank = min(rank.get(symbol, 10_000) for rank in rank_maps)
+              volume_rank = rank_maps[0].get(symbol, 10_000)
+              return known, frequency, best_rank, volume_rank, symbol
+
+          selected = sorted(selected_set, key=priority)[:DEEP_LIMIT]
+          for symbol in sorted(KNOWN & set(universe)):
+              if symbol not in selected:
+                  selected[-1] = symbol
+                  selected = sorted(set(selected), key=priority)[:DEEP_LIMIT]
+
+          prefilter_rows = []
+          for symbol in universe:
+              row = futures_tickers[symbol]
+              prefilter_rows.append({
+                  'symbol': symbol,
+                  'last_price': row.get('c'),
+                  'change_24h_pct': row.get('P'),
+                  'quote_volume_24h': row.get('q'),
+                  'high_24h': row.get('h'),
+                  'low_24h': row.get('l'),
+                  'range_24h_pct': range_pct(row),
+                  'deep_selected': int(symbol in selected),
+                  'has_binance_spot': int(symbol in spot_symbols),
+                  'known_case': int(symbol in KNOWN),
+              })
+          with (OUT / 'full_universe_prefilter.csv').open('w', encoding='utf-8', newline='') as handle:
+              writer = csv.DictWriter(handle, fieldnames=list(prefilter_rows[0]))
+              writer.writeheader(); writer.writerows(prefilter_rows)
+
+          depth_map = asyncio.run(capture_depth(selected))
+
+          def timestamp_ms(value: Any) -> int:
+              ts = pd.Timestamp(value)
+              if ts.tzinfo is None:
+                  ts = ts.tz_localize('UTC')
+              else:
+                  ts = ts.tz_convert('UTC')
+              return int(ts.timestamp() * 1000)
+
+          def tv_price_rows(df: pd.DataFrame) -> list[list]:
+              rows: list[list] = []
+              for index, row in df.iterrows():
+                  open_ms = timestamp_ms(index)
+                  o, h, l, c, v = (fnum(row.get(k), float('nan')) for k in ('open','high','low','close','volume'))
+                  if not all(math.isfinite(x) for x in (o,h,l,c,v)):
+                      continue
+                  q = max(0.0, ((o+h+l+c)/4.0) * v)
+                  rows.append([
+                      open_ms, str(o), str(h), str(l), str(c), str(v),
+                      open_ms + 5*60_000 - 1, str(q), 0,
+                      str(v*0.5), str(q*0.5), '0'
+                  ])
+              return rows
+
+          def tv_oi_rows(df: pd.DataFrame) -> list[dict]:
+              rows: list[dict] = []
+              for index, row in df.iterrows():
+                  value = fnum(row.get('close'), float('nan'))
+                  if math.isfinite(value):
+                      rows.append({'timestamp': timestamp_ms(index), 'sumOpenInterest': str(value)})
+              return rows
+
+          def fetch_spot_klines(symbol: str) -> list[list]:
+              if symbol not in spot_symbols:
+                  return []
+              query = urllib.parse.urlencode({'symbol': symbol, 'interval': '5m', 'limit': 1000})
+              return http_json('https://data-api.binance.vision/api/v3/klines?' + query)
+
+          def deep_fetch(symbol: str) -> dict[str, Any]:
+              started = time.time()
+              result: dict[str, Any] = {'symbol': symbol, 'ok': False}
+              try:
+                  tv = TvDatafeed()
+                  price_df = tv.get_hist(
+                      symbol=f'{symbol}.P', exchange='BINANCE',
+                      interval=Interval.in_5_minute, n_bars=1000,
+                      extended_session=False,
+                  )
+                  if price_df is None or len(price_df) < 60:
+                      raise RuntimeError(f'price history missing/short: {0 if price_df is None else len(price_df)}')
+                  try:
+                      oi_df = tv.get_hist(
+                          symbol=f'{symbol}.P_OI', exchange='BINANCE',
+                          interval=Interval.in_5_minute, n_bars=1000,
+                          extended_session=False,
+                      )
+                  except Exception as exc:
+                      oi_df = None
+                      with lock:
+                          errors.append({'symbol': symbol, 'source': 'tv_oi', 'error': f'{type(exc).__name__}: {exc}'})
+                  try:
+                      spot_rows = fetch_spot_klines(symbol)
+                  except Exception as exc:
+                      spot_rows = []
+                      with lock:
+                          errors.append({'symbol': symbol, 'source': 'spot_klines', 'error': f'{type(exc).__name__}: {exc}'})
+                  futures_rows = tv_price_rows(price_df)
+                  oi_rows = tv_oi_rows(oi_df) if oi_df is not None else []
+                  ticker = futures_tickers[symbol]
+                  spot_ticker = spot_tickers.get(symbol, {})
+                  mark = mark_prices.get(symbol, {})
+                  payload = {
+                      'symbol': symbol,
+                      'futures_5m': futures_rows,
+                      'spot_5m': spot_rows,
+                      'oi_5m': oi_rows,
+                      'premium_index': {
+                          'symbol': symbol,
+                          'markPrice': mark.get('p'),
+                          'indexPrice': mark.get('i'),
+                          'lastFundingRate': mark.get('r'),
+                          'nextFundingTime': mark.get('T'),
+                      },
+                      'depth_100': depth_map.get(symbol, {}),
+                      'futures_24h': {
+                          'symbol': symbol,
+                          'lastPrice': ticker.get('c'),
+                          'priceChangePercent': ticker.get('P'),
+                          'quoteVolume': ticker.get('q'),
+                          'volume': ticker.get('v'),
+                          'highPrice': ticker.get('h'),
+                          'lowPrice': ticker.get('l'),
+                          'openPrice': ticker.get('o'),
+                      },
+                      'spot_24h': spot_ticker,
+                      'has_binance_spot': bool(spot_rows),
+                      'futures_taker_flow_mode': 'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV',
+                      'fetched_at_ms': int(time.time()*1000),
+                      'sources': {
+                          'futures_ohlcv': 'TradingView BINANCE:<symbol>.P',
+                          'open_interest': 'TradingView BINANCE:<symbol>.P_OI',
+                          'spot_ohlcv': 'Binance data-api market-data-only',
+                          'ticker_mark_depth': 'Binance Futures WebSocket',
+                      },
+                  }
+                  with gzip.open(SYMBOL_DIR / f'{symbol}.json.gz', 'wt', encoding='utf-8') as handle:
+                      json.dump(payload, handle, separators=(',', ':'), ensure_ascii=False)
+                  result.update({
+                      'ok': True,
+                      'elapsed_seconds': round(time.time()-started,3),
+                      'futures_bars': len(futures_rows),
+                      'oi_points': len(oi_rows),
+                      'spot_bars': len(spot_rows),
+                      'latest_futures_ms': futures_rows[-1][6] if futures_rows else None,
+                      'latest_spot_ms': int(spot_rows[-1][6]) if spot_rows else None,
+                  })
               except Exception as exc:
-                row[kind]={'ok':False,'elapsed':round(time.time()-start,3),'error':f'{type(exc).__name__}: {exc}'}
-            report['results'].append(row)
-          Path('artifact/tvdatafeed_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2,default=str),encoding='utf-8')
-          print(json.dumps(report,ensure_ascii=False,indent=2,default=str))
+                  result.update({'error': f'{type(exc).__name__}: {exc}', 'elapsed_seconds': round(time.time()-started,3)})
+                  with lock:
+                      errors.append({'symbol': symbol, 'source': 'deep_fetch', 'error': result['error']})
+              return result
+
+          deep_results: list[dict[str, Any]] = []
+          with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+              futures = {pool.submit(deep_fetch, symbol): symbol for symbol in selected}
+              for index, future in enumerate(concurrent.futures.as_completed(futures), 1):
+                  deep_results.append(future.result())
+                  if index % 10 == 0 or index == len(futures):
+                      print(f'[CAPTURE] {index}/{len(futures)} deep symbols completed', flush=True)
+
+          success = sorted([row['symbol'] for row in deep_results if row.get('ok')])
+          failed = sorted([row['symbol'] for row in deep_results if not row.get('ok')])
+          meta = {
+              'status': 'COMPLETED' if success else 'FAILED',
+              'captured_at_utc': datetime.fromtimestamp(captured_at_ms/1000, tz=timezone.utc).isoformat(),
+              'completed_at_utc': datetime.now(timezone.utc).isoformat(),
+              'full_futures_universe_count': len(universe),
+              'deep_requested_count': len(selected),
+              'deep_success_count': len(success),
+              'deep_failed_count': len(failed),
+              'deep_symbols': selected,
+              'success_symbols': success,
+              'failed_symbols': failed,
+              'known_present': sorted(KNOWN & set(universe)),
+              'known_missing': sorted(KNOWN - set(universe)),
+              'futures_taker_flow_mode': 'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV',
+              'notes': [
+                  'Full universe is current Binance Futures !ticker@arr.',
+                  'Deep symbols are selected without using future outcomes.',
+                  'Futures historical taker-buy fields are unavailable in TradingView OHLCV and are neutral-imputed; do not treat flow confidence as production-grade.',
+                  'Phase and lineage results remain shadow-only.',
+              ],
+              'deep_results': sorted(deep_results, key=lambda r: r['symbol']),
+              'errors': errors,
+          }
+          (OUT / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
+          (OUT / 'errors.json').write_text(json.dumps(errors, ensure_ascii=False, indent=2), encoding='utf-8')
+
+          hashes=[]
+          for path in sorted(OUT.rglob('*')):
+              if path.is_file() and path.name != 'SHA256SUMS.txt':
+                  hashes.append(f'{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(OUT)}')
+          (OUT / 'SHA256SUMS.txt').write_text('\n'.join(hashes)+'\n', encoding='utf-8')
+          print(json.dumps({
+              'universe': len(universe),
+              'deep_requested': len(selected),
+              'deep_success': len(success),
+              'deep_failed': len(failed),
+              'errors': len(errors),
+              'artifact_files': len(hashes),
+          }, indent=2))
+          if len(success) < 80:
+              raise SystemExit(f'Insufficient deep coverage: {len(success)}')
           PY
-      - name: Upload tvDatafeed probe
+      - name: Upload current scan inputs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-tvdatafeed-binance-probe-20260727
+          name: v115-current-scan-inputs-20260727
           path: artifact
           if-no-files-found: error
+          compression-level: 6
           retention-days: 2
