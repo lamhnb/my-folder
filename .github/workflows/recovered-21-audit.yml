@@ -1,0 +1,92 @@
+name: Recovered setups 21 July audit
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit LAB POL EDGE recovered setups
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p recovered_21_audit/raw
+          python - <<'PY'
+          import csv, io, json, urllib.request, zipfile, hashlib
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          symbols=['LABUSDT','POLUSDT','EDGEUSDT']
+          dates=['2026-07-21','2026-07-22','2026-07-23']
+          event_ms=int(datetime(2026,7,21,9,59,59,tzinfo=timezone.utc).timestamp()*1000)
+          root=Path('recovered_21_audit')
+          out=[]
+
+          def fetch(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'recovered-setup-audit'})
+              with urllib.request.urlopen(req,timeout=45) as r:
+                  return r.read()
+
+          for symbol in symbols:
+              bars=[]; files=[]
+              for stamp in dates:
+                  name=f'{symbol}-5m-{stamp}.zip'
+                  url=f'https://data.binance.vision/data/futures/um/daily/klines/{symbol}/5m/{name}'
+                  data=fetch(url)
+                  (root/'raw'/name).write_bytes(data)
+                  with zipfile.ZipFile(io.BytesIO(data)) as z:
+                      bad=z.testzip()
+                      if bad: raise RuntimeError(f'bad zip member {bad}')
+                      member=[n for n in z.namelist() if n.lower().endswith('.csv')][0]
+                      text=z.read(member).decode('utf-8-sig','replace')
+                  rows=0
+                  for row in csv.reader(io.StringIO(text)):
+                      if not row or not row[0].strip().isdigit(): continue
+                      bars.append({'open_ms':int(row[0]),'open':float(row[1]),'high':float(row[2]),'low':float(row[3]),'close':float(row[4]),'close_ms':int(row[6])})
+                      rows+=1
+                  files.append({'date':stamp,'url':url,'sha256':hashlib.sha256(data).hexdigest(),'rows':rows})
+              bars.sort(key=lambda x:x['open_ms'])
+              anchor=max((b for b in bars if b['close_ms']<=event_ms), key=lambda b:b['close_ms'])
+              entry=anchor['close']
+              result={'symbol':symbol,'historical_event_utc':'2026-07-21T09:59:59Z','entry_price':entry,'anchor_close_ms':anchor['close_ms'],'files':files}
+              for h in [6,12,24,48]:
+                  w=[b for b in bars if event_ms < b['open_ms'] <= event_ms+h*3600_000]
+                  peak=max(w,key=lambda b:b['high']); trough=min(w,key=lambda b:b['low']); last=w[-1]
+                  result[f'mfe_{h}h_pct']=(peak['high']/entry-1)*100
+                  result[f'mae_{h}h_pct']=(trough['low']/entry-1)*100
+                  result[f'close_{h}h_pct']=(last['close']/entry-1)*100
+                  result[f'peak_{h}h_utc']=datetime.fromtimestamp(peak['open_ms']/1000,tz=timezone.utc).isoformat()
+              for t in [3,5,7,10]:
+                  w=[b for b in bars if event_ms < b['open_ms'] <= event_ms+48*3600_000]
+                  hit=next((b for b in w if (b['high']/entry-1)*100>=t),None)
+                  result[f'first_hit_{t}pct_hours']=None if hit is None else (hit['open_ms']-event_ms)/3600_000
+              out.append(result)
+
+          (root/'results.json').write_text(json.dumps(out,indent=2),encoding='utf-8')
+          fields=['symbol','historical_event_utc','entry_price']
+          for h in [6,12,24,48]: fields += [f'mfe_{h}h_pct',f'mae_{h}h_pct',f'close_{h}h_pct',f'peak_{h}h_utc']
+          fields += [f'first_hit_{t}pct_hours' for t in [3,5,7,10]]
+          with (root/'results.csv').open('w',newline='',encoding='utf-8-sig') as f:
+              w=csv.DictWriter(f,fieldnames=fields); w.writeheader(); w.writerows([{k:r.get(k) for k in fields} for r in out])
+
+          lines=['# Recovered setups 21 July audit','', '- Historical event time: 2026-07-21 09:59 UTC', '- Source: official Binance USD-M Futures 5m daily klines', '- These were recovered states, not fresh live triggers on the recovery day.', '', '| Symbol | Entry | MFE 6h | MFE 12h | MFE 24h | MFE 48h | MAE 48h | Close 48h |', '|---|---:|---:|---:|---:|---:|---:|---:|']
+          for r in out:
+              lines.append(f"| {r['symbol']} | {r['entry_price']:.10g} | {r['mfe_6h_pct']:.2f}% | {r['mfe_12h_pct']:.2f}% | {r['mfe_24h_pct']:.2f}% | {r['mfe_48h_pct']:.2f}% | {r['mae_48h_pct']:.2f}% | {r['close_48h_pct']:.2f}% |")
+          (root/'REPORT.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          print(json.dumps(out,indent=2))
+          PY
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovered-setups-21-july-audit
+          path: recovered_21_audit/**
+          retention-days: 14
+          compression-level: 6
