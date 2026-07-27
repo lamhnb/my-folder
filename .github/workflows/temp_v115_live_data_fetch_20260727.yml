@@ -1,4 +1,4 @@
-name: Temporary Tokyo Binance kline proxy probe
+name: Temporary Tokyo proxy route discovery
 
 on:
   pull_request:
@@ -9,61 +9,55 @@ permissions:
   contents: read
 
 jobs:
-  probe:
+  discover:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Probe public read-only Tokyo Binance kline endpoint
+      - name: Inspect Tokyo public server routes and TLS identity
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifact
+          echo | openssl s_client -connect 52.69.48.142:443 -servername 52.69.48.142.nip.io 2>/dev/null | openssl x509 -noout -subject -issuer -ext subjectAltName > artifact/cert.txt || true
+          curl -k -L --max-time 60 -A 'Mozilla/5.0 V1.15-route-discovery' 'https://52.69.48.142.nip.io/' -o artifact/root.html -D artifact/root.headers || true
+          curl -L --max-time 60 -A 'Mozilla/5.0 V1.15-route-discovery' 'http://52.69.48.142.nip.io/' -o artifact/root_http.html -D artifact/root_http.headers || true
+          {
+            echo '=== CERT ==='; cat artifact/cert.txt || true
+            echo; echo '=== HTTPS HEADERS ==='; cat artifact/root.headers || true
+            echo; echo '=== HTTP HEADERS ==='; cat artifact/root_http.headers || true
+            echo; echo '=== API ROUTE CONTEXT HTTPS ==='; grep -n -C 5 -E 'scalper-msandwich|/api/debug|fetch\(|API_BASE|baseURL|ui-bundle' artifact/root.html | head -1000 || true
+            echo; echo '=== API ROUTE CONTEXT HTTP ==='; grep -n -C 5 -E 'scalper-msandwich|/api/debug|fetch\(|API_BASE|baseURL|ui-bundle' artifact/root_http.html | head -1000 || true
+          } > artifact/discovery.txt
           python3 - <<'PY'
-          import concurrent.futures, json, ssl, time, urllib.parse, urllib.request
-          from datetime import datetime, timezone
-          from pathlib import Path
-
-          base='https://52.69.48.142.nip.io/api/debug/scalper-msandwich-paper'
-          symbols=['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT']
-          tests=[]
-          for symbol in symbols:
-            q=urllib.parse.urlencode({'symbol':symbol,'interval':'5m','limit':1000,'capital':18,'leverage':30})
-            tests.append((symbol,base+'?'+q))
-          ctx=ssl._create_unverified_context()
-
-          def probe(item):
-            symbol,url=item
-            started=time.time()
-            try:
-              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-current-scan','Accept':'application/json'})
-              with urllib.request.urlopen(req,timeout=120,context=ctx) as r:
-                body=r.read()
-                text=body.decode('utf-8',errors='replace')
-                parsed=None
-                try: parsed=json.loads(text)
-                except Exception: pass
-                Path(f'artifact/{symbol}.response').write_bytes(body)
-                summary={'symbol':symbol,'url':url,'ok':True,'status':getattr(r,'status',None),'elapsed':round(time.time()-started,3),'bytes':len(body),'content_type':r.headers.get('Content-Type'),'head':text[:1500],'json_type':type(parsed).__name__ if parsed is not None else None}
-                if isinstance(parsed,dict):
-                  summary['keys']=sorted(parsed.keys())
-                  for k,v in parsed.items():
-                    if isinstance(v,list): summary[f'{k}_len']=len(v)
-                    elif isinstance(v,dict): summary[f'{k}_keys']=sorted(v.keys())[:100]
-                return summary
-            except Exception as exc:
-              return {'symbol':symbol,'url':url,'ok':False,'elapsed':round(time.time()-started,3),'error':f'{type(exc).__name__}: {exc}'}
-
-          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-            results=list(pool.map(probe,tests))
-          report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'results':results}
-          Path('artifact/tokyo_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
-          print(json.dumps(report,ensure_ascii=False,indent=2))
+          import json, ssl, urllib.request, urllib.error, pathlib, time
+          hosts=['52.69.48.142.nip.io','52.69.48.142','ec2-52-69-48-142.ap-northeast-1.compute.amazonaws.com']
+          paths=['/api/debug/scalper-msandwich-paper?symbol=BTCUSDT&interval=5m&limit=1000&capital=18&leverage=30','/apex/api/debug/scalper-msandwich-paper?symbol=BTCUSDT&interval=5m&limit=1000&capital=18&leverage=30','/deepthink/api/debug/scalper-msandwich-paper?symbol=BTCUSDT&interval=5m&limit=1000&capital=18&leverage=30','/api/ui-bundle','/api/health','/health','/status']
+          ctx=ssl._create_unverified_context(); rows=[]
+          for scheme in ['https','http']:
+            for host in hosts:
+              for path in paths:
+                url=f'{scheme}://{host}{path}'
+                start=time.time()
+                try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-route-discovery','Accept':'application/json,text/html'})
+                  kwargs={'timeout':30}
+                  if scheme=='https': kwargs['context']=ctx
+                  with urllib.request.urlopen(req,**kwargs) as r:
+                    body=r.read(1000); rows.append({'url':url,'ok':True,'status':getattr(r,'status',None),'elapsed':round(time.time()-start,3),'content_type':r.headers.get('Content-Type'),'head':body.decode('utf-8',errors='replace')})
+                except urllib.error.HTTPError as exc:
+                  try: body=exc.read(1000).decode('utf-8',errors='replace')
+                  except Exception: body=''
+                  rows.append({'url':url,'ok':False,'status':exc.code,'elapsed':round(time.time()-start,3),'error':str(exc),'head':body})
+                except Exception as exc:
+                  rows.append({'url':url,'ok':False,'elapsed':round(time.time()-start,3),'error':f'{type(exc).__name__}: {exc}'})
+          pathlib.Path('artifact/route_probe.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps([r for r in rows if r.get('ok') or r.get('status') not in (404,None)],ensure_ascii=False,indent=2))
           PY
-      - name: Upload Tokyo probe
+      - name: Upload route discovery
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-tokyo-kline-proxy-probe-20260727
+          name: v115-tokyo-route-discovery-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
