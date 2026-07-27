@@ -1,4 +1,4 @@
-name: Temporary V1.15 futures proxy probe
+name: Temporary V1.15 July-26 archive availability probe
 
 on:
   pull_request:
@@ -11,75 +11,47 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
-      - name: Probe futures historical market-data proxy routes
+      - name: Probe official Binance Data Vision July 26 archives
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifact
           python3 - <<'PY'
-          import concurrent.futures, json, time, urllib.parse, urllib.request
-          from datetime import datetime, timezone
+          import json, urllib.request, urllib.error, time
           from pathlib import Path
+          from datetime import datetime, timezone
 
-          target = 'https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'
-          encoded = urllib.parse.quote(target, safe='')
-          tests = [
-            ('jina_https', 'https://r.jina.ai/https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('jina_http', 'https://r.jina.ai/http://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('codetabs', 'https://api.codetabs.com/v1/proxy?quest=' + encoded),
-            ('isomorphic_git', 'https://cors.isomorphic-git.org/' + target),
-            ('corsproxy_org', 'https://corsproxy.org/?' + encoded),
-            ('cors_eu', 'https://cors.eu.org/' + target),
-            ('yacdn', 'https://yacdn.org/proxy/' + target),
-            ('thingproxy', 'https://thingproxy.freeboard.io/fetch/' + target),
-            ('allorigins_get', 'https://api.allorigins.win/get?url=' + encoded),
-            ('allorigins_raw', 'https://api.allorigins.win/raw?url=' + encoded),
-            ('corsproxy_io', 'https://corsproxy.io/?url=' + encoded),
-            ('cors_lol', 'https://api.cors.lol/?url=' + encoded),
-            ('cors_sh', 'https://proxy.cors.sh/' + target),
-            ('cloudflare_worker_demo', 'https://test.cors.workers.dev/?' + target),
-            ('binance_info', 'https://www.binance.info/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('binance_me', 'https://www.binance.me/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('binance_cloud', 'https://www.binance.cloud/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('binance_no_www', 'https://binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('api1_futures_path', 'https://api1.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('api4_futures_path', 'https://api4.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+          symbols=['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT']
+          groups=[
+            ('futures','https://data.binance.vision/data/futures/um/daily/klines/{s}/5m/{s}-5m-2026-07-26.zip'),
+            ('spot','https://data.binance.vision/data/spot/daily/klines/{s}/5m/{s}-5m-2026-07-26.zip'),
+            ('metrics','https://data.binance.vision/data/futures/um/daily/metrics/{s}/{s}-metrics-2026-07-26.zip'),
           ]
-
-          def probe(item):
-            name, url = item
-            start=time.time()
-            try:
-              headers={'User-Agent':'Mozilla/5.0 V1.15-proxy-probe','Accept':'application/json','x-no-cache':'true'}
-              req=urllib.request.Request(url,headers=headers)
-              with urllib.request.urlopen(req,timeout=30) as r:
-                body=r.read()
-                text=body.decode('utf-8',errors='replace')
-                parsed=None
-                try: parsed=json.loads(text)
-                except Exception: pass
-                # allorigins get wraps content
-                inner=None
-                if isinstance(parsed,dict) and isinstance(parsed.get('contents'),str):
-                  try: inner=json.loads(parsed['contents'])
-                  except Exception: pass
-                return {'name':name,'url':url,'ok':True,'status':getattr(r,'status',None),'elapsed':round(time.time()-start,3),'bytes':len(body),'head':text[:500],'json_type':type(parsed).__name__ if parsed is not None else None,'inner_type':type(inner).__name__ if inner is not None else None}
-            except Exception as exc:
-              return {'name':name,'url':url,'ok':False,'elapsed':round(time.time()-start,3),'error':f'{type(exc).__name__}: {exc}'}
-
-          with concurrent.futures.ThreadPoolExecutor(max_workers=20) as pool:
-            results=list(pool.map(probe,tests))
-          report={'completed_at_utc':datetime.now(timezone.utc).isoformat(),'target':target,'results':results}
-          Path('artifact/futures_proxy_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          rows=[]
+          for s in symbols:
+            for group,template in groups:
+              url=template.format(s=s)
+              started=time.time()
+              try:
+                req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-archive-probe','Range':'bytes=0-31'})
+                with urllib.request.urlopen(req,timeout=45) as r:
+                  body=r.read(32)
+                  rows.append({'symbol':s,'group':group,'url':url,'status':getattr(r,'status',None),'available':True,'content_length':r.headers.get('Content-Length'),'content_range':r.headers.get('Content-Range'),'head_hex':body.hex(),'elapsed':round(time.time()-started,3)})
+              except urllib.error.HTTPError as exc:
+                rows.append({'symbol':s,'group':group,'url':url,'status':exc.code,'available':False,'error':str(exc),'elapsed':round(time.time()-started,3)})
+              except Exception as exc:
+                rows.append({'symbol':s,'group':group,'url':url,'available':False,'error':f'{type(exc).__name__}: {exc}','elapsed':round(time.time()-started,3)})
+          report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'available_count':sum(1 for x in rows if x['available']),'rows':rows}
+          Path('artifact/archive_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
-      - name: Upload proxy probe
+      - name: Upload archive availability probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-futures-proxy-probe-20260727
+          name: v115-july26-archive-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
