@@ -1,4 +1,4 @@
-name: Temporary TradingView endpoint probe
+name: Temporary tvDatafeed Binance futures probe
 
 on:
   pull_request:
@@ -11,66 +11,46 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
-      - name: Probe TradingView data websocket endpoints
+      - name: Probe Binance perpetual and OI through TradingView protocol
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p artifact tvprobe
-          cd tvprobe
-          npm init -y >/dev/null 2>&1
-          npm install --silent tvws ws
-          node --input-type=module <<'JS'
-          import fs from 'node:fs';
-          import { connect, getCandles } from 'tvws';
-          import WebSocket from 'ws';
+          mkdir -p artifact
+          python3 -m pip install --quiet --upgrade --no-cache-dir git+https://github.com/rongardF/tvdatafeed.git
+          python3 - <<'PY'
+          import json, time
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from tvDatafeed import TvDatafeed, Interval
 
-          const report={checked_at_utc:new Date().toISOString(), endpoints:[]};
-          for (const endpoint of ['data','prodata','widgetdata','charts-polygon']) {
-            const row={endpoint};
-            let connection;
-            const start=Date.now();
-            try {
-              connection=await connect({endpoint});
-              row.connected=true; row.connect_ms=Date.now()-start;
-              const result=await getCandles({connection,symbols:['BINANCE:BTCUSDT.P'],amount:20,timeframe:'5'});
-              row.result_type=Array.isArray(result)?'array':typeof result;
-              row.count=Array.isArray(result)?result.length:null;
-              row.sample=Array.isArray(result)?result.slice(-2):result;
-              fs.writeFileSync(`../artifact/${endpoint}.json`,JSON.stringify(result));
-            } catch(error) {
-              row.connected=false; row.elapsed_ms=Date.now()-start; row.error=`${error?.name||'Error'}: ${error?.message||error}`;
-            } finally { try {await connection?.close();} catch{} }
-            report.endpoints.push(row);
-          }
-
-          const rawUrls=[
-            'wss://data.tradingview.com/socket.io/websocket',
-            'wss://prodata.tradingview.com/socket.io/websocket',
-            'wss://widgetdata.tradingview.com/socket.io/websocket',
-            'wss://charts-polygon.tradingview.com/socket.io/websocket',
-          ];
-          report.raw=[];
-          for (const url of rawUrls) {
-            const row={url};
-            await new Promise((resolve)=>{
-              const ws=new WebSocket(url,{headers:{Origin:'https://www.tradingview.com','User-Agent':'Mozilla/5.0'}});
-              const timer=setTimeout(()=>{row.error='timeout';try{ws.terminate();}catch{};resolve();},15000);
-              ws.on('open',()=>{row.open=true;clearTimeout(timer);try{ws.close();}catch{};resolve();});
-              ws.on('unexpected-response',(req,res)=>{row.status=res.statusCode;row.headers=res.headers;clearTimeout(timer);resolve();});
-              ws.on('error',(e)=>{row.error=`${e.name}: ${e.message}`;clearTimeout(timer);resolve();});
-            });
-            report.raw.push(row);
-          }
-          fs.writeFileSync('../artifact/tv_endpoint_probe.json',JSON.stringify(report,null,2));
-          console.log(JSON.stringify(report,null,2));
-          JS
-      - name: Upload TradingView endpoint probe
+          tv=TvDatafeed()
+          symbols=['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT']
+          report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'results':[]}
+          for symbol in symbols:
+            row={'symbol':symbol}
+            for kind,ticker in [('price',f'{symbol}.P'),('oi',f'{symbol}.P_OI')]:
+              start=time.time()
+              try:
+                df=tv.get_hist(symbol=ticker,exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
+                if df is None:
+                  row[kind]={'ok':False,'elapsed':round(time.time()-start,3),'error':'None result'}
+                else:
+                  path=Path(f'artifact/{symbol}.{kind}.csv')
+                  df.to_csv(path)
+                  row[kind]={'ok':True,'elapsed':round(time.time()-start,3),'rows':len(df),'columns':list(df.columns),'first_index':str(df.index[0]) if len(df) else None,'last_index':str(df.index[-1]) if len(df) else None,'first':df.iloc[0].to_dict() if len(df) else None,'last':df.iloc[-1].to_dict() if len(df) else None}
+              except Exception as exc:
+                row[kind]={'ok':False,'elapsed':round(time.time()-start,3),'error':f'{type(exc).__name__}: {exc}'}
+            report['results'].append(row)
+          Path('artifact/tvdatafeed_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2,default=str),encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False,indent=2,default=str))
+          PY
+      - name: Upload tvDatafeed probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-tradingview-endpoint-probe-20260727
+          name: v115-tvdatafeed-binance-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
