@@ -1,4 +1,4 @@
-name: Temporary V1.15 current endpoint probe
+name: Temporary V1.15 futures proxy probe
 
 on:
   pull_request:
@@ -13,83 +13,73 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Probe current Binance market-data routes
+      - name: Probe futures historical market-data proxy routes
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifact
-          python3 -m pip install --quiet 'websockets>=14,<16'
           python3 - <<'PY'
-          import asyncio, json, time, urllib.request
+          import concurrent.futures, json, time, urllib.parse, urllib.request
           from datetime import datetime, timezone
           from pathlib import Path
-          import websockets
 
-          OUT = Path('artifact')
+          target = 'https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'
+          encoded = urllib.parse.quote(target, safe='')
           tests = [
-            ('pipai_klines', 'https://api.pipai.org/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('pipai_ticker', 'https://api.pipai.org/fapi/v1/ticker/24hr?symbol=BTCUSDT'),
-            ('pipai_premium', 'https://api.pipai.org/fapi/v1/premiumIndex?symbol=BTCUSDT'),
-            ('pipai_depth', 'https://api.pipai.org/fapi/v1/depth?symbol=BTCUSDT&limit=20'),
-            ('pipai_oi', 'https://api.pipai.org/futures/data/openInterestHist?symbol=BTCUSDT&period=5m&limit=5'),
-            ('www_futures_klines', 'https://www.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('www_futures_ticker', 'https://www.binance.com/fapi/v1/ticker/24hr?symbol=BTCUSDT'),
-            ('www_spot_klines', 'https://www.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('data_spot_klines', 'https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=5'),
-            ('data_spot_ticker', 'https://data-api.binance.vision/api/v3/ticker/24hr?symbol=BTCUSDT'),
-            ('allorigins_futures_klines', 'https://api.allorigins.win/raw?url=https%3A%2F%2Ffapi.binance.com%2Ffapi%2Fv1%2Fklines%3Fsymbol%3DBTCUSDT%26interval%3D5m%26limit%3D5'),
-            ('corsproxy_futures_klines', 'https://corsproxy.io/?url=https%3A%2F%2Ffapi.binance.com%2Ffapi%2Fv1%2Fklines%3Fsymbol%3DBTCUSDT%26interval%3D5m%26limit%3D5'),
+            ('jina_https', 'https://r.jina.ai/https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+            ('jina_http', 'https://r.jina.ai/http://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+            ('codetabs', 'https://api.codetabs.com/v1/proxy?quest=' + encoded),
+            ('isomorphic_git', 'https://cors.isomorphic-git.org/' + target),
+            ('corsproxy_org', 'https://corsproxy.org/?' + encoded),
+            ('cors_eu', 'https://cors.eu.org/' + target),
+            ('yacdn', 'https://yacdn.org/proxy/' + target),
+            ('thingproxy', 'https://thingproxy.freeboard.io/fetch/' + target),
+            ('allorigins_get', 'https://api.allorigins.win/get?url=' + encoded),
+            ('allorigins_raw', 'https://api.allorigins.win/raw?url=' + encoded),
+            ('corsproxy_io', 'https://corsproxy.io/?url=' + encoded),
+            ('cors_lol', 'https://api.cors.lol/?url=' + encoded),
+            ('cors_sh', 'https://proxy.cors.sh/' + target),
+            ('cloudflare_worker_demo', 'https://test.cors.workers.dev/?' + target),
+            ('binance_info', 'https://www.binance.info/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+            ('binance_me', 'https://www.binance.me/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+            ('binance_cloud', 'https://www.binance.cloud/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+            ('binance_no_www', 'https://binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+            ('api1_futures_path', 'https://api1.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
+            ('api4_futures_path', 'https://api4.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=5m&limit=5'),
           ]
 
-          def probe_http(name, url):
-            started = time.time()
+          def probe(item):
+            name, url = item
+            start=time.time()
             try:
-              req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0 V1.15-probe','Accept':'application/json'})
-              with urllib.request.urlopen(req, timeout=25) as r:
-                body = r.read()
-                text = body.decode('utf-8', errors='replace')
-                parsed = None
-                try: parsed = json.loads(text)
+              headers={'User-Agent':'Mozilla/5.0 V1.15-proxy-probe','Accept':'application/json','x-no-cache':'true'}
+              req=urllib.request.Request(url,headers=headers)
+              with urllib.request.urlopen(req,timeout=30) as r:
+                body=r.read()
+                text=body.decode('utf-8',errors='replace')
+                parsed=None
+                try: parsed=json.loads(text)
                 except Exception: pass
-                return {'name':name,'url':url,'ok':True,'status':getattr(r,'status',None),'elapsed':round(time.time()-started,3),'bytes':len(body),'head':text[:300],'json_type':type(parsed).__name__ if parsed is not None else None}
+                # allorigins get wraps content
+                inner=None
+                if isinstance(parsed,dict) and isinstance(parsed.get('contents'),str):
+                  try: inner=json.loads(parsed['contents'])
+                  except Exception: pass
+                return {'name':name,'url':url,'ok':True,'status':getattr(r,'status',None),'elapsed':round(time.time()-start,3),'bytes':len(body),'head':text[:500],'json_type':type(parsed).__name__ if parsed is not None else None,'inner_type':type(inner).__name__ if inner is not None else None}
             except Exception as exc:
-              return {'name':name,'url':url,'ok':False,'elapsed':round(time.time()-started,3),'error':f'{type(exc).__name__}: {exc}'}
+              return {'name':name,'url':url,'ok':False,'elapsed':round(time.time()-start,3),'error':f'{type(exc).__name__}: {exc}'}
 
-          async def one_event(name, url, timeout=20):
-            started = time.time()
-            try:
-              async with websockets.connect(url, open_timeout=15, close_timeout=5, max_size=32_000_000, ping_interval=20, ping_timeout=20) as ws:
-                msg = await asyncio.wait_for(ws.recv(), timeout=timeout)
-                data = json.loads(msg)
-                if isinstance(data, list):
-                  sample = data[:3]
-                  count = len(data)
-                else:
-                  sample = data
-                  count = 1
-                return {'name':name,'url':url,'ok':True,'elapsed':round(time.time()-started,3),'count':count,'sample':sample}
-            except Exception as exc:
-              return {'name':name,'url':url,'ok':False,'elapsed':round(time.time()-started,3),'error':f'{type(exc).__name__}: {exc}'}
-
-          async def run_all():
-            http_task = asyncio.gather(*(asyncio.to_thread(probe_http, n, u) for n, u in tests))
-            ws_task = asyncio.gather(
-              one_event('futures_all_miniticker','wss://fstream.binance.com/market/ws/!miniTicker@arr'),
-              one_event('futures_all_ticker','wss://fstream.binance.com/market/ws/!ticker@arr'),
-              one_event('spot_all_miniticker','wss://data-stream.binance.vision/ws/!miniTicker@arr'),
-            )
-            return await asyncio.gather(http_task, ws_task)
-
-          http_results, ws_results = asyncio.run(run_all())
-          report = {'completed_at_utc':datetime.now(timezone.utc).isoformat(),'http':http_results,'ws':ws_results}
-          (OUT/'endpoint_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          with concurrent.futures.ThreadPoolExecutor(max_workers=20) as pool:
+            results=list(pool.map(probe,tests))
+          report={'completed_at_utc':datetime.now(timezone.utc).isoformat(),'target':target,'results':results}
+          Path('artifact/futures_proxy_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
-      - name: Upload endpoint probe
+      - name: Upload proxy probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-current-endpoint-probe-20260727
+          name: v115-futures-proxy-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
