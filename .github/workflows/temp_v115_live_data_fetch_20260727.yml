@@ -1,4 +1,4 @@
-name: Temporary V1.15 live Binance data fetch
+name: Temporary V1.15 Binance archive probe
 
 on:
   pull_request:
@@ -9,201 +9,77 @@ permissions:
   contents: read
 
 jobs:
-  fetch-live-data:
+  probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 10
     steps:
-      - name: Fetch current Binance USD-M and Spot data
+      - name: Probe official Binance Data Vision
         shell: bash
         run: |
-          set -u
-          mkdir -p artifact/symbols
+          set -euo pipefail
+          mkdir -p artifact
           python3 - <<'PY'
-          import asyncio
-          import gzip
-          import json
-          import time
-          import urllib.parse
-          import urllib.request
+          import json, urllib.parse, urllib.request, xml.etree.ElementTree as ET
           from datetime import datetime, timezone
           from pathlib import Path
 
-          ROOT = Path('artifact')
-          OUT = ROOT / 'symbols'
-          FUTURES_BASES = [
-              'https://api.pipai.org',
-              'https://fapi.binance.com',
-              'https://fapi1.binance.com',
-              'https://fapi2.binance.com',
-              'https://fapi3.binance.com',
-          ]
-          SPOT_BASES = [
-              'https://data-api.binance.vision',
-              'https://api.binance.com',
-              'https://api1.binance.com',
-              'https://api2.binance.com',
-              'https://api3.binance.com',
-              'https://api4.binance.com',
-              'https://api-gcp.binance.com',
-          ]
-          SEMAPHORE = 4
-          RETRIES = 4
-          TIMEOUT = 45
-          bootstrap_errors = []
+          ROOT=Path('artifact')
+          BASE='https://data.binance.vision/'
 
-          def sync_get_json(url: str):
-              delay = 1.0
-              last = None
-              for attempt in range(RETRIES):
+          def get(url, timeout=60):
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-archive-probe'})
+              with urllib.request.urlopen(req,timeout=timeout) as r:
+                  return r.read(), dict(r.headers)
+
+          def list_prefixes(prefix):
+              url=BASE+'?'+urllib.parse.urlencode({'list-type':'2','prefix':prefix,'delimiter':'/'})
+              raw,_=get(url)
+              ROOT.joinpath('listing.xml').write_bytes(raw)
+              root=ET.fromstring(raw)
+              ns={'s3':'http://s3.amazonaws.com/doc/2006-03-01/'}
+              prefixes=[]
+              for node in root.findall('.//s3:CommonPrefixes/s3:Prefix',ns):
+                  prefixes.append(node.text)
+              if not prefixes:
+                  for node in root.findall('.//CommonPrefixes/Prefix'):
+                      prefixes.append(node.text)
+              return prefixes,url
+
+          fut_prefixes,fut_url=list_prefixes('data/futures/um/daily/klines/')
+          spot_prefixes,spot_url=list_prefixes('data/spot/daily/klines/')
+          futures_symbols=sorted({p.rstrip('/').split('/')[-1] for p in fut_prefixes})
+          spot_symbols=sorted({p.rstrip('/').split('/')[-1] for p in spot_prefixes})
+
+          probes=[]
+          for symbol in ['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT']:
+              for market,prefix in [('futures','futures/um/daily/klines'),('spot','spot/daily/klines')]:
+                  name=f'{symbol}-5m-2026-07-26.zip'
+                  url=f'https://data.binance.vision/data/{prefix}/{symbol}/5m/{name}'
                   try:
-                      req = urllib.request.Request(url, headers={
-                          'User-Agent': 'Mozilla/5.0 V1.15-live-scan',
-                          'Accept': 'application/json',
-                      })
-                      with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
-                          raw = response.read().decode('utf-8')
-                          return json.loads(raw)
+                      raw,headers=get(url)
+                      probes.append({'symbol':symbol,'market':market,'status':200,'bytes':len(raw),'last_modified':headers.get('Last-Modified'),'url':url})
                   except Exception as exc:
-                      last = exc
-                      if attempt + 1 >= RETRIES:
-                          raise
-                      time.sleep(delay)
-                      delay = min(delay * 2.0, 10.0)
-              raise last
+                      probes.append({'symbol':symbol,'market':market,'status':'ERROR','error':f'{type(exc).__name__}: {exc}','url':url})
 
-          def endpoint(base: str, path: str, params=None):
-              query = '' if not params else '?' + urllib.parse.urlencode(params)
-              return sync_get_json(base + path + query)
-
-          def find_working_base(bases, path, label):
-              for base in bases:
-                  try:
-                      data = endpoint(base, path)
-                      return base, data
-                  except Exception as exc:
-                      bootstrap_errors.append({'source': label, 'base': base, 'error': f'{type(exc).__name__}: {exc}'})
-              return None, None
-
-          futures_base, futures_info = find_working_base(FUTURES_BASES, '/fapi/v1/exchangeInfo', 'futures_exchange_info')
-          spot_base, spot_info = find_working_base(SPOT_BASES, '/api/v3/exchangeInfo', 'spot_exchange_info')
-
-          if not futures_base or not isinstance(futures_info, dict):
-              meta = {
-                  'status': 'BLOCKED',
-                  'completed_at_utc': datetime.now(timezone.utc).isoformat(),
-                  'bootstrap_errors': bootstrap_errors,
-                  'source': 'Binance public REST and transparent market-data mirrors',
-              }
-              (ROOT / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
-              print(json.dumps(meta, ensure_ascii=False, indent=2))
-              raise SystemExit(0)
-
-          def optional_endpoint(base, path, default):
-              if not base:
-                  return default
-              try:
-                  return endpoint(base, path)
-              except Exception as exc:
-                  bootstrap_errors.append({'source': path, 'base': base, 'error': f'{type(exc).__name__}: {exc}'})
-                  return default
-
-          futures_tickers = optional_endpoint(futures_base, '/fapi/v1/ticker/24hr', [])
-          premium_all = optional_endpoint(futures_base, '/fapi/v1/premiumIndex', [])
-          spot_info = spot_info if isinstance(spot_info, dict) else {'symbols': []}
-          spot_tickers = optional_endpoint(spot_base, '/api/v3/ticker/24hr', [])
-
-          universe = sorted(
-              s['symbol'] for s in futures_info.get('symbols', [])
-              if s.get('quoteAsset') == 'USDT'
-              and s.get('contractType') == 'PERPETUAL'
-              and s.get('status') == 'TRADING'
-          )
-          spot_set = {
-              s['symbol'] for s in spot_info.get('symbols', [])
-              if s.get('quoteAsset') == 'USDT' and s.get('status') == 'TRADING'
+          meta={
+              'status':'COMPLETED',
+              'completed_at_utc':datetime.now(timezone.utc).isoformat(),
+              'futures_listing_url':fut_url,
+              'spot_listing_url':spot_url,
+              'futures_symbol_count':len(futures_symbols),
+              'spot_symbol_count':len(spot_symbols),
+              'futures_symbols':futures_symbols,
+              'spot_symbols':spot_symbols,
+              'probes':probes,
+              'source':'Official Binance Data Vision S3 archive',
           }
-          futures_ticker_map = {row.get('symbol'): row for row in futures_tickers if isinstance(row, dict)}
-          spot_ticker_map = {row.get('symbol'): row for row in spot_tickers if isinstance(row, dict)}
-          premium_map = {row.get('symbol'): row for row in premium_all if isinstance(row, dict)}
-          now_ms = int(time.time() * 1000)
-          sem = asyncio.Semaphore(SEMAPHORE)
-          progress = {'completed': 0}
-          errors = []
-
-          async def call(base, path, params=None):
-              async with sem:
-                  result = await asyncio.to_thread(endpoint, base, path, params)
-                  await asyncio.sleep(0.08)
-                  return result
-
-          async def fetch_symbol(symbol: str):
-              try:
-                  tasks = [
-                      call(futures_base, '/fapi/v1/klines', {'symbol': symbol, 'interval': '5m', 'limit': 1000}),
-                      call(futures_base, '/futures/data/openInterestHist', {'symbol': symbol, 'period': '5m', 'limit': 100}),
-                      call(futures_base, '/fapi/v1/depth', {'symbol': symbol, 'limit': 100}),
-                  ]
-                  include_spot = bool(spot_base) and symbol in spot_set
-                  if include_spot:
-                      tasks.append(call(spot_base, '/api/v3/klines', {'symbol': symbol, 'interval': '5m', 'limit': 1000}))
-                  results = await asyncio.gather(*tasks)
-                  futures_rows, oi_rows, book = results[:3]
-                  spot_rows = results[3] if len(results) > 3 else []
-                  payload = {
-                      'symbol': symbol,
-                      'fetched_at_utc': datetime.now(timezone.utc).isoformat(),
-                      'fetched_at_ms': int(time.time() * 1000),
-                      'has_binance_spot': include_spot,
-                      'futures_24h': futures_ticker_map.get(symbol, {}),
-                      'spot_24h': spot_ticker_map.get(symbol, {}),
-                      'premium_index': premium_map.get(symbol, {}),
-                      'futures_5m': futures_rows,
-                      'spot_5m': spot_rows,
-                      'oi_5m': oi_rows,
-                      'depth_100': book,
-                  }
-                  with gzip.open(OUT / f'{symbol}.json.gz', 'wt', encoding='utf-8') as handle:
-                      json.dump(payload, handle, ensure_ascii=False, separators=(',', ':'))
-              except Exception as exc:
-                  errors.append({'symbol': symbol, 'error': f'{type(exc).__name__}: {exc}'})
-              progress['completed'] += 1
-              done = progress['completed']
-              if done % 25 == 0 or done == len(universe):
-                  print(f'[FETCH] {done}/{len(universe)} symbols, errors={len(errors)}', flush=True)
-
-          async def main():
-              await asyncio.gather(*(fetch_symbol(symbol) for symbol in universe))
-
-          asyncio.run(main())
-
-          successful = len(list(OUT.glob('*.json.gz')))
-          meta = {
-              'status': 'COMPLETED' if not errors else 'COMPLETED_WITH_ERRORS',
-              'started_reference_ms': now_ms,
-              'started_reference_utc': datetime.fromtimestamp(now_ms / 1000, timezone.utc).isoformat(),
-              'completed_at_utc': datetime.now(timezone.utc).isoformat(),
-              'futures_base': futures_base,
-              'spot_base': spot_base,
-              'universe_size': len(universe),
-              'spot_symbol_count': len(spot_set),
-              'successful_symbols': successful,
-              'errors': errors,
-              'bootstrap_errors': bootstrap_errors,
-              'source': 'Binance public market data; api.pipai.org used only as a transparent USD-M REST mirror when Binance is geo-blocked',
-              'futures_kline_limit': 1000,
-              'spot_kline_limit': 1000,
-              'oi_points_requested': 100,
-              'depth_limit': 100,
-          }
-          (ROOT / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
-          (ROOT / 'universe.json').write_text(json.dumps(universe, ensure_ascii=False, indent=2), encoding='utf-8')
-          print(json.dumps(meta, ensure_ascii=False, indent=2))
+          ROOT.joinpath('meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(meta,ensure_ascii=False,indent=2))
           PY
-      - name: Upload current raw data
-        if: always()
+      - name: Upload probe
         uses: actions/upload-artifact@v4
         with:
-          name: v115-live-binance-data-20260727
+          name: v115-binance-archive-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
