@@ -1,0 +1,87 @@
+name: Temporary V1.15.1 failed-10 research fetch
+
+on:
+  pull_request:
+    paths:
+      - temp/v151_failed10_trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Fetch failed deep symbols sequentially
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/symbols
+          python3 -m pip install --quiet --upgrade --no-cache-dir git+https://github.com/rongardF/tvdatafeed.git pandas
+          python3 - <<'PY'
+          from __future__ import annotations
+          import gzip, json, math, time, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import pandas as pd
+          from tvDatafeed import TvDatafeed, Interval
+
+          ROOT=Path('artifact'); SD=ROOT/'symbols'; SD.mkdir(parents=True,exist_ok=True)
+          SYMBOLS=['1000SHIBUSDT','BOMEUSDT','KAITOUSDT','ONEUSDT','PEOPLEUSDT','SOLUSDT','SOXLUSDT','WLDUSDT','XAUUSDT','币安人生USDT']
+          def fnum(v,d=0.0):
+              try:
+                  x=float(v); return x if math.isfinite(x) else d
+              except Exception:return d
+          def get_json(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V151-research','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:return json.loads(r.read().decode())
+          info=get_json('https://data-api.binance.vision/api/v3/exchangeInfo')
+          spot_set={r.get('symbol') for r in info.get('symbols',[]) if r.get('status')=='TRADING' and r.get('quoteAsset')=='USDT'}
+          def ms(idx):
+              x=pd.Timestamp(idx);x=x.tz_localize('UTC') if x.tzinfo is None else x.tz_convert('UTC');return int(x.timestamp()*1000)
+          def prows(df):
+              out=[]
+              for idx,r in df.iterrows():
+                  vals=[fnum(r.get(k),float('nan')) for k in ('open','high','low','close','volume')]
+                  if not all(math.isfinite(x) for x in vals):continue
+                  o,h,l,c,v=vals;q=max(0,((o+h+l+c)/4)*v);t=ms(idx)
+                  out.append([t,str(o),str(h),str(l),str(c),str(v),t+299999,str(q),0,str(v*.5),str(q*.5),'0'])
+              return out
+          def oirows(df):
+              if df is None:return []
+              out=[]
+              for idx,r in df.iterrows():
+                  v=fnum(r.get('close'),float('nan'))
+                  if math.isfinite(v):out.append({'timestamp':ms(idx),'sumOpenInterest':str(v)})
+              return out
+          results=[];errors=[]
+          for s in SYMBOLS:
+              try:
+                  tv=TvDatafeed();pdf=tv.get_hist(symbol=f'{s}.P',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
+                  if pdf is None or len(pdf)<60:raise RuntimeError(f'price bars={0 if pdf is None else len(pdf)}')
+                  time.sleep(2)
+                  try:odf=tv.get_hist(symbol=f'{s}.P_OI',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
+                  except Exception as e:odf=None;errors.append({'symbol':s,'source':'oi','error':repr(e)})
+                  if s in spot_set:
+                      try:srows=get_json('https://data-api.binance.vision/api/v3/klines?'+urllib.parse.urlencode({'symbol':s,'interval':'5m','limit':1000}))
+                      except Exception as e:srows=[];errors.append({'symbol':s,'source':'spot','error':repr(e)})
+                  else:srows=[]
+                  frows=prows(pdf);orows=oirows(odf)
+                  payload={'symbol':s,'futures_5m':frows,'spot_5m':srows,'oi_5m':orows,'premium_index':{},'depth_100':{},'futures_24h':{},'spot_24h':{},'has_binance_spot':bool(srows),'futures_taker_flow_mode':'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV','fetched_at_ms':int(datetime.now(timezone.utc).timestamp()*1000),'sources':{'futures_ohlcv':'TradingView BINANCE:<symbol>.P','open_interest':'TradingView BINANCE:<symbol>.P_OI','spot_ohlcv':'Binance data-api'}}
+                  with gzip.open(SD/f'{s}.json.gz','wt',encoding='utf-8') as f:json.dump(payload,f,separators=(',',':'),ensure_ascii=False)
+                  results.append({'symbol':s,'ok':True,'futures_bars':len(frows),'oi_points':len(orows),'spot_bars':len(srows),'latest_close_ms':frows[-1][6]})
+              except Exception as e:
+                  results.append({'symbol':s,'ok':False,'error':repr(e)});errors.append({'symbol':s,'source':'deep','error':repr(e)})
+              time.sleep(3)
+          (ROOT/'meta.json').write_text(json.dumps({'status':'COMPLETED','results':results,'errors':errors,'captured_at_utc':datetime.now(timezone.utc).isoformat()},ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(results,ensure_ascii=False,indent=2))
+          if sum(bool(x.get('ok')) for x in results)<7:raise SystemExit('insufficient recovered symbols')
+          PY
+      - name: Upload recovered data
+        uses: actions/upload-artifact@v4
+        with:
+          name: v151-failed10-recovered-data-20260727
+          path: artifact
+          if-no-files-found: error
+          retention-days: 2
