@@ -1,0 +1,100 @@
+name: Temporary V1.15 ON TAG data fetch
+
+on:
+  push:
+    branches:
+      - temp/v115-ontag-check-20260727
+    paths:
+      - temp/v115_ontag_trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Fetch ONUSDT and TAGUSDT 5m history
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/symbols
+          python3 -m pip install --quiet --upgrade --no-cache-dir \
+            git+https://github.com/rongardF/tvdatafeed.git pandas
+          python3 - <<'PY'
+          from __future__ import annotations
+          import gzip, json, math, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import pandas as pd
+          from tvDatafeed import TvDatafeed, Interval
+
+          ROOT=Path('artifact'); SD=ROOT/'symbols'; SD.mkdir(parents=True,exist_ok=True)
+          SYMBOLS=['ONUSDT','TAGUSDT']
+
+          def fnum(v,d=0.0):
+              try:
+                  x=float(v); return x if math.isfinite(x) else d
+              except Exception: return d
+
+          def get_json(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-ON-TAG-check','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  return json.loads(r.read().decode())
+
+          spot_info=get_json('https://data-api.binance.vision/api/v3/exchangeInfo')
+          spot_set={r.get('symbol') for r in spot_info.get('symbols',[]) if r.get('status')=='TRADING' and r.get('quoteAsset')=='USDT'}
+
+          def ms(index):
+              x=pd.Timestamp(index)
+              x=x.tz_localize('UTC') if x.tzinfo is None else x.tz_convert('UTC')
+              return int(x.timestamp()*1000)
+
+          def price_rows(df):
+              out=[]
+              for idx,r in df.iterrows():
+                  vals=[fnum(r.get(k),float('nan')) for k in ('open','high','low','close','volume')]
+                  if not all(math.isfinite(x) for x in vals): continue
+                  o,h,l,c,v=vals; q=max(0.0,((o+h+l+c)/4.0)*v); t=ms(idx)
+                  out.append([t,str(o),str(h),str(l),str(c),str(v),t+299999,str(q),0,str(v*.5),str(q*.5),'0'])
+              return out
+
+          def oi_rows(df):
+              if df is None: return []
+              out=[]
+              for idx,r in df.iterrows():
+                  v=fnum(r.get('close'),float('nan'))
+                  if math.isfinite(v): out.append({'timestamp':ms(idx),'sumOpenInterest':str(v)})
+              return out
+
+          tv=TvDatafeed()
+          results=[]
+          for s in SYMBOLS:
+              pdf=tv.get_hist(symbol=f'{s}.P',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
+              if pdf is None or len(pdf)<60:
+                  raise RuntimeError(f'{s}: insufficient price bars')
+              try:
+                  odf=tv.get_hist(symbol=f'{s}.P_OI',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
+              except Exception:
+                  odf=None
+              if s in spot_set:
+                  q=urllib.parse.urlencode({'symbol':s,'interval':'5m','limit':1000})
+                  try: srows=get_json('https://data-api.binance.vision/api/v3/klines?'+q)
+                  except Exception: srows=[]
+              else:
+                  srows=[]
+              frows=price_rows(pdf); orows=oi_rows(odf)
+              payload={'symbol':s,'futures_5m':frows,'spot_5m':srows,'oi_5m':orows,'premium_index':{},'depth_100':{},'futures_24h':{},'spot_24h':{},'has_binance_spot':bool(srows),'futures_taker_flow_mode':'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV','fetched_at_ms':int(datetime.now(timezone.utc).timestamp()*1000),'sources':{'futures_ohlcv':'TradingView BINANCE:<symbol>.P','open_interest':'TradingView BINANCE:<symbol>.P_OI','spot_ohlcv':'Binance data-api'}}
+              with gzip.open(SD/f'{s}.json.gz','wt',encoding='utf-8') as f: json.dump(payload,f,separators=(',',':'))
+              results.append({'symbol':s,'futures_bars':len(frows),'oi_points':len(orows),'spot_bars':len(srows),'latest_close_ms':frows[-1][6]})
+          (ROOT/'meta.json').write_text(json.dumps({'status':'COMPLETED','results':results,'captured_at_utc':datetime.now(timezone.utc).isoformat()},indent=2),encoding='utf-8')
+          print(json.dumps(results,indent=2))
+          PY
+      - name: Upload target data
+        uses: actions/upload-artifact@v4
+        with:
+          name: v115-ontag-data-20260727
+          path: artifact
+          if-no-files-found: error
+          retention-days: 2
