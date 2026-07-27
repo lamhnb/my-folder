@@ -1,4 +1,4 @@
-name: Temporary V1.15 Primit market-data probe
+name: Temporary V1.15 Primit market-data probe parallel
 
 on:
   pull_request:
@@ -11,20 +11,19 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 8
     steps:
-      - name: Probe current futures data endpoints
+      - name: Probe current futures data endpoints in parallel
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifact
           python3 - <<'PY'
-          import json, time, urllib.parse, urllib.request
+          import asyncio, json, time, urllib.parse, urllib.request
           from datetime import datetime, timezone
           from pathlib import Path
 
-          ROOT=Path('artifact')
-          BASE='https://api.pipai.org'
+          ROOT=Path('artifact'); BASE='https://api.pipai.org'
           specs=[
             ('health','/health',{}),
             ('active','/ticker/24hr/active',{}),
@@ -34,37 +33,31 @@ jobs:
             ('btc_premium','/fapi/v1/premiumIndex',{'symbol':'BTCUSDT'}),
             ('funding_all','/funding/rates',{}),
           ]
-          results=[]
-          for name,path,params in specs:
+
+          def fetch(name,path,params):
             url=BASE+path+('?' + urllib.parse.urlencode(params) if params else '')
-            started=time.monotonic()
-            item={'name':name,'url':url}
+            started=time.monotonic(); item={'name':name,'url':url}
             try:
               req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-probe','Accept':'application/json'})
-              with urllib.request.urlopen(req,timeout=180) as r:
-                raw=r.read()
-                item['status']=r.status
-                item['elapsed_seconds']=round(time.monotonic()-started,3)
-                item['bytes']=len(raw)
+              with urllib.request.urlopen(req,timeout=45) as r:
+                raw=r.read(); item.update(status=r.status,elapsed_seconds=round(time.monotonic()-started,3),bytes=len(raw))
                 try:
-                  parsed=json.loads(raw.decode('utf-8'))
-                  item['type']=type(parsed).__name__
-                  item['length']=len(parsed) if hasattr(parsed,'__len__') else None
-                  if name in ('health','btc_premium'):
-                    item['sample']=parsed
-                  elif isinstance(parsed,list):
-                    item['sample']=parsed[:2]
-                  elif isinstance(parsed,dict):
-                    item['keys']=list(parsed)[:30]
-                    item['sample']={k:parsed[k] for k in list(parsed)[:5]}
+                  parsed=json.loads(raw.decode('utf-8')); item['type']=type(parsed).__name__; item['length']=len(parsed) if hasattr(parsed,'__len__') else None
+                  if name in ('health','btc_premium'): item['sample']=parsed
+                  elif isinstance(parsed,list): item['sample']=parsed[:2]
+                  elif isinstance(parsed,dict): item['keys']=list(parsed)[:30]; item['sample']={k:parsed[k] for k in list(parsed)[:5]}
                 except Exception as exc:
-                  item['parse_error']=f'{type(exc).__name__}: {exc}'
-                  item['text_prefix']=raw[:500].decode('utf-8',errors='replace')
+                  item['parse_error']=f'{type(exc).__name__}: {exc}'; item['text_prefix']=raw[:500].decode('utf-8',errors='replace')
             except Exception as exc:
-              item['elapsed_seconds']=round(time.monotonic()-started,3)
-              item['error']=f'{type(exc).__name__}: {exc}'
-            results.append(item)
-            print(json.dumps(item,ensure_ascii=False),flush=True)
+              item['elapsed_seconds']=round(time.monotonic()-started,3); item['error']=f'{type(exc).__name__}: {exc}'
+            return item
+
+          async def main():
+            tasks=[asyncio.to_thread(fetch,*spec) for spec in specs]
+            return await asyncio.gather(*tasks)
+
+          results=asyncio.run(main())
+          for item in results: print(json.dumps(item,ensure_ascii=False),flush=True)
           meta={'completed_at_utc':datetime.now(timezone.utc).isoformat(),'results':results}
           ROOT.joinpath('probe.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
@@ -72,7 +65,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-primit-probe-20260727
+          name: v115-primit-probe-parallel-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
