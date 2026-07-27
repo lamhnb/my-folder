@@ -1,0 +1,157 @@
+name: Temporary V1.17 temporal validation A data fetch
+
+on:
+  pull_request:
+    paths:
+      - temp/v117_temporal_validation_a_trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Fetch and normalize official Binance archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/symbols artifact/provenance
+          python3 - <<'PY'
+          from __future__ import annotations
+          import concurrent.futures, csv, gzip, hashlib, io, json, time, urllib.error, urllib.request, zipfile
+          from datetime import date, datetime, timedelta, timezone
+          from pathlib import Path
+
+          ROOT=Path('artifact'); OUT=ROOT/'symbols'; OUT.mkdir(parents=True,exist_ok=True)
+          SYMBOLS=[
+            'BTCUSDT','ETHUSDT','BNBUSDT','SOLUSDT','XRPUSDT','DOGEUSDT','ADAUSDT','AVAXUSDT','LINKUSDT','DOTUSDT',
+            'LTCUSDT','BCHUSDT','ETCUSDT','TRXUSDT','NEARUSDT','AAVEUSDT','UNIUSDT','SUIUSDT','ARBUSDT','OPUSDT',
+            'FILUSDT','INJUSDT','ATOMUSDT','SEIUSDT','TIAUSDT','JTOUSDT','1000PEPEUSDT','FETUSDT','PENDLEUSDT','DYDXUSDT'
+          ]
+          START=date(2026,5,25); END=date(2026,6,12); INTERVAL='5m'
+          BASE='https://data.binance.vision/data'
+          errors=[]; manifest=[]
+
+          def get(url:str, attempts:int=4)->bytes:
+              delay=.5; last=None
+              for i in range(attempts):
+                  try:
+                      req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.17-temporal-validation-A'})
+                      with urllib.request.urlopen(req,timeout=60) as r: return r.read()
+                  except Exception as exc:
+                      last=exc
+                      if i+1<attempts: time.sleep(delay); delay=min(delay*2,8)
+              raise last
+
+          def checksum_ok(payload:bytes, text:str)->bool:
+              expected=(text or '').strip().split()[0].lower()
+              return bool(expected) and hashlib.sha256(payload).hexdigest().lower()==expected
+
+          def normalize_ts(value:str|int)->int:
+              x=int(value)
+              return x//1000 if x>10**14 else x
+
+          def fetch_archive(group:str,symbol:str,day:date):
+              stamp=day.isoformat()
+              if group=='futures':
+                  name=f'{symbol}-{INTERVAL}-{stamp}.zip'; url=f'{BASE}/futures/um/daily/klines/{symbol}/{INTERVAL}/{name}'
+              elif group=='spot':
+                  name=f'{symbol}-{INTERVAL}-{stamp}.zip'; url=f'{BASE}/spot/daily/klines/{symbol}/{INTERVAL}/{name}'
+              else:
+                  name=f'{symbol}-metrics-{stamp}.zip'; url=f'{BASE}/futures/um/daily/metrics/{symbol}/{name}'
+              try:
+                  payload=get(url)
+              except urllib.error.HTTPError as exc:
+                  if exc.code==404: return {'group':group,'symbol':symbol,'day':stamp,'status':404,'url':url}
+                  return {'group':group,'symbol':symbol,'day':stamp,'status':'ERROR','url':url,'error':repr(exc)}
+              except Exception as exc:
+                  return {'group':group,'symbol':symbol,'day':stamp,'status':'ERROR','url':url,'error':repr(exc)}
+              try:
+                  checksum=get(url+'.CHECKSUM').decode('utf-8',errors='replace')
+                  verified=checksum_ok(payload,checksum)
+              except Exception as exc:
+                  checksum=''; verified=False
+                  errors.append({'url':url+'.CHECKSUM','error':repr(exc)})
+              return {'group':group,'symbol':symbol,'day':stamp,'status':200,'url':url,'payload':payload,'sha256':hashlib.sha256(payload).hexdigest(),'checksum_verified':verified}
+
+          tasks=[]; day=START
+          while day<=END:
+              for symbol in SYMBOLS:
+                  for group in ('futures','spot','metrics'): tasks.append((group,symbol,day))
+              day+=timedelta(days=1)
+          results=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=18) as pool:
+              jobs=[pool.submit(fetch_archive,*task) for task in tasks]
+              for i,job in enumerate(concurrent.futures.as_completed(jobs),1):
+                  row=job.result(); results.append(row)
+                  if i%200==0 or i==len(jobs): print(f'[FETCH] {i}/{len(jobs)}',flush=True)
+
+          grouped={s:{'futures':[],'spot':[],'metrics':[]} for s in SYMBOLS}
+          for row in results:
+              compact={k:v for k,v in row.items() if k!='payload'}; manifest.append(compact)
+              if row.get('status')!=200: continue
+              try:
+                  with zipfile.ZipFile(io.BytesIO(row['payload'])) as zf:
+                      raw=zf.read(zf.namelist()[0]).decode('utf-8',errors='replace')
+              except Exception as exc:
+                  errors.append({'symbol':row['symbol'],'group':row['group'],'day':row['day'],'error':f'ZIP_PARSE:{exc!r}'})
+                  continue
+              lines=[line for line in raw.splitlines() if line.strip()]
+              if not lines: continue
+              reader=csv.reader(lines)
+              parsed=list(reader)
+              if row['group'] in {'futures','spot'}:
+                  start=1 if parsed and parsed[0] and not parsed[0][0].lstrip('-').isdigit() else 0
+                  for values in parsed[start:]:
+                      if len(values)<12: continue
+                      values=list(values[:12]); values[0]=str(normalize_ts(values[0])); values[6]=str(normalize_ts(values[6]))
+                      grouped[row['symbol']][row['group']].append(values)
+              else:
+                  if len(parsed)<2: continue
+                  header=parsed[0]; idx={name:i for i,name in enumerate(header)}
+                  for values in parsed[1:]:
+                      try:
+                          ts=int(datetime.strptime(values[idx['create_time']],'%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc).timestamp()*1000)
+                          quantity=values[idx['sum_open_interest']]
+                          value=values[idx['sum_open_interest_value']]
+                          taker=values[idx['sum_taker_long_short_vol_ratio']] if 'sum_taker_long_short_vol_ratio' in idx else None
+                      except Exception: continue
+                      grouped[row['symbol']]['metrics'].append({'timestamp':ts,'sumOpenInterest':quantity,'sumOpenInterestValue':value,'takerLongShortVolRatio':taker})
+
+          summaries=[]
+          for symbol,data in grouped.items():
+              for key in ('futures','spot'):
+                  unique={int(row[6]):row for row in data[key]}; data[key]=[unique[k] for k in sorted(unique)]
+              unique_oi={int(row['timestamp']):row for row in data['metrics']}; data['metrics']=[unique_oi[k] for k in sorted(unique_oi)]
+              payload={
+                'symbol':symbol,'futures_5m':data['futures'],'spot_5m':data['spot'],'oi_5m':data['metrics'],
+                'premium_index':{},'depth_100':{},'futures_24h':{},'spot_24h':{},'has_binance_spot':bool(data['spot']),
+                'futures_taker_flow_mode':'OFFICIAL_BINANCE_KLINE_TAKER_BUY','fetched_at_ms':int(time.time()*1000),
+                'sources':{'futures_ohlcv':'Official Binance Data Vision','spot_ohlcv':'Official Binance Data Vision','open_interest':'Official Binance Data Vision metrics'}
+              }
+              with gzip.open(OUT/f'{symbol}.json.gz','wt',encoding='utf-8') as h: json.dump(payload,h,separators=(',',':'))
+              summaries.append({'symbol':symbol,'futures_bars':len(data['futures']),'spot_bars':len(data['spot']),'oi_points':len(data['metrics']),'verified_futures_days':sum(1 for x in manifest if x.get('symbol')==symbol and x.get('group')=='futures' and x.get('status')==200 and x.get('checksum_verified'))})
+
+          metadata={
+            'status':'COMPLETED','protocol_sha256':'46180af8fb071502ddbd75cae3add1309d7a538a477da407616cbe8d2eaf0e90',
+            'symbols':SYMBOLS,'start':START.isoformat(),'end':END.isoformat(),'generated_at_utc':datetime.now(timezone.utc).isoformat(),
+            'summaries':summaries,'manifest':manifest,'errors':errors,'source':'Official Binance Data Vision archives'
+          }
+          (ROOT/'metadata.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
+          hashes=[]
+          for p in sorted(ROOT.rglob('*')):
+              if p.is_file() and p.name!='SHA256SUMS.txt': hashes.append(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(ROOT)}')
+          (ROOT/'SHA256SUMS.txt').write_text('\n'.join(hashes)+'\n',encoding='utf-8')
+          ok=sum(1 for s in summaries if s['futures_bars']>=4000)
+          print(json.dumps({'symbols':len(SYMBOLS),'symbols_with_4000_futures_bars':ok,'errors':len(errors)},indent=2))
+          if ok<25: raise SystemExit(f'Insufficient complete symbols: {ok}')
+          PY
+      - name: Upload normalized temporal validation dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: v117-temporal-validation-a-20260601-20260610
+          path: artifact
+          if-no-files-found: error
+          retention-days: 3
