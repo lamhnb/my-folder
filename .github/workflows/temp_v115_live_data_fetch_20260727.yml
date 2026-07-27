@@ -1,4 +1,4 @@
-name: Temporary TradingView Binance futures data probe
+name: Temporary TradingView endpoint probe
 
 on:
   pull_request:
@@ -11,68 +11,66 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
-      - name: Probe TradingView Binance perpetual candles and OI
+      - name: Probe TradingView data websocket endpoints
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifact tvprobe
           cd tvprobe
           npm init -y >/dev/null 2>&1
-          npm install --silent tvws
+          npm install --silent tvws ws
           node --input-type=module <<'JS'
           import fs from 'node:fs';
           import { connect, getCandles } from 'tvws';
+          import WebSocket from 'ws';
 
-          const symbols = ['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT'];
-          const report = { checked_at_utc: new Date().toISOString(), package: 'tvws', results: [] };
-          let connection;
-          try {
-            connection = await connect({ endpoint: 'data' });
-            for (const symbol of symbols) {
-              const row = { symbol };
-              for (const [kind, tvSymbol] of [
-                ['price', `BINANCE:${symbol}.P`],
-                ['oi', `BINANCE:${symbol}.P_OI`],
-              ]) {
-                const started = Date.now();
-                try {
-                  const result = await getCandles({
-                    connection,
-                    symbols: [tvSymbol],
-                    amount: 1000,
-                    timeframe: '5',
-                  });
-                  row[kind] = {
-                    ok: true,
-                    elapsed_ms: Date.now() - started,
-                    type: Array.isArray(result) ? 'array' : typeof result,
-                    count: Array.isArray(result) ? result.length : null,
-                    keys: result && typeof result === 'object' && !Array.isArray(result) ? Object.keys(result) : null,
-                    sample_first: Array.isArray(result) ? result[0] : result,
-                    sample_last: Array.isArray(result) ? result[result.length - 1] : null,
-                  };
-                  fs.writeFileSync(`../artifact/${symbol}.${kind}.json`, JSON.stringify(result));
-                } catch (error) {
-                  row[kind] = { ok: false, elapsed_ms: Date.now() - started, error: `${error?.name || 'Error'}: ${error?.message || error}` };
-                }
-              }
-              report.results.push(row);
-            }
-          } catch (error) {
-            report.connection_error = `${error?.name || 'Error'}: ${error?.message || error}`;
-          } finally {
-            try { await connection?.close(); } catch {}
+          const report={checked_at_utc:new Date().toISOString(), endpoints:[]};
+          for (const endpoint of ['data','prodata','widgetdata','charts-polygon']) {
+            const row={endpoint};
+            let connection;
+            const start=Date.now();
+            try {
+              connection=await connect({endpoint});
+              row.connected=true; row.connect_ms=Date.now()-start;
+              const result=await getCandles({connection,symbols:['BINANCE:BTCUSDT.P'],amount:20,timeframe:'5'});
+              row.result_type=Array.isArray(result)?'array':typeof result;
+              row.count=Array.isArray(result)?result.length:null;
+              row.sample=Array.isArray(result)?result.slice(-2):result;
+              fs.writeFileSync(`../artifact/${endpoint}.json`,JSON.stringify(result));
+            } catch(error) {
+              row.connected=false; row.elapsed_ms=Date.now()-start; row.error=`${error?.name||'Error'}: ${error?.message||error}`;
+            } finally { try {await connection?.close();} catch{} }
+            report.endpoints.push(row);
           }
-          fs.writeFileSync('../artifact/tv_probe.json', JSON.stringify(report, null, 2));
-          console.log(JSON.stringify(report, null, 2));
+
+          const rawUrls=[
+            'wss://data.tradingview.com/socket.io/websocket',
+            'wss://prodata.tradingview.com/socket.io/websocket',
+            'wss://widgetdata.tradingview.com/socket.io/websocket',
+            'wss://charts-polygon.tradingview.com/socket.io/websocket',
+          ];
+          report.raw=[];
+          for (const url of rawUrls) {
+            const row={url};
+            await new Promise((resolve)=>{
+              const ws=new WebSocket(url,{headers:{Origin:'https://www.tradingview.com','User-Agent':'Mozilla/5.0'}});
+              const timer=setTimeout(()=>{row.error='timeout';try{ws.terminate();}catch{};resolve();},15000);
+              ws.on('open',()=>{row.open=true;clearTimeout(timer);try{ws.close();}catch{};resolve();});
+              ws.on('unexpected-response',(req,res)=>{row.status=res.statusCode;row.headers=res.headers;clearTimeout(timer);resolve();});
+              ws.on('error',(e)=>{row.error=`${e.name}: ${e.message}`;clearTimeout(timer);resolve();});
+            });
+            report.raw.push(row);
+          }
+          fs.writeFileSync('../artifact/tv_endpoint_probe.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
           JS
-      - name: Upload TradingView probe
+      - name: Upload TradingView endpoint probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-tradingview-binance-probe-20260727
+          name: v115-tradingview-endpoint-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
