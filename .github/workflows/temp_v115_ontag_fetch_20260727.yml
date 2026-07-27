@@ -1,11 +1,6 @@
-name: Temporary V1.15 four-target data fetch
+name: Temporary V1.15 four-target 10-day data fetch
 
 on:
-  push:
-    branches:
-      - temp/v115-ontag-check-20260727
-    paths:
-      - temp/v115_ontag_trigger.txt
   pull_request:
     paths:
       - temp/v115_ontag_trigger.txt
@@ -16,9 +11,9 @@ permissions:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
-      - name: Fetch ONUSDT TAGUSDT BTWUSDT AKEUSDT 5m history
+      - name: Fetch ONUSDT TAGUSDT BTWUSDT AKEUSDT 10-day 5m history
         shell: bash
         run: |
           set -euo pipefail
@@ -34,7 +29,7 @@ jobs:
           from tvDatafeed import TvDatafeed, Interval
 
           ROOT=Path('artifact'); SD=ROOT/'symbols'; SD.mkdir(parents=True,exist_ok=True)
-          SYMBOLS=['ONUSDT','TAGUSDT','BTWUSDT','AKEUSDT']
+          SYMBOLS=['ONUSDT','TAGUSDT','BTWUSDT','AKEUSDT']; N_BARS=3000
 
           def fnum(v,d=0.0):
               try:
@@ -42,7 +37,7 @@ jobs:
               except Exception: return d
 
           def get_json(url):
-              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-four-target-check','Accept':'application/json'})
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-four-target-10d','Accept':'application/json'})
               with urllib.request.urlopen(req,timeout=60) as r:
                   return json.loads(r.read().decode())
 
@@ -71,33 +66,28 @@ jobs:
                   if math.isfinite(v): out.append({'timestamp':ms(idx),'sumOpenInterest':str(v)})
               return out
 
-          tv=TvDatafeed()
-          results=[]
+          tv=TvDatafeed(); results=[]
           for s in SYMBOLS:
-              pdf=tv.get_hist(symbol=f'{s}.P',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
-              if pdf is None or len(pdf)<60:
-                  raise RuntimeError(f'{s}: insufficient price bars')
-              try:
-                  odf=tv.get_hist(symbol=f'{s}.P_OI',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=1000,extended_session=False)
-              except Exception:
-                  odf=None
+              pdf=tv.get_hist(symbol=f'{s}.P',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=N_BARS,extended_session=False)
+              if pdf is None or len(pdf)<1000: raise RuntimeError(f'{s}: insufficient price bars={0 if pdf is None else len(pdf)}')
+              try: odf=tv.get_hist(symbol=f'{s}.P_OI',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=N_BARS,extended_session=False)
+              except Exception: odf=None
               if s in spot_set:
                   q=urllib.parse.urlencode({'symbol':s,'interval':'5m','limit':1000})
                   try: srows=get_json('https://data-api.binance.vision/api/v3/klines?'+q)
                   except Exception: srows=[]
-              else:
-                  srows=[]
+              else: srows=[]
               frows=price_rows(pdf); orows=oi_rows(odf)
               payload={'symbol':s,'futures_5m':frows,'spot_5m':srows,'oi_5m':orows,'premium_index':{},'depth_100':{},'futures_24h':{},'spot_24h':{},'has_binance_spot':bool(srows),'futures_taker_flow_mode':'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV','fetched_at_ms':int(datetime.now(timezone.utc).timestamp()*1000),'sources':{'futures_ohlcv':'TradingView BINANCE:<symbol>.P','open_interest':'TradingView BINANCE:<symbol>.P_OI','spot_ohlcv':'Binance data-api'}}
               with gzip.open(SD/f'{s}.json.gz','wt',encoding='utf-8') as f: json.dump(payload,f,separators=(',',':'))
-              results.append({'symbol':s,'futures_bars':len(frows),'oi_points':len(orows),'spot_bars':len(srows),'latest_close_ms':frows[-1][6]})
+              results.append({'symbol':s,'futures_bars':len(frows),'oi_points':len(orows),'spot_bars':len(srows),'first_close_ms':frows[0][6],'latest_close_ms':frows[-1][6]})
           (ROOT/'meta.json').write_text(json.dumps({'status':'COMPLETED','results':results,'captured_at_utc':datetime.now(timezone.utc).isoformat()},indent=2),encoding='utf-8')
           print(json.dumps(results,indent=2))
           PY
       - name: Upload target data
         uses: actions/upload-artifact@v4
         with:
-          name: v115-four-target-data-20260727
+          name: v115-four-target-10day-data-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
