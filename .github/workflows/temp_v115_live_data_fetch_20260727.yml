@@ -1,4 +1,4 @@
-name: Temporary Binance web endpoint discovery
+name: Temporary Tokyo Binance kline proxy probe
 
 on:
   pull_request:
@@ -9,73 +9,60 @@ permissions:
   contents: read
 
 jobs:
-  discover:
+  probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
-      - name: Discover Binance web market-data routes
+      - name: Probe public read-only Tokyo Binance kline endpoint
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifact
-          git clone --depth 1 https://github.com/Anujkr8674/mycryptobank.git mirror >/dev/null 2>&1 || true
-          {
-            echo '=== BAPI FUTURES ENDPOINT STRINGS ==='
-            grep -RhoE '(/bapi/futures[^"'"'"' ]+)' mirror 2>/dev/null | sort -u | head -2000 || true
-            echo
-            echo '=== FAPI KLINE CONTEXT ==='
-            grep -Rni -m 300 -E '/fapi/v1/klines|continuousKlines|continuous-klines|openInterestHist|premiumIndex' mirror 2>/dev/null || true
-            echo
-            echo '=== KLINE + BAPI CONTEXT ==='
-            grep -Rni -m 500 -E 'bapi/futures.*[Kk]line|[Kk]line.*bapi/futures' mirror 2>/dev/null || true
-          } > artifact/mirror_grep.txt
-
           python3 - <<'PY'
-          import json, re, urllib.request, urllib.parse, pathlib, time
-          from html import unescape
-          out=pathlib.Path('artifact')
-          urls=[
-            'https://www.binance.com/en/futures/BTCUSDT',
-            'https://www.binance.com/en/futures/ETHUSDT',
-          ]
-          report=[]
-          scripts=[]
-          for url in urls:
+          import concurrent.futures, json, time, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          base='https://52.69.48.142.nip.io/api/debug/scalper-msandwich-paper'
+          symbols=['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT']
+          tests=[]
+          for symbol in symbols:
+            q=urllib.parse.urlencode({'symbol':symbol,'interval':'5m','limit':1000,'capital':18,'leverage':30})
+            tests.append((symbol,base+'?'+q))
+
+          def probe(item):
+            symbol,url=item
+            started=time.time()
             try:
-              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Accept':'text/html'})
-              with urllib.request.urlopen(req,timeout=40) as r:
-                body=r.read().decode('utf-8',errors='replace')
-              report.append({'url':url,'ok':True,'bytes':len(body),'head':body[:300]})
-              for match in re.findall(r'<script[^>]+src=["\']([^"\']+)',body):
-                src=unescape(match)
-                scripts.append(urllib.parse.urljoin(url,src))
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-current-scan','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=90) as r:
+                body=r.read()
+                text=body.decode('utf-8',errors='replace')
+                parsed=None
+                try: parsed=json.loads(text)
+                except Exception: pass
+                Path(f'artifact/{symbol}.response').write_bytes(body)
+                summary={'symbol':symbol,'url':url,'ok':True,'status':getattr(r,'status',None),'elapsed':round(time.time()-started,3),'bytes':len(body),'content_type':r.headers.get('Content-Type'),'head':text[:1000],'json_type':type(parsed).__name__ if parsed is not None else None}
+                if isinstance(parsed,dict):
+                  summary['keys']=sorted(parsed.keys())
+                  for k,v in parsed.items():
+                    if isinstance(v,list): summary[f'{k}_len']=len(v)
+                    elif isinstance(v,dict): summary[f'{k}_keys']=sorted(v.keys())[:100]
+                return summary
             except Exception as exc:
-              report.append({'url':url,'ok':False,'error':f'{type(exc).__name__}: {exc}'})
-          scripts=list(dict.fromkeys(scripts))[:300]
-          hits=[]
-          for i,url in enumerate(scripts):
-            try:
-              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
-              with urllib.request.urlopen(req,timeout=40) as r:
-                text=r.read().decode('utf-8',errors='replace')
-              patterns=['/fapi/v1/klines','/fapi/v1/exchangeInfo','/futures/data/openInterestHist','/bapi/futures','continuousKlines','premiumIndex']
-              found=[]
-              for p in patterns:
-                if p in text:
-                  positions=[m.start() for m in re.finditer(re.escape(p),text)][:10]
-                  found.extend({'pattern':p,'context':text[max(0,pos-250):pos+500]} for pos in positions)
-              if found:
-                hits.append({'url':url,'bytes':len(text),'found':found})
-            except Exception as exc:
-              pass
-          (out/'web_bundle_discovery.json').write_text(json.dumps({'pages':report,'script_count':len(scripts),'hits':hits},ensure_ascii=False,indent=2),encoding='utf-8')
-          print(json.dumps({'pages':report,'script_count':len(scripts),'hit_files':len(hits)},indent=2))
+              return {'symbol':symbol,'url':url,'ok':False,'elapsed':round(time.time()-started,3),'error':f'{type(exc).__name__}: {exc}'}
+
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+            results=list(pool.map(probe,tests))
+          report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'results':results}
+          Path('artifact/tokyo_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
-      - name: Upload endpoint discovery
+      - name: Upload Tokyo probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-binance-web-endpoint-discovery-20260727
+          name: v115-tokyo-kline-proxy-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
