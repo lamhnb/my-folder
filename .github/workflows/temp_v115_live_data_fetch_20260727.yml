@@ -1,4 +1,4 @@
-name: Temporary V1.15 Binance WebSocket probe
+name: Temporary V1.15 Primit market-data probe
 
 on:
   pull_request:
@@ -11,97 +11,68 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 18
     steps:
-      - name: Probe Binance Futures and Spot WebSocket APIs
+      - name: Probe current futures data endpoints
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m pip install --quiet 'websockets>=14,<16'
           mkdir -p artifact
           python3 - <<'PY'
-          import asyncio, json, time
+          import json, time, urllib.parse, urllib.request
           from datetime import datetime, timezone
           from pathlib import Path
-          import websockets
 
           ROOT=Path('artifact')
-          targets=[
-            ('futures_ws_api','wss://ws-fapi.binance.com/ws-fapi/v1',[
-              {'id':'f-time','method':'time','params':{}},
-              {'id':'f-exchange','method':'exchangeInfo','params':{}},
-              {'id':'f-ticker','method':'ticker.24hr','params':{'symbol':'BTCUSDT'}},
-              {'id':'f-klines','method':'klines','params':{'symbol':'BTCUSDT','interval':'5m','limit':5}},
-              {'id':'f-depth','method':'depth','params':{'symbol':'BTCUSDT','limit':20}},
-              {'id':'f-oi','method':'openInterest','params':{'symbol':'BTCUSDT'}},
-            ]),
-            ('spot_ws_api','wss://ws-api.binance.com:443/ws-api/v3',[
-              {'id':'s-time','method':'time','params':{}},
-              {'id':'s-exchange','method':'exchangeInfo','params':{}},
-              {'id':'s-ticker','method':'ticker.24hr','params':{'symbol':'BTCUSDT'}},
-              {'id':'s-klines','method':'klines','params':{'symbol':'BTCUSDT','interval':'5m','limit':5}},
-              {'id':'s-depth','method':'depth','params':{'symbol':'BTCUSDT','limit':20}},
-            ]),
-          ]
-          streams=[
-            ('futures_stream','wss://fstream.binance.com/ws/btcusdt@kline_5m'),
-            ('futures_market_stream','wss://fstream.binance.com/market/ws/btcusdt@kline_5m'),
-            ('spot_stream','wss://stream.binance.com:9443/ws/btcusdt@kline_5m'),
-            ('spot_data_stream','wss://data-stream.binance.vision/ws/btcusdt@kline_5m'),
+          BASE='https://api.pipai.org'
+          specs=[
+            ('health','/health',{}),
+            ('active','/ticker/24hr/active',{}),
+            ('btc_klines','/fapi/v1/klines',{'symbol':'BTCUSDT','interval':'5m','limit':10}),
+            ('dia_klines','/fapi/v1/klines',{'symbol':'DIAUSDT','interval':'5m','limit':10}),
+            ('btc_oi','/openInterestHist',{'symbol':'BTCUSDT','period':'5m','limit':10}),
+            ('btc_premium','/fapi/v1/premiumIndex',{'symbol':'BTCUSDT'}),
+            ('funding_all','/funding/rates',{}),
           ]
           results=[]
-
-          async def probe_api(name,url,requests):
-            item={'name':name,'url':url,'connected':False,'responses':[]}
+          for name,path,params in specs:
+            url=BASE+path+('?' + urllib.parse.urlencode(params) if params else '')
+            started=time.monotonic()
+            item={'name':name,'url':url}
             try:
-              async with websockets.connect(url,open_timeout=15,close_timeout=5,ping_interval=15,ping_timeout=10,max_size=20_000_000) as ws:
-                item['connected']=True
-                for req in requests:
-                  await ws.send(json.dumps(req,separators=(',',':')))
-                deadline=time.monotonic()+25
-                pending={r['id'] for r in requests}
-                while pending and time.monotonic()<deadline:
-                  try:
-                    raw=await asyncio.wait_for(ws.recv(),timeout=max(.1,deadline-time.monotonic()))
-                  except asyncio.TimeoutError:
-                    break
-                  parsed=json.loads(raw)
-                  item['responses'].append(parsed)
-                  if isinstance(parsed,dict) and parsed.get('id') in pending:
-                    pending.remove(parsed['id'])
-                item['pending']=sorted(pending)
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-probe','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=180) as r:
+                raw=r.read()
+                item['status']=r.status
+                item['elapsed_seconds']=round(time.monotonic()-started,3)
+                item['bytes']=len(raw)
+                try:
+                  parsed=json.loads(raw.decode('utf-8'))
+                  item['type']=type(parsed).__name__
+                  item['length']=len(parsed) if hasattr(parsed,'__len__') else None
+                  if name in ('health','btc_premium'):
+                    item['sample']=parsed
+                  elif isinstance(parsed,list):
+                    item['sample']=parsed[:2]
+                  elif isinstance(parsed,dict):
+                    item['keys']=list(parsed)[:30]
+                    item['sample']={k:parsed[k] for k in list(parsed)[:5]}
+                except Exception as exc:
+                  item['parse_error']=f'{type(exc).__name__}: {exc}'
+                  item['text_prefix']=raw[:500].decode('utf-8',errors='replace')
             except Exception as exc:
+              item['elapsed_seconds']=round(time.monotonic()-started,3)
               item['error']=f'{type(exc).__name__}: {exc}'
-            return item
-
-          async def probe_stream(name,url):
-            item={'name':name,'url':url,'connected':False}
-            try:
-              async with websockets.connect(url,open_timeout=15,close_timeout=5,ping_interval=15,ping_timeout=10,max_size=5_000_000) as ws:
-                item['connected']=True
-                raw=await asyncio.wait_for(ws.recv(),timeout=12)
-                parsed=json.loads(raw)
-                item['event']=parsed
-            except Exception as exc:
-              item['error']=f'{type(exc).__name__}: {exc}'
-            return item
-
-          async def main():
-            for name,url,requests in targets:
-              results.append(await probe_api(name,url,requests))
-            for name,url in streams:
-              results.append(await probe_stream(name,url))
-
-          asyncio.run(main())
+            results.append(item)
+            print(json.dumps(item,ensure_ascii=False),flush=True)
           meta={'completed_at_utc':datetime.now(timezone.utc).isoformat(),'results':results}
-          ROOT.joinpath('ws_probe.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
-          print(json.dumps(meta,ensure_ascii=False,indent=2))
+          ROOT.joinpath('probe.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
           PY
-      - name: Upload WebSocket probe
+      - name: Upload endpoint probe
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-binance-ws-probe-20260727
+          name: v115-primit-probe-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
