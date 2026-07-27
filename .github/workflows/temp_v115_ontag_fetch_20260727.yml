@@ -6,6 +6,9 @@ on:
       - temp/v115-ontag-check-20260727
     paths:
       - temp/v115_ontag_trigger.txt
+  pull_request:
+    paths:
+      - temp/v115_ontag_trigger.txt
 
 permissions:
   contents: read
