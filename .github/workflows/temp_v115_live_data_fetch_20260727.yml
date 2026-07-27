@@ -156,7 +156,10 @@ jobs:
               if done % 25 == 0 or done == len(universe):
                   print(f'[FETCH] {done}/{len(universe)} symbols; source_errors={len(source_errors)}', flush=True)
 
-          asyncio.run(asyncio.gather(*(fetch_symbol(symbol) for symbol in universe)))
+          async def fetch_all():
+              await asyncio.gather(*(fetch_symbol(symbol) for symbol in universe))
+
+          asyncio.run(fetch_all())
 
           snapshot_completed_ms = int(time.time() * 1000)
           files = sorted(SYMBOL_DIR.glob('*.json.gz'))
