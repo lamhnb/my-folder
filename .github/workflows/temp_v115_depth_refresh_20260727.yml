@@ -1,0 +1,83 @@
+name: Temporary V1.15 candidate depth refresh
+
+on:
+  pull_request:
+    paths:
+      - 'temp/v115_depth_refresh_request_20260727.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  depth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Capture current ticker mark and depth for V1.15 finalists
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact
+          python3 -m pip install --quiet 'websockets>=14,<16'
+          python3 - <<'PY'
+          import asyncio, json, time
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import websockets
+
+          SYMBOLS='AERGOUSDT ARKUSDT ATUSDT AVAAIUSDT CUSDT FILUSDT GUNUSDT SAGAUSDT NILUSDT JTOUSDT XMRUSDT NEARUSDT ONDOUSDT ICPUSDT SEIUSDT PRLUSDT ZAMAUSDT DIAUSDT EULUSDT BANKUSDT INJUSDT MMTUSDT OPENUSDT SYNUSDT PARTIUSDT EIGENUSDT NEOUSDT ALLOUSDT ESPUSDT TAOUSDT RLCUSDT BARDUSDT MITOUSDT OPNUSDT ENSOUSDT TIAUSDT XRPUSDT'.split()
+
+          async def collect_stream(url, seconds=10):
+              result={}
+              async with websockets.connect(url,open_timeout=20,close_timeout=5,max_size=64_000_000,ping_interval=20,ping_timeout=20) as ws:
+                  deadline=time.monotonic()+seconds
+                  while time.monotonic()<deadline:
+                      try: msg=json.loads(await asyncio.wait_for(ws.recv(),timeout=min(2,max(.2,deadline-time.monotonic()))))
+                      except asyncio.TimeoutError: continue
+                      if isinstance(msg,list):
+                          for row in msg:
+                              if isinstance(row,dict) and row.get('s') in SYMBOLS: result[row['s']]=row
+              return result
+
+          async def first_mark():
+              async with websockets.connect('wss://fstream.binance.com/market/ws/!markPrice@arr@1s',open_timeout=20,close_timeout=5,max_size=64_000_000,ping_interval=20,ping_timeout=20) as ws:
+                  rows=json.loads(await asyncio.wait_for(ws.recv(),timeout=30))
+                  return {r['s']:r for r in rows if isinstance(r,dict) and r.get('s') in SYMBOLS}
+
+          async def fetch_depth():
+              out={}; errors=[]
+              async with websockets.connect('wss://ws-fapi.binance.com/ws-fapi/v1',open_timeout=20,close_timeout=5,max_size=64_000_000,ping_interval=20,ping_timeout=20) as ws:
+                  for symbol in SYMBOLS:
+                      rid='d-'+symbol
+                      await ws.send(json.dumps({'id':rid,'method':'depth','params':{'symbol':symbol,'limit':100}}))
+                      deadline=time.monotonic()+15
+                      while time.monotonic()<deadline:
+                          try: response=json.loads(await asyncio.wait_for(ws.recv(),timeout=5))
+                          except asyncio.TimeoutError: continue
+                          if str(response.get('id'))!=rid: continue
+                          if int(response.get('status',0))==200: out[symbol]=response.get('result') or {}
+                          else: errors.append({'symbol':symbol,'response':response})
+                          break
+                      await asyncio.sleep(.08)
+              return out,errors
+
+          async def main():
+              ticker_task=collect_stream('wss://fstream.binance.com/market/ws/!ticker@arr',10)
+              mark_task=first_mark()
+              depth_task=fetch_depth()
+              tickers,marks,(depth,errors)=await asyncio.gather(ticker_task,mark_task,depth_task)
+              return tickers,marks,depth,errors
+
+          tickers,marks,depth,errors=asyncio.run(main())
+          report={'captured_at_utc':datetime.now(timezone.utc).isoformat(),'symbols':SYMBOLS,'tickers':tickers,'marks':marks,'depth':depth,'errors':errors,'depth_success_count':len(depth),'ticker_success_count':len(tickers),'mark_success_count':len(marks)}
+          Path('artifact/depth_refresh.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps({'depth':len(depth),'tickers':len(tickers),'marks':len(marks),'errors':len(errors)},indent=2))
+          PY
+      - name: Upload candidate depth refresh
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v115-candidate-depth-refresh-20260727
+          path: artifact
+          if-no-files-found: error
+          retention-days: 2
