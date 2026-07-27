@@ -1,4 +1,4 @@
-name: Temporary V1.15 July-26 archive availability probe
+name: Temporary Binance web endpoint discovery
 
 on:
   pull_request:
@@ -9,49 +9,73 @@ permissions:
   contents: read
 
 jobs:
-  probe:
+  discover:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
-      - name: Probe official Binance Data Vision July 26 archives
+      - name: Discover Binance web market-data routes
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifact
-          python3 - <<'PY'
-          import json, urllib.request, urllib.error, time
-          from pathlib import Path
-          from datetime import datetime, timezone
+          git clone --depth 1 https://github.com/Anujkr8674/mycryptobank.git mirror >/dev/null 2>&1 || true
+          {
+            echo '=== BAPI FUTURES ENDPOINT STRINGS ==='
+            grep -RhoE '(/bapi/futures[^"'"'"' ]+)' mirror 2>/dev/null | sort -u | head -2000 || true
+            echo
+            echo '=== FAPI KLINE CONTEXT ==='
+            grep -Rni -m 300 -E '/fapi/v1/klines|continuousKlines|continuous-klines|openInterestHist|premiumIndex' mirror 2>/dev/null || true
+            echo
+            echo '=== KLINE + BAPI CONTEXT ==='
+            grep -Rni -m 500 -E 'bapi/futures.*[Kk]line|[Kk]line.*bapi/futures' mirror 2>/dev/null || true
+          } > artifact/mirror_grep.txt
 
-          symbols=['BTCUSDT','DIAUSDT','EULUSDT','PRLUSDT','BANKUSDT','ZAMAUSDT']
-          groups=[
-            ('futures','https://data.binance.vision/data/futures/um/daily/klines/{s}/5m/{s}-5m-2026-07-26.zip'),
-            ('spot','https://data.binance.vision/data/spot/daily/klines/{s}/5m/{s}-5m-2026-07-26.zip'),
-            ('metrics','https://data.binance.vision/data/futures/um/daily/metrics/{s}/{s}-metrics-2026-07-26.zip'),
+          python3 - <<'PY'
+          import json, re, urllib.request, urllib.parse, pathlib, time
+          from html import unescape
+          out=pathlib.Path('artifact')
+          urls=[
+            'https://www.binance.com/en/futures/BTCUSDT',
+            'https://www.binance.com/en/futures/ETHUSDT',
           ]
-          rows=[]
-          for s in symbols:
-            for group,template in groups:
-              url=template.format(s=s)
-              started=time.time()
-              try:
-                req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.15-archive-probe','Range':'bytes=0-31'})
-                with urllib.request.urlopen(req,timeout=45) as r:
-                  body=r.read(32)
-                  rows.append({'symbol':s,'group':group,'url':url,'status':getattr(r,'status',None),'available':True,'content_length':r.headers.get('Content-Length'),'content_range':r.headers.get('Content-Range'),'head_hex':body.hex(),'elapsed':round(time.time()-started,3)})
-              except urllib.error.HTTPError as exc:
-                rows.append({'symbol':s,'group':group,'url':url,'status':exc.code,'available':False,'error':str(exc),'elapsed':round(time.time()-started,3)})
-              except Exception as exc:
-                rows.append({'symbol':s,'group':group,'url':url,'available':False,'error':f'{type(exc).__name__}: {exc}','elapsed':round(time.time()-started,3)})
-          report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'available_count':sum(1 for x in rows if x['available']),'rows':rows}
-          Path('artifact/archive_probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
-          print(json.dumps(report,ensure_ascii=False,indent=2))
+          report=[]
+          scripts=[]
+          for url in urls:
+            try:
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Accept':'text/html'})
+              with urllib.request.urlopen(req,timeout=40) as r:
+                body=r.read().decode('utf-8',errors='replace')
+              report.append({'url':url,'ok':True,'bytes':len(body),'head':body[:300]})
+              for match in re.findall(r'<script[^>]+src=["\']([^"\']+)',body):
+                src=unescape(match)
+                scripts.append(urllib.parse.urljoin(url,src))
+            except Exception as exc:
+              report.append({'url':url,'ok':False,'error':f'{type(exc).__name__}: {exc}'})
+          scripts=list(dict.fromkeys(scripts))[:300]
+          hits=[]
+          for i,url in enumerate(scripts):
+            try:
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(req,timeout=40) as r:
+                text=r.read().decode('utf-8',errors='replace')
+              patterns=['/fapi/v1/klines','/fapi/v1/exchangeInfo','/futures/data/openInterestHist','/bapi/futures','continuousKlines','premiumIndex']
+              found=[]
+              for p in patterns:
+                if p in text:
+                  positions=[m.start() for m in re.finditer(re.escape(p),text)][:10]
+                  found.extend({'pattern':p,'context':text[max(0,pos-250):pos+500]} for pos in positions)
+              if found:
+                hits.append({'url':url,'bytes':len(text),'found':found})
+            except Exception as exc:
+              pass
+          (out/'web_bundle_discovery.json').write_text(json.dumps({'pages':report,'script_count':len(scripts),'hits':hits},ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps({'pages':report,'script_count':len(scripts),'hit_files':len(hits)},indent=2))
           PY
-      - name: Upload archive availability probe
+      - name: Upload endpoint discovery
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v115-july26-archive-probe-20260727
+          name: v115-binance-web-endpoint-discovery-20260727
           path: artifact
           if-no-files-found: error
           retention-days: 2
