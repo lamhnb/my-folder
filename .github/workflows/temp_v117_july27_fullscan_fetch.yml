@@ -1,0 +1,281 @@
+name: Temporary V1.17 July-27 full-universe data fetch
+
+on:
+  pull_request:
+    paths:
+      - temp/v117_july27_fullscan_trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Fetch official Binance July-27 full-universe replay inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/futures artifact/spot artifact/metrics artifact/funding
+          python3 -m pip install --quiet --upgrade --no-cache-dir 'websockets>=14,<16'
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import asyncio
+          import hashlib
+          import json
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          import xml.etree.ElementTree as ET
+          from datetime import date, timedelta, datetime, timezone
+          from pathlib import Path
+          from typing import Any
+
+          import websockets
+
+          ROOT = Path('artifact')
+          START = date(2026, 7, 20)
+          END = date(2026, 7, 27)
+          TARGET = date(2026, 7, 27)
+          INTERVAL = '5m'
+          CONCURRENCY = 48
+          TIMEOUT = 60
+          RETRIES = 3
+          SEM = asyncio.Semaphore(CONCURRENCY)
+          errors: list[dict[str, Any]] = []
+          manifest: list[dict[str, Any]] = []
+          source_counts: dict[str, int] = {}
+
+          def request_bytes(url: str, *, method: str = 'GET', data: bytes | None = None, headers: dict[str, str] | None = None) -> bytes:
+              delay = 0.5
+              last: Exception | None = None
+              hdrs = {'User-Agent': 'Mozilla/5.0 V1.17-July27-fullscan', 'Accept': '*/*'}
+              if headers:
+                  hdrs.update(headers)
+              for attempt in range(RETRIES):
+                  try:
+                      req = urllib.request.Request(url, data=data, method=method, headers=hdrs)
+                      with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
+                          return response.read()
+                  except Exception as exc:
+                      last = exc
+                      if attempt + 1 < RETRIES:
+                          time.sleep(delay)
+                          delay *= 2
+              raise last or RuntimeError('request failed')
+
+          def s3_universe() -> set[str]:
+              output: set[str] = set()
+              token: str | None = None
+              while True:
+                  params = {
+                      'list-type': '2',
+                      'delimiter': '/',
+                      'prefix': 'data/futures/um/daily/klines/',
+                      'max-keys': '1000',
+                  }
+                  if token:
+                      params['continuation-token'] = token
+                  url = 'https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?' + urllib.parse.urlencode(params)
+                  raw = request_bytes(url)
+                  root = ET.fromstring(raw)
+                  ns = {'s3': 'http://s3.amazonaws.com/doc/2006-03-01/'}
+                  for node in root.findall('s3:CommonPrefixes/s3:Prefix', ns):
+                      text = node.text or ''
+                      symbol = text.rstrip('/').split('/')[-1]
+                      if symbol.endswith('USDT'):
+                          output.add(symbol)
+                  truncated = (root.findtext('s3:IsTruncated', default='false', namespaces=ns) or 'false').lower() == 'true'
+                  token = root.findtext('s3:NextContinuationToken', default=None, namespaces=ns)
+                  if not truncated or not token:
+                      break
+              return output
+
+          def tradingview_universe() -> set[str]:
+              payload = {
+                  'filter': [{'left': 'exchange', 'operation': 'equal', 'right': 'BINANCE'}],
+                  'options': {'lang': 'en'},
+                  'markets': ['crypto'],
+                  'symbols': {'query': {'types': []}, 'tickers': []},
+                  'columns': ['name', 'description', 'type', 'subtype', 'exchange'],
+                  'sort': {'sortBy': 'name', 'sortOrder': 'asc'},
+                  'range': [0, 5000],
+              }
+              raw = request_bytes(
+                  'https://scanner.tradingview.com/crypto/scan',
+                  method='POST',
+                  data=json.dumps(payload).encode('utf-8'),
+                  headers={'Content-Type': 'application/json'},
+              )
+              response = json.loads(raw.decode('utf-8'))
+              output: set[str] = set()
+              for row in response.get('data', []):
+                  ticker = str(row.get('s') or '')
+                  if not ticker.startswith('BINANCE:') or not ticker.endswith('.P'):
+                      continue
+                  symbol = ticker.split(':', 1)[1][:-2]
+                  if symbol.endswith('USDT'):
+                      output.add(symbol)
+              return output
+
+          async def mark_universe(seconds: int = 75) -> set[str]:
+              output: set[str] = set()
+              url = 'wss://fstream.binance.com/market/ws/!markPrice@arr@1s'
+              async with websockets.connect(url, open_timeout=20, close_timeout=5, max_size=64_000_000, ping_interval=20, ping_timeout=20) as ws:
+                  deadline = time.monotonic() + seconds
+                  while time.monotonic() < deadline:
+                      try:
+                          message = json.loads(await asyncio.wait_for(ws.recv(), timeout=2.0))
+                      except asyncio.TimeoutError:
+                          continue
+                      if isinstance(message, list):
+                          for row in message:
+                              symbol = str(row.get('s') or '') if isinstance(row, dict) else ''
+                              if symbol.endswith('USDT'):
+                                  output.add(symbol)
+              return output
+
+          candidate_sources: dict[str, set[str]] = {}
+          for name, fn in [('s3', s3_universe), ('tradingview', tradingview_universe)]:
+              try:
+                  candidate_sources[name] = fn()
+              except Exception as exc:
+                  errors.append({'scope': 'universe', 'source': name, 'error': f'{type(exc).__name__}: {exc}'})
+                  candidate_sources[name] = set()
+          try:
+              candidate_sources['mark_stream'] = asyncio.run(mark_universe())
+          except Exception as exc:
+              errors.append({'scope': 'universe', 'source': 'mark_stream', 'error': f'{type(exc).__name__}: {exc}'})
+              candidate_sources['mark_stream'] = set()
+
+          for name, values in candidate_sources.items():
+              source_counts[name] = len(values)
+          candidates = sorted(set().union(*candidate_sources.values()))
+          if len(candidates) < 300:
+              raise SystemExit(f'Universe discovery too small: {len(candidates)}; sources={source_counts}')
+
+          async def get(url: str) -> bytes:
+              async with SEM:
+                  return await asyncio.to_thread(request_bytes, url)
+
+          async def fetch_one(group: str, symbol: str, stamp: str) -> bool:
+              if group == 'futures':
+                  name = f'{symbol}-{INTERVAL}-{stamp}.zip'
+                  url = f'https://data.binance.vision/data/futures/um/daily/klines/{symbol}/{INTERVAL}/{name}'
+              elif group == 'spot':
+                  name = f'{symbol}-{INTERVAL}-{stamp}.zip'
+                  url = f'https://data.binance.vision/data/spot/daily/klines/{symbol}/{INTERVAL}/{name}'
+              elif group == 'metrics':
+                  name = f'{symbol}-metrics-{stamp}.zip'
+                  url = f'https://data.binance.vision/data/futures/um/daily/metrics/{symbol}/{name}'
+              elif group == 'funding':
+                  name = f'{symbol}-fundingRate-{stamp}.zip'
+                  url = f'https://data.binance.vision/data/futures/um/daily/fundingRate/{symbol}/{name}'
+              else:
+                  raise ValueError(group)
+              out = ROOT / group / name
+              try:
+                  payload = await get(url)
+              except urllib.error.HTTPError as exc:
+                  if exc.code == 404:
+                      return False
+                  errors.append({'scope': 'download', 'group': group, 'symbol': symbol, 'date': stamp, 'url': url, 'error': repr(exc)})
+                  return False
+              except Exception as exc:
+                  errors.append({'scope': 'download', 'group': group, 'symbol': symbol, 'date': stamp, 'url': url, 'error': f'{type(exc).__name__}: {exc}'})
+                  return False
+              try:
+                  checksum_text = (await get(url + '.CHECKSUM')).decode('utf-8', errors='replace').strip()
+                  expected = checksum_text.split()[0]
+                  actual = hashlib.sha256(payload).hexdigest()
+                  if expected != actual:
+                      raise RuntimeError(f'checksum mismatch expected={expected} actual={actual}')
+              except Exception as exc:
+                  errors.append({'scope': 'checksum', 'group': group, 'symbol': symbol, 'date': stamp, 'url': url, 'error': f'{type(exc).__name__}: {exc}'})
+                  return False
+              out.write_bytes(payload)
+              Path(str(out) + '.CHECKSUM').write_text(checksum_text + '\n', encoding='utf-8')
+              manifest.append({'group': group, 'symbol': symbol, 'date': stamp, 'path': str(out.relative_to(ROOT)), 'bytes': len(payload), 'sha256': actual, 'url': url})
+              return True
+
+          async def validate_target(symbol: str) -> tuple[str, bool]:
+              ok = await fetch_one('futures', symbol, TARGET.isoformat())
+              return symbol, ok
+
+          async def validate_all() -> list[str]:
+              rows = await asyncio.gather(*(validate_target(symbol) for symbol in candidates))
+              return sorted(symbol for symbol, ok in rows if ok)
+
+          valid_symbols = asyncio.run(validate_all())
+          if len(valid_symbols) < 250:
+              raise SystemExit(f'Too few symbols had official July-27 Futures archives: {len(valid_symbols)}')
+
+          days: list[str] = []
+          cursor = START
+          while cursor <= END:
+              days.append(cursor.isoformat())
+              cursor += timedelta(days=1)
+
+          async def fetch_remaining() -> None:
+              tasks = []
+              for symbol in valid_symbols:
+                  for stamp in days:
+                      if stamp != TARGET.isoformat():
+                          tasks.append(fetch_one('futures', symbol, stamp))
+                      tasks.append(fetch_one('spot', symbol, stamp))
+                      tasks.append(fetch_one('metrics', symbol, stamp))
+                      tasks.append(fetch_one('funding', symbol, stamp))
+              completed = 0
+              total = len(tasks)
+              for offset in range(0, total, 800):
+                  batch = tasks[offset:offset+800]
+                  await asyncio.gather(*batch)
+                  completed += len(batch)
+                  print(f'[FETCH] {completed}/{total} requests; files={len(manifest)} errors={len(errors)}', flush=True)
+
+          asyncio.run(fetch_remaining())
+
+          # Recheck target coverage from saved files.
+          target_files = sorted((ROOT / 'futures').glob(f'*-{INTERVAL}-{TARGET.isoformat()}.zip'))
+          target_symbols = sorted(path.name.split(f'-{INTERVAL}-', 1)[0] for path in target_files)
+          if target_symbols != valid_symbols:
+              raise SystemExit('Target-symbol set changed during fetch')
+
+          hashes = []
+          for path in sorted(ROOT.rglob('*')):
+              if path.is_file() and path.name != 'SHA256SUMS.txt':
+                  hashes.append(f'{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(ROOT)}')
+          (ROOT / 'SHA256SUMS.txt').write_text('\n'.join(hashes) + '\n', encoding='utf-8')
+          (ROOT / 'UNIVERSE.json').write_text(json.dumps(valid_symbols, ensure_ascii=False, indent=2), encoding='utf-8')
+          provenance = {
+              'status': 'COMPLETED',
+              'requested_start_utc': '2026-07-20T00:00:00Z',
+              'requested_end_utc': '2026-07-27T23:59:59.999Z',
+              'target_date_utc': TARGET.isoformat(),
+              'interval': INTERVAL,
+              'candidate_universe_count': len(candidates),
+              'universe_source_counts': source_counts,
+              'valid_target_symbols_count': len(valid_symbols),
+              'valid_target_symbols_sha256': hashlib.sha256('\n'.join(valid_symbols).encode()).hexdigest(),
+              'successful_zip_files': len(manifest),
+              'successful_by_group': {group: sum(1 for row in manifest if row['group'] == group) for group in ['futures','spot','metrics','funding']},
+              'error_count': len(errors),
+              'errors': errors,
+              'downloaded_at_utc': datetime.now(timezone.utc).isoformat(),
+              'source': 'Official Binance Data Vision archives; universe union from Data Vision S3 prefixes, TradingView scanner and Binance Futures mark-price stream.',
+          }
+          (ROOT / 'PROVENANCE.json').write_text(json.dumps(provenance, ensure_ascii=False, indent=2), encoding='utf-8')
+          (ROOT / 'DOWNLOAD_MANIFEST.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
+          print(json.dumps({k: provenance[k] for k in ['candidate_universe_count','universe_source_counts','valid_target_symbols_count','successful_zip_files','successful_by_group','error_count']}, indent=2), flush=True)
+          PY
+      - name: Upload full-universe replay inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: v117-july27-full-universe-official-inputs
+          path: artifact
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 2
