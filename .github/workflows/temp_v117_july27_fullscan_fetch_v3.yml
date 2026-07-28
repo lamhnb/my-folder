@@ -1,0 +1,145 @@
+name: Temporary V1.17 July-27 full-universe data fetch v3
+
+on:
+  pull_request:
+    paths:
+      - temp/v117_july27_fullscan_trigger_v3.txt
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Fetch official Binance July-27 full-universe replay inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/futures artifact/spot artifact/metrics artifact/funding
+          echo '{"status":"STARTED"}' > artifact/status.json
+          python3 -m pip install --quiet --upgrade --no-cache-dir 'websockets>=14,<16'
+          python3 - <<'PY'
+          from __future__ import annotations
+          import asyncio, hashlib, json, time, urllib.error, urllib.parse, urllib.request
+          from datetime import date, timedelta, datetime, timezone
+          from pathlib import Path
+          import websockets
+
+          ROOT=Path('artifact'); START=date(2026,7,20); END=date(2026,7,27); TARGET=date(2026,7,27)
+          INTERVAL='5m'; CONCURRENCY=40; RETRIES=3; TIMEOUT=60
+          errors=[]; manifest=[]; source_counts={}
+
+          def request_bytes(url, *, method='GET', data=None, headers=None):
+              delay=.5; last=None; hdr={'User-Agent':'Mozilla/5.0 V1.17-July27-fullscan-v3','Accept':'*/*'}
+              if headers: hdr.update(headers)
+              for attempt in range(RETRIES):
+                  try:
+                      req=urllib.request.Request(url,data=data,method=method,headers=hdr)
+                      with urllib.request.urlopen(req,timeout=TIMEOUT) as r: return r.read()
+                  except Exception as exc:
+                      last=exc
+                      if attempt+1<RETRIES: time.sleep(delay); delay*=2
+              raise last
+
+          def tradingview_symbols():
+              payload={'filter':[{'left':'exchange','operation':'equal','right':'BINANCE'}],'options':{'lang':'en'},'markets':['crypto'],'symbols':{'query':{'types':[]},'tickers':[]},'columns':['name','description','type','subtype','exchange'],'sort':{'sortBy':'name','sortOrder':'asc'},'range':[0,5000]}
+              raw=request_bytes('https://scanner.tradingview.com/crypto/scan',method='POST',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
+              response=json.loads(raw.decode()); out=set()
+              for row in response.get('data',[]):
+                  ticker=str(row.get('s') or '')
+                  if ticker.startswith('BINANCE:') and ticker.endswith('.P'):
+                      symbol=ticker.split(':',1)[1][:-2]
+                      if symbol.endswith('USDT'): out.add(symbol)
+              return out
+
+          async def mark_symbols(seconds=90):
+              out=set(); url='wss://fstream.binance.com/market/ws/!markPrice@arr@1s'
+              async with websockets.connect(url,open_timeout=20,close_timeout=5,max_size=64_000_000,ping_interval=20,ping_timeout=20) as ws:
+                  deadline=time.monotonic()+seconds
+                  while time.monotonic()<deadline:
+                      try: rows=json.loads(await asyncio.wait_for(ws.recv(),timeout=2.0))
+                      except asyncio.TimeoutError: continue
+                      if isinstance(rows,list):
+                          for row in rows:
+                              symbol=str(row.get('s') or '') if isinstance(row,dict) else ''
+                              if symbol.endswith('USDT'): out.add(symbol)
+              return out
+
+          tv=set()
+          try: tv=tradingview_symbols()
+          except Exception as exc: errors.append({'scope':'universe','source':'tradingview','error':f'{type(exc).__name__}: {exc}'})
+          mark=set()
+          try: mark=asyncio.run(mark_symbols())
+          except Exception as exc: errors.append({'scope':'universe','source':'mark_stream','error':f'{type(exc).__name__}: {exc}'})
+          source_counts={'tradingview':len(tv),'mark_stream':len(mark)}
+          candidates=sorted(tv|mark)
+          (ROOT/'status.json').write_text(json.dumps({'status':'UNIVERSE_DISCOVERED','source_counts':source_counts,'candidate_count':len(candidates),'errors':errors},indent=2))
+          if len(candidates)<250: raise SystemExit(f'Universe too small: {len(candidates)} {source_counts}')
+
+          def spec(group,symbol,stamp):
+              if group=='futures': name=f'{symbol}-{INTERVAL}-{stamp}.zip'; url=f'https://data.binance.vision/data/futures/um/daily/klines/{symbol}/{INTERVAL}/{name}'
+              elif group=='spot': name=f'{symbol}-{INTERVAL}-{stamp}.zip'; url=f'https://data.binance.vision/data/spot/daily/klines/{symbol}/{INTERVAL}/{name}'
+              elif group=='metrics': name=f'{symbol}-metrics-{stamp}.zip'; url=f'https://data.binance.vision/data/futures/um/daily/metrics/{symbol}/{name}'
+              else: name=f'{symbol}-fundingRate-{stamp}.zip'; url=f'https://data.binance.vision/data/futures/um/daily/fundingRate/{symbol}/{name}'
+              return url,ROOT/group/name
+
+          async def fetch_all():
+              sem=asyncio.Semaphore(CONCURRENCY)
+              async def get(url):
+                  async with sem: return await asyncio.to_thread(request_bytes,url)
+              async def fetch(group,symbol,stamp):
+                  url,out=spec(group,symbol,stamp)
+                  try: payload=await get(url)
+                  except urllib.error.HTTPError as exc:
+                      if exc.code==404: return False
+                      errors.append({'group':group,'symbol':symbol,'date':stamp,'error':repr(exc)}); return False
+                  except Exception as exc:
+                      errors.append({'group':group,'symbol':symbol,'date':stamp,'error':f'{type(exc).__name__}: {exc}'}); return False
+                  try:
+                      checksum=(await get(url+'.CHECKSUM')).decode(errors='replace').strip(); expected=checksum.split()[0]; actual=hashlib.sha256(payload).hexdigest()
+                      if expected!=actual: raise RuntimeError('checksum mismatch')
+                  except Exception as exc:
+                      errors.append({'group':group,'symbol':symbol,'date':stamp,'error':f'{type(exc).__name__}: {exc}'}); return False
+                  out.write_bytes(payload); Path(str(out)+'.CHECKSUM').write_text(checksum+'\n')
+                  manifest.append({'group':group,'symbol':symbol,'date':stamp,'path':str(out.relative_to(ROOT)),'sha256':actual,'bytes':len(payload),'url':url})
+                  return True
+
+              target=[]
+              for offset in range(0,len(candidates),250):
+                  batch=candidates[offset:offset+250]; result=await asyncio.gather(*(fetch('futures',s,TARGET.isoformat()) for s in batch)); target.extend(zip(batch,result))
+                  print(f'[TARGET] {min(offset+250,len(candidates))}/{len(candidates)} files={len(manifest)} errors={len(errors)}',flush=True)
+              valid=sorted(s for s,ok in target if ok)
+              (ROOT/'status.json').write_text(json.dumps({'status':'TARGET_VALIDATED','source_counts':source_counts,'candidate_count':len(candidates),'valid_count':len(valid),'errors':errors},indent=2))
+              if len(valid)<200: raise SystemExit(f'Too few July-27 symbols: {len(valid)}')
+              days=[]; d=START
+              while d<=END: days.append(d.isoformat()); d+=timedelta(days=1)
+              jobs=[]
+              for s in valid:
+                  for stamp in days:
+                      if stamp!=TARGET.isoformat(): jobs.append(('futures',s,stamp))
+                      jobs.extend([('spot',s,stamp),('metrics',s,stamp),('funding',s,stamp)])
+              for offset in range(0,len(jobs),600):
+                  await asyncio.gather(*(fetch(*row) for row in jobs[offset:offset+600]))
+                  print(f'[FETCH] {min(offset+600,len(jobs))}/{len(jobs)} files={len(manifest)} errors={len(errors)}',flush=True)
+              return valid
+
+          valid=asyncio.run(fetch_all())
+          hashes=[]
+          for p in sorted(ROOT.rglob('*')):
+              if p.is_file() and p.name!='SHA256SUMS.txt': hashes.append(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(ROOT)}')
+          (ROOT/'SHA256SUMS.txt').write_text('\n'.join(hashes)+'\n'); (ROOT/'UNIVERSE.json').write_text(json.dumps(valid,indent=2))
+          provenance={'status':'COMPLETED','requested_start_utc':'2026-07-20T00:00:00Z','requested_end_utc':'2026-07-27T23:59:59.999Z','target_date_utc':'2026-07-27','interval':INTERVAL,'candidate_universe_count':len(candidates),'universe_source_counts':source_counts,'valid_target_symbols_count':len(valid),'valid_target_symbols_sha256':hashlib.sha256('\n'.join(valid).encode()).hexdigest(),'successful_zip_files':len(manifest),'successful_by_group':{g:sum(x['group']==g for x in manifest) for g in ['futures','spot','metrics','funding']},'error_count':len(errors),'errors':errors,'downloaded_at_utc':datetime.now(timezone.utc).isoformat(),'source':'Official Binance Data Vision archives; universe union from TradingView Binance perpetual scanner and Binance Futures mark-price stream.'}
+          (ROOT/'PROVENANCE.json').write_text(json.dumps(provenance,indent=2)); (ROOT/'DOWNLOAD_MANIFEST.json').write_text(json.dumps(manifest,indent=2)); (ROOT/'status.json').write_text(json.dumps(provenance,indent=2))
+          print(json.dumps({k:provenance[k] for k in ['candidate_universe_count','universe_source_counts','valid_target_symbols_count','successful_zip_files','successful_by_group','error_count']},indent=2))
+          PY
+      - name: Upload full-universe replay inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v117-july27-full-universe-official-inputs-v3
+          path: artifact
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 2
