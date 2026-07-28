@@ -1,0 +1,138 @@
+name: Temporary V1.17 July-27 full-universe data fetch v2
+
+on:
+  pull_request:
+    paths:
+      - temp/v117_july27_fullscan_trigger_v2.txt
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Fetch official Binance July-27 full-universe replay inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/futures artifact/spot artifact/metrics artifact/funding
+          python3 - <<'PY'
+          from __future__ import annotations
+          import asyncio, hashlib, json, time, urllib.error, urllib.parse, urllib.request
+          import xml.etree.ElementTree as ET
+          from datetime import date, timedelta, datetime, timezone
+          from pathlib import Path
+
+          ROOT=Path('artifact'); START=date(2026,7,20); END=date(2026,7,27); TARGET=date(2026,7,27)
+          INTERVAL='5m'; CONCURRENCY=40; RETRIES=3; TIMEOUT=60
+          errors=[]; manifest=[]
+
+          def request_bytes(url):
+              delay=.5; last=None
+              for attempt in range(RETRIES):
+                  try:
+                      req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 V1.17-July27-fullscan-v2','Accept':'*/*'})
+                      with urllib.request.urlopen(req,timeout=TIMEOUT) as r: return r.read()
+                  except Exception as exc:
+                      last=exc
+                      if attempt+1<RETRIES: time.sleep(delay); delay*=2
+              raise last
+
+          def list_s3_symbols():
+              out=set(); token=None
+              while True:
+                  params={'list-type':'2','delimiter':'/','prefix':'data/futures/um/daily/klines/','max-keys':'1000'}
+                  if token: params['continuation-token']=token
+                  url='https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?'+urllib.parse.urlencode(params)
+                  root=ET.fromstring(request_bytes(url)); ns={'s3':'http://s3.amazonaws.com/doc/2006-03-01/'}
+                  for node in root.findall('s3:CommonPrefixes/s3:Prefix',ns):
+                      symbol=(node.text or '').rstrip('/').split('/')[-1]
+                      if symbol.endswith('USDT'): out.add(symbol)
+                  truncated=(root.findtext('s3:IsTruncated',default='false',namespaces=ns) or 'false').lower()=='true'
+                  token=root.findtext('s3:NextContinuationToken',default=None,namespaces=ns)
+                  if not truncated or not token: break
+              return sorted(out)
+
+          candidates=list_s3_symbols()
+          if len(candidates)<300: raise SystemExit(f'S3 universe too small: {len(candidates)}')
+
+          def spec(group,symbol,stamp):
+              if group=='futures':
+                  name=f'{symbol}-{INTERVAL}-{stamp}.zip'; url=f'https://data.binance.vision/data/futures/um/daily/klines/{symbol}/{INTERVAL}/{name}'
+              elif group=='spot':
+                  name=f'{symbol}-{INTERVAL}-{stamp}.zip'; url=f'https://data.binance.vision/data/spot/daily/klines/{symbol}/{INTERVAL}/{name}'
+              elif group=='metrics':
+                  name=f'{symbol}-metrics-{stamp}.zip'; url=f'https://data.binance.vision/data/futures/um/daily/metrics/{symbol}/{name}'
+              else:
+                  name=f'{symbol}-fundingRate-{stamp}.zip'; url=f'https://data.binance.vision/data/futures/um/daily/fundingRate/{symbol}/{name}'
+              return name,url,ROOT/group/name
+
+          async def main_async():
+              sem=asyncio.Semaphore(CONCURRENCY)
+              async def get(url):
+                  async with sem: return await asyncio.to_thread(request_bytes,url)
+              async def fetch(group,symbol,stamp):
+                  name,url,out=spec(group,symbol,stamp)
+                  try: payload=await get(url)
+                  except urllib.error.HTTPError as exc:
+                      if exc.code==404: return False
+                      errors.append({'group':group,'symbol':symbol,'date':stamp,'error':repr(exc)}); return False
+                  except Exception as exc:
+                      errors.append({'group':group,'symbol':symbol,'date':stamp,'error':f'{type(exc).__name__}: {exc}'}); return False
+                  try:
+                      checksum=(await get(url+'.CHECKSUM')).decode(errors='replace').strip(); expected=checksum.split()[0]
+                      actual=hashlib.sha256(payload).hexdigest()
+                      if expected!=actual: raise RuntimeError(f'checksum mismatch {expected} != {actual}')
+                  except Exception as exc:
+                      errors.append({'group':group,'symbol':symbol,'date':stamp,'error':f'{type(exc).__name__}: {exc}'}); return False
+                  out.write_bytes(payload); Path(str(out)+'.CHECKSUM').write_text(checksum+'\n')
+                  manifest.append({'group':group,'symbol':symbol,'date':stamp,'path':str(out.relative_to(ROOT)),'sha256':actual,'bytes':len(payload),'url':url})
+                  return True
+
+              # Identify exactly which symbols had a July-27 Futures archive.
+              target_rows=[]
+              for offset in range(0,len(candidates),300):
+                  batch=candidates[offset:offset+300]
+                  result=await asyncio.gather(*(fetch('futures',s,TARGET.isoformat()) for s in batch))
+                  target_rows.extend(zip(batch,result))
+                  print(f'[TARGET] {min(offset+300,len(candidates))}/{len(candidates)} files={len(manifest)}',flush=True)
+              valid=sorted(s for s,ok in target_rows if ok)
+              if len(valid)<250: raise SystemExit(f'Too few July-27 symbols: {len(valid)}')
+
+              days=[]; d=START
+              while d<=END: days.append(d.isoformat()); d+=timedelta(days=1)
+              jobs=[]
+              for s in valid:
+                  for stamp in days:
+                      if stamp!=TARGET.isoformat(): jobs.append(('futures',s,stamp))
+                      jobs.extend([('spot',s,stamp),('metrics',s,stamp),('funding',s,stamp)])
+              for offset in range(0,len(jobs),600):
+                  batch=jobs[offset:offset+600]
+                  await asyncio.gather(*(fetch(*row) for row in batch))
+                  print(f'[FETCH] {min(offset+600,len(jobs))}/{len(jobs)} files={len(manifest)} errors={len(errors)}',flush=True)
+              return valid
+
+          valid_symbols=asyncio.run(main_async())
+          target_symbols=sorted(p.name.split(f'-{INTERVAL}-',1)[0] for p in (ROOT/'futures').glob(f'*-{INTERVAL}-{TARGET.isoformat()}.zip'))
+          if target_symbols!=valid_symbols: raise SystemExit('target symbol set mismatch')
+          hashes=[]
+          for p in sorted(ROOT.rglob('*')):
+              if p.is_file() and p.name!='SHA256SUMS.txt': hashes.append(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(ROOT)}')
+          (ROOT/'SHA256SUMS.txt').write_text('\n'.join(hashes)+'\n')
+          (ROOT/'UNIVERSE.json').write_text(json.dumps(valid_symbols,indent=2))
+          provenance={'status':'COMPLETED','requested_start_utc':'2026-07-20T00:00:00Z','requested_end_utc':'2026-07-27T23:59:59.999Z','target_date_utc':'2026-07-27','interval':INTERVAL,'s3_candidate_symbols_count':len(candidates),'valid_target_symbols_count':len(valid_symbols),'valid_target_symbols_sha256':hashlib.sha256('\n'.join(valid_symbols).encode()).hexdigest(),'successful_zip_files':len(manifest),'successful_by_group':{g:sum(x['group']==g for x in manifest) for g in ['futures','spot','metrics','funding']},'error_count':len(errors),'errors':errors,'downloaded_at_utc':datetime.now(timezone.utc).isoformat(),'source':'Official Binance Data Vision archives; universe enumerated from the official Data Vision S3 prefix and filtered by July-27 Futures archive existence.'}
+          (ROOT/'PROVENANCE.json').write_text(json.dumps(provenance,indent=2))
+          (ROOT/'DOWNLOAD_MANIFEST.json').write_text(json.dumps(manifest,indent=2))
+          print(json.dumps({k:provenance[k] for k in ['s3_candidate_symbols_count','valid_target_symbols_count','successful_zip_files','successful_by_group','error_count']},indent=2))
+          PY
+      - name: Upload full-universe replay inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v117-july27-full-universe-official-inputs-v2
+          path: artifact
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 2
