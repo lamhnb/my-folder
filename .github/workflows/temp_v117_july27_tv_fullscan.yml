@@ -1,0 +1,178 @@
+name: Temporary V1.17 July-27 TradingView full-universe capture
+
+on:
+  pull_request:
+    paths:
+      - temp/v117_july27_tv_fullscan_trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3]
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - name: Capture shard ${{ matrix.shard }}
+        shell: bash
+        env:
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 4
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/symbols
+          echo '{"status":"STARTED"}' > artifact/status.json
+          python3 -m pip install --quiet --upgrade --no-cache-dir \
+            git+https://github.com/rongardF/tvdatafeed.git \
+            'websockets>=14,<16' pandas
+          python3 - <<'PY'
+          from __future__ import annotations
+          import asyncio, concurrent.futures, gzip, hashlib, json, math, os, threading, time
+          import urllib.parse, urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from typing import Any
+          import pandas as pd
+          import websockets
+          from tvDatafeed import TvDatafeed, Interval
+
+          ROOT=Path('artifact'); SD=ROOT/'symbols'; SD.mkdir(parents=True,exist_ok=True)
+          SHARD=int(os.environ['SHARD']); SHARDS=int(os.environ['SHARDS'])
+          N_BARS=3000; MAX_WORKERS=6; errors=[]; lock=threading.Lock()
+
+          def fnum(v,d=0.0):
+              try:
+                  x=float(v); return x if math.isfinite(x) else d
+              except Exception: return d
+
+          def http_json(url, *, method='GET', data=None, headers=None, attempts=3):
+              delay=.5; last=None; hdr={'User-Agent':'Mozilla/5.0 V1.17-TV-fullscan','Accept':'application/json'}
+              if headers: hdr.update(headers)
+              for attempt in range(attempts):
+                  try:
+                      req=urllib.request.Request(url,data=data,method=method,headers=hdr)
+                      with urllib.request.urlopen(req,timeout=60) as r: return json.loads(r.read().decode())
+                  except Exception as exc:
+                      last=exc
+                      if attempt+1<attempts: time.sleep(delay); delay*=2
+              raise last
+
+          def tv_universe():
+              payload={'filter':[{'left':'exchange','operation':'equal','right':'BINANCE'}],'options':{'lang':'en'},'markets':['crypto'],'symbols':{'query':{'types':[]},'tickers':[]},'columns':['name','description','type','subtype','exchange'],'sort':{'sortBy':'name','sortOrder':'asc'},'range':[0,5000]}
+              response=http_json('https://scanner.tradingview.com/crypto/scan',method='POST',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
+              out=set()
+              for row in response.get('data',[]):
+                  ticker=str(row.get('s') or '')
+                  if ticker.startswith('BINANCE:') and ticker.endswith('.P'):
+                      symbol=ticker.split(':',1)[1][:-2]
+                      if symbol.endswith('USDT'): out.add(symbol)
+              return out
+
+          async def mark_universe(seconds=75):
+              out=set(); url='wss://fstream.binance.com/market/ws/!markPrice@arr@1s'
+              async with websockets.connect(url,open_timeout=20,close_timeout=5,max_size=64_000_000,ping_interval=20,ping_timeout=20) as ws:
+                  deadline=time.monotonic()+seconds
+                  while time.monotonic()<deadline:
+                      try: rows=json.loads(await asyncio.wait_for(ws.recv(),timeout=2.0))
+                      except asyncio.TimeoutError: continue
+                      if isinstance(rows,list):
+                          for row in rows:
+                              symbol=str(row.get('s') or '') if isinstance(row,dict) else ''
+                              if symbol.endswith('USDT'): out.add(symbol)
+              return out
+
+          tv=set(); mark=set()
+          try: tv=tv_universe()
+          except Exception as exc: errors.append({'scope':'universe','source':'tradingview','error':f'{type(exc).__name__}: {exc}'})
+          try: mark=asyncio.run(mark_universe())
+          except Exception as exc: errors.append({'scope':'universe','source':'mark_stream','error':f'{type(exc).__name__}: {exc}'})
+          universe=sorted(tv|mark)
+          if len(universe)<300: raise SystemExit(f'universe too small: tv={len(tv)} mark={len(mark)} union={len(universe)}')
+          selected=[s for i,s in enumerate(universe) if i%SHARDS==SHARD]
+
+          spot_info=http_json('https://data-api.binance.vision/api/v3/exchangeInfo')
+          spot_set={r.get('symbol') for r in spot_info.get('symbols',[]) if r.get('status')=='TRADING' and r.get('quoteAsset')=='USDT'}
+
+          def ms(index):
+              x=pd.Timestamp(index); x=x.tz_localize('UTC') if x.tzinfo is None else x.tz_convert('UTC'); return int(x.timestamp()*1000)
+
+          def price_rows(df):
+              out=[]
+              for idx,r in df.iterrows():
+                  vals=[fnum(r.get(k),float('nan')) for k in ('open','high','low','close','volume')]
+                  if not all(math.isfinite(x) for x in vals): continue
+                  o,h,l,c,v=vals; q=max(0.0,((o+h+l+c)/4.0)*v); t=ms(idx)
+                  out.append([t,str(o),str(h),str(l),str(c),str(v),t+299999,str(q),0,str(v*.5),str(q*.5),'0'])
+              return out
+
+          def oi_rows(df):
+              if df is None: return []
+              out=[]
+              for idx,r in df.iterrows():
+                  v=fnum(r.get('close'),float('nan'))
+                  if math.isfinite(v): out.append({'timestamp':ms(idx),'sumOpenInterest':str(v)})
+              return out
+
+          def spot_rows(symbol):
+              if symbol not in spot_set: return []
+              q=urllib.parse.urlencode({'symbol':symbol,'interval':'5m','limit':1000})
+              return http_json('https://data-api.binance.vision/api/v3/klines?'+q)
+
+          def fetch_one(symbol):
+              start=time.time(); last=None
+              for attempt in range(3):
+                  try:
+                      tvc=TvDatafeed()
+                      pdf=tvc.get_hist(symbol=f'{symbol}.P',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=N_BARS,extended_session=False)
+                      if pdf is None or len(pdf)<100: raise RuntimeError(f'price bars={0 if pdf is None else len(pdf)}')
+                      try: odf=tvc.get_hist(symbol=f'{symbol}.P_OI',exchange='BINANCE',interval=Interval.in_5_minute,n_bars=N_BARS,extended_session=False)
+                      except Exception as exc:
+                          odf=None
+                          with lock: errors.append({'symbol':symbol,'source':'oi','error':f'{type(exc).__name__}: {exc}'})
+                      try: srows=spot_rows(symbol)
+                      except Exception as exc:
+                          srows=[]
+                          with lock: errors.append({'symbol':symbol,'source':'spot','error':f'{type(exc).__name__}: {exc}'})
+                      frows=price_rows(pdf); orows=oi_rows(odf)
+                      # Keep only symbols with at least one closed bar on 2026-07-27 UTC.
+                      day_start=int(datetime(2026,7,27,tzinfo=timezone.utc).timestamp()*1000)
+                      day_end=int(datetime(2026,7,28,tzinfo=timezone.utc).timestamp()*1000)-1
+                      if not any(day_start<=int(r[6])<=day_end for r in frows): raise RuntimeError('no July-27 bar')
+                      payload={'symbol':symbol,'futures_5m':frows,'spot_5m':srows,'oi_5m':orows,'premium_index':{},'depth_100':{},'futures_24h':{},'spot_24h':{},'has_binance_spot':bool(srows),'futures_taker_flow_mode':'NEUTRAL_IMPUTED_0_5_FROM_TRADINGVIEW_OHLCV','fetched_at_ms':int(datetime.now(timezone.utc).timestamp()*1000),'sources':{'futures_ohlcv':'TradingView BINANCE:<symbol>.P','open_interest':'TradingView BINANCE:<symbol>.P_OI','spot_ohlcv':'Binance data-api'}}
+                      with gzip.open(SD/f'{symbol}.json.gz','wt',encoding='utf-8') as f: json.dump(payload,f,separators=(',',':'),ensure_ascii=False)
+                      return {'symbol':symbol,'ok':True,'seconds':round(time.time()-start,2),'futures_bars':len(frows),'oi_points':len(orows),'spot_bars':len(srows),'first_close_ms':frows[0][6],'latest_close_ms':frows[-1][6]}
+                  except Exception as exc:
+                      last=exc; time.sleep(1+attempt)
+              with lock: errors.append({'symbol':symbol,'source':'deep','error':f'{type(last).__name__}: {last}'})
+              return {'symbol':symbol,'ok':False,'seconds':round(time.time()-start,2),'error':f'{type(last).__name__}: {last}'}
+
+          results=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+              jobs={pool.submit(fetch_one,s):s for s in selected}
+              for i,job in enumerate(concurrent.futures.as_completed(jobs),1):
+                  results.append(job.result())
+                  if i%10==0 or i==len(jobs): print(f'[SHARD {SHARD}] {i}/{len(jobs)}',flush=True)
+          success=sorted(r['symbol'] for r in results if r.get('ok')); failed=sorted(r['symbol'] for r in results if not r.get('ok'))
+          meta={'status':'COMPLETED' if success else 'FAILED','shard':SHARD,'shards':SHARDS,'captured_at_utc':datetime.now(timezone.utc).isoformat(),'universe_count':len(universe),'universe_sha256':hashlib.sha256('\n'.join(universe).encode()).hexdigest(),'tradingview_count':len(tv),'mark_stream_count':len(mark),'requested_count':len(selected),'success_count':len(success),'failed_count':len(failed),'requested_symbols':selected,'success_symbols':success,'failed_symbols':failed,'results':sorted(results,key=lambda x:x['symbol']),'errors':errors,'notes':['Futures OHLCV and OI use TradingView Binance relay.','Futures taker-buy is neutral-imputed at 0.5; directional Futures-flow confidence is degraded.','Spot OHLCV uses official Binance market-data-only endpoint and has 1000-bar coverage.']}
+          (ROOT/'meta.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2)); (ROOT/'universe.json').write_text(json.dumps(universe,ensure_ascii=False,indent=2)); (ROOT/'status.json').write_text(json.dumps({'status':meta['status'],'success_count':len(success),'failed_count':len(failed)},indent=2))
+          hashes=[]
+          for p in sorted(ROOT.rglob('*')):
+              if p.is_file() and p.name!='SHA256SUMS.txt': hashes.append(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(ROOT)}')
+          (ROOT/'SHA256SUMS.txt').write_text('\n'.join(hashes)+'\n')
+          print(json.dumps({k:meta[k] for k in ['shard','universe_count','tradingview_count','mark_stream_count','requested_count','success_count','failed_count']},indent=2))
+          if len(success)<max(50,int(len(selected)*0.65)): raise SystemExit('insufficient shard coverage')
+          PY
+      - name: Upload shard ${{ matrix.shard }}
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v117-july27-tv-fullscan-shard-${{ matrix.shard }}
+          path: artifact
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 2
