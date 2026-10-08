@@ -32,3 +32,8 @@ The last 14 draws are concealed for sequential replay. Each hidden draw is revea
 
 ## Versioning
 - **v0.1.0**: reproducible loader, validation, walk-forward learner, pair-swap portfolio, JSON report.
+
+## v0.2.0 (experimental, 2026-10-08)
+Run `python vietlott-power655-research/train_v020.py --data draws.jsonl --train-window 112 --holdout 28 --output results_v020.json`.
+
+Adds online exponentially weighted probability ensemble (five lookback horizons), pair-aware swap portfolio search with an overlap penalty, training-only selection of overlap penalty, chronological hidden-period replay, and random baseline. Predictions are generated before each hidden result is revealed; model weights update afterward. This implementation has been committed but has **not yet been executed or validated in this GitHub workflow**. Compare with v0.1.0 on identical time windows before promotion. Model scores do not imply increased physical jackpot odds.
