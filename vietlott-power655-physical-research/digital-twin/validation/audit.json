@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "checks": {
+    "requested_branch": true,
+    "protected_tracked_files_unchanged": true,
+    "all_planned_runs_persisted": true,
+    "run_integrity_and_current_implementation": true,
+    "three_posthoc_torque_runs_separate_and_pinned": true,
+    "five_original_videos_hash_verified": true,
+    "landmark_frames_match_prior_ledgers": true,
+    "clean_cad_manifold_and_hash": true,
+    "failed_gate_version_source_hash_preserved": true,
+    "no_new_source_video": true,
+    "baseline_numerical_and_system_passed": true,
+    "exact_label_permutation": true,
+    "same_binary_exact_repeat": true,
+    "handoff_exists": true,
+    "required_deliverables": true,
+    "all_runtime_controls_registered": true,
+    "parameter_provenance_schema": true
+  },
+  "run_integrity_errors": [],
+  "runs": 78,
+  "branch": "research/power655-physical-digital-twin",
+  "base": "f329cab62a64c081d635eac8033a7029f7b4d51a",
+  "scientific_prediction_validated": false,
+  "note": "Artifact pass is separate from per-configuration physical failures and incomplete real-world calibration."
+}

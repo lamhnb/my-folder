@@ -1,0 +1,14 @@
+{
+  "partitions": {
+    "01372": "calibration",
+    "01373": "calibration",
+    "01374": "validation",
+    "01375": "validation",
+    "01376": "retrospective_reserved"
+  },
+  "locked_before_this_analysis": true,
+  "unseen_future_holdout": false,
+  "reason": "All five draws were explored in earlier phases; retrospective reservation cannot undo exposure.",
+  "no_outcome_labels_loaded": true,
+  "source_sha256": "52209727bc1bf1a8dd27d62ca5429612b1654162acfb2348136c8afb4148dbc3"
+}

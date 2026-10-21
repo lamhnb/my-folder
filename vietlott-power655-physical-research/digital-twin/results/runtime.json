@@ -1,0 +1,17 @@
+{
+  "python": "3.11.15",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+    "pybullet": "3.2.7",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.3",
+    "imageio": "2.37.0",
+    "pillow": "11.3.0",
+    "pytest": "8.4.2",
+    "opencv-python-headless": "4.11.0.86",
+    "pypdf": "6.1.1"
+  },
+  "engine_api": 202010061,
+  "engine_binary_sha256": "10fae7df2e311122a38aa10b81b9011c8d47ee9748105864495b14faf592cedc"
+}

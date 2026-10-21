@@ -1,0 +1,13 @@
+# Validation scope
+
+Three layers are separate:
+
+1. `tests/`: software units for loading, configuration, body identity, and contact-required selection.
+2. `numerical.json`: isolated sphere–sphere momentum/elastic energy, gravity analytic convergence, frictional and frictionless energy, solver iterations. Ideal elastic experiment uses contactERP=0 and contactSlop=0, since Baumgarte-style overlap correction can add kinetic energy. The driven dissipative full model keeps Bullet's default contact stabilization; passing the ideal fixture is not a claim that a running motor conserves energy. Early failures remain in `development_failure_energy.json`.
+3. `system.json`: actual 55-body baseline, seven captures, duplicate rejection, physical 49/48 accounting, contact penetration, no escape, no coincident centers, deliberate too-small-aperture jam. Threshold for full-system contact penetration is 0.002 m (about 4% diameter), an engineering tolerance, not measurement accuracy. `development_failure_escapement.json` retains a failed deep pocket with no captures. Each ensemble run has its own failure list; a passed baseline never whitelists every parameter configuration.
+
+Time step and solver changes in `experiments/` compare macroscopic completion, event intervals, RMS speed and penetration over paired seed ensembles, not exact chaotic number trajectories. A small difference in one statistic cannot prove distributional convergence. Fine-step ensemble sample size is limited; report any failed gate and do not certify validated selection probabilities if numerical stability remains unresolved.
+
+Ball count includes every rigid sphere for its entire life. Captured spheres remain in the physical result trough; no sphere is deleted, teleported to a result, or collision-disabled. Special is requested only after six main captures, from 49 active physical IDs; a physical stopper retains it upstream. After special, 48 active IDs must remain inside the chamber.
+
+The upper gate has a bevel to lift the next queued sphere. Only one support-contact sphere may occupy the lower pocket; the lower swept face must clear that sphere before closing. A declared contact-feedback controller pauses closure at 0.4 mm prior-step penetration and may remain jammed if contact cannot clear. This is hypothetical escapement engineering, not a verified Vietlott collector or sensor law. Sliding gates are prescribed zero-mass actuators with velocities equal to actual displacement/dt; motor work, gate work and stabilization mean full-system energy is not conserved. Contact force accuracy, real material deformation and mechanical wear are not validated.

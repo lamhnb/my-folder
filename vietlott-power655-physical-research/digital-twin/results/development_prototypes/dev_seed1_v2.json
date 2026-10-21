@@ -1,0 +1,331 @@
+{
+  "seed": 1,
+  "config": {
+    "model": "hypothetical_spherical_gravity_escapement_v1",
+    "radius": 0.32,
+    "depth_scale": 1.0,
+    "wall_thickness": 0.008,
+    "mesh_lat": 24,
+    "mesh_lon": 48,
+    "ball_radius": 0.02525,
+    "ball_mass": 0.01234,
+    "diameter_tolerance": 0.0,
+    "mass_tolerance": 0.0,
+    "friction": 0.22,
+    "restitution": 0.55,
+    "rolling_friction": 0.001,
+    "spinning_friction": 0.001,
+    "linear_damping": 0.005,
+    "angular_damping": 0.005,
+    "gravity": 9.80665,
+    "rpm": 25.0,
+    "ramp_seconds": 2.0,
+    "rpm_modulation": 0.0,
+    "arm_length": 0.275,
+    "arm_width": 0.018,
+    "arm_depth": 0.075,
+    "arm_curve": 0.018,
+    "motor_torque": 3.0,
+    "mouth_radius": 0.033,
+    "pocket_height": 0.06,
+    "gate_speed": 0.2,
+    "gate_thickness": 0.006,
+    "hold_seconds": 0.25,
+    "mix_seconds": 6.0,
+    "capture_period": 4.0,
+    "max_seconds": 20,
+    "dt": 0.0005,
+    "solver_iterations": 80,
+    "sample_seconds": 0.05,
+    "penetration_limit": 0.002,
+    "loading": "random_volume",
+    "initial_jitter": 0.0,
+    "reverse_insertion": false,
+    "label_shift": 0
+  },
+  "config_sha256": "fbabf5f444071683bd32082a347000a5ca7d3a288e07f6c86fca6234010a974f",
+  "engine_api": 202010061,
+  "python": "3.11.15",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "seconds": 20.000499999998738,
+  "wall_seconds": 106.9808288999775,
+  "captures": [
+    {
+      "index": 1,
+      "role": "main",
+      "physical_id": 4,
+      "label": 5,
+      "time": 7.663999999998472,
+      "remaining": 54,
+      "position": [
+        -0.007898401496091978,
+        0.0006184997965686752,
+        -0.47366358759034294
+      ],
+      "velocity": [
+        0.1388950437811185,
+        0.017691256582386395,
+        0.540203921060918
+      ]
+    },
+    {
+      "index": 2,
+      "role": "main",
+      "physical_id": 25,
+      "label": 26,
+      "time": 11.630500000002723,
+      "remaining": 53,
+      "position": [
+        -0.006701386105438646,
+        0.005548986130430324,
+        -0.47349134676990284
+      ],
+      "velocity": [
+        0.1343511956981554,
+        0.039354257892107725,
+        0.47692868148944956
+      ]
+    },
+    {
+      "index": 3,
+      "role": "main",
+      "physical_id": 49,
+      "label": 50,
+      "time": 15.554500000007518,
+      "remaining": 52,
+      "position": [
+        -0.006413912392304266,
+        -0.0032977958402290453,
+        -0.47384318657469876
+      ],
+      "velocity": [
+        0.20980795511034672,
+        0.03970187544949111,
+        0.5145201050802437
+      ]
+    },
+    {
+      "index": 4,
+      "role": "main",
+      "physical_id": 24,
+      "label": 25,
+      "time": 19.6309999999996,
+      "remaining": 51,
+      "position": [
+        -0.0071156475964656175,
+        -0.00397040835394179,
+        -0.473712493589915
+      ],
+      "velocity": [
+        0.13836688820484316,
+        -0.03158552157852306,
+        0.5269924489543172
+      ]
+    }
+  ],
+  "states": [
+    {
+      "time": 0.0,
+      "phase": "MIX",
+      "captured": 0
+    },
+    {
+      "time": 6.000499999999394,
+      "phase": "ADMIT",
+      "captured": 0
+    },
+    {
+      "time": 6.486999999999124,
+      "phase": "ISOLATE",
+      "captured": 0
+    },
+    {
+      "time": 6.974499999998854,
+      "phase": "HOLD",
+      "captured": 0
+    },
+    {
+      "time": 7.224999999998715,
+      "phase": "RELEASE",
+      "captured": 0
+    },
+    {
+      "time": 7.663999999998472,
+      "phase": "RESET",
+      "captured": 1
+    },
+    {
+      "time": 8.103499999998412,
+      "phase": "MIX",
+      "captured": 1
+    },
+    {
+      "time": 10.00000000000073,
+      "phase": "ADMIT",
+      "captured": 1
+    },
+    {
+      "time": 10.468000000001302,
+      "phase": "ISOLATE",
+      "captured": 1
+    },
+    {
+      "time": 10.937000000001875,
+      "phase": "HOLD",
+      "captured": 1
+    },
+    {
+      "time": 11.18700000000218,
+      "phase": "RELEASE",
+      "captured": 1
+    },
+    {
+      "time": 11.630500000002723,
+      "phase": "RESET",
+      "captured": 2
+    },
+    {
+      "time": 12.074500000003265,
+      "phase": "MIX",
+      "captured": 2
+    },
+    {
+      "time": 14.000000000005619,
+      "phase": "ADMIT",
+      "captured": 2
+    },
+    {
+      "time": 14.431500000006146,
+      "phase": "ISOLATE",
+      "captured": 2
+    },
+    {
+      "time": 14.864000000006675,
+      "phase": "HOLD",
+      "captured": 2
+    },
+    {
+      "time": 15.11400000000698,
+      "phase": "RELEASE",
+      "captured": 2
+    },
+    {
+      "time": 15.554500000007518,
+      "phase": "RESET",
+      "captured": 3
+    },
+    {
+      "time": 15.995500000008057,
+      "phase": "MIX",
+      "captured": 3
+    },
+    {
+      "time": 18.0000000000034,
+      "phase": "ADMIT",
+      "captured": 3
+    },
+    {
+      "time": 18.468500000002308,
+      "phase": "ISOLATE",
+      "captured": 3
+    },
+    {
+      "time": 18.938000000001214,
+      "phase": "HOLD",
+      "captured": 3
+    },
+    {
+      "time": 19.18850000000063,
+      "phase": "RELEASE",
+      "captured": 3
+    },
+    {
+      "time": 19.6309999999996,
+      "phase": "RESET",
+      "captured": 4
+    }
+  ],
+  "physical_ids": [
+    4,
+    25,
+    49,
+    24
+  ],
+  "remaining": 51,
+  "body_count": 89,
+  "max_penetration_m": 0.0011029604972736737,
+  "max_ball_overlap_m": 0.0011029604972736737,
+  "max_penetration_pair": [
+    53,
+    78,
+    11.021000000001978
+  ],
+  "jam_seconds": 0.0,
+  "rms_speed_mean_m_s": 0.07762491068816262,
+  "failures": [
+    "incomplete_seven"
+  ],
+  "pre_capture": [
+    {
+      "time": 6.974499999998854,
+      "physical_id": 4,
+      "position": [
+        -0.007534887080070015,
+        0.0018615236901012352,
+        -0.3500538893538517
+      ],
+      "velocity": [
+        -0.007703284930126071,
+        -0.02875862877358896,
+        5.43386516338451e-13
+      ],
+      "remaining_before": 55
+    },
+    {
+      "time": 10.937000000001875,
+      "physical_id": 25,
+      "position": [
+        -0.006319797151882199,
+        0.004573790269267753,
+        -0.3500538885024461
+      ],
+      "velocity": [
+        -0.0253071841904852,
+        -0.04383309211441366,
+        7.9176184792501e-09
+      ],
+      "remaining_before": 54
+    },
+    {
+      "time": 14.864000000006675,
+      "physical_id": 49,
+      "position": [
+        0.0019271270910940568,
+        0.007517371012210693,
+        -0.35005388935384857
+      ],
+      "velocity": [
+        0.033883718300540065,
+        -0.009079114955254673,
+        1.5942108744226857e-15
+      ],
+      "remaining_before": 53
+    },
+    {
+      "time": 18.938000000001214,
+      "physical_id": 24,
+      "position": [
+        -0.003866372046769259,
+        0.006728097620054822,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        -8.134923226594296e-30,
+        -1.7845087503475048e-30,
+        5.489012022685813e-14
+      ],
+      "remaining_before": 52
+    }
+  ],
+  "scope": "hypothetical_model_only"
+}

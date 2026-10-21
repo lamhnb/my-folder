@@ -1,0 +1,28 @@
+{
+  "status": "exploratory_unpowered",
+  "scope": "hypothetical properties, randomized anew for each seed; no evidence of actual Vietlott per-label properties",
+  "runs": [
+    {
+      "seed": 1000,
+      "valid_run": true,
+      "main_count": 6,
+      "mean_main_mass_minus_all55_kg": -5.045071442440381e-05,
+      "mean_main_diameter_minus_all55_m": 0.00013520303499917757
+    },
+    {
+      "seed": 1001,
+      "valid_run": true,
+      "main_count": 6,
+      "mean_main_mass_minus_all55_kg": -0.00013037689839251985,
+      "mean_main_diameter_minus_all55_m": 0.00030407189522132366
+    },
+    {
+      "seed": 1002,
+      "valid_run": true,
+      "main_count": 6,
+      "mean_main_mass_minus_all55_kg": -5.153061154808576e-05,
+      "mean_main_diameter_minus_all55_m": -0.00011074764468226028
+    }
+  ],
+  "inference": "No per-label bias or forecasting conclusion; only three loading ensembles."
+}

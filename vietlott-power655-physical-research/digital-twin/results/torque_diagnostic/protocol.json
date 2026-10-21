@@ -1,0 +1,15 @@
+{
+  "status": "post_hoc_engineering_diagnostic",
+  "reason": "The completed78-run study showed positive-direction motor speed far below its request under load.",
+  "seeds": [
+    1000,
+    1001,
+    1002
+  ],
+  "changed_parameter": {
+    "motor_torque_N_m": 30.0
+  },
+  "baseline_motor_torque_N_m": 3.0,
+  "scope": "Tenfold assumed actuator stress; not measured hardware torque or an independent confirmation. Baseline config is not changed.",
+  "written_before_these_runs": true
+}

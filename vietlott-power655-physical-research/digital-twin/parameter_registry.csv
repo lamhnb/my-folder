@@ -1,0 +1,100 @@
+parameter,value_SI,unit_SI,uncertainty_or_range_SI,classification,source,applicability,current_machine_status,notes
+model,hypothetical_spherical_gravity_escapement_v1,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+radius,0.32,m,.25:.45,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+depth_scale,1.0,1,.6:1.2,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+wall_thickness,0.008,m,.004:.020,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+mesh_lat,40,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+mesh_lon,80,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+ball_radius,0.02525,m,.02475:.02575,documented,E01 Article 8.2 pages 7-8 via prior pinned extraction,2017 nominal rule; not measured 2026 set,unknown,radius = documented diameter / 2
+ball_mass,0.01234,kg,.011723:.012957,documented,E01 Article 8.2 pages 7-8 via prior pinned extraction,2017 nominal rule; not measured 2026 set,unknown,
+diameter_tolerance,0.0,m,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+mass_tolerance,0.0,kg,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+friction,0.22,1,.05:.5,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+restitution,0.55,1,.2:.8,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+rolling_friction,0.001,1,0:.004,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+spinning_friction,0.001,1,0:.004,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+linear_damping,0.005,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+angular_damping,0.005,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+gravity,9.80665,m s^-2,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+rpm,2.6179938779914944,rad s^-1,1.5707963267948963:4.71238898038469,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,"requested motor command in rev/min, not achieved speed; registry converts to rad/s"
+ramp_seconds,2.0,s,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+rpm_modulation,0.0,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+arm_length,0.275,m,.24:.29,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+arm_width,0.018,m,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+arm_depth,0.075,m,.04:.10,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+arm_curve,0.018,m,0:.04,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+motor_torque,3.0,N m,"3:30; post-hoc actuator stress range, not a measured hardware interval",assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+mouth_radius,0.033,m,.029:.037,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+pocket_height,0.06,m,.055:.070,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+gate_speed,0.2,m s^-1,.10:.4,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+gate_thickness,0.006,m,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+gate_pause_depth,0.0004,m,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+hold_seconds,0.25,s,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+mix_seconds,6.0,s,3:30,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+capture_period,4.0,s,3:15,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+max_seconds,65.0,s,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+dt,0.0005,s,.00025:.001,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+solver_iterations,80,1,40:160,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+sample_seconds,0.05,s,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+penetration_limit,0.002,m,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+loading,random_volume,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+initial_jitter,0.0,m,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+reverse_insertion,False,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+label_shift,0,1,not experimentally quantified,assumed,configs/baseline.json; research hypothesis or numerical control,hypothetical simulator only,unknown,
+manufacturer_model,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+serial,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+revision,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+machine_replacement_history,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+maintenance_log,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+ball_set_id,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+ball_replacement_history,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+each_ball_mass,NA,kg,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+each_ball_diameter,NA,m,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+ball_material_density,NA,kg m^-3,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+center_of_mass_offsets,NA,m,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+static_friction,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+kinetic_friction_velocity_law,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+contact_stiffness,NA,N m^-1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+actual_RPM_time_series,NA,rad s^-1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+rotation_direction,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+axis_topology,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+actual_mix_duration,NA,s,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+deceleration,NA,rad s^-2,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+actual_gate_topology,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+loading_port_geometry,NA,m,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+actual_loading_order,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+initial_55_positions_velocities,NA,m; m s^-1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+initial_55_positions,NA,m,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+initial_55_velocities,NA,m s^-1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+control_latency,NA,s,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+permanent_isolation_time,NA,s,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+wall_refraction,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+camera_intrinsics_extrinsics,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+temperature,NA,K,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+humidity,NA,1,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+vibration,NA,m s^-2,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+electrostatic_charge,NA,C,unknown,unknown,../phase2/unresolved_parameters.md,Power 6/55 broadcasts 2026,unknown,Not inferred from a similar Smartplay model
+ball_count,55,1,"rule nominal/tolerance, not empirical CI",documented,E01 Article 8.2,2017 rule; equipment linkage to 2026 unknown,unknown,
+paddle_count,3,1,"rule nominal/tolerance, not empirical CI",documented,E01 Article 5.2 / 8.1,2017 rule; equipment linkage to 2026 unknown,unknown,
+documented_diameter,0.0505,m,"rule nominal/tolerance, not empirical CI",documented,E01 Article 8.2c,2017 rule; equipment linkage to 2026 unknown,unknown,
+documented_diameter_tolerance,0.001,m,"rule nominal/tolerance, not empirical CI",documented,E01 Article 8.2c,2017 rule; equipment linkage to 2026 unknown,unknown,
+documented_mass_tolerance,0.000617,kg,"rule nominal/tolerance, not empirical CI",documented,E01 Article 8.2c,2017 rule; equipment linkage to 2026 unknown,unknown,
+rotor_mass,0.8,kg,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+arm_root_radius,0.035,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+arm_segments,5,1,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+gate_travel,0.11,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+gate_bevel_height,0.012,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+tube_extra_height,0.075,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+tube_panels,24,1,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+trough_slope_angle,0.1586552621864014,rad,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+trough_length,0.88,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+trough_inner_width,0.092,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+trough_drop_below_pocket,0.13,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+main_end_stop_x,0.79,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+special_stop_x,0.16,m,engineering construction constant; not experimentally quantified or exhaustively swept,assumed,simulator/core.py or simulator/geometry.py,hypothetical model only,unknown,"Implementation construction constant, not measured machine dimension"
+encoded_frame_interval,0.03336666666666667,s,encoded rendition spacing; not camera-original exposure,measured,../phase2/capture_event_audit.csv; calibration/intervals.csv,five 2026 broadcast renditions; downstream image proxy only,physical interpretation limited,"Observable summary, not a recovered mechanical parameter"
+training_downstream_mean_interval,13.1247783,s,two draw means; not a calibrated controller period or CI,estimated,../phase2/capture_event_audit.csv; calibration/intervals.csv,five 2026 broadcast renditions; downstream image proxy only,physical interpretation limited,"Observable summary, not a recovered mechanical parameter"
+downstream_proxy_bracket_max_width,0.133467,s,localization bound; not physical isolation-time accuracy,measured,../phase2/capture_event_audit.csv; calibration/intervals.csv,five 2026 broadcast renditions; downstream image proxy only,physical interpretation limited,"Observable summary, not a recovered mechanical parameter"
+mirror_y,False,1,boolean test transform,assumed,experiments/protocol.json,hypothetical mirrored loading only,unknown,Optional experiment control; baseline false
+simulated_center_of_mass_offset,"[0,0,0]",m,zero by model assumption; actual offsets unknown and not swept,assumed,PyBullet centered uniform sphere construction in simulator/core.py,hypothetical rigid spheres only,unknown,Actual CoM deviations and anisotropy are not modeled
+uniform_sphere_nominal_density,182.99633969527628,kg m^-3,derived from historical nominal size/mass under uniform solid sphere assumption; not measured,estimated,E01 historical nominals plus sphere volume formula,nominal equivalent density only,unknown,Not a measured foam material density or 2026 ball density

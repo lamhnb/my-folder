@@ -1,0 +1,8 @@
+{
+  "initial_perturbation_m": 1e-07,
+  "seed": 1000,
+  "same_capture_sequence": false,
+  "max_rms_same_ID_separation_m": 0.3963833238988107,
+  "last_common_sample_separation_m": 0.3430569094676422,
+  "interpretation": "Finite-time divergence of one pair, not an estimated Lyapunov exponent."
+}

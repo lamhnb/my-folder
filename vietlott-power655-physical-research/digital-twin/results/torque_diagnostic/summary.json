@@ -1,0 +1,60 @@
+{
+  "status": "post_hoc_diagnostic_not_primary_MC",
+  "runs": [
+    {
+      "scenario": "baseline",
+      "seed": 1000,
+      "requested_RPM": 25.0,
+      "achieved_mean_RPM_post_ramp": 5.041373244570928,
+      "captures": 7,
+      "failures": [],
+      "max_penetration_m": 0.0011807493954878664
+    },
+    {
+      "scenario": "torque30",
+      "seed": 1000,
+      "requested_RPM": 25.0,
+      "achieved_mean_RPM_post_ramp": 5.719828137186703,
+      "captures": 7,
+      "failures": [],
+      "max_penetration_m": 0.001166758904072388
+    },
+    {
+      "scenario": "baseline",
+      "seed": 1001,
+      "requested_RPM": 25.0,
+      "achieved_mean_RPM_post_ramp": 6.22079033803617,
+      "captures": 7,
+      "failures": [],
+      "max_penetration_m": 0.0011489667543389953
+    },
+    {
+      "scenario": "torque30",
+      "seed": 1001,
+      "requested_RPM": 25.0,
+      "achieved_mean_RPM_post_ramp": 5.105047714430933,
+      "captures": 7,
+      "failures": [],
+      "max_penetration_m": 0.0014240593851095416
+    },
+    {
+      "scenario": "baseline",
+      "seed": 1002,
+      "requested_RPM": 25.0,
+      "achieved_mean_RPM_post_ramp": 6.217785682861949,
+      "captures": 7,
+      "failures": [],
+      "max_penetration_m": 0.001452811212745174
+    },
+    {
+      "scenario": "torque30",
+      "seed": 1002,
+      "requested_RPM": 25.0,
+      "achieved_mean_RPM_post_ramp": 4.50004609613829,
+      "captures": 7,
+      "failures": [],
+      "max_penetration_m": 0.001452811212745174
+    }
+  ],
+  "scope": "Paired motor-torque stress under assumed geometry; commands and achieved speed differ. No actual Vietlott torque/RPM inferred."
+}

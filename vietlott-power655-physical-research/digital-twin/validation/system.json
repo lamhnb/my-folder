@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "checks": {
+    "seven": true,
+    "no_duplicate": true,
+    "six_main_then_special": true,
+    "special_from_remaining_49": true,
+    "49_after_six": true,
+    "48_after_seven": true,
+    "48_physically_in_chamber": true,
+    "no_unauthorized_exit": true,
+    "body_conservation": true,
+    "penetration": true,
+    "ball_overlap": true,
+    "no_coincident_centers": true,
+    "no_escape": true,
+    "jam_fails_closed": true
+  },
+  "baseline_seed": 0,
+  "minimum_final_center_separation_m": 0.050488312723956784,
+  "baseline_failures": [],
+  "max_penetration_m": 0.0011558368899391366,
+  "jam_failures": [
+    "incomplete_seven"
+  ],
+  "scope": "one_baseline_seed_plus_forced_geometric_jam; ensemble has its own quality gate"
+}

@@ -1,0 +1,526 @@
+{
+  "seed": 0,
+  "config": {
+    "model": "hypothetical_spherical_gravity_escapement_v1",
+    "radius": 0.32,
+    "depth_scale": 1.0,
+    "wall_thickness": 0.008,
+    "mesh_lat": 40,
+    "mesh_lon": 80,
+    "ball_radius": 0.02525,
+    "ball_mass": 0.01234,
+    "diameter_tolerance": 0.0,
+    "mass_tolerance": 0.0,
+    "friction": 0.22,
+    "restitution": 0.55,
+    "rolling_friction": 0.001,
+    "spinning_friction": 0.001,
+    "linear_damping": 0.005,
+    "angular_damping": 0.005,
+    "gravity": 9.80665,
+    "rpm": 25.0,
+    "ramp_seconds": 2.0,
+    "rpm_modulation": 0.0,
+    "arm_length": 0.275,
+    "arm_width": 0.018,
+    "arm_depth": 0.075,
+    "arm_curve": 0.018,
+    "motor_torque": 3.0,
+    "mouth_radius": 0.033,
+    "pocket_height": 0.06,
+    "gate_speed": 0.2,
+    "gate_thickness": 0.006,
+    "hold_seconds": 0.25,
+    "mix_seconds": 6.0,
+    "capture_period": 4.0,
+    "max_seconds": 40,
+    "dt": 0.0005,
+    "solver_iterations": 80,
+    "sample_seconds": 0.05,
+    "penetration_limit": 0.002,
+    "loading": "random_volume",
+    "initial_jitter": 0.0,
+    "reverse_insertion": false,
+    "label_shift": 0
+  },
+  "config_sha256": "b624238e8eaaf276cb2e27ccf140906bb13bf0adc430f81fff69a5b439b6bc7c",
+  "engine_api": 202010061,
+  "python": "3.12.13",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seconds": 34.23899999998146,
+  "wall_seconds": 202.6668243999884,
+  "captures": [
+    {
+      "index": 1,
+      "role": "main",
+      "physical_id": 16,
+      "label": 17,
+      "time": 7.593999999998511,
+      "remaining": 54,
+      "position": [
+        -0.007548117485731096,
+        -3.6297659761881038e-06,
+        -0.474155444987489
+      ],
+      "velocity": [
+        -0.0903806861311077,
+        -0.025494956459042675,
+        -1.5353098874987012
+      ]
+    },
+    {
+      "index": 2,
+      "role": "main",
+      "physical_id": 5,
+      "label": 6,
+      "time": 11.588500000002671,
+      "remaining": 53,
+      "position": [
+        -0.008410562343029703,
+        0.001124882877760541,
+        -0.4734452090510137
+      ],
+      "velocity": [
+        0.13554031484150725,
+        0.02191637063005402,
+        0.5165961016508189
+      ]
+    },
+    {
+      "index": 3,
+      "role": "main",
+      "physical_id": 20,
+      "label": 21,
+      "time": 15.505000000007458,
+      "remaining": 52,
+      "position": [
+        -0.007139803510673625,
+        -0.0004184930575709391,
+        -0.47375773666228993
+      ],
+      "velocity": [
+        0.25345333275756404,
+        -0.02288475037138185,
+        0.5095678353989999
+      ]
+    },
+    {
+      "index": 4,
+      "role": "main",
+      "physical_id": 32,
+      "label": 33,
+      "time": 19.76399999999929,
+      "remaining": 51,
+      "position": [
+        -0.00800582344088266,
+        -0.002857344058280636,
+        -0.4733799855563009
+      ],
+      "velocity": [
+        0.1253609624979471,
+        -0.0043492791793605,
+        0.49640957836095834
+      ]
+    },
+    {
+      "index": 5,
+      "role": "main",
+      "physical_id": 2,
+      "label": 3,
+      "time": 23.652999999990225,
+      "remaining": 50,
+      "position": [
+        -0.007510969952454007,
+        0.0034692592507222903,
+        -0.47352699189665176
+      ],
+      "velocity": [
+        0.12915263819067563,
+        0.011295088612466964,
+        0.5076597905350915
+      ]
+    },
+    {
+      "index": 6,
+      "role": "main",
+      "physical_id": 35,
+      "label": 36,
+      "time": 27.8689999999804,
+      "remaining": 49,
+      "position": [
+        -0.008005264563672192,
+        0.004028832316745234,
+        -0.4733787259186605
+      ],
+      "velocity": [
+        0.12563726064427572,
+        0.007240685127183467,
+        0.49612764682653543
+      ]
+    },
+    {
+      "index": 7,
+      "role": "special",
+      "physical_id": 39,
+      "label": 40,
+      "time": 31.79499999997125,
+      "remaining": 48,
+      "position": [
+        -0.006007611675157371,
+        -0.004471850778913534,
+        -0.4740010470634615
+      ],
+      "velocity": [
+        0.20494240484785894,
+        0.02158165168247853,
+        0.5321189731354554
+      ]
+    }
+  ],
+  "states": [
+    {
+      "time": 0.0,
+      "phase": "MIX",
+      "captured": 0
+    },
+    {
+      "time": 6.000499999999394,
+      "phase": "ADMIT",
+      "captured": 0
+    },
+    {
+      "time": 6.451499999999144,
+      "phase": "ISOLATE",
+      "captured": 0
+    },
+    {
+      "time": 6.9034999999988935,
+      "phase": "HOLD",
+      "captured": 0
+    },
+    {
+      "time": 7.153999999998755,
+      "phase": "RELEASE",
+      "captured": 0
+    },
+    {
+      "time": 7.593999999998511,
+      "phase": "RESET",
+      "captured": 1
+    },
+    {
+      "time": 8.034499999998328,
+      "phase": "MIX",
+      "captured": 1
+    },
+    {
+      "time": 10.00000000000073,
+      "phase": "ADMIT",
+      "captured": 1
+    },
+    {
+      "time": 10.45050000000128,
+      "phase": "ISOLATE",
+      "captured": 1
+    },
+    {
+      "time": 10.902000000001832,
+      "phase": "HOLD",
+      "captured": 1
+    },
+    {
+      "time": 11.152000000002138,
+      "phase": "RELEASE",
+      "captured": 1
+    },
+    {
+      "time": 11.588500000002671,
+      "phase": "RESET",
+      "captured": 2
+    },
+    {
+      "time": 12.025500000003206,
+      "phase": "MIX",
+      "captured": 2
+    },
+    {
+      "time": 14.000000000005619,
+      "phase": "ADMIT",
+      "captured": 2
+    },
+    {
+      "time": 14.41050000000612,
+      "phase": "ISOLATE",
+      "captured": 2
+    },
+    {
+      "time": 14.822000000006623,
+      "phase": "HOLD",
+      "captured": 2
+    },
+    {
+      "time": 15.072000000006929,
+      "phase": "RELEASE",
+      "captured": 2
+    },
+    {
+      "time": 15.505000000007458,
+      "phase": "RESET",
+      "captured": 3
+    },
+    {
+      "time": 15.938500000007988,
+      "phase": "MIX",
+      "captured": 3
+    },
+    {
+      "time": 18.0000000000034,
+      "phase": "ADMIT",
+      "captured": 3
+    },
+    {
+      "time": 18.535000000002153,
+      "phase": "ISOLATE",
+      "captured": 3
+    },
+    {
+      "time": 19.071000000000904,
+      "phase": "HOLD",
+      "captured": 3
+    },
+    {
+      "time": 19.32150000000032,
+      "phase": "RELEASE",
+      "captured": 3
+    },
+    {
+      "time": 19.76399999999929,
+      "phase": "RESET",
+      "captured": 4
+    },
+    {
+      "time": 20.206999999998256,
+      "phase": "MIX",
+      "captured": 4
+    },
+    {
+      "time": 22.000499999994076,
+      "phase": "ADMIT",
+      "captured": 4
+    },
+    {
+      "time": 22.47899999999296,
+      "phase": "ISOLATE",
+      "captured": 4
+    },
+    {
+      "time": 22.958499999991844,
+      "phase": "HOLD",
+      "captured": 4
+    },
+    {
+      "time": 23.20899999999126,
+      "phase": "RELEASE",
+      "captured": 4
+    },
+    {
+      "time": 23.652999999990225,
+      "phase": "RESET",
+      "captured": 5
+    },
+    {
+      "time": 24.09749999998919,
+      "phase": "MIX",
+      "captured": 5
+    },
+    {
+      "time": 26.000499999984754,
+      "phase": "ADMIT",
+      "captured": 5
+    },
+    {
+      "time": 26.625999999983296,
+      "phase": "ISOLATE",
+      "captured": 5
+    },
+    {
+      "time": 27.175999999982015,
+      "phase": "HOLD",
+      "captured": 5
+    },
+    {
+      "time": 27.42649999998143,
+      "phase": "RELEASE",
+      "captured": 5
+    },
+    {
+      "time": 27.8689999999804,
+      "phase": "RESET",
+      "captured": 6
+    },
+    {
+      "time": 28.311999999979367,
+      "phase": "MIX",
+      "captured": 6
+    },
+    {
+      "time": 30.000499999975432,
+      "phase": "ADMIT",
+      "captured": 6
+    },
+    {
+      "time": 30.551499999974148,
+      "phase": "ISOLATE",
+      "captured": 6
+    },
+    {
+      "time": 31.101499999972866,
+      "phase": "HOLD",
+      "captured": 6
+    },
+    {
+      "time": 31.351999999972282,
+      "phase": "RELEASE",
+      "captured": 6
+    },
+    {
+      "time": 31.79499999997125,
+      "phase": "RESET",
+      "captured": 7
+    },
+    {
+      "time": 32.23849999997191,
+      "phase": "DONE",
+      "captured": 7
+    }
+  ],
+  "physical_ids": [
+    16,
+    5,
+    20,
+    32,
+    2,
+    35,
+    39
+  ],
+  "remaining": 48,
+  "body_count": 89,
+  "max_penetration_m": 0.001014781632945036,
+  "max_ball_overlap_m": 0.001014781632945036,
+  "max_penetration_pair": [
+    64,
+    66,
+    0.2990000000000002
+  ],
+  "jam_seconds": 0.0,
+  "rms_speed_mean_m_s": 0.07899076845014547,
+  "failures": [],
+  "pre_capture": [
+    {
+      "time": 6.9034999999988935,
+      "physical_id": 16,
+      "position": [
+        -0.007759999999999751,
+        -0.00010546986668071212,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        1.0863314606867132e-14,
+        0.024869317676552715,
+        5.489098758859612e-14
+      ],
+      "remaining_before": 55
+    },
+    {
+      "time": 10.902000000001832,
+      "physical_id": 5,
+      "position": [
+        0.0012604797301561173,
+        -0.007695859997215679,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        -0.027963256180271515,
+        -0.007489734661755742,
+        5.4888385503382153e-14
+      ],
+      "remaining_before": 54
+    },
+    {
+      "time": 14.822000000006623,
+      "physical_id": 20,
+      "position": [
+        -0.007246706335370405,
+        -0.0029372614168791124,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        -0.00853448060631719,
+        0.03185111523898837,
+        5.4903998014665945e-14
+      ],
+      "remaining_before": 53
+    },
+    {
+      "time": 19.071000000000904,
+      "physical_id": 32,
+      "position": [
+        0.006183765565383241,
+        0.0047905316742406,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        0.013003093184800068,
+        -0.013003093231514112,
+        5.489185495033411e-14
+      ],
+      "remaining_before": 52
+    },
+    {
+      "time": 22.958499999991844,
+      "physical_id": 2,
+      "position": [
+        0.007759898546044005,
+        -0.000907534416334736,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        -1.63987121549296e-06,
+        -0.024800593827587907,
+        5.4887518141644165e-14
+      ],
+      "remaining_before": 51
+    },
+    {
+      "time": 27.175999999982015,
+      "physical_id": 35,
+      "position": [
+        0.00685721055038816,
+        -0.0036428762979096373,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        -1.0733881655550601e-29,
+        -2.2380954107710888e-30,
+        5.489012022685813e-14
+      ],
+      "remaining_before": 50
+    },
+    {
+      "time": 31.101499999972866,
+      "physical_id": 39,
+      "position": [
+        0.004801974458312436,
+        0.0061723206329685355,
+        -0.3500538893538489
+      ],
+      "velocity": [
+        8.883085100975504e-19,
+        -1.5711346973587084e-18,
+        5.489012022685813e-14
+      ],
+      "remaining_before": 49
+    }
+  ],
+  "scope": "hypothetical_model_only"
+}

@@ -1,0 +1,50 @@
+{
+  "scope": "downstream_proxy_cadence_only",
+  "training_draws": 2,
+  "validation_draws": 2,
+  "retrospective_reserved_draws": 1,
+  "cadence_training_mean_s": 13.124778300000003,
+  "training_draw_means_s": [
+    12.922910000000025,
+    13.32664659999998
+  ],
+  "all_draw_means_s": {
+    "01372": 12.922910000000025,
+    "01373": 13.32664659999998,
+    "01374": 13.039693199999988,
+    "01375": 13.92057339999999,
+    "01376": 13.566886699999987
+  },
+  "validation_absolute_errors_s": {
+    "01374": 0.08508510000001479,
+    "01375": 0.795795099999987
+  },
+  "reserved_absolute_error_s": 0.4421083999999844,
+  "jacobian_parameters": [
+    "command_period",
+    "constant_transport_delay",
+    "omega",
+    "friction",
+    "restitution",
+    "depth"
+  ],
+  "reduced_observation_jacobian_rank": 1,
+  "singular_values": [
+    3.1622776601683795,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "interpretation": "Rank 1 of 6 in the explicit constant-latency cadence observation model. This is a structural counterexample, not a computed Jacobian of the full Bullet simulator.",
+  "physical_parameters_identified": [],
+  "RPM_verified": false,
+  "physical_calibration_passed": false,
+  "limits": [
+    "Command timing and transport delay are unobserved, so even cadence is not verified command period.",
+    "Different physical parameter sets can share cadence if actuated at a common period.",
+    "No 3D trajectories or independent mass/friction/geometry data exist.",
+    "The five broadcasts do not supply a previously unseen prediction holdout."
+  ]
+}

@@ -1,0 +1,598 @@
+{
+  "configurations": {
+    "baseline": {},
+    "rpm15": {
+      "rpm": 15.0
+    },
+    "rpm45": {
+      "rpm": 45.0
+    },
+    "friction_low": {
+      "friction": 0.07,
+      "rolling_friction": 0.0002
+    },
+    "friction_high": {
+      "friction": 0.45,
+      "rolling_friction": 0.003
+    },
+    "elastic_low": {
+      "restitution": 0.25
+    },
+    "elastic_high": {
+      "restitution": 0.8
+    },
+    "mouth_narrow": {
+      "mouth_radius": 0.029
+    },
+    "mouth_wide": {
+      "mouth_radius": 0.037
+    },
+    "pocket_deep": {
+      "pocket_height": 0.07
+    },
+    "loading_top": {
+      "loading": "top_layer"
+    },
+    "ball_tolerances": {
+      "diameter_tolerance": 0.001,
+      "mass_tolerance": 0.000617
+    },
+    "depth_shallow": {
+      "depth_scale": 0.8
+    },
+    "jitter": {
+      "initial_jitter": 1e-07
+    },
+    "label_shift": {
+      "label_shift": 17
+    },
+    "insertion_reverse": {
+      "reverse_insertion": true
+    },
+    "dt_half": {
+      "dt": 0.00025
+    },
+    "dt_double": {
+      "dt": 0.001
+    },
+    "solver40": {
+      "solver_iterations": 40
+    },
+    "solver160": {
+      "solver_iterations": 160
+    },
+    "repeat": {},
+    "reverse_rotation": {
+      "rpm": -25.0
+    },
+    "mirror_y": {
+      "mirror_y": true
+    }
+  },
+  "jobs": [
+    [
+      "baseline",
+      1000,
+      {}
+    ],
+    [
+      "baseline",
+      1001,
+      {}
+    ],
+    [
+      "baseline",
+      1002,
+      {}
+    ],
+    [
+      "baseline",
+      1003,
+      {}
+    ],
+    [
+      "baseline",
+      1004,
+      {}
+    ],
+    [
+      "baseline",
+      1005,
+      {}
+    ],
+    [
+      "baseline",
+      1006,
+      {}
+    ],
+    [
+      "baseline",
+      1007,
+      {}
+    ],
+    [
+      "baseline",
+      1008,
+      {}
+    ],
+    [
+      "baseline",
+      1009,
+      {}
+    ],
+    [
+      "baseline",
+      1010,
+      {}
+    ],
+    [
+      "baseline",
+      1011,
+      {}
+    ],
+    [
+      "baseline",
+      1012,
+      {}
+    ],
+    [
+      "baseline",
+      1013,
+      {}
+    ],
+    [
+      "baseline",
+      1014,
+      {}
+    ],
+    [
+      "baseline",
+      1015,
+      {}
+    ],
+    [
+      "baseline",
+      1016,
+      {}
+    ],
+    [
+      "baseline",
+      1017,
+      {}
+    ],
+    [
+      "baseline",
+      1018,
+      {}
+    ],
+    [
+      "baseline",
+      1019,
+      {}
+    ],
+    [
+      "rpm15",
+      1000,
+      {
+        "rpm": 15.0
+      }
+    ],
+    [
+      "rpm15",
+      1001,
+      {
+        "rpm": 15.0
+      }
+    ],
+    [
+      "rpm15",
+      1002,
+      {
+        "rpm": 15.0
+      }
+    ],
+    [
+      "rpm45",
+      1000,
+      {
+        "rpm": 45.0
+      }
+    ],
+    [
+      "rpm45",
+      1001,
+      {
+        "rpm": 45.0
+      }
+    ],
+    [
+      "rpm45",
+      1002,
+      {
+        "rpm": 45.0
+      }
+    ],
+    [
+      "friction_low",
+      1000,
+      {
+        "friction": 0.07,
+        "rolling_friction": 0.0002
+      }
+    ],
+    [
+      "friction_low",
+      1001,
+      {
+        "friction": 0.07,
+        "rolling_friction": 0.0002
+      }
+    ],
+    [
+      "friction_low",
+      1002,
+      {
+        "friction": 0.07,
+        "rolling_friction": 0.0002
+      }
+    ],
+    [
+      "friction_high",
+      1000,
+      {
+        "friction": 0.45,
+        "rolling_friction": 0.003
+      }
+    ],
+    [
+      "friction_high",
+      1001,
+      {
+        "friction": 0.45,
+        "rolling_friction": 0.003
+      }
+    ],
+    [
+      "friction_high",
+      1002,
+      {
+        "friction": 0.45,
+        "rolling_friction": 0.003
+      }
+    ],
+    [
+      "elastic_low",
+      1000,
+      {
+        "restitution": 0.25
+      }
+    ],
+    [
+      "elastic_low",
+      1001,
+      {
+        "restitution": 0.25
+      }
+    ],
+    [
+      "elastic_low",
+      1002,
+      {
+        "restitution": 0.25
+      }
+    ],
+    [
+      "elastic_high",
+      1000,
+      {
+        "restitution": 0.8
+      }
+    ],
+    [
+      "elastic_high",
+      1001,
+      {
+        "restitution": 0.8
+      }
+    ],
+    [
+      "elastic_high",
+      1002,
+      {
+        "restitution": 0.8
+      }
+    ],
+    [
+      "mouth_narrow",
+      1000,
+      {
+        "mouth_radius": 0.029
+      }
+    ],
+    [
+      "mouth_narrow",
+      1001,
+      {
+        "mouth_radius": 0.029
+      }
+    ],
+    [
+      "mouth_narrow",
+      1002,
+      {
+        "mouth_radius": 0.029
+      }
+    ],
+    [
+      "mouth_wide",
+      1000,
+      {
+        "mouth_radius": 0.037
+      }
+    ],
+    [
+      "mouth_wide",
+      1001,
+      {
+        "mouth_radius": 0.037
+      }
+    ],
+    [
+      "mouth_wide",
+      1002,
+      {
+        "mouth_radius": 0.037
+      }
+    ],
+    [
+      "pocket_deep",
+      1000,
+      {
+        "pocket_height": 0.07
+      }
+    ],
+    [
+      "pocket_deep",
+      1001,
+      {
+        "pocket_height": 0.07
+      }
+    ],
+    [
+      "pocket_deep",
+      1002,
+      {
+        "pocket_height": 0.07
+      }
+    ],
+    [
+      "loading_top",
+      1000,
+      {
+        "loading": "top_layer"
+      }
+    ],
+    [
+      "loading_top",
+      1001,
+      {
+        "loading": "top_layer"
+      }
+    ],
+    [
+      "loading_top",
+      1002,
+      {
+        "loading": "top_layer"
+      }
+    ],
+    [
+      "ball_tolerances",
+      1000,
+      {
+        "diameter_tolerance": 0.001,
+        "mass_tolerance": 0.000617
+      }
+    ],
+    [
+      "ball_tolerances",
+      1001,
+      {
+        "diameter_tolerance": 0.001,
+        "mass_tolerance": 0.000617
+      }
+    ],
+    [
+      "ball_tolerances",
+      1002,
+      {
+        "diameter_tolerance": 0.001,
+        "mass_tolerance": 0.000617
+      }
+    ],
+    [
+      "depth_shallow",
+      1000,
+      {
+        "depth_scale": 0.8
+      }
+    ],
+    [
+      "depth_shallow",
+      1001,
+      {
+        "depth_scale": 0.8
+      }
+    ],
+    [
+      "depth_shallow",
+      1002,
+      {
+        "depth_scale": 0.8
+      }
+    ],
+    [
+      "jitter",
+      1000,
+      {
+        "initial_jitter": 1e-07
+      }
+    ],
+    [
+      "label_shift",
+      1000,
+      {
+        "label_shift": 17
+      }
+    ],
+    [
+      "insertion_reverse",
+      1000,
+      {
+        "reverse_insertion": true
+      }
+    ],
+    [
+      "dt_half",
+      1000,
+      {
+        "dt": 0.00025
+      }
+    ],
+    [
+      "dt_half",
+      1001,
+      {
+        "dt": 0.00025
+      }
+    ],
+    [
+      "dt_half",
+      1002,
+      {
+        "dt": 0.00025
+      }
+    ],
+    [
+      "dt_double",
+      1000,
+      {
+        "dt": 0.001
+      }
+    ],
+    [
+      "dt_double",
+      1001,
+      {
+        "dt": 0.001
+      }
+    ],
+    [
+      "dt_double",
+      1002,
+      {
+        "dt": 0.001
+      }
+    ],
+    [
+      "solver40",
+      1000,
+      {
+        "solver_iterations": 40
+      }
+    ],
+    [
+      "solver40",
+      1001,
+      {
+        "solver_iterations": 40
+      }
+    ],
+    [
+      "solver40",
+      1002,
+      {
+        "solver_iterations": 40
+      }
+    ],
+    [
+      "solver160",
+      1000,
+      {
+        "solver_iterations": 160
+      }
+    ],
+    [
+      "solver160",
+      1001,
+      {
+        "solver_iterations": 160
+      }
+    ],
+    [
+      "solver160",
+      1002,
+      {
+        "solver_iterations": 160
+      }
+    ],
+    [
+      "repeat",
+      1000,
+      {}
+    ],
+    [
+      "reverse_rotation",
+      1000,
+      {
+        "rpm": -25.0
+      }
+    ],
+    [
+      "reverse_rotation",
+      1001,
+      {
+        "rpm": -25.0
+      }
+    ],
+    [
+      "reverse_rotation",
+      1002,
+      {
+        "rpm": -25.0
+      }
+    ],
+    [
+      "mirror_y",
+      1000,
+      {
+        "mirror_y": true
+      }
+    ],
+    [
+      "mirror_y",
+      1001,
+      {
+        "mirror_y": true
+      }
+    ],
+    [
+      "mirror_y",
+      1002,
+      {
+        "mirror_y": true
+      }
+    ]
+  ],
+  "seed_rule": "1000 + replication index; paired across configurations",
+  "baseline_count": 20,
+  "unpowered_per_number_bias": true,
+  "convergence_thresholds": {
+    "paired_mean_main_interval_relative": 0.05,
+    "paired_mean_rms_speed_relative": 0.15,
+    "penetration_m": 0.002,
+    "all_compared_runs_physical_valid": true
+  },
+  "analysis": "All jobs retained. Compare per-run completion, wait/entry times, rms speed, penetration; paired differences. Label shift must preserve physical trajectories exactly. Insertion reverse need not preserve chaotic trajectory; report as solver-order sensitivity.",
+  "fixed_before_execution": true
+}

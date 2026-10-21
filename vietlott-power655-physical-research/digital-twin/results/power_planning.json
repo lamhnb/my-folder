@@ -1,0 +1,33 @@
+{
+  "status": "theoretical_illustration_only",
+  "null_main_inclusion_probability": 0.10909090909090909,
+  "baseline_draws": 20,
+  "expected_inclusions_per_label_at20": 2.1818181818181817,
+  "binomial_standard_error_at20": 0.06971014368247569,
+  "family": 55,
+  "FWER_alpha": 0.05,
+  "approximation": "Two-sided Bonferroni normal approximation for one Bernoulli marginal, power .8; assumes independent identical draws and known null.",
+  "formula": "N = (z_(1-alpha/(2*55))*sqrt(p0*(1-p0)) + z_.8*sqrt(p1*(1-p1)))^2 / (p1-p0)^2",
+  "scenarios": [
+    {
+      "relative_inclusion_increase": 0.05,
+      "alternative_probability": 0.11454545454545455,
+      "approx_independent_draws_for_80pct_power": 56995
+    },
+    {
+      "relative_inclusion_increase": 0.1,
+      "alternative_probability": 0.12000000000000001,
+      "approx_independent_draws_for_80pct_power": 14369
+    },
+    {
+      "relative_inclusion_increase": 0.2,
+      "alternative_probability": 0.1309090909090909,
+      "approx_independent_draws_for_80pct_power": 3650
+    }
+  ],
+  "limitations": [
+    "Not a design for clustered machine/ball-set changes, model selection or multiple stages.",
+    "Mechanical observability and independent real validation are required even with more simulated seeds.",
+    "No estimate of actual Vietlott bias, no forecast and no claim that these draw counts establish an edge."
+  ]
+}

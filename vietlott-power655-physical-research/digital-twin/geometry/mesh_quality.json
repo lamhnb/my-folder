@@ -1,0 +1,16 @@
+{
+  "raw_vertices": 6560,
+  "raw_triangles": 12960,
+  "zero_area_pole_triangles": 160,
+  "welded_vertices": 6402,
+  "clean_triangles": 12800,
+  "all_clean_edges_have_two_incident_faces": true,
+  "clean_euler_characteristic": 2,
+  "max_inner_facet_plane_sagitta_m": 0.000477235952292987,
+  "clean_obj_sha256": "7c86dff8c88bcd9a64547765cb8e694e2a1955dc9deaaf55ab48c849cd9141b6",
+  "scope": "discretization of assumed sphere only; no hardware dimension accuracy inferred",
+  "limits": [
+    "Changing mouth radius also changes latitude tessellation; gate sensitivity is not isolated from mesh discretization.",
+    "Clean export is not substituted into frozen engine runs; no claim of identical chaotic trajectories after mesh reordering."
+  ]
+}

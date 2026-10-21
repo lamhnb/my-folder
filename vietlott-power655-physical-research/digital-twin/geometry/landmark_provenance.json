@@ -1,0 +1,42 @@
+[
+  {
+    "path": "phase2/evidence/rep01375_geometry/pts_1113.512400.png",
+    "exists_locally": true,
+    "sha256": "8e3725c281caf0ca109a863095aa1edbcfd79f92b1d5d6a0212f8446639a5418",
+    "expected_prior_frame_ledger_sha256": "8e3725c281caf0ca109a863095aa1edbcfd79f92b1d5d6a0212f8446639a5418",
+    "matches_prior_frame_ledger": true,
+    "new_pixels_redistributed": false
+  },
+  {
+    "path": "phase2/evidence/rep01376_rotor/pts_1029.028000.png",
+    "exists_locally": true,
+    "sha256": "b8a212736ee3891338ce3da058d1679db35c9e78669fc0f3e6ab250eae928431",
+    "expected_prior_frame_ledger_sha256": "b8a212736ee3891338ce3da058d1679db35c9e78669fc0f3e6ab250eae928431",
+    "matches_prior_frame_ledger": true,
+    "new_pixels_redistributed": false
+  },
+  {
+    "path": "phase2/evidence/replication_01373_rotor_native/pts_1096.061633.png",
+    "exists_locally": true,
+    "sha256": "05bbfa0903f779267942a2baa061d23b7258a22fa308fec01620d0879325a4c9",
+    "expected_prior_frame_ledger_sha256": "05bbfa0903f779267942a2baa061d23b7258a22fa308fec01620d0879325a4c9",
+    "matches_prior_frame_ledger": true,
+    "new_pixels_redistributed": false
+  },
+  {
+    "path": "phase2/evidence/replication_01374_rotor_native/pts_1088.053633.png",
+    "exists_locally": true,
+    "sha256": "bcc76798d482f7aa7d6e1572539beed8ad20813a09d9ab84d070caab681de78e",
+    "expected_prior_frame_ledger_sha256": "bcc76798d482f7aa7d6e1572539beed8ad20813a09d9ab84d070caab681de78e",
+    "matches_prior_frame_ledger": true,
+    "new_pixels_redistributed": false
+  },
+  {
+    "path": "phase2/evidence/rotor_native_reference/pts_1098.030267.png",
+    "exists_locally": true,
+    "sha256": "6822751d7d8c26edc8f9c7829599f561089f12c75dda72c50570914c9663b658",
+    "expected_prior_frame_ledger_sha256": "6822751d7d8c26edc8f9c7829599f561089f12c75dda72c50570914c9663b658",
+    "matches_prior_frame_ledger": true,
+    "new_pixels_redistributed": false
+  }
+]

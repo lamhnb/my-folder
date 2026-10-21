@@ -1,0 +1,7 @@
+{
+  "method": "inverse patch after failure; exact SHA matched recorded original run",
+  "expected_core_sha256": "d51283076d13a9e54735ce3960650d48dbf8c44c44832c42638572b33ce70d75",
+  "recovered_core_sha256": "d51283076d13a9e54735ce3960650d48dbf8c44c44832c42638572b33ce70d75",
+  "geometry_sha256": "1813a24346c17f5d291f68eccb2ee93fdfc9ebcd87d677645fe43d4b8790fb56",
+  "not_preexisting_github_prototype": true
+}

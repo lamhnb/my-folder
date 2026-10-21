@@ -1,0 +1,145 @@
+{
+  "scope": "analytical_isolated_experiments_only",
+  "thresholds": {
+    "momentum": 1e-09,
+    "energy_relative": 0.05,
+    "isolated_penetration_m": 0.001
+  },
+  "checks": {
+    "isolated_momentum": true,
+    "isolated_elastic_energy": false,
+    "isolated_overlap": true,
+    "free_fall_first_order_convergence": true,
+    "friction_dissipates": true,
+    "frictionless_energy": true,
+    "isolated_solver_sensitivity": false
+  },
+  "passed": false,
+  "isolated": [
+    {
+      "dt": 0.001,
+      "iterations": 40,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.09603360000002853,
+      "penetration_m": 0.00040000000000011554,
+      "outgoing_x": [
+        -0.21560000000000457,
+        0.4156000000000046
+      ]
+    },
+    {
+      "dt": 0.001,
+      "iterations": 80,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.09603360000002853,
+      "penetration_m": 0.00040000000000011554,
+      "outgoing_x": [
+        -0.21560000000000457,
+        0.4156000000000046
+      ]
+    },
+    {
+      "dt": 0.001,
+      "iterations": 160,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.09603360000002853,
+      "penetration_m": 0.00040000000000011554,
+      "outgoing_x": [
+        -0.21560000000000457,
+        0.4156000000000046
+      ]
+    },
+    {
+      "dt": 0.0005,
+      "iterations": 40,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.04371840000063177,
+      "penetration_m": 0.00010000000000128656,
+      "outgoing_x": [
+        -0.20720000000010286,
+        0.40720000000010287
+      ]
+    },
+    {
+      "dt": 0.0005,
+      "iterations": 80,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.04371840000063177,
+      "penetration_m": 0.00010000000000128656,
+      "outgoing_x": [
+        -0.20720000000010286,
+        0.40720000000010287
+      ]
+    },
+    {
+      "dt": 0.0005,
+      "iterations": 160,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.04371840000063177,
+      "penetration_m": 0.00010000000000128656,
+      "outgoing_x": [
+        -0.20720000000010286,
+        0.40720000000010287
+      ]
+    },
+    {
+      "dt": 0.00025,
+      "iterations": 40,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.08847359999987721,
+      "penetration_m": 9.999999999987796e-05,
+      "outgoing_x": [
+        -0.2143999999999805,
+        0.4143999999999805
+      ]
+    },
+    {
+      "dt": 0.00025,
+      "iterations": 80,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.08847359999987721,
+      "penetration_m": 9.999999999987796e-05,
+      "outgoing_x": [
+        -0.2143999999999805,
+        0.4143999999999805
+      ]
+    },
+    {
+      "dt": 0.00025,
+      "iterations": 160,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 0.08847359999987721,
+      "penetration_m": 9.999999999987796e-05,
+      "outgoing_x": [
+        -0.2143999999999805,
+        0.4143999999999805
+      ]
+    }
+  ],
+  "free_fall": [
+    {
+      "dt": 0.002,
+      "absolute_z_error_m": 0.003922660000001549
+    },
+    {
+      "dt": 0.001,
+      "absolute_z_error_m": 0.0019613299999985956
+    },
+    {
+      "dt": 0.0005,
+      "absolute_z_error_m": 0.000980664999992359
+    }
+  ],
+  "friction": {
+    "initial_energy_J": 0.00222241014061,
+    "final_energy_J": -1.2101406100003704e-06,
+    "ratio": -0.0005445172283403166,
+    "max_energy_J": 0.00222241014061
+  },
+  "frictionless": {
+    "initial_energy_J": 0.00222241014061,
+    "final_energy_J": 0.00221998985939,
+    "ratio": 0.9989109655433197,
+    "max_energy_J": 0.00222241014061
+  }
+}

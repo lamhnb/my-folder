@@ -1,0 +1,192 @@
+{
+  "scope": "analytical_isolated_experiments_only",
+  "thresholds": {
+    "momentum": 1e-09,
+    "energy_relative": 0.05,
+    "isolated_penetration_m": 0.001
+  },
+  "checks": {
+    "isolated_momentum": true,
+    "isolated_elastic_energy": true,
+    "isolated_overlap": true,
+    "free_fall_first_order_convergence": true,
+    "friction_dissipates": true,
+    "friction_plane_no_fallthrough": true,
+    "frictionless_energy": true,
+    "inelastic_combination": true,
+    "isolated_solver_sensitivity": true
+  },
+  "passed": true,
+  "isolated": [
+    {
+      "dt": 0.001,
+      "iterations": 40,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 0.00040000000000011554,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.001,
+      "iterations": 80,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 0.00040000000000011554,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.001,
+      "iterations": 160,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 0.00040000000000011554,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.0005,
+      "iterations": 40,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 0.00010000000000128656,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.0005,
+      "iterations": 80,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 0.00010000000000128656,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.0005,
+      "iterations": 160,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 0.00010000000000128656,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.00025,
+      "iterations": 40,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 9.999999999987796e-05,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.00025,
+      "iterations": 80,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 9.999999999987796e-05,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    },
+    {
+      "dt": 0.00025,
+      "iterations": 160,
+      "per_body_restitution": 1,
+      "measured_relative_restitution": 1.0000000000000002,
+      "expected_combined_restitution": 1,
+      "momentum_error_kg_m_s": 0.0,
+      "energy_relative_error": 1.7572158387123245e-16,
+      "penetration_m": 9.999999999987796e-05,
+      "outgoing_x": [
+        -0.20000000000000007,
+        0.4000000000000001
+      ]
+    }
+  ],
+  "free_fall": [
+    {
+      "dt": 0.002,
+      "absolute_z_error_m": 0.003922660000001549
+    },
+    {
+      "dt": 0.001,
+      "absolute_z_error_m": 0.0019613299999985956
+    },
+    {
+      "dt": 0.0005,
+      "absolute_z_error_m": 0.000980664999992359
+    }
+  ],
+  "friction": {
+    "initial_energy_J": 0.00222241014061,
+    "final_energy_J": -2.938963055559851e-18,
+    "ratio": -1.322421546705674e-15,
+    "max_energy_J": 0.00222241014061,
+    "max_penetration_m": 5.551115123125783e-17,
+    "final_height_m": 0.024999999999999977
+  },
+  "frictionless": {
+    "initial_energy_J": 0.00222241014061,
+    "final_energy_J": 0.0022212,
+    "ratio": 0.9994554827716599,
+    "max_energy_J": 0.00222241014061,
+    "max_penetration_m": 0,
+    "final_height_m": 0.025
+  },
+  "inelastic": {
+    "dt": 0.0005,
+    "iterations": 80,
+    "per_body_restitution": 0.55,
+    "measured_relative_restitution": 0.3025000000000001,
+    "expected_combined_restitution": 0.30250000000000005,
+    "momentum_error_kg_m_s": 0.0,
+    "energy_relative_error": 0.817644375,
+    "penetration_m": 0.00010000000000128656,
+    "outgoing_x": [
+      0.00924999999999998,
+      0.19075000000000003
+    ]
+  }
+}

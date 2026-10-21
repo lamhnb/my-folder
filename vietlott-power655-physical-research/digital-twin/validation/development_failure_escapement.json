@@ -1,0 +1,83 @@
+{
+  "seed": 0,
+  "config": {
+    "model": "hypothetical_spherical_gravity_escapement_v1",
+    "radius": 0.32,
+    "depth_scale": 1.0,
+    "wall_thickness": 0.008,
+    "mesh_lat": 40,
+    "mesh_lon": 80,
+    "ball_radius": 0.02525,
+    "ball_mass": 0.01234,
+    "diameter_tolerance": 0.0,
+    "mass_tolerance": 0.0,
+    "friction": 0.22,
+    "restitution": 0.55,
+    "rolling_friction": 0.001,
+    "spinning_friction": 0.001,
+    "linear_damping": 0.005,
+    "angular_damping": 0.005,
+    "gravity": 9.80665,
+    "rpm": 25.0,
+    "ramp_seconds": 2.0,
+    "rpm_modulation": 0.0,
+    "arm_length": 0.275,
+    "arm_width": 0.018,
+    "arm_depth": 0.075,
+    "arm_curve": 0.018,
+    "motor_torque": 3.0,
+    "mouth_radius": 0.033,
+    "pocket_height": 0.073,
+    "gate_speed": 0.4,
+    "gate_thickness": 0.006,
+    "hold_seconds": 0.25,
+    "mix_seconds": 6.0,
+    "capture_period": 4.0,
+    "max_seconds": 35,
+    "dt": 0.001,
+    "solver_iterations": 80,
+    "sample_seconds": 0.05,
+    "penetration_limit": 0.002,
+    "loading": "random_volume",
+    "initial_jitter": 0.0,
+    "reverse_insertion": false,
+    "label_shift": 0
+  },
+  "config_sha256": "31c455e2048ec11db743982a7a527a0b7cd73fb855b50b0e3ce0177e7de5a686",
+  "engine_api": 202010061,
+  "python": "3.12.13",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seconds": 35.00000000000913,
+  "wall_seconds": 75.22413250000682,
+  "captures": [],
+  "states": [
+    {
+      "time": 0.0,
+      "phase": "MIX",
+      "captured": 0
+    },
+    {
+      "time": 6.000000000000338,
+      "phase": "ADMIT",
+      "captured": 0
+    }
+  ],
+  "physical_ids": [],
+  "remaining": 55,
+  "body_count": 89,
+  "max_penetration_m": 0.0028613099487117648,
+  "max_ball_overlap_m": 0.0022884741404506984,
+  "max_penetration_pair": [
+    59,
+    0,
+    28.761000000012167
+  ],
+  "jam_seconds": 16.998999999997793,
+  "rms_speed_mean_m_s": 0.19114437212431587,
+  "failures": [
+    "incomplete_seven",
+    "penetration_limit"
+  ],
+  "pre_capture": [],
+  "scope": "hypothetical_model_only"
+}
