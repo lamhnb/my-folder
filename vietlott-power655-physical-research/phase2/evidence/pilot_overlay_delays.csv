@@ -1,0 +1,8 @@
+draw_id,capture_index,delay_lower_seconds,delay_upper_seconds,reference,confidence_interval
+01372,1,3.9706330000001344,4.204200000000128,graphic legibility minus downstream ramp visibility; not physical selection latency,NA
+01372,2,4.270933000000014,4.504500000000007,graphic legibility minus downstream ramp visibility; not physical selection latency,NA
+01372,3,3.80379999999991,4.037366999999904,graphic legibility minus downstream ramp visibility; not physical selection latency,NA
+01372,4,4.404400000000123,4.637967000000117,graphic legibility minus downstream ramp visibility; not physical selection latency,NA
+01372,5,3.3700329999999212,3.603599999999915,graphic legibility minus downstream ramp visibility; not physical selection latency,NA
+01372,6,3.603599999999915,3.8705329999997957,graphic legibility minus downstream ramp visibility; not physical selection latency,NA
+01372,7,3.0363669999999274,3.169834000000037,graphic legibility minus downstream ramp visibility; not physical selection latency,NA

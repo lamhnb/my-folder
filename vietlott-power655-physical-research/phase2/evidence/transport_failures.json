@@ -1,0 +1,7 @@
+{
+  "attempts": [
+    {"attempt":"web.open YouTube IUU05082QtE","outcome":"failed","reason":"Online fetch throttled","pixels_retrieved":false},
+    {"attempt":"Python default address family acquisition","outcome":"terminated_after_over_180_seconds_without_output","pixels_retrieved":false,"note":"No clip file produced; terminated only this task's acquisition processes."},
+    {"attempt":"diagnostic urllib forced IPv4","outcome":"success","http_status":200,"bytes_read":1000,"elapsed_seconds":0.203,"note":"HTML transport only; not video evidence. IPv4 chosen for bounded retrial, not an access-control workaround."}
+  ]
+}

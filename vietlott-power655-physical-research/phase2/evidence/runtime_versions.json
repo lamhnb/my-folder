@@ -1,0 +1,11 @@
+{
+  "python": "3.12.13 (main, Jun 23 2026, 15:23:43) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\vietlott-power655-env\\Scripts\\python.exe",
+  "packages": {
+    "numpy": "2.5.4",
+    "opencv-python-headless": "5.0.0.93",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "yt-dlp": "2026.8.19"
+  }
+}

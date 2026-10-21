@@ -1,0 +1,30 @@
+{
+  "status": "passed_synthetic_software_checks_only",
+  "real_video_validated": false,
+  "tests_passed": 8,
+  "command": "C:\\vietlott-power655-env\\Scripts\\python.exe -m unittest test_motion_diagnostics -v",
+  "cwd": "C:\\vietlott-research-repo\\vietlott-power655-physical-research\\phase2\\scripts",
+  "python": "3.12.13",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "opencv": "5.0.0",
+  "ffmpeg": "8.1.1-full_build-www.gyan.dev",
+  "observed_utc": "2026-10-21T12:16:05.413781+00:00",
+  "files": {
+    "scripts/motion_diagnostics.py": "a7a1b61833b1fbcde3f66aa8efd19c2ce8dd073e73488fbb18ae321fe66a80e2",
+    "scripts/test_motion_diagnostics.py": "7c95e88b7bf3ac60dab5f51b7d49bbfb0c6e61b155240e5468c71b343d8acabf"
+  },
+  "corrected_failures": [
+    {
+      "fixture": "nonzero_source_pts",
+      "failure": "Input -ss treated absolute source PTS as file-relative; zero decoded frames",
+      "correction": "Use file-relative input seek from probed stream start_time with -copyts; ffprobe timestamps independently cross-checked",
+      "final_result": "passed"
+    }
+  ],
+  "limits": [
+    "No real source interval/ROI chosen or tested by this subtask",
+    "Synthetic success is not physical measurement evidence",
+    "No physical angle or RPM output"
+  ]
+}

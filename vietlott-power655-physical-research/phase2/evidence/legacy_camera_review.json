@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0",
+  "audit_kind": "additive_new_real_video_camera_reference_review",
+  "reviewer": "second_AI_visual_review",
+  "human_review": false,
+  "source": {
+    "source_id": "IUU05082QtE",
+    "source_url": "https://www.youtube.com/watch?v=IUU05082QtE",
+    "phase": "operation_test_legacy_target_interval",
+    "format_id": "137",
+    "input_file": "C:/vietlott-research-output/phase2-inputs/IUU05082QtE_f137_ranges.mp4",
+    "input_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+    "source_dimensions": [
+      1920,
+      1080
+    ],
+    "reviewed_preview_dimensions": [
+      640,
+      360
+    ],
+    "native_pixels": false,
+    "sampling_every_native_frames": 30,
+    "source_frame_rate": "30000/1001",
+    "source_pts": [
+      857.022833,
+      858.023833,
+      859.024833,
+      860.025833
+    ],
+    "new_decode_performed_by_parent": true,
+    "new_decode_performed_by_rpm_audit_py": false
+  },
+  "reviewed_files": [
+    "evidence/pretest_rotor_reference/sheet_000.jpg",
+    "evidence/pretest_rotor_reference/pts_857.022833.png",
+    "evidence/pretest_rotor_reference/pts_858.023833.png",
+    "evidence/pretest_rotor_reference/pts_859.024833.png",
+    "evidence/pretest_rotor_reference/pts_860.025833.png"
+  ],
+  "extraction_metadata": "evidence/pretest_rotor_reference/extraction.json",
+  "frame_manifest": "evidence/pretest_rotor_reference/frames.csv",
+  "observations": [
+    "All four full-frame previews have identical640x360pixel output dimensions and uncropped framing metadata.",
+    "The central translucent plate becomes visibly smaller while increasingly more of the chamber rim and right side of the machine are included.",
+    "The inner edge of the fixed white chamber ring moves markedly left along image row aroundy170.",
+    "The bolt remains approximately near image center; strong center displacement is not necessary to explain the changing image scale."
+  ],
+  "manual_estimates": [
+    {
+      "sample_index": 0,
+      "source_pts_seconds": 857.022833,
+      "file": "evidence/pretest_rotor_reference/pts_857.022833.png",
+      "projected_feature": "outer translucent hub plate horizontal extent",
+      "left_edge_preview_x_range_px": [
+        230,
+        245
+      ],
+      "right_edge_preview_x_range_px": [
+        420,
+        440
+      ],
+      "projected_width_range_px": [
+        175,
+        210
+      ],
+      "projected_bolt_x_range_px": [
+        315,
+        325
+      ],
+      "projected_bolt_y_range_px": [
+        160,
+        173
+      ],
+      "inner_white_chamber_border_at_preview_y170_x_range_px": [
+        590,
+        607
+      ],
+      "annotation_kind": "coarse_manual_visual_estimate_not_calibrated_measurement",
+      "sha256": "f66c9ae2bfe703e7de81535cd4393ffa98ab2be53600f67ad523536048a8ba6f"
+    },
+    {
+      "sample_index": 1,
+      "source_pts_seconds": 858.023833,
+      "file": "evidence/pretest_rotor_reference/pts_858.023833.png",
+      "projected_feature": "outer translucent hub plate horizontal extent",
+      "left_edge_preview_x_range_px": [
+        238,
+        250
+      ],
+      "right_edge_preview_x_range_px": [
+        407,
+        421
+      ],
+      "projected_width_range_px": [
+        157,
+        183
+      ],
+      "projected_bolt_x_range_px": [
+        311,
+        324
+      ],
+      "projected_bolt_y_range_px": [
+        164,
+        178
+      ],
+      "inner_white_chamber_border_at_preview_y170_x_range_px": [
+        557,
+        572
+      ],
+      "annotation_kind": "coarse_manual_visual_estimate_not_calibrated_measurement",
+      "sha256": "66f1fe8699c85116e54b424c43ce0e4b574a14173035c2752dfe46817b70320d"
+    },
+    {
+      "sample_index": 2,
+      "source_pts_seconds": 859.024833,
+      "file": "evidence/pretest_rotor_reference/pts_859.024833.png",
+      "projected_feature": "outer translucent hub plate horizontal extent",
+      "left_edge_preview_x_range_px": [
+        248,
+        260
+      ],
+      "right_edge_preview_x_range_px": [
+        397,
+        410
+      ],
+      "projected_width_range_px": [
+        137,
+        162
+      ],
+      "projected_bolt_x_range_px": [
+        309,
+        324
+      ],
+      "projected_bolt_y_range_px": [
+        163,
+        180
+      ],
+      "inner_white_chamber_border_at_preview_y170_x_range_px": [
+        526,
+        542
+      ],
+      "annotation_kind": "coarse_manual_visual_estimate_not_calibrated_measurement",
+      "sha256": "d1e3c48b8b5550d9e5bcaca0a2a51ff3de6367ce9c4ad3361ea5cff691fc773d"
+    },
+    {
+      "sample_index": 3,
+      "source_pts_seconds": 860.025833,
+      "file": "evidence/pretest_rotor_reference/pts_860.025833.png",
+      "projected_feature": "outer translucent hub plate horizontal extent",
+      "left_edge_preview_x_range_px": [
+        255,
+        268
+      ],
+      "right_edge_preview_x_range_px": [
+        385,
+        398
+      ],
+      "projected_width_range_px": [
+        117,
+        143
+      ],
+      "projected_bolt_x_range_px": [
+        307,
+        324
+      ],
+      "projected_bolt_y_range_px": [
+        164,
+        182
+      ],
+      "inner_white_chamber_border_at_preview_y170_x_range_px": [
+        493,
+        511
+      ],
+      "annotation_kind": "coarse_manual_visual_estimate_not_calibrated_measurement",
+      "sha256": "2fad39f6a87eb3d921976bb3e1be7af37468332bfeb6ed132189481b1a57b439"
+    }
+  ],
+  "estimate_interpretation": "Coordinate ranges are deliberately broad manual visual estimates from640pxpreviews. They are neither statistical confidence intervals nor calibrated physical-size measurements. Do not use them as an angle/camera-calibration oracle.",
+  "derived_image_only_bounds": {
+    "last_over_first_projected_plate_width_ratio_range": [
+      0.5571428571428572,
+      0.8171428571428572
+    ],
+    "approximate_relative_shrink_range": [
+      0.18285714285714283,
+      0.44285714285714284
+    ],
+    "first_minus_last_fixed_white_ring_border_x_shift_range_preview_px": [
+      79,
+      114
+    ],
+    "world_scale_change": null,
+    "camera_zoom_factor": null,
+    "physical_diameter": null
+  },
+  "relation_to_legacy_audit": {
+    "legacy_scalar_evidence": "measurements/draw_01372_857_appearance.csv",
+    "legacy_audit": "evidence/legacy_rpm_audit.json",
+    "legacy_scalar_phase_candidate_rpm": 63.78904987441205,
+    "legacy_scalar_real_spectrum_candidate_rpm": 94.9041468117248,
+    "fixed_legacy_crop": [
+      510,
+      60,
+      900,
+      900
+    ],
+    "fixed_legacy_center_within_crop": [
+      450,
+      450
+    ],
+    "fixed_legacy_annulus": [
+      130,
+      400
+    ],
+    "inference": "Changing projected image scale means the fixed-pixel annulus samples different physical/appearance extents through the interval. This is actual visual evidence against an image-stationary camera assumption; it is a plausible contributor, not an isolated or quantified cause of the candidate mismatch.",
+    "source_match_scope": "All120native900x900BGRcrop hashes andPTS match the originalPhase1scalar rows exactly, verified by bounded re-decode of pinned local packet-copy source. This proves image-buffer provenance for the originaltargetROI; it does not certify originalfullvideo/master identity.",
+    "no_changes_to_old_audit": true,
+    "native_crop_comparison_report": "evidence/legacy_crop_hash_comparison.json",
+    "native_crop_hash_match_count": 120,
+    "source_pts_match_count": 120,
+    "new_decode_performed_by_verification_script": true
+  },
+  "unknowns": [
+    "Whether change comes from optical zoom, camera translation, image reframing or their combination",
+    "Intrinsics/extrinsics, refraction and exposure",
+    "How much each nuisance source contributed to the63.789/94.904difference",
+    "Valid mechanical harmonic, independent unique marker, physicalRPM/angle/direction and aliasbranch"
+  ],
+  "conclusion": "Camera-image scale is visibly unstable in the reviewed legacy target segment. Physical RPM remainsNA; no single causal explanation or physical calibration is established.",
+  "artifact_sha256": {
+    "evidence/pretest_rotor_reference/sheet_000.jpg": "5cd0dd083cd837d4282ec74e30aab483314fc78e922fad54b62a6b9958caf24b",
+    "evidence/pretest_rotor_reference/pts_857.022833.png": "f66c9ae2bfe703e7de81535cd4393ffa98ab2be53600f67ad523536048a8ba6f",
+    "evidence/pretest_rotor_reference/pts_858.023833.png": "66f1fe8699c85116e54b424c43ce0e4b574a14173035c2752dfe46817b70320d",
+    "evidence/pretest_rotor_reference/pts_859.024833.png": "d1e3c48b8b5550d9e5bcaca0a2a51ff3de6367ce9c4ad3361ea5cff691fc773d",
+    "evidence/pretest_rotor_reference/pts_860.025833.png": "2fad39f6a87eb3d921976bb3e1be7af37468332bfeb6ed132189481b1a57b439",
+    "evidence/pretest_rotor_reference/extraction.json": "5e49544c39a49568cf9e7f0f9c42b7ca77dc4d81b6cc4a6087f85a25e82c5017",
+    "evidence/pretest_rotor_reference/frames.csv": "776b99d2d1de67feb4a71c4b67c42caa34972394c1a42a34b73a1e54242fcdb6",
+    "evidence/legacy_crop_hash_comparison.json": "24fb162cd371e5f7185d9469850faa8b29bc7fabe0940ff28e6e8e42013348e2",
+    "scripts/verify_legacy_crop_hashes.py": "5572260e7872527b4b60a7ee5dfc528850e875c882d6f311dc53bc9ebcc09e59"
+  }
+}

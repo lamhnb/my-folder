@@ -1,0 +1,227 @@
+{
+  "status": "descriptive_image_quality_only",
+  "fields": {
+    "flow_projected_increment_deg": {
+      "n": 149,
+      "min": -2.2426442497410394e-07,
+      "median": 3.921036895013878e-08,
+      "max": 0.0007518788675672765,
+      "quartiles": [
+        5.675712328979241e-10,
+        2.0671958973013346e-05
+      ]
+    },
+    "flow_increment_iqr_deg": {
+      "n": 149,
+      "min": 3.5784501367891136e-09,
+      "median": 0.02112612352792088,
+      "max": 0.20580253716895677,
+      "quartiles": [
+        0.009006665840864857,
+        0.04023433766654915
+      ]
+    },
+    "candidate_projected_shift_deg": {
+      "n": 149,
+      "min": -107.0,
+      "median": 15.0,
+      "max": 144.0,
+      "quartiles": [
+        10.0,
+        17.0
+      ]
+    },
+    "peak_correlation": {
+      "n": 149,
+      "min": 0.4640411013249632,
+      "median": 0.7702622317846334,
+      "max": 0.9999998112548908,
+      "quartiles": [
+        0.6767710810826576,
+        0.8419144972013591
+      ]
+    },
+    "comparable_peak_count": {
+      "n": 149,
+      "min": 1.0,
+      "median": 1.0,
+      "max": 3.0,
+      "quartiles": [
+        1.0,
+        1.0
+      ]
+    },
+    "yellow_exclusion_fraction": {
+      "n": 150,
+      "min": 0.08843580246913581,
+      "median": 0.12029876543209878,
+      "max": 0.1420530864197531,
+      "quartiles": [
+        0.11345987654320988,
+        0.1285179012345679
+      ]
+    },
+    "moving_mask_changed_fraction": {
+      "n": 149,
+      "min": 9.876543209876543e-06,
+      "median": 0.11110493827160493,
+      "max": 0.1486753086419753,
+      "quartiles": [
+        0.09630123456790124,
+        0.1198679012345679
+      ]
+    },
+    "polar_min_coverage": {
+      "n": 150,
+      "min": 0.0,
+      "median": 0.2864583283662796,
+      "max": 0.5729166865348816,
+      "quartiles": [
+        0.2109374962747097,
+        0.3802083283662796
+      ]
+    },
+    "frame_mean_abs_difference_0_255": {
+      "n": 149,
+      "min": 0.06426296296296297,
+      "median": 20.709265432098764,
+      "max": 27.089072839506173,
+      "quartiles": [
+        19.489046913580246,
+        22.395162962962964
+      ]
+    }
+  },
+  "masked_harmonic_missing_clip_indices": [
+    51
+  ],
+  "template_multiple_peak_pairs": 2,
+  "adjacent_pairs": 149,
+  "near_duplicate_candidate_pairs_count": 24,
+  "near_duplicate_screening_threshold_mean_abs_gray_0_255": 1,
+  "near_duplicate_candidate_pairs": [
+    {
+      "clip_frame_index": 1,
+      "source_pts_seconds": 1098.063633,
+      "mean_abs_gray_difference": 0.08994691358024691
+    },
+    {
+      "clip_frame_index": 7,
+      "source_pts_seconds": 1098.263833,
+      "mean_abs_gray_difference": 0.1470395061728395
+    },
+    {
+      "clip_frame_index": 13,
+      "source_pts_seconds": 1098.464033,
+      "mean_abs_gray_difference": 0.13192716049382716
+    },
+    {
+      "clip_frame_index": 19,
+      "source_pts_seconds": 1098.664233,
+      "mean_abs_gray_difference": 0.11702222222222222
+    },
+    {
+      "clip_frame_index": 25,
+      "source_pts_seconds": 1098.864433,
+      "mean_abs_gray_difference": 0.14854444444444445
+    },
+    {
+      "clip_frame_index": 31,
+      "source_pts_seconds": 1099.064633,
+      "mean_abs_gray_difference": 0.1199962962962963
+    },
+    {
+      "clip_frame_index": 37,
+      "source_pts_seconds": 1099.264833,
+      "mean_abs_gray_difference": 0.13687654320987655
+    },
+    {
+      "clip_frame_index": 43,
+      "source_pts_seconds": 1099.465033,
+      "mean_abs_gray_difference": 0.11212839506172839
+    },
+    {
+      "clip_frame_index": 49,
+      "source_pts_seconds": 1099.665233,
+      "mean_abs_gray_difference": 0.142820987654321
+    },
+    {
+      "clip_frame_index": 55,
+      "source_pts_seconds": 1099.865433,
+      "mean_abs_gray_difference": 0.16275555555555554
+    },
+    {
+      "clip_frame_index": 61,
+      "source_pts_seconds": 1100.065633,
+      "mean_abs_gray_difference": 0.15867654320987654
+    },
+    {
+      "clip_frame_index": 67,
+      "source_pts_seconds": 1100.265833,
+      "mean_abs_gray_difference": 0.10309506172839507
+    },
+    {
+      "clip_frame_index": 73,
+      "source_pts_seconds": 1100.466033,
+      "mean_abs_gray_difference": 0.21900864197530864
+    },
+    {
+      "clip_frame_index": 79,
+      "source_pts_seconds": 1100.666233,
+      "mean_abs_gray_difference": 0.15146543209876542
+    },
+    {
+      "clip_frame_index": 86,
+      "source_pts_seconds": 1100.8998,
+      "mean_abs_gray_difference": 0.22790617283950618
+    },
+    {
+      "clip_frame_index": 98,
+      "source_pts_seconds": 1101.3002,
+      "mean_abs_gray_difference": 0.11515061728395062
+    },
+    {
+      "clip_frame_index": 104,
+      "source_pts_seconds": 1101.5004,
+      "mean_abs_gray_difference": 0.09724938271604938
+    },
+    {
+      "clip_frame_index": 110,
+      "source_pts_seconds": 1101.7006,
+      "mean_abs_gray_difference": 0.2597407407407407
+    },
+    {
+      "clip_frame_index": 116,
+      "source_pts_seconds": 1101.9008,
+      "mean_abs_gray_difference": 0.09958148148148148
+    },
+    {
+      "clip_frame_index": 122,
+      "source_pts_seconds": 1102.101,
+      "mean_abs_gray_difference": 0.15116790123456791
+    },
+    {
+      "clip_frame_index": 128,
+      "source_pts_seconds": 1102.3012,
+      "mean_abs_gray_difference": 0.12378641975308642
+    },
+    {
+      "clip_frame_index": 134,
+      "source_pts_seconds": 1102.5014,
+      "mean_abs_gray_difference": 0.10096296296296296
+    },
+    {
+      "clip_frame_index": 140,
+      "source_pts_seconds": 1102.7016,
+      "mean_abs_gray_difference": 0.10383827160493828
+    },
+    {
+      "clip_frame_index": 146,
+      "source_pts_seconds": 1102.9018,
+      "mean_abs_gray_difference": 0.06426296296296297
+    }
+  ],
+  "near_duplicate_screening_note": "Exploratory post-output quality screen, not validated duplicate detection. Low crop change suggests held/repeated pictures; camera FPS and upstream processing remain unknown. No frames removed or interpolated.",
+  "physical_angle_deg": null,
+  "physical_rpm": null
+}

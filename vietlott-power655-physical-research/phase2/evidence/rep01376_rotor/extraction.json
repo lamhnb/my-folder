@@ -1,0 +1,35 @@
+{
+  "input_file": "C:\\vietlott-research-output\\phase2-inputs\\diq_elyRXjo_f137_ranges.mp4",
+  "input_sha256": "fb70d4caef192914dae178180b81b22894ecfaf199cf8fd18fcdf299ac784a3d",
+  "arguments": {
+    "input": "C:\\vietlott-research-output\\phase2-inputs\\diq_elyRXjo_f137_ranges.mp4",
+    "tag": "rep01376_rotor",
+    "start": 1029.0,
+    "duration": 0.02,
+    "every": 1,
+    "crop": null,
+    "width": 640,
+    "cols": 1,
+    "rows": 1,
+    "native": true
+  },
+  "count": 1,
+  "first_pts": 1029.028,
+  "last_pts": 1029.028,
+  "native_pixels": true,
+  "source_dimensions": [
+    1920,
+    1080
+  ],
+  "output_dimensions": [
+    1920,
+    1080
+  ],
+  "source_avg_frame_rate": "30000/1001",
+  "pts_origin": "source rendition; packet-copy clip; seek_timestamp=1",
+  "ffmpeg_version": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "script_sha256": "774000d799ff9ea558d175ec66d5d9ac076c270dd452a075d29783f3322de204",
+  "sheets": [
+    "C:\\vietlott-research-repo\\vietlott-power655-physical-research\\phase2\\evidence\\rep01376_rotor\\sheet_000.jpg"
+  ]
+}

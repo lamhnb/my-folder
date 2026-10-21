@@ -1,0 +1,45 @@
+{
+  "protocol_version": "phase2-after-01372-pilot-v1",
+  "locked_utc": "2026-10-21T12:25:09.010123+00:00",
+  "pilot": "01372 / IUU05082QtE",
+  "lock_scope": "Definitions, quality gates and image diagnostics fixed before Phase2B acquisition; pilot already exploratory.",
+  "events": {
+    "control_onset": "First resolved downward actuation motion of an identified control. Mere finger contact/indicator light is insufficient. Electrical command time unknown without logs.",
+    "mechanism_first_visible_motion": "First resolved change of the collector moving element from its preceding stationary orientation. Secondary motion is not initial onset; cut-occluded onset remains NA.",
+    "collector_ball_first_visible": "First yellow ball surface visible below the mixing-chamber rim within collector housing, after a preceding frame with no visible ball there. This is a visibility event; hidden entry plane remains unknown.",
+    "permanent_isolation": "Ball crosses a verified irreversible separation plane, with closure topology established. Otherwise NA; lower pocket presence is a separate proxy.",
+    "trough_entry_visible_proxy": "First visible leading ball edge outside the collector mouth onto downstream ramp/result channel. Bounds widen for blur/cuts. This is downstream transport, not selection time.",
+    "overlay_number_first_clearly_readable": "First legible new graphic number, including animation before slot placement. Separately record slot-filled time and unreviewed audio announcement as NA."
+  },
+  "sampling": {
+    "overview_every_native_frames": 60,
+    "capture_navigation_every_native_frames": 6,
+    "native_refinement_every_native_frames": 1,
+    "time_source": "native source PTS; no frame/30 conversion",
+    "timing_target_width_seconds": 0.2002
+  },
+  "motion": {
+    "roi_xywh": [
+      480,
+      80,
+      900,
+      900
+    ],
+    "center_source_xy": [
+      932,
+      525
+    ],
+    "annulus_px": [
+      130,
+      350
+    ],
+    "spatial_harmonic_hypothesis": 3,
+    "physical_absolute_angle": "NA until unique material marker + calibration + independent alias bound",
+    "physical_rpm": "NA until same-identity rotation confirmed and cross-checked",
+    "camera_gate": "Apply identical pixel parameters only to equivalent view; record camera geometry differences and refuse transfer otherwise. No silent ROI recentering.",
+    "missing_coefficients": "Refuse spectrum/autocorrelation across missing sectors; do not interpolate frames or signals."
+  },
+  "uncertainty": "Bracket width in encoded PTS/frame intervals is localization resolution, not empirical accuracy or camera time uncertainty. Held frames, exposure, occlusion and reviewer uncertainty remain separate.",
+  "statistics": "Independent unit is draw, never seven balls as seven draws. Main captures and special transition separate. H2 may have descriptive visible transport cadence only. No p-value/CI for missing physical events or posthoc pattern selection.",
+  "stop_rule": "One locked analysis per comparable camera segment; reject missingness/marker/alias gates rather than tuning to agreement. Limit replication to the four specified draws. Stop simulation calibration if geometry, physical RPM, gate state, ball IDs/depth/material parameters remain unidentified."
+}

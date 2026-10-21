@@ -1,0 +1,1535 @@
+{
+  "schema_version": "1.0",
+  "review_kind": "second_AI_visual_review_of_real_source_previews",
+  "reviewer": "Codex delegated RPM audit agent",
+  "human_review": false,
+  "reviewer_calibrated": false,
+  "blind_review": false,
+  "statistically_independent_measurement": false,
+  "source": {
+    "source_id": "IUU05082QtE",
+    "source_url": "https://www.youtube.com/watch?v=IUU05082QtE",
+    "draw_id_context": "01372",
+    "phase_assignment": "official_draw_context_supplied_by_parent; slate/boundary not revalidated in this outlet-focused review",
+    "input_file": "C:/vietlott-research-output/phase2-inputs/IUU05082QtE_f137_ranges.mp4",
+    "input_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+    "format_id": "137",
+    "source_dimensions": [
+      1920,
+      1080
+    ],
+    "reviewed_preview_dimensions": [
+      480,
+      270
+    ],
+    "native_pixel_review": false,
+    "native_frame_PTS_samples": true,
+    "source_frame_rate": "30000/1001",
+    "sampling_every_native_frames": 6,
+    "sampling_interval_seconds": 0.2002,
+    "first_reviewed_pts": 1113.0119,
+    "last_reviewed_pts": 1196.8957,
+    "reviewed_sample_count": 420,
+    "audio_reviewed": false
+  },
+  "reviewed_image_files": [
+    "evidence/pilot_capture_overview/sheet_000.jpg",
+    "evidence/pilot_capture_overview/sheet_001.jpg",
+    "evidence/pilot_capture_overview/sheet_002.jpg",
+    "evidence/pilot_capture_overview/sheet_003.jpg",
+    "evidence/pilot_capture_overview/sheet_004.jpg",
+    "evidence/pilot_capture_overview/sheet_005.jpg",
+    "evidence/pilot_capture_overview/sheet_006.jpg",
+    "evidence/pilot_capture_overview/sheet_007.jpg",
+    "evidence/pilot_capture_overview/sheet_008.jpg",
+    "evidence/pilot_capture_overview/sheet_009.jpg",
+    "evidence/pilot_capture_overview/sheet_010.jpg",
+    "evidence/pilot_capture_overview/sheet_011.jpg",
+    "evidence/pilot_capture_overview/sheet_012.jpg",
+    "evidence/pilot_capture_overview/sheet_013.jpg"
+  ],
+  "individual_frame_checks": [
+    "evidence/pilot_capture_overview/pts_1126.225100.png",
+    "evidence/pilot_capture_overview/pts_1126.425300.png",
+    "evidence/pilot_capture_overview/pts_1138.837700.png",
+    "evidence/pilot_capture_overview/pts_1139.037900.png",
+    "evidence/pilot_capture_overview/pts_1164.463300.png",
+    "evidence/pilot_capture_overview/pts_1191.290100.png",
+    "evidence/pilot_capture_overview/pts_1192.491300.png",
+    "evidence/pilot_capture_overview/pts_1192.691500.png",
+    "evidence/pilot_capture_overview/pts_1143.842700.png",
+    "evidence/pilot_capture_overview/pts_1144.042900.png",
+    "evidence/pilot_capture_overview/pts_1144.243100.png",
+    "evidence/pilot_capture_overview/pts_1170.068900.png",
+    "evidence/pilot_capture_overview/pts_1170.269100.png",
+    "evidence/pilot_capture_overview/pts_1183.682500.png",
+    "evidence/pilot_capture_overview/pts_1183.882700.png",
+    "evidence/pilot_capture_overview/pts_1131.630500.png",
+    "evidence/pilot_capture_overview/pts_1131.830700.png",
+    "evidence/pilot_capture_overview/pts_1132.030900.png",
+    "evidence/pilot_capture_overview/pts_1157.456300.png",
+    "evidence/pilot_capture_overview/pts_1157.656500.png",
+    "evidence/pilot_capture_overview/pts_1144.443300.png",
+    "evidence/pilot_capture_overview/pts_1119.418300.png",
+    "evidence/pilot_capture_overview/pts_1119.618500.png"
+  ],
+  "evidence_manifest": "evidence/pilot_capture_overview/frames.csv",
+  "extraction_metadata": "evidence/pilot_capture_overview/extraction.json",
+  "rules": [
+    "All point event timestamps remain NA. Brackets are sampled visibility candidates pending parent refinement, not claims of exact physical event time.",
+    "A before sample means the positive visible state is not established, sometimes because blur or a changing component obstructs it; it is not proof the physical state was absent.",
+    "Native frame timing is retained but images reviewed are quarter-resolution previews; do not claim native-pixel precision or one-frame event localization.",
+    "No permanent isolation, electrical control onset, complete gate state, physical paddle angle or RPM is inferred.",
+    "Overlay first readable and overlay slot filled are distinct graphics definitions. Neither is a capture clock.",
+    "No reviewer discrepancy distribution or human calibration is available. Same-model review does not provide independent experimental replication."
+  ],
+  "captures": [
+    {
+      "capture_index": 1,
+      "capture_type": "main",
+      "visible_label_context_only": "20",
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "control_onset_timestamp_seconds": null,
+      "events": [
+        {
+          "event_type": "control_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "note": "Finger is already in contact with the control in close-up samples1113.412300–1114.012900; preceding wide shot does not resolve contact onset. No onset timestamp assigned."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_cut_and_incomplete_view",
+          "note": "The initial control close-up cuts to an outlet-only shot; the globe/outlet input boundary and the preceding mechanism state are not continuously visible."
+        },
+        {
+          "event_type": "first_visible_ball_in_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1115.0139,
+          "upper_pts_seconds": 1115.2141,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 10,
+            "source_pts_seconds": 1115.0139,
+            "file": "evidence/pilot_capture_overview/pts_1115.013900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_000.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 11,
+            "source_pts_seconds": 1115.2141,
+            "file": "evidence/pilot_capture_overview/pts_1115.214100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_000.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clear yellow ball visibility in the collector/outlet housing. A moving component can conceal earlier occupancy, so this bounds the visible-state transition and is not certified physical entry time."
+        },
+        {
+          "event_type": "lower_collector_separated_position_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1115.0139,
+          "upper_pts_seconds": 1115.2141,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 10,
+            "source_pts_seconds": 1115.0139,
+            "file": "evidence/pilot_capture_overview/pts_1115.013900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_000.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 11,
+            "source_pts_seconds": 1115.2141,
+            "file": "evidence/pilot_capture_overview/pts_1115.214100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_000.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball is visibly held below the mixing chamber in the lower collector compartment. This is an observed separated-position proxy, not proof of permanent isolation or a known one-way gate plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_hidden_gate_interior",
+          "note": "Internal gate topology, one-way plane and irreversibility are not established. A visibly separate ball is insufficient to certify permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1115.2141,
+          "upper_pts_seconds": 1115.4143,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 11,
+            "source_pts_seconds": 1115.2141,
+            "file": "evidence/pilot_capture_overview/pts_1115.214100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_000.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 4
+          },
+          "after": {
+            "sample_index": 12,
+            "source_pts_seconds": 1115.4143,
+            "file": "evidence/pilot_capture_overview/pts_1115.414300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_000.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 1
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball transitions from the outlet housing toward the inclined result channel. Preview blur/overlay and the camera cut require a deliberately conservative candidate bracket; parent must refine consecutive native frames. Same outlet/result view remains visible."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1119.2181,
+          "upper_pts_seconds": 1119.4183,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 31,
+            "source_pts_seconds": 1119.2181,
+            "file": "evidence/pilot_capture_overview/pts_1119.218100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_000.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 4
+          },
+          "after": {
+            "sample_index": 32,
+            "source_pts_seconds": 1119.4183,
+            "file": "evidence/pilot_capture_overview/pts_1119.418300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_001.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 1
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clearly readable new broadcast number in reviewed samples, including moving graphic before its final slot when readable. This is a television graphics event only, not physical selection."
+        },
+        {
+          "event_type": "overlay_result_slot_first_filled",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1119.4183,
+          "upper_pts_seconds": 1119.6185,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 32,
+            "source_pts_seconds": 1119.4183,
+            "file": "evidence/pilot_capture_overview/pts_1119.418300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_001.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 33,
+            "source_pts_seconds": 1119.6185,
+            "file": "evidence/pilot_capture_overview/pts_1119.618500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_001.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 2
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First reviewed sample with the new broadcast number fully placed in its result slot; recorded separately from first appearance."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_audio_not_reviewed",
+          "note": "No audio listening or ASR timing was used by this reviewer."
+        }
+      ],
+      "notes": [
+        "The new physical ball is visible in the result channel before the corresponding broadcast graphic appears.",
+        "Visible printed numbers only link an observed ball to the graphic for sequence review; they were not used to select motion parameters."
+      ]
+    },
+    {
+      "capture_index": 2,
+      "capture_type": "main",
+      "visible_label_context_only": "19",
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "control_onset_timestamp_seconds": null,
+      "events": [
+        {
+          "event_type": "control_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "note": "Button/contact onset is not resolved at the wide camera scale; no electrical control log/audio was reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1126.0249,
+          "upper_pts_seconds": 1126.2251,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 65,
+            "source_pts_seconds": 1126.0249,
+            "file": "evidence/pilot_capture_overview/pts_1126.024900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 66,
+            "source_pts_seconds": 1126.2251,
+            "file": "evidence/pilot_capture_overview/pts_1126.225100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First visible lifting/displacement of the outlet assembly in these sampled previews; not control command onset, motor electrical onset or a calibrated gate-state measurement."
+        },
+        {
+          "event_type": "first_visible_ball_in_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1126.2251,
+          "upper_pts_seconds": 1126.4253,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 66,
+            "source_pts_seconds": 1126.2251,
+            "file": "evidence/pilot_capture_overview/pts_1126.225100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 67,
+            "source_pts_seconds": 1126.4253,
+            "file": "evidence/pilot_capture_overview/pts_1126.425300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clear yellow ball visibility in the collector/outlet housing. A moving component can conceal earlier occupancy, so this bounds the visible-state transition and is not certified physical entry time."
+        },
+        {
+          "event_type": "lower_collector_separated_position_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1126.4253,
+          "upper_pts_seconds": 1126.6255,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 67,
+            "source_pts_seconds": 1126.4253,
+            "file": "evidence/pilot_capture_overview/pts_1126.425300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "after": {
+            "sample_index": 68,
+            "source_pts_seconds": 1126.6255,
+            "file": "evidence/pilot_capture_overview/pts_1126.625500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 2,
+            "tile_col_1based": 1
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball is visibly held below the mixing chamber in the lower collector compartment. This is an observed separated-position proxy, not proof of permanent isolation or a known one-way gate plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_hidden_gate_interior",
+          "note": "Internal gate topology, one-way plane and irreversibility are not established. A visibly separate ball is insufficient to certify permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1127.4263,
+          "upper_pts_seconds": 1127.8267,
+          "width_seconds": 0.4004,
+          "before": {
+            "sample_index": 72,
+            "source_pts_seconds": 1127.4263,
+            "file": "evidence/pilot_capture_overview/pts_1127.426300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 74,
+            "source_pts_seconds": 1127.8267,
+            "file": "evidence/pilot_capture_overview/pts_1127.826700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_cut_or_blur_censored",
+          "note": "A ball transitions from the outlet housing toward the inclined result channel. Preview blur/overlay and the camera cut require a deliberately conservative candidate bracket; parent must refine consecutive native frames. Camera view changes in or immediately after this coarse transition."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1131.6305,
+          "upper_pts_seconds": 1131.8307,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 93,
+            "source_pts_seconds": 1131.6305,
+            "file": "evidence/pilot_capture_overview/pts_1131.630500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 94,
+            "source_pts_seconds": 1131.8307,
+            "file": "evidence/pilot_capture_overview/pts_1131.830700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clearly readable new broadcast number in reviewed samples, including moving graphic before its final slot when readable. This is a television graphics event only, not physical selection."
+        },
+        {
+          "event_type": "overlay_result_slot_first_filled",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1131.8307,
+          "upper_pts_seconds": 1132.0309,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 94,
+            "source_pts_seconds": 1131.8307,
+            "file": "evidence/pilot_capture_overview/pts_1131.830700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 95,
+            "source_pts_seconds": 1132.0309,
+            "file": "evidence/pilot_capture_overview/pts_1132.030900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_002.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First reviewed sample with the new broadcast number fully placed in its result slot; recorded separately from first appearance."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_audio_not_reviewed",
+          "note": "No audio listening or ASR timing was used by this reviewer."
+        }
+      ],
+      "notes": [
+        "The new physical ball is visible in the result channel before the corresponding broadcast graphic appears.",
+        "Visible printed numbers only link an observed ball to the graphic for sequence review; they were not used to select motion parameters."
+      ]
+    },
+    {
+      "capture_index": 3,
+      "capture_type": "main",
+      "visible_label_context_only": "48",
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "control_onset_timestamp_seconds": null,
+      "events": [
+        {
+          "event_type": "control_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "note": "Button/contact onset is not resolved at the wide camera scale; no electrical control log/audio was reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1138.4373,
+          "upper_pts_seconds": 1138.6375,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 127,
+            "source_pts_seconds": 1138.4373,
+            "file": "evidence/pilot_capture_overview/pts_1138.437300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_003.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 4
+          },
+          "after": {
+            "sample_index": 128,
+            "source_pts_seconds": 1138.6375,
+            "file": "evidence/pilot_capture_overview/pts_1138.637500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 1
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First visible lifting/displacement of the outlet assembly in these sampled previews; not control command onset, motor electrical onset or a calibrated gate-state measurement."
+        },
+        {
+          "event_type": "first_visible_ball_in_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1138.8377,
+          "upper_pts_seconds": 1139.0379,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 129,
+            "source_pts_seconds": 1138.8377,
+            "file": "evidence/pilot_capture_overview/pts_1138.837700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 130,
+            "source_pts_seconds": 1139.0379,
+            "file": "evidence/pilot_capture_overview/pts_1139.037900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clear yellow ball visibility in the collector/outlet housing. A moving component can conceal earlier occupancy, so this bounds the visible-state transition and is not certified physical entry time."
+        },
+        {
+          "event_type": "lower_collector_separated_position_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1139.0379,
+          "upper_pts_seconds": 1139.2381,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 130,
+            "source_pts_seconds": 1139.0379,
+            "file": "evidence/pilot_capture_overview/pts_1139.037900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 131,
+            "source_pts_seconds": 1139.2381,
+            "file": "evidence/pilot_capture_overview/pts_1139.238100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball is visibly held below the mixing chamber in the lower collector compartment. This is an observed separated-position proxy, not proof of permanent isolation or a known one-way gate plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_hidden_gate_interior",
+          "note": "Internal gate topology, one-way plane and irreversibility are not established. A visibly separate ball is insufficient to certify permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1140.6395,
+          "upper_pts_seconds": 1140.8397,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 138,
+            "source_pts_seconds": 1140.6395,
+            "file": "evidence/pilot_capture_overview/pts_1140.639500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 139,
+            "source_pts_seconds": 1140.8397,
+            "file": "evidence/pilot_capture_overview/pts_1140.839700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_cut_or_blur_censored",
+          "note": "A ball transitions from the outlet housing toward the inclined result channel. Preview blur/overlay and the camera cut require a deliberately conservative candidate bracket; parent must refine consecutive native frames. Camera view changes in or immediately after this coarse transition."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1144.4433,
+          "upper_pts_seconds": 1144.6435,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 157,
+            "source_pts_seconds": 1144.4433,
+            "file": "evidence/pilot_capture_overview/pts_1144.443300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 158,
+            "source_pts_seconds": 1144.6435,
+            "file": "evidence/pilot_capture_overview/pts_1144.643500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clearly readable new broadcast number in reviewed samples, including moving graphic before its final slot when readable. This is a television graphics event only, not physical selection."
+        },
+        {
+          "event_type": "overlay_result_slot_first_filled",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1144.4433,
+          "upper_pts_seconds": 1144.6435,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 157,
+            "source_pts_seconds": 1144.4433,
+            "file": "evidence/pilot_capture_overview/pts_1144.443300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 158,
+            "source_pts_seconds": 1144.6435,
+            "file": "evidence/pilot_capture_overview/pts_1144.643500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_004.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First reviewed sample with the new broadcast number fully placed in its result slot; recorded separately from first appearance."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_audio_not_reviewed",
+          "note": "No audio listening or ASR timing was used by this reviewer."
+        }
+      ],
+      "notes": [
+        "The new physical ball is visible in the result channel before the corresponding broadcast graphic appears.",
+        "Visible printed numbers only link an observed ball to the graphic for sequence review; they were not used to select motion parameters."
+      ]
+    },
+    {
+      "capture_index": 4,
+      "capture_type": "main",
+      "visible_label_context_only": "53",
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "control_onset_timestamp_seconds": null,
+      "events": [
+        {
+          "event_type": "control_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "note": "Button/contact onset is not resolved at the wide camera scale; no electrical control log/audio was reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1151.6505,
+          "upper_pts_seconds": 1151.8507,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 193,
+            "source_pts_seconds": 1151.6505,
+            "file": "evidence/pilot_capture_overview/pts_1151.650500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 194,
+            "source_pts_seconds": 1151.8507,
+            "file": "evidence/pilot_capture_overview/pts_1151.850700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First visible lifting/displacement of the outlet assembly in these sampled previews; not control command onset, motor electrical onset or a calibrated gate-state measurement."
+        },
+        {
+          "event_type": "first_visible_ball_in_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1151.8507,
+          "upper_pts_seconds": 1152.0509,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 194,
+            "source_pts_seconds": 1151.8507,
+            "file": "evidence/pilot_capture_overview/pts_1151.850700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 195,
+            "source_pts_seconds": 1152.0509,
+            "file": "evidence/pilot_capture_overview/pts_1152.050900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clear yellow ball visibility in the collector/outlet housing. A moving component can conceal earlier occupancy, so this bounds the visible-state transition and is not certified physical entry time."
+        },
+        {
+          "event_type": "lower_collector_separated_position_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1152.0509,
+          "upper_pts_seconds": 1152.2511,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 195,
+            "source_pts_seconds": 1152.0509,
+            "file": "evidence/pilot_capture_overview/pts_1152.050900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "after": {
+            "sample_index": 196,
+            "source_pts_seconds": 1152.2511,
+            "file": "evidence/pilot_capture_overview/pts_1152.251100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 2,
+            "tile_col_1based": 1
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball is visibly held below the mixing chamber in the lower collector compartment. This is an observed separated-position proxy, not proof of permanent isolation or a known one-way gate plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_hidden_gate_interior",
+          "note": "Internal gate topology, one-way plane and irreversibility are not established. A visibly separate ball is insufficient to certify permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1153.0519,
+          "upper_pts_seconds": 1153.2521,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 200,
+            "source_pts_seconds": 1153.0519,
+            "file": "evidence/pilot_capture_overview/pts_1153.051900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 201,
+            "source_pts_seconds": 1153.2521,
+            "file": "evidence/pilot_capture_overview/pts_1153.252100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 2
+          },
+          "status": "candidate_cut_or_blur_censored",
+          "note": "A ball transitions from the outlet housing toward the inclined result channel. Preview blur/overlay and the camera cut require a deliberately conservative candidate bracket; parent must refine consecutive native frames. Camera view changes in or immediately after this coarse transition."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1157.4563,
+          "upper_pts_seconds": 1157.6565,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 222,
+            "source_pts_seconds": 1157.4563,
+            "file": "evidence/pilot_capture_overview/pts_1157.456300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 223,
+            "source_pts_seconds": 1157.6565,
+            "file": "evidence/pilot_capture_overview/pts_1157.656500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clearly readable new broadcast number in reviewed samples, including moving graphic before its final slot when readable. This is a television graphics event only, not physical selection."
+        },
+        {
+          "event_type": "overlay_result_slot_first_filled",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1157.4563,
+          "upper_pts_seconds": 1157.6565,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 222,
+            "source_pts_seconds": 1157.4563,
+            "file": "evidence/pilot_capture_overview/pts_1157.456300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 223,
+            "source_pts_seconds": 1157.6565,
+            "file": "evidence/pilot_capture_overview/pts_1157.656500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_006.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First reviewed sample with the new broadcast number fully placed in its result slot; recorded separately from first appearance."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_audio_not_reviewed",
+          "note": "No audio listening or ASR timing was used by this reviewer."
+        }
+      ],
+      "notes": [
+        "The new physical ball is visible in the result channel before the corresponding broadcast graphic appears.",
+        "Visible printed numbers only link an observed ball to the graphic for sequence review; they were not used to select motion parameters."
+      ]
+    },
+    {
+      "capture_index": 5,
+      "capture_type": "main",
+      "visible_label_context_only": "33",
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "control_onset_timestamp_seconds": null,
+      "events": [
+        {
+          "event_type": "control_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "note": "Button/contact onset is not resolved at the wide camera scale; no electrical control log/audio was reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1164.0629,
+          "upper_pts_seconds": 1164.2631,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 255,
+            "source_pts_seconds": 1164.0629,
+            "file": "evidence/pilot_capture_overview/pts_1164.062900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_007.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 4
+          },
+          "after": {
+            "sample_index": 256,
+            "source_pts_seconds": 1164.2631,
+            "file": "evidence/pilot_capture_overview/pts_1164.263100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 1
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First visible lifting/displacement of the outlet assembly in these sampled previews; not control command onset, motor electrical onset or a calibrated gate-state measurement."
+        },
+        {
+          "event_type": "first_visible_ball_in_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1164.4633,
+          "upper_pts_seconds": 1164.6635,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 257,
+            "source_pts_seconds": 1164.4633,
+            "file": "evidence/pilot_capture_overview/pts_1164.463300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 258,
+            "source_pts_seconds": 1164.6635,
+            "file": "evidence/pilot_capture_overview/pts_1164.663500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clear yellow ball visibility in the collector/outlet housing. A moving component can conceal earlier occupancy, so this bounds the visible-state transition and is not certified physical entry time."
+        },
+        {
+          "event_type": "lower_collector_separated_position_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1164.6635,
+          "upper_pts_seconds": 1164.8637,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 258,
+            "source_pts_seconds": 1164.6635,
+            "file": "evidence/pilot_capture_overview/pts_1164.663500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 259,
+            "source_pts_seconds": 1164.8637,
+            "file": "evidence/pilot_capture_overview/pts_1164.863700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball is visibly held below the mixing chamber in the lower collector compartment. This is an observed separated-position proxy, not proof of permanent isolation or a known one-way gate plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_hidden_gate_interior",
+          "note": "Internal gate topology, one-way plane and irreversibility are not established. A visibly separate ball is insufficient to certify permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1166.6655,
+          "upper_pts_seconds": 1167.0659,
+          "width_seconds": 0.4004,
+          "before": {
+            "sample_index": 268,
+            "source_pts_seconds": 1166.6655,
+            "file": "evidence/pilot_capture_overview/pts_1166.665500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 270,
+            "source_pts_seconds": 1167.0659,
+            "file": "evidence/pilot_capture_overview/pts_1167.065900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_cut_or_blur_censored",
+          "note": "A ball transitions from the outlet housing toward the inclined result channel. Preview blur/overlay and the camera cut require a deliberately conservative candidate bracket; parent must refine consecutive native frames. Camera view changes in or immediately after this coarse transition."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1170.0689,
+          "upper_pts_seconds": 1170.2691,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 285,
+            "source_pts_seconds": 1170.0689,
+            "file": "evidence/pilot_capture_overview/pts_1170.068900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 286,
+            "source_pts_seconds": 1170.2691,
+            "file": "evidence/pilot_capture_overview/pts_1170.269100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clearly readable new broadcast number in reviewed samples, including moving graphic before its final slot when readable. This is a television graphics event only, not physical selection."
+        },
+        {
+          "event_type": "overlay_result_slot_first_filled",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1170.0689,
+          "upper_pts_seconds": 1170.2691,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 285,
+            "source_pts_seconds": 1170.0689,
+            "file": "evidence/pilot_capture_overview/pts_1170.068900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 286,
+            "source_pts_seconds": 1170.2691,
+            "file": "evidence/pilot_capture_overview/pts_1170.269100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_008.jpg",
+            "tile_row_1based": 8,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First reviewed sample with the new broadcast number fully placed in its result slot; recorded separately from first appearance."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_audio_not_reviewed",
+          "note": "No audio listening or ASR timing was used by this reviewer."
+        }
+      ],
+      "notes": [
+        "The new physical ball is visible in the result channel before the corresponding broadcast graphic appears.",
+        "Visible printed numbers only link an observed ball to the graphic for sequence review; they were not used to select motion parameters."
+      ]
+    },
+    {
+      "capture_index": 6,
+      "capture_type": "main",
+      "visible_label_context_only": "45",
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "control_onset_timestamp_seconds": null,
+      "events": [
+        {
+          "event_type": "control_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "note": "Button/contact onset is not resolved at the wide camera scale; no electrical control log/audio was reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1178.2771,
+          "upper_pts_seconds": 1178.4773,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 326,
+            "source_pts_seconds": 1178.2771,
+            "file": "evidence/pilot_capture_overview/pts_1178.277100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 2,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 327,
+            "source_pts_seconds": 1178.4773,
+            "file": "evidence/pilot_capture_overview/pts_1178.477300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 2,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First visible lifting/displacement of the outlet assembly in these sampled previews; not control command onset, motor electrical onset or a calibrated gate-state measurement."
+        },
+        {
+          "event_type": "first_visible_ball_in_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1178.6775,
+          "upper_pts_seconds": 1178.8777,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 328,
+            "source_pts_seconds": 1178.6775,
+            "file": "evidence/pilot_capture_overview/pts_1178.677500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 329,
+            "source_pts_seconds": 1178.8777,
+            "file": "evidence/pilot_capture_overview/pts_1178.877700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 2
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clear yellow ball visibility in the collector/outlet housing. A moving component can conceal earlier occupancy, so this bounds the visible-state transition and is not certified physical entry time."
+        },
+        {
+          "event_type": "lower_collector_separated_position_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1178.8777,
+          "upper_pts_seconds": 1179.0779,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 329,
+            "source_pts_seconds": 1178.8777,
+            "file": "evidence/pilot_capture_overview/pts_1178.877700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 330,
+            "source_pts_seconds": 1179.0779,
+            "file": "evidence/pilot_capture_overview/pts_1179.077900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 3,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball is visibly held below the mixing chamber in the lower collector compartment. This is an observed separated-position proxy, not proof of permanent isolation or a known one-way gate plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_hidden_gate_interior",
+          "note": "Internal gate topology, one-way plane and irreversibility are not established. A visibly separate ball is insufficient to certify permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1179.8787,
+          "upper_pts_seconds": 1180.0789,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 334,
+            "source_pts_seconds": 1179.8787,
+            "file": "evidence/pilot_capture_overview/pts_1179.878700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 3
+          },
+          "after": {
+            "sample_index": 335,
+            "source_pts_seconds": 1180.0789,
+            "file": "evidence/pilot_capture_overview/pts_1180.078900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_010.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 4
+          },
+          "status": "candidate_cut_or_blur_censored",
+          "note": "A ball transitions from the outlet housing toward the inclined result channel. Preview blur/overlay and the camera cut require a deliberately conservative candidate bracket; parent must refine consecutive native frames. Camera view changes in or immediately after this coarse transition."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1183.4823,
+          "upper_pts_seconds": 1183.6825,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 352,
+            "source_pts_seconds": 1183.4823,
+            "file": "evidence/pilot_capture_overview/pts_1183.482300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_011.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 353,
+            "source_pts_seconds": 1183.6825,
+            "file": "evidence/pilot_capture_overview/pts_1183.682500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_011.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 2
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clearly readable new broadcast number in reviewed samples, including moving graphic before its final slot when readable. This is a television graphics event only, not physical selection."
+        },
+        {
+          "event_type": "overlay_result_slot_first_filled",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1183.6825,
+          "upper_pts_seconds": 1183.8827,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 353,
+            "source_pts_seconds": 1183.6825,
+            "file": "evidence/pilot_capture_overview/pts_1183.682500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_011.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 354,
+            "source_pts_seconds": 1183.8827,
+            "file": "evidence/pilot_capture_overview/pts_1183.882700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_011.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First reviewed sample with the new broadcast number fully placed in its result slot; recorded separately from first appearance."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_audio_not_reviewed",
+          "note": "No audio listening or ASR timing was used by this reviewer."
+        }
+      ],
+      "notes": [
+        "The new physical ball is visible in the result channel before the corresponding broadcast graphic appears.",
+        "Visible printed numbers only link an observed ball to the graphic for sequence review; they were not used to select motion parameters."
+      ]
+    },
+    {
+      "capture_index": 7,
+      "capture_type": "special",
+      "visible_label_context_only": "21",
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "control_onset_timestamp_seconds": null,
+      "events": [
+        {
+          "event_type": "control_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "note": "Button/contact onset is not resolved at the wide camera scale; no electrical control log/audio was reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1190.8897,
+          "upper_pts_seconds": 1191.0899,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 389,
+            "source_pts_seconds": 1190.8897,
+            "file": "evidence/pilot_capture_overview/pts_1190.889700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 2,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 390,
+            "source_pts_seconds": 1191.0899,
+            "file": "evidence/pilot_capture_overview/pts_1191.089900.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 2,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First visible lifting/displacement of the outlet assembly in these sampled previews; not control command onset, motor electrical onset or a calibrated gate-state measurement."
+        },
+        {
+          "event_type": "first_visible_ball_in_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1192.2911,
+          "upper_pts_seconds": 1192.4913,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 396,
+            "source_pts_seconds": 1192.2911,
+            "file": "evidence/pilot_capture_overview/pts_1192.291100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 397,
+            "source_pts_seconds": 1192.4913,
+            "file": "evidence/pilot_capture_overview/pts_1192.491300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 2
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "First clear yellow ball visibility in the collector/outlet housing. A moving component can conceal earlier occupancy, so this bounds the visible-state transition and is not certified physical entry time."
+        },
+        {
+          "event_type": "lower_collector_separated_position_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1192.4913,
+          "upper_pts_seconds": 1192.6915,
+          "width_seconds": 0.2002,
+          "before": {
+            "sample_index": 397,
+            "source_pts_seconds": 1192.4913,
+            "file": "evidence/pilot_capture_overview/pts_1192.491300.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 2
+          },
+          "after": {
+            "sample_index": 398,
+            "source_pts_seconds": 1192.6915,
+            "file": "evidence/pilot_capture_overview/pts_1192.691500.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 4,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_sampled_visibility_bracket",
+          "note": "A ball is visibly held below the mixing chamber in the lower collector compartment. This is an observed separated-position proxy, not proof of permanent isolation or a known one-way gate plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_hidden_gate_interior",
+          "note": "Internal gate topology, one-way plane and irreversibility are not established. A visibly separate ball is insufficient to certify permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1193.8927,
+          "upper_pts_seconds": 1194.2931,
+          "width_seconds": 0.4004,
+          "before": {
+            "sample_index": 404,
+            "source_pts_seconds": 1193.8927,
+            "file": "evidence/pilot_capture_overview/pts_1193.892700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 6,
+            "tile_col_1based": 1
+          },
+          "after": {
+            "sample_index": 406,
+            "source_pts_seconds": 1194.2931,
+            "file": "evidence/pilot_capture_overview/pts_1194.293100.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_012.jpg",
+            "tile_row_1based": 6,
+            "tile_col_1based": 3
+          },
+          "status": "candidate_cut_or_blur_censored",
+          "note": "A ball transitions from the outlet housing toward the inclined result channel. Preview blur/overlay and the camera cut require a deliberately conservative candidate bracket; parent must refine consecutive native frames. Camera view changes in or immediately after this coarse transition."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1196.8957,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": {
+            "sample_index": 419,
+            "source_pts_seconds": 1196.8957,
+            "file": "evidence/pilot_capture_overview/pts_1196.895700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_013.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "after": null,
+          "status": "right_censored_after_review",
+          "note": "Special-number graphic remains unfilled through the final reviewed frame1196.895700, although ball21 is visible physically. Occurrence after review end is unknown."
+        },
+        {
+          "event_type": "overlay_result_slot_first_filled",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1196.8957,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": {
+            "sample_index": 419,
+            "source_pts_seconds": 1196.8957,
+            "file": "evidence/pilot_capture_overview/pts_1196.895700.png",
+            "sheet": "evidence/pilot_capture_overview/sheet_013.jpg",
+            "tile_row_1based": 1,
+            "tile_col_1based": 4
+          },
+          "after": null,
+          "status": "right_censored_after_review",
+          "note": "Special-number result slot still unfilled at review end."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_audio_not_reviewed",
+          "note": "No audio listening or ASR timing was used by this reviewer."
+        }
+      ],
+      "notes": [
+        "Special ball remains at the right side of the result rail, separated in position from the six earlier balls. Do not assume the same stopping/settling path as main balls.",
+        "Special-result overlay appearance is not observed within this review extent."
+      ]
+    }
+  ],
+  "recommended_native_refinement_windows": [
+    {
+      "capture_index": 1,
+      "start_pts_seconds": 1114,
+      "end_pts_seconds": 1115.6143,
+      "purpose": "Review all native consecutive frames, outlet crop and full frame; retain exact PTS and detect cuts; refine visible proxies while keeping permanent isolation NA."
+    },
+    {
+      "capture_index": 2,
+      "start_pts_seconds": 1125.8248999999998,
+      "end_pts_seconds": 1128.0267000000001,
+      "purpose": "Review all native consecutive frames, outlet crop and full frame; retain exact PTS and detect cuts; refine visible proxies while keeping permanent isolation NA."
+    },
+    {
+      "capture_index": 3,
+      "start_pts_seconds": 1138.2373,
+      "end_pts_seconds": 1141.0397,
+      "purpose": "Review all native consecutive frames, outlet crop and full frame; retain exact PTS and detect cuts; refine visible proxies while keeping permanent isolation NA."
+    },
+    {
+      "capture_index": 4,
+      "start_pts_seconds": 1151.4505,
+      "end_pts_seconds": 1153.4521,
+      "purpose": "Review all native consecutive frames, outlet crop and full frame; retain exact PTS and detect cuts; refine visible proxies while keeping permanent isolation NA."
+    },
+    {
+      "capture_index": 5,
+      "start_pts_seconds": 1163.8628999999999,
+      "end_pts_seconds": 1167.2659,
+      "purpose": "Review all native consecutive frames, outlet crop and full frame; retain exact PTS and detect cuts; refine visible proxies while keeping permanent isolation NA."
+    },
+    {
+      "capture_index": 6,
+      "start_pts_seconds": 1178.0771,
+      "end_pts_seconds": 1180.2789,
+      "purpose": "Review all native consecutive frames, outlet crop and full frame; retain exact PTS and detect cuts; refine visible proxies while keeping permanent isolation NA."
+    },
+    {
+      "capture_index": 7,
+      "start_pts_seconds": 1190.6897,
+      "end_pts_seconds": 1194.4931000000001,
+      "purpose": "Review all native consecutive frames, outlet crop and full frame; retain exact PTS and detect cuts; refine visible proxies while keeping permanent isolation NA."
+    }
+  ],
+  "summary": {
+    "captures_with_visible_outlet_to_channel_sequence": 7,
+    "captures_with_candidate_visible_mechanism_onset": 6,
+    "certified_permanent_isolation_events": 0,
+    "certified_control_onsets": 0,
+    "graphics_first_readable_observed_main_balls": 6,
+    "special_graphic_observed": false,
+    "physical_rpm": null,
+    "physical_absolute_angle": null,
+    "empirical_event_accuracy_frames": null
+  },
+  "reviewed_artifact_sha256": {
+    "evidence/pilot_capture_overview/sheet_000.jpg": "d8a9eaed762691ffd652e74dc5c836df90e18569fa269223b2d4b57f2788c594",
+    "evidence/pilot_capture_overview/sheet_001.jpg": "ad467d13a1e8d6de35b24f19b9e5e43ca50901e9898058939354076f0bb16627",
+    "evidence/pilot_capture_overview/sheet_002.jpg": "23e76e47ea63e120982910996a642b1369fcbf588562008e918cb5010effbb79",
+    "evidence/pilot_capture_overview/sheet_003.jpg": "b3785e8b495c9dadb236fa5d4920f2fe7a9d2f7fb1a21f0552cffda283666211",
+    "evidence/pilot_capture_overview/sheet_004.jpg": "4737c1da8c8e2ae2333a9ee6a7bf5f200c7018f7f471f09dc2109d723f5a4f9d",
+    "evidence/pilot_capture_overview/sheet_005.jpg": "32f7d9a5b809c19e4dc8969d69dfaaa5156a9d1540d7149ced9a03ab5816f582",
+    "evidence/pilot_capture_overview/sheet_006.jpg": "0e98d4e0679fe0dc85adcdc67116f3053498ebcd7ac92fa4e4e12f1def3b3056",
+    "evidence/pilot_capture_overview/sheet_007.jpg": "a32e47d945d200e4e5448443a59c2e393e97c5fb63d6081372f428a0d2d10613",
+    "evidence/pilot_capture_overview/sheet_008.jpg": "bf32e84964ca99841f05ee5fec0c252172fa95aa11b91d2e0965c1b2e7c373aa",
+    "evidence/pilot_capture_overview/sheet_009.jpg": "6f157de11b5385e115197999044be9965175e12248ef2e8199e5d4f758710ecf",
+    "evidence/pilot_capture_overview/sheet_010.jpg": "9e962e2a0b3cb59df02cb7f0f4e74a52dd0acfa8c3e0e9f908e5b346b6d31f0e",
+    "evidence/pilot_capture_overview/sheet_011.jpg": "8ac4f25c504bb5ec7dd66fe17ac59b99099e2db7ae324843eef3443eb29d0757",
+    "evidence/pilot_capture_overview/sheet_012.jpg": "c61be691f0e29818e5cf605fe0fc5fe1523cd63ac0824704daeff58977bd6317",
+    "evidence/pilot_capture_overview/sheet_013.jpg": "b6bb239e85959594829df04ffabde116ba23c61ff99259a9e9db5616e56bf880",
+    "evidence/pilot_capture_overview/pts_1126.225100.png": "290ef4a7488770426b1ca8a33d2cfa2ff496ae19b1ff9a69cef09c0900998dcb",
+    "evidence/pilot_capture_overview/pts_1126.425300.png": "f64c39672af35736261ad75093dc7a74ad149c941703e6f878f05a3266b2f0ca",
+    "evidence/pilot_capture_overview/pts_1138.837700.png": "95c3740cfd65a4dfa2f6eb24f42a818ce0d477d8388f93d13ce0497250d92463",
+    "evidence/pilot_capture_overview/pts_1139.037900.png": "3db217feeba74bdf9675543df4152f5dfe4e790c0db6c126274141b79272f9a2",
+    "evidence/pilot_capture_overview/pts_1164.463300.png": "bb5dce0d71ff485a28e25c3acf6d1efab0905abbc6e72fa93a23934f1b9d36e2",
+    "evidence/pilot_capture_overview/pts_1191.290100.png": "d601d5515393ec70b95d271e91b4bea04836ba42e3ea59aafcbea8ff2d9aec78",
+    "evidence/pilot_capture_overview/pts_1192.491300.png": "136bf243263c158a9884ef4d4d191430e84c35ea526b3a33245ee08b75cdd08d",
+    "evidence/pilot_capture_overview/pts_1192.691500.png": "afee85dad7a89b63c96b20a3b4d58a9bbf8d4c2ddb150e8feb99585160740814",
+    "evidence/pilot_capture_overview/pts_1143.842700.png": "1b04e8c4823f34c10e9d599991095793a4f3201cb7977ff4c4a502a3af73e892",
+    "evidence/pilot_capture_overview/pts_1144.042900.png": "6e18d7bf448105948a1960e73be9d1f57f47eaa7ae920edd77f18ab3a90d097d",
+    "evidence/pilot_capture_overview/pts_1144.243100.png": "e1f70ef80f16843084c642db20c78a47e83c17710b9ebfa1ae5d025834aae057",
+    "evidence/pilot_capture_overview/pts_1170.068900.png": "1dfb3feb812d48c35ba68f46912ef85a72ca9252c0e93f8a609a3b6e69aecaf9",
+    "evidence/pilot_capture_overview/pts_1170.269100.png": "771009bf73fcce6a79ef9bafcbfde78e94e0a71a5b1dc6fce0e91eee06b2c8bf",
+    "evidence/pilot_capture_overview/pts_1183.682500.png": "1ecdcc0a8ad9bddb88165ed500263b8699216fbe2a3c78f07225b7f55a9bfe74",
+    "evidence/pilot_capture_overview/pts_1183.882700.png": "caee843fa74851cd40faa5b5cfbbb1a88db06ec9071186b11e007badab1e57cc",
+    "evidence/pilot_capture_overview/pts_1131.630500.png": "74bf54c5684a98f352dadc45ee2e7a01e7cb6a4031d92d418dad43063cdb3564",
+    "evidence/pilot_capture_overview/pts_1131.830700.png": "ee23c8ef96e77729900dd18a9aeda4c739b20e2f387208fa5efbf4c07e2fed70",
+    "evidence/pilot_capture_overview/pts_1132.030900.png": "ef3aa84756b51afe472fe56ab5ebf2fc117e1e2bc54ad6beb07e5e848595d449",
+    "evidence/pilot_capture_overview/pts_1157.456300.png": "a70d2ba82875df197a8d57de71e92a53bb57a46d18d6f4f21532fd092b22eea9",
+    "evidence/pilot_capture_overview/pts_1157.656500.png": "92c2b021e9b04c64b5f975347804584913850779da250822f0135969c81cecb6",
+    "evidence/pilot_capture_overview/pts_1144.443300.png": "f9ac41eafdeb7e7ca60724c8264030745094c4cdf391e70a05d43758d374e3d6",
+    "evidence/pilot_capture_overview/pts_1119.418300.png": "d699d8061eaaa88463425e751e345c7b27f3922397ff3e253df3ae363f407bef",
+    "evidence/pilot_capture_overview/pts_1119.618500.png": "1de37195eff79131f9bba6ca3cabea5a647131beadc4da74478ebca79e02d41d",
+    "evidence/pilot_capture_overview/frames.csv": "105504d63e6974c7c867fe32c5c4229fb5e5714210208a0ca59dbec7ede58821",
+    "evidence/pilot_capture_overview/extraction.json": "294105312c2a6e101e5a9a2d8d39f7e27fda17d3deaf1567384a9b244f9f943f"
+  }
+}

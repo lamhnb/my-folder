@@ -1,0 +1,1483 @@
+{
+  "schema_version": "1.0",
+  "review_kind": "second_AI_native_crop_refinement_of_real_source",
+  "human_review": false,
+  "blind_review": false,
+  "reviewer_calibrated": false,
+  "statistically_independent_experimental_validation": false,
+  "source": {
+    "id": "IUU05082QtE",
+    "draw_id_context": "01372",
+    "input_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+    "format_id": "137",
+    "source_dimensions": [
+      1920,
+      1080
+    ],
+    "source_frame_rate": "30000/1001",
+    "native_encoded_interval_seconds": 0.03336666666666667,
+    "shutter_exposure_seconds": null,
+    "camera_original_frame_rate": null,
+    "physical_clock_accuracy_seconds": null
+  },
+  "supersedes_for_capture_onset": "evidence/pilot_independent_review.json; retained as historical coarse preview review and corrected below",
+  "reviewed_contact_sheets": [
+    "evidence/capture1_dense/sheet_000.jpg",
+    "evidence/capture1_dense/sheet_002.jpg",
+    "evidence/capture1_dense/sheet_003.jpg",
+    "evidence/capture2_dense/sheet_000.jpg",
+    "evidence/capture2_dense/sheet_001.jpg",
+    "evidence/capture2_dense/sheet_003.jpg",
+    "evidence/capture2_late/sheet_000.jpg",
+    "evidence/capture2_late/sheet_001.jpg",
+    "evidence/capture3_dense/sheet_000.jpg",
+    "evidence/capture3_dense/sheet_001.jpg",
+    "evidence/capture3_late/sheet_000.jpg",
+    "evidence/capture3_late/sheet_001.jpg",
+    "evidence/capture3_exit/sheet_000.jpg",
+    "evidence/capture4_dense/sheet_000.jpg",
+    "evidence/capture4_dense/sheet_001.jpg",
+    "evidence/capture4_late/sheet_000.jpg",
+    "evidence/capture5_dense/sheet_000.jpg",
+    "evidence/capture5_dense/sheet_001.jpg",
+    "evidence/capture5_late/sheet_000.jpg",
+    "evidence/capture5_late/sheet_002.jpg",
+    "evidence/capture5_exit/sheet_000.jpg",
+    "evidence/capture6_dense/sheet_000.jpg",
+    "evidence/capture6_dense/sheet_001.jpg",
+    "evidence/capture6_late/sheet_000.jpg",
+    "evidence/capture7_early/sheet_000.jpg",
+    "evidence/capture7_early/sheet_001.jpg",
+    "evidence/capture7_dense/sheet_001.jpg",
+    "evidence/capture7_dense/sheet_002.jpg",
+    "evidence/capture7_late/sheet_001.jpg",
+    "evidence/capture7_late/sheet_002.jpg"
+  ],
+  "native_individual_frame_checks": [
+    {
+      "file": "evidence/capture1_dense/pts_1115.214100.png",
+      "source_pts_seconds": 1115.2141,
+      "sample_index": 30,
+      "relative_native_index": 30,
+      "native_crop_width": 420,
+      "native_crop_height": 650,
+      "sha256": "5618e0d77a5824faad1a6c2f43becc4746e714c6e17bbc3b326dfb31d2073a97",
+      "bgr_sha256": "9c70631df6b8ad6dcec8ccef7716bfd625e06841442e7622e92252ebcc20e6d3"
+    },
+    {
+      "file": "evidence/capture1_dense/pts_1115.247467.png",
+      "source_pts_seconds": 1115.247467,
+      "sample_index": 31,
+      "relative_native_index": 31,
+      "native_crop_width": 420,
+      "native_crop_height": 650,
+      "sha256": "0ec203164ae119068b4eaeb97a1e0d0a403e4d81d6495037862754a24ace1dc9",
+      "bgr_sha256": "839b0dba34b34479bfc8fded2845a3b02e003e7e69451b7bc83676fee74dfe1e"
+    },
+    {
+      "file": "evidence/capture2_dense/pts_1127.326200.png",
+      "source_pts_seconds": 1127.3262,
+      "sample_index": 42,
+      "relative_native_index": 42,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "8333d4bf9675975e6fb179341938e90748e40e9f32206639e7ff1fc13381d6e3",
+      "bgr_sha256": "b5f6f65b6e05ef86b6aeb1a228c7cac6447b5a50e47ee11104a0c6c81c811bb1"
+    },
+    {
+      "file": "evidence/capture2_dense/pts_1127.359567.png",
+      "source_pts_seconds": 1127.359567,
+      "sample_index": 43,
+      "relative_native_index": 43,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "09d33b5089ac2417cf60bb3db04d7bacce6d320d0e65e41dbfc229b131207fbd",
+      "bgr_sha256": "bd1cc88981c2287aa21df3ab6cb1e0ea16ba821b520fa4025919068693dbc4f2"
+    },
+    {
+      "file": "evidence/capture4_late/pts_1153.018533.png",
+      "source_pts_seconds": 1153.018533,
+      "sample_index": 5,
+      "relative_native_index": 5,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "4425165da7a03dca8e69e9ab71e4542a7f4b0c08947098b9db4339d1c0f7acb3",
+      "bgr_sha256": "b06b29fd44e8a2071f8fa57ac64b938e2c674af05f6843823af06f381b967500"
+    },
+    {
+      "file": "evidence/capture4_late/pts_1153.051900.png",
+      "source_pts_seconds": 1153.0519,
+      "sample_index": 6,
+      "relative_native_index": 6,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "0c0c591646c37d5ffa7d68ae9ebf534af8066f11810bc3d9ca0684191d0acb54",
+      "bgr_sha256": "72a44fa3dcc750372018ae84db587fdc10713655e8d72393253446c30ba0b2ae"
+    },
+    {
+      "file": "evidence/capture6_late/pts_1179.811967.png",
+      "source_pts_seconds": 1179.811967,
+      "sample_index": 8,
+      "relative_native_index": 8,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "674565712b0dd32fb1415a1c473cc62ecf6b232d36859aaa89dbf31bc9dc9297",
+      "bgr_sha256": "9993d1602ef24f33059503b64945ec0e702d53e01d3680e317c650400466c0e5"
+    },
+    {
+      "file": "evidence/capture6_late/pts_1179.845333.png",
+      "source_pts_seconds": 1179.845333,
+      "sample_index": 9,
+      "relative_native_index": 9,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "c40c0aa08a65bfaee54667e7695f585ec7897546357f86115f85c850f903fd2a",
+      "bgr_sha256": "ab43d154faa8cb37d0e231f4dbcaa8fe6c2b521dbbbfbe575adbeb979688c54d"
+    },
+    {
+      "file": "evidence/capture2_dense/pts_1126.291833.png",
+      "source_pts_seconds": 1126.291833,
+      "sample_index": 11,
+      "relative_native_index": 11,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "6d10790e04c9d2525cf32acfe79bfa170f57c35b2eaa825a30119c728a9f8836",
+      "bgr_sha256": "2c67fde381aabe63345488c57e911ad668542053b84824eac682ada4eec7b8db"
+    },
+    {
+      "file": "evidence/capture2_dense/pts_1126.325200.png",
+      "source_pts_seconds": 1126.3252,
+      "sample_index": 12,
+      "relative_native_index": 12,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "cf73a4dbdc8ae67ada4b26ad19a4b42d75782031ef4a8d8d0404b795dd22d36a",
+      "bgr_sha256": "55f977e27fca6ba4e35874975239a77edc8a996fd118ab97d3bde3d1d752bad9"
+    },
+    {
+      "file": "evidence/capture3_dense/pts_1138.971167.png",
+      "source_pts_seconds": 1138.971167,
+      "sample_index": 17,
+      "relative_native_index": 17,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "a6caea12fe56eb059ddc98c51a1b48d6cb717b7440e409823557061fa2c43ca0",
+      "bgr_sha256": "b6a5c4ba52fa46ed84e62d1e1dec9c305c6c34faf951f07bfa1b62145e7b9008"
+    },
+    {
+      "file": "evidence/capture3_dense/pts_1139.004533.png",
+      "source_pts_seconds": 1139.004533,
+      "sample_index": 18,
+      "relative_native_index": 18,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "3a6169308fb5c145dc6b221952ed9974c5c7987451ddb0a119480a2a0572bae9",
+      "bgr_sha256": "4b81b2c08eacafb84dd4d90cd01cd4368cda282fbc29b90af7a9526e944149ff"
+    },
+    {
+      "file": "evidence/capture4_dense/pts_1152.017533.png",
+      "source_pts_seconds": 1152.017533,
+      "sample_index": 18,
+      "relative_native_index": 18,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "1a684ff1cdaf13d522954c3fc5606adafa030410beddbad4250011aab387c71c",
+      "bgr_sha256": "9458e3d717e87130632be64a821b9bc9f75ed8291aed72c03ffa4ab4e4868f60"
+    },
+    {
+      "file": "evidence/capture4_dense/pts_1152.050900.png",
+      "source_pts_seconds": 1152.0509,
+      "sample_index": 19,
+      "relative_native_index": 19,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "0df36a55139fd14794c2dda301a2cc98944057080dd9be08fb8f75bc7eeb1302",
+      "bgr_sha256": "2dc7cd24f91edf68a2232294ca439f91fbf82bdb69dd6379373152ffe3b72fc2"
+    },
+    {
+      "file": "evidence/capture5_late/pts_1165.564400.png",
+      "source_pts_seconds": 1165.5644,
+      "sample_index": 6,
+      "relative_native_index": 6,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "1fc14809553c70d95d41200170605c291bbb30f55b9bf947cbd96dedd7d18e59",
+      "bgr_sha256": "38b1de22527abfc616ee65699506a4f2d2dad752eb1450a9a339608aa0933d1d"
+    },
+    {
+      "file": "evidence/capture5_late/pts_1165.597767.png",
+      "source_pts_seconds": 1165.597767,
+      "sample_index": 7,
+      "relative_native_index": 7,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "8a4b9a707423afe74e3280bb0a04f6da18836e45e50cf65e2034a7f69c73c0f7",
+      "bgr_sha256": "b03f66f744d9a03007d235f7e5b010905de46446d96d118a038999868887059f"
+    },
+    {
+      "file": "evidence/capture6_dense/pts_1178.744233.png",
+      "source_pts_seconds": 1178.744233,
+      "sample_index": 19,
+      "relative_native_index": 19,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "7a5a7ac7e0fd5a9aebdbee14565d8cbf39be00b943e619bd3d31ed40ffa41789",
+      "bgr_sha256": "f0e12fe7e320e9dcb9e137446fe1819b264dc572e7c832a5d27b942ef86e4b42"
+    },
+    {
+      "file": "evidence/capture6_dense/pts_1178.777600.png",
+      "source_pts_seconds": 1178.7776,
+      "sample_index": 20,
+      "relative_native_index": 20,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "dbb683ac39ae32d4664d976b44acd67722da1c7f7c6563bef5c7a6f49ac862ba",
+      "bgr_sha256": "5b19d5f99f7eb476efcd2450be3f1e71cf16fb2c3d43182acb2a80c16691f65a"
+    },
+    {
+      "file": "evidence/capture7_dense/pts_1192.291100.png",
+      "source_pts_seconds": 1192.2911,
+      "sample_index": 20,
+      "relative_native_index": 20,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "b980097cedaccf3eec138faec76c582a1ed82051be76393be723e51f1c4d8414",
+      "bgr_sha256": "557896f7ba160b8c1efcbe1d574aec3140ca06bb838aa6b66af98f9c242b98d3"
+    },
+    {
+      "file": "evidence/capture7_dense/pts_1192.324467.png",
+      "source_pts_seconds": 1192.324467,
+      "sample_index": 21,
+      "relative_native_index": 21,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "4ef9aecd305e7a43a796c83022aa6fe2166f6fd8a84e07c642214441f10ed7bb",
+      "bgr_sha256": "e6e974f49a9a576e34ac7a45bd84d775507221b91c903b76e8f477cd63d228f4"
+    },
+    {
+      "file": "evidence/capture7_late/pts_1193.959433.png",
+      "source_pts_seconds": 1193.959433,
+      "sample_index": 27,
+      "relative_native_index": 27,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "330c088adb82daf44e7464ad695d8f4fc4e2e69adf2df47308dda46948063273",
+      "bgr_sha256": "93e35cfa3b4f25f5ffb33944a0b243d92d63d3ed7a82a6d35c2842fed1957060"
+    },
+    {
+      "file": "evidence/capture7_late/pts_1193.992800.png",
+      "source_pts_seconds": 1193.9928,
+      "sample_index": 28,
+      "relative_native_index": 28,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "cf3f3160a622b1f5528e041e844d4c5283fb2251609645d62a1d10c96d54b285",
+      "bgr_sha256": "31de65b0ceae6c909036c2d65030b02f81d586040b7afe2c3b5767482f828326"
+    },
+    {
+      "file": "evidence/capture7_late/pts_1194.026167.png",
+      "source_pts_seconds": 1194.026167,
+      "sample_index": 29,
+      "relative_native_index": 29,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "43720c08c851b6085b7be72ea46365ff824b9f2bb7865a6a38d4297eaa2b85b1",
+      "bgr_sha256": "2d6ae1d115fa52f2fba9c2cbd7886f3de6117f5e7333d562a18a056626955e30"
+    },
+    {
+      "file": "evidence/capture6_late/pts_1179.878700.png",
+      "source_pts_seconds": 1179.8787,
+      "sample_index": 10,
+      "relative_native_index": 10,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "46470f0f219da4071d8c7526b5b22990558451f98202e6fef8cb10fa9b6560a1",
+      "bgr_sha256": "0594dca0d89b1468ecec1fb0a70928a77015f73711e9440ae554a75b451c0f4d"
+    },
+    {
+      "file": "evidence/capture3_late/pts_1140.572767.png",
+      "source_pts_seconds": 1140.572767,
+      "sample_index": 22,
+      "relative_native_index": 22,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "6b4511e096ce632fdc66038d76c6736c05a7bdcbef4220590b710e5f17e76cb0",
+      "bgr_sha256": "9596c7fdd923bdfc4d320d72bf5849d1aeb309d88bae36e55635282d87cc16bd"
+    },
+    {
+      "file": "evidence/capture3_late/pts_1140.606133.png",
+      "source_pts_seconds": 1140.606133,
+      "sample_index": 23,
+      "relative_native_index": 23,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "77361579eeddbd24026d9e7720543b73a24448cc8f12abc0fa77d8ef787a214d",
+      "bgr_sha256": "729198d3d94f67d500730c7de47d08e14e1f1d43cca793151431f83e8376d042"
+    },
+    {
+      "file": "evidence/capture5_late/pts_1166.431933.png",
+      "source_pts_seconds": 1166.431933,
+      "sample_index": 32,
+      "relative_native_index": 32,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "53e5f1589996277ade3c3fc6b4d885fd1a32955340fa167c0346f5363dbb3011",
+      "bgr_sha256": "1d820ad521863516d47302aea75ed7e6bad95877b2ae956c97b2195cde5524fc"
+    },
+    {
+      "file": "evidence/capture1_dense/pts_1114.213100.png",
+      "source_pts_seconds": 1114.2131,
+      "sample_index": 0,
+      "relative_native_index": 0,
+      "native_crop_width": 420,
+      "native_crop_height": 650,
+      "sha256": "dd4ce5ae7811a3391b18f342a0914e9dcff688d2aa2621df0db01e3bfe80de64",
+      "bgr_sha256": "f4f6d8a48b374f6da351fa25995937b10211366040db023ac20836a1dfcef78c"
+    },
+    {
+      "file": "evidence/capture3_exit/pts_1140.606133.png",
+      "source_pts_seconds": 1140.606133,
+      "sample_index": 1,
+      "relative_native_index": 1,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "77361579eeddbd24026d9e7720543b73a24448cc8f12abc0fa77d8ef787a214d",
+      "bgr_sha256": "729198d3d94f67d500730c7de47d08e14e1f1d43cca793151431f83e8376d042"
+    },
+    {
+      "file": "evidence/capture3_exit/pts_1140.639500.png",
+      "source_pts_seconds": 1140.6395,
+      "sample_index": 2,
+      "relative_native_index": 2,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "0274980e2a073f0aaa26db095c2cea72f6bb444beeff708a5c8362f0233bc93f",
+      "bgr_sha256": "9096dcba5b2f7803ca58bd962796969b234b3bc0975c2753bece044717b830f4"
+    },
+    {
+      "file": "evidence/capture5_exit/pts_1166.665500.png",
+      "source_pts_seconds": 1166.6655,
+      "sample_index": 7,
+      "relative_native_index": 7,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "bcc8ac154f70554d613e7d52c0f70a13abdb76221b0869bbb7bcf28fc58fe0d1",
+      "bgr_sha256": "907e064f0a323bb1d9bae5e8eae2c9a504f7ac274e2b9d620a9bae16901d7889"
+    },
+    {
+      "file": "evidence/capture5_exit/pts_1166.698867.png",
+      "source_pts_seconds": 1166.698867,
+      "sample_index": 8,
+      "relative_native_index": 8,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "d58b27b56ab60e852b793ca21f08d064f1c3af4bf19ff273f01d18221a227c12",
+      "bgr_sha256": "0e97f1f3249b2d778dc124b74d76c9b33841d9083a5f18ffb1aa6ee604d04307"
+    },
+    {
+      "file": "evidence/capture5_exit/pts_1166.732233.png",
+      "source_pts_seconds": 1166.732233,
+      "sample_index": 9,
+      "relative_native_index": 9,
+      "native_crop_width": 700,
+      "native_crop_height": 560,
+      "sha256": "fcc71c62b3ae24e5afbe9d11d3151d80551daa6c78be9c99cefba7a4952ec7e3",
+      "bgr_sha256": "7c283c70fae5d889f6615fca98ca517f121a80c0c21fffab57c407349b032606"
+    }
+  ],
+  "review_scope": "Contact sheets generated from native crops; individual PNG endpoints inspected at native crop dimensions for first-ball visibility and ramp-exit proxies. Mechanism pairs additionally checked in PTS-labelled contact sheets. Metadata and manifest references are verified separately.",
+  "timing_interpretation": [
+    "Point event times remain NA for every event. Bounds identify a change in reviewed source images; they are not empirical confidence intervals on world time.",
+    "Adjacent encoded PTS intervals around33.367ms do not establish33.367ms physical accuracy. Blur/exposure, held/near-held crops, encoding, motion threshold, perspective and gate occlusion remain systematic unknowns.",
+    "Identical cropped images at consecutive PTS prove repeated crop content only; they do not prove a dropped or duplicate full camera frame.",
+    "The ramp proxy uses the front housing/post silhouette as a visible reference; it is not a calibrated permanent-selection plane. No permanent isolation or absolute paddle angle/RPM is inferred.",
+    "The reviewed source pixels and rendered metadata do not provide independent human validation; two AI reviews can share errors."
+  ],
+  "captures": [
+    {
+      "capture_index": 1,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": 1114.2131,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": {
+            "file": "evidence/capture1_dense/pts_1114.213100.png",
+            "source_pts_seconds": 1114.2131,
+            "sample_index": 0,
+            "relative_native_index": 0,
+            "native_crop_width": 420,
+            "native_crop_height": 650,
+            "sha256": "dd4ce5ae7811a3391b18f342a0914e9dcff688d2aa2621df0db01e3bfe80de64",
+            "bgr_sha256": "f4f6d8a48b374f6da351fa25995937b10211366040db023ac20836a1dfcef78c"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "left_censored_by_camera_cut",
+          "note": "At the first outlet close-up a ball is already held in the upper collector; onset is not visible. Do not infer first onset from the later release motion."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": 1114.2131,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": {
+            "file": "evidence/capture1_dense/pts_1114.213100.png",
+            "source_pts_seconds": 1114.2131,
+            "sample_index": 0,
+            "relative_native_index": 0,
+            "native_crop_width": 420,
+            "native_crop_height": 650,
+            "sha256": "dd4ce5ae7811a3391b18f342a0914e9dcff688d2aa2621df0db01e3bfe80de64",
+            "bgr_sha256": "f4f6d8a48b374f6da351fa25995937b10211366040db023ac20836a1dfcef78c"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "left_censored_already_visible",
+          "note": "Ball20 is already visibly held in upper collector at first native crop. Prior overview first-visible1115.013900–1115.214100 was a low-resolution visibility error and does not bound entry."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1115.2141,
+          "upper_pts_seconds": 1115.247467,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture1_dense/pts_1115.214100.png",
+            "source_pts_seconds": 1115.2141,
+            "sample_index": 30,
+            "relative_native_index": 30,
+            "native_crop_width": 420,
+            "native_crop_height": 650,
+            "sha256": "5618e0d77a5824faad1a6c2f43becc4746e714c6e17bbc3b326dfb31d2073a97",
+            "bgr_sha256": "9c70631df6b8ad6dcec8ccef7716bfd625e06841442e7622e92252ebcc20e6d3"
+          },
+          "after": {
+            "file": "evidence/capture1_dense/pts_1115.247467.png",
+            "source_pts_seconds": 1115.247467,
+            "sample_index": 31,
+            "relative_native_index": 31,
+            "native_crop_width": 420,
+            "native_crop_height": 650,
+            "sha256": "0ec203164ae119068b4eaeb97a1e0d0a403e4d81d6495037862754a24ace1dc9",
+            "bgr_sha256": "839b0dba34b34479bfc8fded2845a3b02e003e7e69451b7bc83676fee74dfe1e"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible leading silhouette extends from the housing toward/across its front edge onto the downstream ramp; a screen-space exit proxy, not the final seated ball, geometric 3D crossing or permanent isolation."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_identifiable",
+          "note": "Internal one-way gate/selection plane and irreversibility are not established; visible held/separate position does not certify permanent isolation."
+        },
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_observable",
+          "note": "No electrical log or unambiguous button-contact onset in this native outlet review."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "observation_label": "visible image state; source rendition timing",
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 2,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1126.091633,
+          "upper_pts_seconds": 1126.125,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture2_dense/pts_1126.091633.png",
+            "source_pts_seconds": 1126.091633,
+            "sample_index": 5,
+            "relative_native_index": 5,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "a8d2c08774fe22f3a3f3ab3beb894e929fe12617c5848db4829128124568669b",
+            "bgr_sha256": "612187489844e518158834d03ca028933c97408215df5ad20c49fe5720f9a3ea"
+          },
+          "after": {
+            "file": "evidence/capture2_dense/pts_1126.125000.png",
+            "source_pts_seconds": 1126.125,
+            "sample_index": 6,
+            "relative_native_index": 6,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "fe4bc4549bfe247d06f7403fa88c690e8487c268ccbbc07915181f1e4e2641d8",
+            "bgr_sha256": "4c44aeb4ba9bb3bb4cfe11e6d6ab474eaefd4cdcbe1f76980604c75532ca1ca1"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible outlet-assembly displacement relative to the preceding unchanged image; not electrical control onset or calibrated gate opening."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1126.291833,
+          "upper_pts_seconds": 1126.3252,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture2_dense/pts_1126.291833.png",
+            "source_pts_seconds": 1126.291833,
+            "sample_index": 11,
+            "relative_native_index": 11,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "6d10790e04c9d2525cf32acfe79bfa170f57c35b2eaa825a30119c728a9f8836",
+            "bgr_sha256": "2c67fde381aabe63345488c57e911ad668542053b84824eac682ada4eec7b8db"
+          },
+          "after": {
+            "file": "evidence/capture2_dense/pts_1126.325200.png",
+            "source_pts_seconds": 1126.3252,
+            "sample_index": 12,
+            "relative_native_index": 12,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "cf73a4dbdc8ae67ada4b26ad19a4b42d75782031ef4a8d8d0404b795dd22d36a",
+            "bgr_sha256": "55f977e27fca6ba4e35874975239a77edc8a996fd118ab97d3bde3d1d752bad9"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "First clearly discernible yellow ball patch in the collector after the last image without a resolved patch; translucent acrylic/reflection/blur make this a visibility threshold, not calibrated physical entry. No exact event time assigned."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1127.3262,
+          "upper_pts_seconds": 1127.359567,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture2_dense/pts_1127.326200.png",
+            "source_pts_seconds": 1127.3262,
+            "sample_index": 42,
+            "relative_native_index": 42,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "8333d4bf9675975e6fb179341938e90748e40e9f32206639e7ff1fc13381d6e3",
+            "bgr_sha256": "b5f6f65b6e05ef86b6aeb1a228c7cac6447b5a50e47ee11104a0c6c81c811bb1"
+          },
+          "after": {
+            "file": "evidence/capture2_dense/pts_1127.359567.png",
+            "source_pts_seconds": 1127.359567,
+            "sample_index": 43,
+            "relative_native_index": 43,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "09d33b5089ac2417cf60bb3db04d7bacce6d320d0e65e41dbfc229b131207fbd",
+            "bgr_sha256": "bd1cc88981c2287aa21df3ab6cb1e0ea16ba821b520fa4025919068693dbc4f2"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible leading silhouette extends from the housing toward/across its front edge onto the downstream ramp; a screen-space exit proxy, not the final seated ball, geometric 3D crossing or permanent isolation."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_identifiable",
+          "note": "Internal one-way gate/selection plane and irreversibility are not established; visible held/separate position does not certify permanent isolation."
+        },
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_observable",
+          "note": "No electrical log or unambiguous button-contact onset in this native outlet review."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "observation_label": "visible image state; source rendition timing",
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 3,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1138.504033,
+          "upper_pts_seconds": 1138.570767,
+          "bracket_width_seconds": 0.066734,
+          "encoded_frame_intervals": 2,
+          "before": {
+            "file": "evidence/capture3_dense/pts_1138.504033.png",
+            "source_pts_seconds": 1138.504033,
+            "sample_index": 3,
+            "relative_native_index": 3,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "8cbaefa460abf6c364a9e96d1ed77cc952d46c11d52c10235de2cf8800d0242e",
+            "bgr_sha256": "736821e4d6a09dbf639dde49ddcc5ce292d6c3bca3e43e84190c7f6e2c2c751a"
+          },
+          "after": {
+            "file": "evidence/capture3_dense/pts_1138.570767.png",
+            "source_pts_seconds": 1138.570767,
+            "sample_index": 5,
+            "relative_native_index": 5,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "e2e189d2b706d39eb67904ee3399a3e0e62a1e75a9470765e1b00a5980a8ed04",
+            "bgr_sha256": "0fdcdb84b2642612a7fa3e37ce7717ee80103eb37bffed7185d26ee82ded7ec5"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Last clearly unchanged frame1138.504033, clear displacement1138.570767; intermediate1138.537400 ambiguous, so retain two encoded intervals."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1138.971167,
+          "upper_pts_seconds": 1139.004533,
+          "bracket_width_seconds": 0.033366,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture3_dense/pts_1138.971167.png",
+            "source_pts_seconds": 1138.971167,
+            "sample_index": 17,
+            "relative_native_index": 17,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "a6caea12fe56eb059ddc98c51a1b48d6cb717b7440e409823557061fa2c43ca0",
+            "bgr_sha256": "b6a5c4ba52fa46ed84e62d1e1dec9c305c6c34faf951f07bfa1b62145e7b9008"
+          },
+          "after": {
+            "file": "evidence/capture3_dense/pts_1139.004533.png",
+            "source_pts_seconds": 1139.004533,
+            "sample_index": 18,
+            "relative_native_index": 18,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "3a6169308fb5c145dc6b221952ed9974c5c7987451ddb0a119480a2a0572bae9",
+            "bgr_sha256": "4b81b2c08eacafb84dd4d90cd01cd4368cda282fbc29b90af7a9526e944149ff"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "First clearly discernible yellow ball patch in the collector after the last image without a resolved patch; translucent acrylic/reflection/blur make this a visibility threshold, not calibrated physical entry. No exact event time assigned."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1140.606133,
+          "upper_pts_seconds": 1140.6395,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture3_exit/pts_1140.606133.png",
+            "source_pts_seconds": 1140.606133,
+            "sample_index": 1,
+            "relative_native_index": 1,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "77361579eeddbd24026d9e7720543b73a24448cc8f12abc0fa77d8ef787a214d",
+            "bgr_sha256": "729198d3d94f67d500730c7de47d08e14e1f1d43cca793151431f83e8376d042"
+          },
+          "after": {
+            "file": "evidence/capture3_exit/pts_1140.639500.png",
+            "source_pts_seconds": 1140.6395,
+            "sample_index": 2,
+            "relative_native_index": 2,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "0274980e2a073f0aaa26db095c2cea72f6bb444beeff708a5c8362f0233bc93f",
+            "bgr_sha256": "9096dcba5b2f7803ca58bd962796969b234b3bc0975c2753bece044717b830f4"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible leading silhouette extends from the housing toward/across its front edge onto the downstream ramp; a screen-space exit proxy, not the final seated ball, geometric 3D crossing or permanent isolation."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_identifiable",
+          "note": "Internal one-way gate/selection plane and irreversibility are not established; visible held/separate position does not certify permanent isolation."
+        },
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_observable",
+          "note": "No electrical log or unambiguous button-contact onset in this native outlet review."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "observation_label": "visible image state; source rendition timing",
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 4,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1151.783967,
+          "upper_pts_seconds": 1151.817333,
+          "bracket_width_seconds": 0.033366,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture4_dense/pts_1151.783967.png",
+            "source_pts_seconds": 1151.783967,
+            "sample_index": 11,
+            "relative_native_index": 11,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "ded237ab215945e8fde5c3b7c81e7e1701c293b26bc5d2f8f1c45d5133d2cbbc",
+            "bgr_sha256": "fd2a85108bfe2a64647297bb49fcba84311ab46ebd2d91527be6fc3f1419e0f1"
+          },
+          "after": {
+            "file": "evidence/capture4_dense/pts_1151.817333.png",
+            "source_pts_seconds": 1151.817333,
+            "sample_index": 12,
+            "relative_native_index": 12,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "ea179e1a02c50950b55d554aeeddf0fdb6028f1a74498d0d2d123984936f38da",
+            "bgr_sha256": "431ecaa2d8433f1e490ce8d2c69019bf66aee5a4b08f666980a56d04a3605f35"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible outlet-assembly displacement relative to the preceding unchanged image; not electrical control onset or calibrated gate opening."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1152.017533,
+          "upper_pts_seconds": 1152.0509,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture4_dense/pts_1152.017533.png",
+            "source_pts_seconds": 1152.017533,
+            "sample_index": 18,
+            "relative_native_index": 18,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "1a684ff1cdaf13d522954c3fc5606adafa030410beddbad4250011aab387c71c",
+            "bgr_sha256": "9458e3d717e87130632be64a821b9bc9f75ed8291aed72c03ffa4ab4e4868f60"
+          },
+          "after": {
+            "file": "evidence/capture4_dense/pts_1152.050900.png",
+            "source_pts_seconds": 1152.0509,
+            "sample_index": 19,
+            "relative_native_index": 19,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "0df36a55139fd14794c2dda301a2cc98944057080dd9be08fb8f75bc7eeb1302",
+            "bgr_sha256": "2dc7cd24f91edf68a2232294ca439f91fbf82bdb69dd6379373152ffe3b72fc2"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "First clearly discernible yellow ball patch in the collector after the last image without a resolved patch; translucent acrylic/reflection/blur make this a visibility threshold, not calibrated physical entry. No exact event time assigned."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1153.018533,
+          "upper_pts_seconds": 1153.0519,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture4_late/pts_1153.018533.png",
+            "source_pts_seconds": 1153.018533,
+            "sample_index": 5,
+            "relative_native_index": 5,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "4425165da7a03dca8e69e9ab71e4542a7f4b0c08947098b9db4339d1c0f7acb3",
+            "bgr_sha256": "b06b29fd44e8a2071f8fa57ac64b938e2c674af05f6843823af06f381b967500"
+          },
+          "after": {
+            "file": "evidence/capture4_late/pts_1153.051900.png",
+            "source_pts_seconds": 1153.0519,
+            "sample_index": 6,
+            "relative_native_index": 6,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "0c0c591646c37d5ffa7d68ae9ebf534af8066f11810bc3d9ca0684191d0acb54",
+            "bgr_sha256": "72a44fa3dcc750372018ae84db587fdc10713655e8d72393253446c30ba0b2ae"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible leading silhouette extends from the housing toward/across its front edge onto the downstream ramp; a screen-space exit proxy, not the final seated ball, geometric 3D crossing or permanent isolation."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_identifiable",
+          "note": "Internal one-way gate/selection plane and irreversibility are not established; visible held/separate position does not certify permanent isolation."
+        },
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_observable",
+          "note": "No electrical log or unambiguous button-contact onset in this native outlet review."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "observation_label": "visible image state; source rendition timing",
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 5,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1164.129633,
+          "upper_pts_seconds": 1164.163,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture5_dense/pts_1164.129633.png",
+            "source_pts_seconds": 1164.129633,
+            "sample_index": 6,
+            "relative_native_index": 6,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "60a93086f342d1f37d78f8af2d9a84f000cfc5fff857525b23881a13a47d39d5",
+            "bgr_sha256": "7344df71fa47cbca8c06ca7d7052a2e8afbcdc8f6c13db6ba494e7deaad5180e"
+          },
+          "after": {
+            "file": "evidence/capture5_dense/pts_1164.163000.png",
+            "source_pts_seconds": 1164.163,
+            "sample_index": 7,
+            "relative_native_index": 7,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "d5090e3f8d1d685ff18b212f11be154dc03c493f0c017bf172733c1a2e059f91",
+            "bgr_sha256": "11e93354a924af6bdd119afd67afce2adb402c4de3be8ea224b4741d46c22dca"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible outlet-assembly displacement relative to the preceding unchanged image; not electrical control onset or calibrated gate opening."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1165.5644,
+          "upper_pts_seconds": 1165.597767,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture5_late/pts_1165.564400.png",
+            "source_pts_seconds": 1165.5644,
+            "sample_index": 6,
+            "relative_native_index": 6,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "1fc14809553c70d95d41200170605c291bbb30f55b9bf947cbd96dedd7d18e59",
+            "bgr_sha256": "38b1de22527abfc616ee65699506a4f2d2dad752eb1450a9a339608aa0933d1d"
+          },
+          "after": {
+            "file": "evidence/capture5_late/pts_1165.597767.png",
+            "source_pts_seconds": 1165.597767,
+            "sample_index": 7,
+            "relative_native_index": 7,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "8a4b9a707423afe74e3280bb0a04f6da18836e45e50cf65e2034a7f69c73c0f7",
+            "bgr_sha256": "b03f66f744d9a03007d235f7e5b010905de46446d96d118a038999868887059f"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "First clearly discernible yellow ball patch in the collector after the last image without a resolved patch; translucent acrylic/reflection/blur make this a visibility threshold, not calibrated physical entry. No exact event time assigned."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1166.6655,
+          "upper_pts_seconds": 1166.698867,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture5_exit/pts_1166.665500.png",
+            "source_pts_seconds": 1166.6655,
+            "sample_index": 7,
+            "relative_native_index": 7,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "bcc8ac154f70554d613e7d52c0f70a13abdb76221b0869bbb7bcf28fc58fe0d1",
+            "bgr_sha256": "907e064f0a323bb1d9bae5e8eae2c9a504f7ac274e2b9d620a9bae16901d7889"
+          },
+          "after": {
+            "file": "evidence/capture5_exit/pts_1166.698867.png",
+            "source_pts_seconds": 1166.698867,
+            "sample_index": 8,
+            "relative_native_index": 8,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "d58b27b56ab60e852b793ca21f08d064f1c3af4bf19ff273f01d18221a227c12",
+            "bgr_sha256": "0e97f1f3249b2d778dc124b74d76c9b33841d9083a5f18ffb1aa6ee604d04307"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible leading silhouette extends from the housing toward/across its front edge onto the downstream ramp; a screen-space exit proxy, not the final seated ball, geometric 3D crossing or permanent isolation."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_identifiable",
+          "note": "Internal one-way gate/selection plane and irreversibility are not established; visible held/separate position does not certify permanent isolation."
+        },
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_observable",
+          "note": "No electrical log or unambiguous button-contact onset in this native outlet review."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "observation_label": "visible image state; source rendition timing",
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 6,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": 1178.177,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": {
+            "file": "evidence/capture6_dense/pts_1178.177000.png",
+            "source_pts_seconds": 1178.177,
+            "sample_index": 2,
+            "relative_native_index": 2,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "11364b94be238801d1a0271ea2b5fcf552d4e3fa60c1147ec57becd6b51c9c64",
+            "bgr_sha256": "a3eee80f897d1461eb80d1fad2421edf0ecf9be4ec4a93060326726a25d03018"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "left_censored_by_camera_cut",
+          "note": "First close-up at1178.177 already shows the open/lifted mechanism. Later visible displacement around1178.4 is secondary motion and is not first onset. Preceding wide shot does not resolve outlet state."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1178.744233,
+          "upper_pts_seconds": 1178.7776,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture6_dense/pts_1178.744233.png",
+            "source_pts_seconds": 1178.744233,
+            "sample_index": 19,
+            "relative_native_index": 19,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "7a5a7ac7e0fd5a9aebdbee14565d8cbf39be00b943e619bd3d31ed40ffa41789",
+            "bgr_sha256": "f0e12fe7e320e9dcb9e137446fe1819b264dc572e7c832a5d27b942ef86e4b42"
+          },
+          "after": {
+            "file": "evidence/capture6_dense/pts_1178.777600.png",
+            "source_pts_seconds": 1178.7776,
+            "sample_index": 20,
+            "relative_native_index": 20,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "dbb683ac39ae32d4664d976b44acd67722da1c7f7c6563bef5c7a6f49ac862ba",
+            "bgr_sha256": "5b19d5f99f7eb476efcd2450be3f1e71cf16fb2c3d43182acb2a80c16691f65a"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "First clearly discernible yellow ball patch in the collector after the last image without a resolved patch; translucent acrylic/reflection/blur make this a visibility threshold, not calibrated physical entry. No exact event time assigned."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1179.811967,
+          "upper_pts_seconds": 1179.8787,
+          "bracket_width_seconds": 0.066733,
+          "encoded_frame_intervals": 2,
+          "before": {
+            "file": "evidence/capture6_late/pts_1179.811967.png",
+            "source_pts_seconds": 1179.811967,
+            "sample_index": 8,
+            "relative_native_index": 8,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "674565712b0dd32fb1415a1c473cc62ecf6b232d36859aaa89dbf31bc9dc9297",
+            "bgr_sha256": "9993d1602ef24f33059503b64945ec0e702d53e01d3680e317c650400466c0e5"
+          },
+          "after": {
+            "file": "evidence/capture6_late/pts_1179.878700.png",
+            "source_pts_seconds": 1179.8787,
+            "sample_index": 10,
+            "relative_native_index": 10,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "46470f0f219da4071d8c7526b5b22990558451f98202e6fef8cb10fa9b6560a1",
+            "bgr_sha256": "0594dca0d89b1468ecec1fb0a70928a77015f73711e9440ae554a75b451c0f4d"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Conservative two-interval bracket: edge at1179.845333 is too close to the housing/post silhouette under blur; clear extension onto downstream ramp by1179.878700. Not a calibrated capture/isolation plane."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_identifiable",
+          "note": "Internal one-way gate/selection plane and irreversibility are not established; visible held/separate position does not certify permanent isolation."
+        },
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_observable",
+          "note": "No electrical log or unambiguous button-contact onset in this native outlet review."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "observation_label": "visible image state; source rendition timing",
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 7,
+      "capture_type": "special",
+      "events": [
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1191.023167,
+          "upper_pts_seconds": 1191.056533,
+          "bracket_width_seconds": 0.033366,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture7_early/pts_1191.023167.png",
+            "source_pts_seconds": 1191.023167,
+            "sample_index": 11,
+            "relative_native_index": 11,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "61e421d895cec52425ede13435e3d9b51bf6c3dbd98d0c1bb123b84914a87255",
+            "bgr_sha256": "3cff8e715c000f287eb45ff8f91598bab9e8365c4b51d8f48df0f7394053d1f6"
+          },
+          "after": {
+            "file": "evidence/capture7_early/pts_1191.056533.png",
+            "source_pts_seconds": 1191.056533,
+            "sample_index": 12,
+            "relative_native_index": 12,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "8633e8441830ccb2674e13e732005da5b2f2e51912a352a2c9f976b11eb28c74",
+            "bgr_sha256": "2b63422ef35900ff4bb0188b90b261144fe370b3aa4ace96399ca26410d9621d"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible outlet-assembly displacement relative to the preceding unchanged image; not electrical control onset or calibrated gate opening."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1192.2911,
+          "upper_pts_seconds": 1192.324467,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture7_dense/pts_1192.291100.png",
+            "source_pts_seconds": 1192.2911,
+            "sample_index": 20,
+            "relative_native_index": 20,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "b980097cedaccf3eec138faec76c582a1ed82051be76393be723e51f1c4d8414",
+            "bgr_sha256": "557896f7ba160b8c1efcbe1d574aec3140ca06bb838aa6b66af98f9c242b98d3"
+          },
+          "after": {
+            "file": "evidence/capture7_dense/pts_1192.324467.png",
+            "source_pts_seconds": 1192.324467,
+            "sample_index": 21,
+            "relative_native_index": 21,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "4ef9aecd305e7a43a796c83022aa6fe2166f6fd8a84e07c642214441f10ed7bb",
+            "bgr_sha256": "e6e974f49a9a576e34ac7a45bd84d775507221b91c903b76e8f477cd63d228f4"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "First clearly discernible yellow ball patch in the collector after the last image without a resolved patch; translucent acrylic/reflection/blur make this a visibility threshold, not calibrated physical entry. No exact event time assigned."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1193.959433,
+          "upper_pts_seconds": 1193.9928,
+          "bracket_width_seconds": 0.033367,
+          "encoded_frame_intervals": 1,
+          "before": {
+            "file": "evidence/capture7_late/pts_1193.959433.png",
+            "source_pts_seconds": 1193.959433,
+            "sample_index": 27,
+            "relative_native_index": 27,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "330c088adb82daf44e7464ad695d8f4fc4e2e69adf2df47308dda46948063273",
+            "bgr_sha256": "93e35cfa3b4f25f5ffb33944a0b243d92d63d3ed7a82a6d35c2842fed1957060"
+          },
+          "after": {
+            "file": "evidence/capture7_late/pts_1193.992800.png",
+            "source_pts_seconds": 1193.9928,
+            "sample_index": 28,
+            "relative_native_index": 28,
+            "native_crop_width": 700,
+            "native_crop_height": 560,
+            "sha256": "cf3f3160a622b1f5528e041e844d4c5283fb2251609645d62a1d10c96d54b285",
+            "bgr_sha256": "31de65b0ceae6c909036c2d65030b02f81d586040b7afe2c3b5767482f828326"
+          },
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "observed_image_state_transition",
+          "note": "Visible leading silhouette extends from the housing toward/across its front edge onto the downstream ramp; a screen-space exit proxy, not the final seated ball, geometric 3D crossing or permanent isolation."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_identifiable",
+          "note": "Internal one-way gate/selection plane and irreversibility are not established; visible held/separate position does not certify permanent isolation."
+        },
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "encoded_frame_intervals": null,
+          "before": null,
+          "after": null,
+          "confidence_class": "qualitative_visual_review_unvalidated",
+          "status": "NA_not_observable",
+          "note": "No electrical log or unambiguous button-contact onset in this native outlet review."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "observation_label": "visible image state; source rendition timing",
+      "empirical_physical_event_accuracy_frames": null
+    }
+  ],
+  "corrections": [
+    {
+      "capture_index": 1,
+      "prior_claim": "first visible collector1115.0139–1115.2141 in480px overview",
+      "native_evidence": "Ball20 already inuppercollector at1114.2131.",
+      "resolution": "Withdraw coarse first-visible bracket; entry left-censored/NA. Retain later interval only as release/exit evidence."
+    },
+    {
+      "capture_index": 5,
+      "prior_claim": "first visible collector1164.4633–1164.6635 in480px overview",
+      "native_evidence": "No resolved collector ball patch through1165.5644; first unambiguous patch at1165.597767. This is a visible-state threshold, not proof of prior physical absence.",
+      "resolution": "Withdraw old preview bracket as resolution/reflection misclassification; use native visibility bracket, not calibrated physical entry."
+    },
+    {
+      "capture_index": 6,
+      "prior_claim": "first mechanism motion1178.2771–1178.4773 in480px overview",
+      "native_evidence": "First close-up1178.177already mechanismopen.",
+      "resolution": "First onset left-censored by cut. Subsequent displacement is secondary motion."
+    },
+    {
+      "capture_index": 7,
+      "prior_claim": "first clear collector1192.2911–1192.4913 fromcoarsepreview",
+      "native_evidence": "First discernible upper-collector patch1192.324467 after1192.2911.",
+      "resolution": "Narrow native image visibility bracket; no exact physical entry time."
+    }
+  ],
+  "initial_window_limitations": [
+    {
+      "capture_index": 3,
+      "original_window": "capture3_late ends1140.606133 duringrelease",
+      "resolution": "Added capture3_exit; native pair1140.606133–1140.639500."
+    },
+    {
+      "capture_index": 5,
+      "original_window": "capture5_late ends1166.431933 withballheld",
+      "resolution": "Added capture5_exit; native pair1166.665500–1166.698867."
+    }
+  ],
+  "failed_attempts": [
+    {
+      "operation": "native image path lookup",
+      "requested": "capture7_late/pts_1193.959533.png",
+      "outcome": "file_not_found",
+      "resolution": "Read exact frames.csv PTS1193.959433; then inspected existing PNG. No timestamp interpolation or file creation."
+    }
+  ],
+  "summary": {
+    "capture_count": 7,
+    "visible_mechanism_onset_brackets": 5,
+    "mechanism_onsets_censored": 2,
+    "first_ball_visibility_brackets": 6,
+    "first_ball_visibility_censored": 1,
+    "visible_ramp_exit_proxy_brackets": 7,
+    "certified_permanent_isolation_events": 0,
+    "exact_physical_event_timestamps": 0,
+    "physical_rpm": null
+  },
+  "reviewed_artifact_sha256": {
+    "evidence/capture1_dense/extraction.json": "f8625cde037eaead1ed4881b182f97966ba3f59e58ff9ae37bcfc30c07795759",
+    "evidence/capture1_dense/frames.csv": "aa5ba65ab872d96d62d945e34a2930bd6454f5f6dc854ae91ff05a6aea32ae5f",
+    "evidence/capture1_dense/pts_1114.213100.png": "dd4ce5ae7811a3391b18f342a0914e9dcff688d2aa2621df0db01e3bfe80de64",
+    "evidence/capture1_dense/pts_1115.214100.png": "5618e0d77a5824faad1a6c2f43becc4746e714c6e17bbc3b326dfb31d2073a97",
+    "evidence/capture1_dense/pts_1115.247467.png": "0ec203164ae119068b4eaeb97a1e0d0a403e4d81d6495037862754a24ace1dc9",
+    "evidence/capture1_dense/sheet_000.jpg": "32f864973ae46e266f74704c7e24c2d1bbd20459d80c7bd12736ca2128c07e1b",
+    "evidence/capture1_dense/sheet_002.jpg": "00b515fe5ebf03faf7c4dc63fa7fa7a1c482fadb2ce06d46f7c9110271f1bb5f",
+    "evidence/capture1_dense/sheet_003.jpg": "e090d7ecc078f0dcb211b95d22f6304647c2fcd5def0be9850540a34108f4abc",
+    "evidence/capture2_dense/extraction.json": "37f0fb861d1abc57301919cb1f7d671bdc8eff4ee9c006a5850210675285804e",
+    "evidence/capture2_dense/frames.csv": "ef77acd3ba14dd58499223018eb5304ef39919f9142facac005b5418606ab32f",
+    "evidence/capture2_dense/pts_1126.091633.png": "a8d2c08774fe22f3a3f3ab3beb894e929fe12617c5848db4829128124568669b",
+    "evidence/capture2_dense/pts_1126.125000.png": "fe4bc4549bfe247d06f7403fa88c690e8487c268ccbbc07915181f1e4e2641d8",
+    "evidence/capture2_dense/pts_1126.291833.png": "6d10790e04c9d2525cf32acfe79bfa170f57c35b2eaa825a30119c728a9f8836",
+    "evidence/capture2_dense/pts_1126.325200.png": "cf73a4dbdc8ae67ada4b26ad19a4b42d75782031ef4a8d8d0404b795dd22d36a",
+    "evidence/capture2_dense/pts_1127.326200.png": "8333d4bf9675975e6fb179341938e90748e40e9f32206639e7ff1fc13381d6e3",
+    "evidence/capture2_dense/pts_1127.359567.png": "09d33b5089ac2417cf60bb3db04d7bacce6d320d0e65e41dbfc229b131207fbd",
+    "evidence/capture2_dense/sheet_000.jpg": "6be8ef84aa1d47b6e055170ebf4c5f56a768e4b556c3b3695d39b096db56afb2",
+    "evidence/capture2_dense/sheet_001.jpg": "ff81ac2929e5d498582b54bb63967ecaf9fc9c3ca1f83180c3d6921c24824829",
+    "evidence/capture2_dense/sheet_003.jpg": "c351ba05083529b4d5b7153f67ce282890b77d9e433fcee54ee808e3e86b6d26",
+    "evidence/capture2_late/extraction.json": "b7c702bc32c19acbec9885607b736187b14164d0bea133d906e179f6fd700dce",
+    "evidence/capture2_late/frames.csv": "709f1513cd18a177c77643a522a99a028a16ddbf8d094a98241ab23fe1299442",
+    "evidence/capture2_late/sheet_000.jpg": "30dafb8e033f608e8548f816821b6145b4470a4af27bc436194446d036b08192",
+    "evidence/capture2_late/sheet_001.jpg": "7f82722604313b24405ee5e0de3af327079746efeeed225fff8581cacccf2632",
+    "evidence/capture3_dense/extraction.json": "2b5f3b8db1c22e2f422aef6c198f321fe1dff4dd588f8503b30f10da980f7365",
+    "evidence/capture3_dense/frames.csv": "f9f57d1e8cf0f916e3c67847baf242d0c414966cf33b8b000383a327408453dd",
+    "evidence/capture3_dense/pts_1138.504033.png": "8cbaefa460abf6c364a9e96d1ed77cc952d46c11d52c10235de2cf8800d0242e",
+    "evidence/capture3_dense/pts_1138.570767.png": "e2e189d2b706d39eb67904ee3399a3e0e62a1e75a9470765e1b00a5980a8ed04",
+    "evidence/capture3_dense/pts_1138.971167.png": "a6caea12fe56eb059ddc98c51a1b48d6cb717b7440e409823557061fa2c43ca0",
+    "evidence/capture3_dense/pts_1139.004533.png": "3a6169308fb5c145dc6b221952ed9974c5c7987451ddb0a119480a2a0572bae9",
+    "evidence/capture3_dense/sheet_000.jpg": "84b68b7b260c7e31a5105420b390930e97a1e6d407a2c4f689273ba95aa9aa3c",
+    "evidence/capture3_dense/sheet_001.jpg": "e1a5d91dd1ead166400b8dbb7fc49939a1abb73c6bd55c5d02aee9e8bcc5a12f",
+    "evidence/capture3_exit/extraction.json": "7a01fe2409dd65f2cd4f99cd42ac526e94b198c46c163e7f0e3209fc15b1b73d",
+    "evidence/capture3_exit/frames.csv": "af45a3e688fa7f5eb8dad10f304db7f278c73eb343eb80610660c1c99147fa4e",
+    "evidence/capture3_exit/pts_1140.606133.png": "77361579eeddbd24026d9e7720543b73a24448cc8f12abc0fa77d8ef787a214d",
+    "evidence/capture3_exit/pts_1140.639500.png": "0274980e2a073f0aaa26db095c2cea72f6bb444beeff708a5c8362f0233bc93f",
+    "evidence/capture3_exit/sheet_000.jpg": "4b0df1da579e27d77d495a8f773b4286cf907251a3815ec4c4cb35e911b2082b",
+    "evidence/capture3_late/extraction.json": "d076eaa6871e3bf49bdf8946e5907bddaf702e0fbdfe352bc6893b12610f88c7",
+    "evidence/capture3_late/frames.csv": "f9db4f39bf62017c8e6b4edc1013c8d1cdebb264af3db592de9dec6a7df4d497",
+    "evidence/capture3_late/pts_1140.572767.png": "6b4511e096ce632fdc66038d76c6736c05a7bdcbef4220590b710e5f17e76cb0",
+    "evidence/capture3_late/pts_1140.606133.png": "77361579eeddbd24026d9e7720543b73a24448cc8f12abc0fa77d8ef787a214d",
+    "evidence/capture3_late/sheet_000.jpg": "04ddc9a2a07f074a1c42cb7a3713496ea89446bec43a6902f21a9fb6ea5213b2",
+    "evidence/capture3_late/sheet_001.jpg": "3e3ec40523075a34aaa7269b245f4a9d0a45e1a4a89ede469abad05c57681e19",
+    "evidence/capture4_dense/extraction.json": "5ec0b4096bfae2f6f097b08c7be4ea65b684a46745e601f3c798b3bd79e1d1bc",
+    "evidence/capture4_dense/frames.csv": "3b150d23abf348b55ab01f5751e2ceab064413735f5efa4217a4296a1fde5c01",
+    "evidence/capture4_dense/pts_1151.783967.png": "ded237ab215945e8fde5c3b7c81e7e1701c293b26bc5d2f8f1c45d5133d2cbbc",
+    "evidence/capture4_dense/pts_1151.817333.png": "ea179e1a02c50950b55d554aeeddf0fdb6028f1a74498d0d2d123984936f38da",
+    "evidence/capture4_dense/pts_1152.017533.png": "1a684ff1cdaf13d522954c3fc5606adafa030410beddbad4250011aab387c71c",
+    "evidence/capture4_dense/pts_1152.050900.png": "0df36a55139fd14794c2dda301a2cc98944057080dd9be08fb8f75bc7eeb1302",
+    "evidence/capture4_dense/sheet_000.jpg": "9d791e894a1c0cacebfc1fc17d81e3ccb0e4e6f1df3da7b0aeee3cb1b5eac6ba",
+    "evidence/capture4_dense/sheet_001.jpg": "956662d5751813b51945ab58d38e7bc64e3cc4e1c16750674c2be3133577ce29",
+    "evidence/capture4_late/extraction.json": "e303d3d56775cac760d683f1b3b3df7b1dc16d30bfe7550f2d6af55fad5c4ead",
+    "evidence/capture4_late/frames.csv": "c6595d0f5ed726d6d6e6f0f20f9afab5c63a14196a1b254d606600a2bb3f0ab1",
+    "evidence/capture4_late/pts_1153.018533.png": "4425165da7a03dca8e69e9ab71e4542a7f4b0c08947098b9db4339d1c0f7acb3",
+    "evidence/capture4_late/pts_1153.051900.png": "0c0c591646c37d5ffa7d68ae9ebf534af8066f11810bc3d9ca0684191d0acb54",
+    "evidence/capture4_late/sheet_000.jpg": "415c39e8e9c21d4eabc508bd2453b837cf956404a9a0b2d86b4b275c01de4df3",
+    "evidence/capture5_dense/extraction.json": "f6d5d48d67d52bcd2c442c7d464d971d37a462409112b1143246ec81c8631fde",
+    "evidence/capture5_dense/frames.csv": "274617b5a5e1a8362b8df2cc72cfa927bcdc6e8b5804738c9f1b9f3e2700f036",
+    "evidence/capture5_dense/pts_1164.129633.png": "60a93086f342d1f37d78f8af2d9a84f000cfc5fff857525b23881a13a47d39d5",
+    "evidence/capture5_dense/pts_1164.163000.png": "d5090e3f8d1d685ff18b212f11be154dc03c493f0c017bf172733c1a2e059f91",
+    "evidence/capture5_dense/sheet_000.jpg": "43feaf63678f723da787a2101739f491c45a54002c10d9ddb415a914d4bf823d",
+    "evidence/capture5_dense/sheet_001.jpg": "8da8a58a2829516b65f354c321cf73e0aa32ae6a028ce02945c15e215e0caea4",
+    "evidence/capture5_exit/extraction.json": "661233a1e7213529d7fbc82201ab8ff3835b86ac2f7f71a025a16ce9ba666fb4",
+    "evidence/capture5_exit/frames.csv": "91e51f4d66beefe62b72f3302af3d1cc70d957d936a505b1189fe9d95a82513d",
+    "evidence/capture5_exit/pts_1166.665500.png": "bcc8ac154f70554d613e7d52c0f70a13abdb76221b0869bbb7bcf28fc58fe0d1",
+    "evidence/capture5_exit/pts_1166.698867.png": "d58b27b56ab60e852b793ca21f08d064f1c3af4bf19ff273f01d18221a227c12",
+    "evidence/capture5_exit/pts_1166.732233.png": "fcc71c62b3ae24e5afbe9d11d3151d80551daa6c78be9c99cefba7a4952ec7e3",
+    "evidence/capture5_exit/sheet_000.jpg": "ca8002e9c26e6fff9849a28b4894a937cb18096c6fa6283f8b63ff4acfb26ecc",
+    "evidence/capture5_late/extraction.json": "2b9d62379d5deb938de74683c0ea0a74abd77e7a6441b996c07f0ebd049b6554",
+    "evidence/capture5_late/frames.csv": "f250d6ff0e570387fd99b589bdd6930fd868a861ec8a8ebd123e0e2cc4d9c69a",
+    "evidence/capture5_late/pts_1165.564400.png": "1fc14809553c70d95d41200170605c291bbb30f55b9bf947cbd96dedd7d18e59",
+    "evidence/capture5_late/pts_1165.597767.png": "8a4b9a707423afe74e3280bb0a04f6da18836e45e50cf65e2034a7f69c73c0f7",
+    "evidence/capture5_late/pts_1166.431933.png": "53e5f1589996277ade3c3fc6b4d885fd1a32955340fa167c0346f5363dbb3011",
+    "evidence/capture5_late/sheet_000.jpg": "abd8b15e6b8bcb5f6f6e2358252e774f5ac80609c1ff4e1c65196e6b32d27e57",
+    "evidence/capture5_late/sheet_002.jpg": "2a80e62c3ee2184e2a36c171f8bea7e24059546cba1045d14e28c7cd4efb2fd7",
+    "evidence/capture6_dense/extraction.json": "85935a7d73dfe3cf292abb813674cf103a43302b2d3b678690cc61aa1482280e",
+    "evidence/capture6_dense/frames.csv": "b38b3f3d26299092204f9c56d0952569b91cb646dc4a02a5ba66463adf02154b",
+    "evidence/capture6_dense/pts_1178.177000.png": "11364b94be238801d1a0271ea2b5fcf552d4e3fa60c1147ec57becd6b51c9c64",
+    "evidence/capture6_dense/pts_1178.744233.png": "7a5a7ac7e0fd5a9aebdbee14565d8cbf39be00b943e619bd3d31ed40ffa41789",
+    "evidence/capture6_dense/pts_1178.777600.png": "dbb683ac39ae32d4664d976b44acd67722da1c7f7c6563bef5c7a6f49ac862ba",
+    "evidence/capture6_dense/sheet_000.jpg": "af6844423ad231e25bfb8f21b574d0b89776582ca2224b663eca4f71f982cd98",
+    "evidence/capture6_dense/sheet_001.jpg": "f273876a51e09ceeacbff018cdef6b089315fba9ca331ac0f2d07386a4ff777d",
+    "evidence/capture6_late/extraction.json": "f1ea24aae20a879549df1bf4cef67bbbf65b58f47afe2b70d8dfe9b87ee2951e",
+    "evidence/capture6_late/frames.csv": "33180119d75bd55c1756190b3505bce2c00cd20b18f19d2516d3e06c0f334823",
+    "evidence/capture6_late/pts_1179.811967.png": "674565712b0dd32fb1415a1c473cc62ecf6b232d36859aaa89dbf31bc9dc9297",
+    "evidence/capture6_late/pts_1179.845333.png": "c40c0aa08a65bfaee54667e7695f585ec7897546357f86115f85c850f903fd2a",
+    "evidence/capture6_late/pts_1179.878700.png": "46470f0f219da4071d8c7526b5b22990558451f98202e6fef8cb10fa9b6560a1",
+    "evidence/capture6_late/sheet_000.jpg": "fc60b162e27117cac53de9b46c8f9b5ce81feb80d3090fd44b1e41d27e4adf6b",
+    "evidence/capture7_dense/extraction.json": "01307dac934985e370e33f57b4f3ef95ebf91ccfa5b4ae9d77a772469ece8293",
+    "evidence/capture7_dense/frames.csv": "9fa6bb1d02cd73e4654a2a87602bb9f0b46755373b701ba038ebbca4a55b4e96",
+    "evidence/capture7_dense/pts_1192.291100.png": "b980097cedaccf3eec138faec76c582a1ed82051be76393be723e51f1c4d8414",
+    "evidence/capture7_dense/pts_1192.324467.png": "4ef9aecd305e7a43a796c83022aa6fe2166f6fd8a84e07c642214441f10ed7bb",
+    "evidence/capture7_dense/sheet_001.jpg": "070651561fd0ef4c548dce54aaa2f6c3c3bca521e4ac66e3e71e44e81ab9199d",
+    "evidence/capture7_dense/sheet_002.jpg": "a99771074588acd0c49f328ad9f98bb0c3b89d7d52336eb82dc4107a10c547c7",
+    "evidence/capture7_early/extraction.json": "7aace37f9cba4d781c94caf314d52970ba204bd2886559dbee85beb384abe668",
+    "evidence/capture7_early/frames.csv": "2c11d120a44b9512088d5e89b48e2896d28ad37db50a77645330c381b8de38ae",
+    "evidence/capture7_early/pts_1191.023167.png": "61e421d895cec52425ede13435e3d9b51bf6c3dbd98d0c1bb123b84914a87255",
+    "evidence/capture7_early/pts_1191.056533.png": "8633e8441830ccb2674e13e732005da5b2f2e51912a352a2c9f976b11eb28c74",
+    "evidence/capture7_early/sheet_000.jpg": "bc1381b2d2446e12ca7773074ae8194ca6b35c6e6bdbfc89759b1a3a966c5375",
+    "evidence/capture7_early/sheet_001.jpg": "0dcbaa54b212441eb333ab6c208e724b1a6a2922b8209a9736561c69fc68cea2",
+    "evidence/capture7_late/extraction.json": "c14ecf50b70fcdb59a1c39de25303e2f29f4c067da7294bd6849a5b0ea63da92",
+    "evidence/capture7_late/frames.csv": "1e6b87af919b04e07a3aae3388b032f3f34a93230255330e216a42571752f9a8",
+    "evidence/capture7_late/pts_1193.959433.png": "330c088adb82daf44e7464ad695d8f4fc4e2e69adf2df47308dda46948063273",
+    "evidence/capture7_late/pts_1193.992800.png": "cf3f3160a622b1f5528e041e844d4c5283fb2251609645d62a1d10c96d54b285",
+    "evidence/capture7_late/pts_1194.026167.png": "43720c08c851b6085b7be72ea46365ff824b9f2bb7865a6a38d4297eaa2b85b1",
+    "evidence/capture7_late/sheet_001.jpg": "db736f581e4a75fe1322faa5501b9c36c6f7da795d2999842abb612a7d217d85",
+    "evidence/capture7_late/sheet_002.jpg": "2797848339ca15c0094bd08eabd60c4fcdd053e0ff6ed8008fc8b86cac802607"
+  },
+  "identical_consecutive_crop_content_by_window": {
+    "capture2_dense": [
+      {
+        "before_pts": 1126.792333,
+        "after_pts": 1126.8257,
+        "bgr_sha256": "c25fdaf22e701d8bd98c79a4983ab2d0a8a17cc93818f631e5423abcaf0cb177"
+      }
+    ],
+    "capture4_late": [
+      {
+        "before_pts": 1153.152,
+        "after_pts": 1153.185367,
+        "bgr_sha256": "33a965180c865e1d82c3548544ce904d0a783b31ad3d9e2578f6f116fa8c5aae"
+      }
+    ],
+    "capture5_dense": [
+      {
+        "before_pts": 1164.830333,
+        "after_pts": 1164.8637,
+        "bgr_sha256": "a93b3b398539bf7d1ac87a980c2e5321895ec8e5e308ee6e99c60b60d2556954"
+      }
+    ],
+    "capture5_late": [
+      {
+        "before_pts": 1165.831333,
+        "after_pts": 1165.8647,
+        "bgr_sha256": "132bd7a310ed8a08c275764cbf92fca4596eeaab6ac71e9bd892d4c20f93d7ed"
+      }
+    ],
+    "capture6_late": [
+      {
+        "before_pts": 1179.711867,
+        "after_pts": 1179.745233,
+        "bgr_sha256": "4693b2539c7840d38d3e56c25b331a0bc97c7c8278b84700ed9e1083a83f6bc8"
+      }
+    ]
+  },
+  "validation": {
+    "all_primary_pair_files_exist": true,
+    "primary_pair_pts_match_manifests": true,
+    "all_referenced_native_frame_sha256_match_manifest": true,
+    "point_timestamps_all_NA": true,
+    "artifact_hash_count": 106
+  }
+}

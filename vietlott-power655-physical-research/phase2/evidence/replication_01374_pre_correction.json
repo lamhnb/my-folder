@@ -1,0 +1,1478 @@
+{
+  "schema_version": "1.0",
+  "review_kind": "locked_definition_replication_same_AI_session",
+  "human_review": false,
+  "blind_review": false,
+  "reviewer_calibrated": false,
+  "statistically_independent_experimental_validation": false,
+  "source": {
+    "id": "Eid9PPhMn_0",
+    "draw_id_context": "01374",
+    "input_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+    "format_id": "137",
+    "source_dimensions": [
+      1920,
+      1080
+    ],
+    "source_frame_rate": "30000/1001",
+    "camera_original_frame_rate": null,
+    "shutter_exposure_seconds": null,
+    "physical_clock_accuracy_seconds": null
+  },
+  "protocol_source": "evidence/native_refinement.json",
+  "protocol_source_sha256_at_replication": "055b898479467b8d7e81b9cad12da2d2376364a5901afffffbc15f459de11487",
+  "ramp_proxy_quality_target_seconds": 0.2002,
+  "timing_interpretation": [
+    "Bounds describe reviewed encoded-image states, not empirical physical accuracy or confidence intervals.",
+    "No exact point event times, interpolation, hidden positions or physical RPM are supplied.",
+    "Seven attempts within one draw are not seven independent draw-level samples.",
+    "Native before/after crops were inspected individually for ramp proxies. Other visible-state onsets use native-crop contact sheets at every six encoded frames; graphic onsets use overview samples every sixty frames.",
+    "Control/collector/ramp/graphic are separate definitions. Camera cuts and missing upper-collector views do not become precise capture selection times."
+  ],
+  "mixer_start": {
+    "event_type": "official_mixing_start",
+    "event_timestamp_seconds": null,
+    "lower_pts_seconds": null,
+    "upper_pts_seconds": 1082.047633,
+    "bracket_width_seconds": null,
+    "before": null,
+    "after": {
+      "file": "evidence/replication_01374_overview/pts_1082.047633.png",
+      "source_pts_seconds": 1082.047633,
+      "sha256": "f872c31cebbbe1cdc8d43c47abb255ca0fb6751310f0be7644c7d57bc79325d8",
+      "bgr_sha256": "cc5fbb4f90318fe3e8fa5fd16e1a9602490ff85846e7ddc110f1df28f6f60773",
+      "sample_index": 16,
+      "relative_native_index": 960,
+      "native_crop_width": 480,
+      "native_crop_height": 270
+    },
+    "status": "left_censored_first_mixing_state_after_cut",
+    "confidence_class": "qualitative_AI_visual_review_unvalidated",
+    "note": "First clear close-up with balls visibly moving after control view. Actual mixer-start transition is not continuously visible; this is an upper bound/first observed mixing state, not an exact start timestamp."
+  },
+  "captures": [
+    {
+      "capture_index": 1,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Electrical command onset is not observed. Button-view samples, where present, do not bound actual contact/command; no electrical log or synchronized audio reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": 1107.5064,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": {
+            "file": "evidence/replication_01374_cap1_six/pts_1107.506400.png",
+            "source_pts_seconds": 1107.5064,
+            "sha256": "3252155524fc567109883a00aeb6f0e7e5fa156da55edf20b97a3977e565c724",
+            "bgr_sha256": "bdc85a157943b08262046c06b1976bb8aa09d6e4873cab16b752e86e25f4adc7",
+            "sample_index": 5,
+            "relative_native_index": 30,
+            "native_crop_width": 520,
+            "native_crop_height": 720
+          },
+          "status": "left_censored_by_camera_cut",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Outlet is first shown with a ball already in the collector; mechanism onset occurred off-view or is unresolved."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": 1107.5064,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": {
+            "file": "evidence/replication_01374_cap1_six/pts_1107.506400.png",
+            "source_pts_seconds": 1107.5064,
+            "sha256": "3252155524fc567109883a00aeb6f0e7e5fa156da55edf20b97a3977e565c724",
+            "bgr_sha256": "bdc85a157943b08262046c06b1976bb8aa09d6e4873cab16b752e86e25f4adc7",
+            "sample_index": 5,
+            "relative_native_index": 30,
+            "native_crop_width": 520,
+            "native_crop_height": 720
+          },
+          "status": "left_censored_already_visible",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Ball already present at first usable outlet shot; do not manufacture a preceding empty collector from a control-panel camera shot."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Internal one-way gate/selection plane and irreversibility are not visible. A visibly held ball is not proof of permanent isolation."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1108.140367,
+          "upper_pts_seconds": 1108.240467,
+          "bracket_width_seconds": 0.1001,
+          "before": {
+            "file": "evidence/replication_01374_cap1_native/pts_1108.140367.png",
+            "source_pts_seconds": 1108.140367,
+            "sha256": "dd70d00e60d52f39aa43def2c72c185eae827f7117ec3ae75a496ff6f6329221",
+            "bgr_sha256": "b6cc77745217034f8704743dcbef36c6faafd29a0b89aff3efa07deaff1205e5",
+            "sample_index": 1,
+            "relative_native_index": 1,
+            "native_crop_width": 520,
+            "native_crop_height": 720
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap1_native/pts_1108.240467.png",
+            "source_pts_seconds": 1108.240467,
+            "sha256": "d580330fc18ac523d41927abf8d8b44a89921b15bf016c4a81104b2375b524f5",
+            "bgr_sha256": "bb0df6641d2b454c3c0c76a92747acf60fa42a4f2aecfb3e16e0c1785d74253f",
+            "sample_index": 4,
+            "relative_native_index": 4,
+            "native_crop_width": 520,
+            "native_crop_height": 720
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Leading ball silhouette becomes visibly extended beyond front housing/post edge toward downstream ramp. Native endpoints checked individually. Wider than one frame where blur makes a touching silhouette ambiguous. Screen-space proxy only; not final seated-ball time, 3D crossing, permanent isolation or electrical selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1112.077633,
+          "upper_pts_seconds": 1114.079633,
+          "bracket_width_seconds": 2.002,
+          "before": {
+            "file": "evidence/replication_01374_overview/pts_1112.077633.png",
+            "source_pts_seconds": 1112.077633,
+            "sha256": "5c71df9423009610e19b1a502c7a0dba51f094f59983279f43437c14732ca85a",
+            "bgr_sha256": "84b15bc99584523f7b0b07c5a0120d940ea5b1490856a84881302db88b85f09d",
+            "sample_index": 31,
+            "relative_native_index": 1860,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "after": {
+            "file": "evidence/replication_01374_overview/pts_1114.079633.png",
+            "source_pts_seconds": 1114.079633,
+            "sha256": "3d554122ddc9be6d2571c4cc7e7fdf810042b5b620ed21e59c1fe138655c641a",
+            "bgr_sha256": "a44eb863a4a2dbbe8cb19b65f35583d5ca4b9ea3cfd82fd103c45d25f39263dc",
+            "sample_index": 32,
+            "relative_native_index": 1920,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "status": "observed_image_state_transition_coarse",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Graphic gains the corresponding result token between two overview samples, 60 native frame intervals apart. This is a separate broadcast graphic event; audio announcement not reviewed. Number values were not used to choose motion parameters."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 2,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Electrical command onset is not observed. Button-view samples, where present, do not bound actual contact/command; no electrical log or synchronized audio reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Collector onset hidden by view or already underway at selected native window start; do not substitute later release as first capture onset."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Long ramp shot does not show upper collector sufficiently for a defensible first-visibility bracket."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Internal one-way gate/selection plane and irreversibility are not visible. A visibly held ball is not proof of permanent isolation."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1120.8197,
+          "upper_pts_seconds": 1120.9198,
+          "bracket_width_seconds": 0.1001,
+          "before": {
+            "file": "evidence/replication_01374_cap2_native/pts_1120.819700.png",
+            "source_pts_seconds": 1120.8197,
+            "sha256": "d05eb4b0109635619e4accf6d2fffd97476c5236ee34407bd1e7fe21bbfc67fa",
+            "bgr_sha256": "fb257f350284c3b2850d250be9cabd866dcdbc5eb33164bcd287515c68fe3d79",
+            "sample_index": 3,
+            "relative_native_index": 3,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap2_native/pts_1120.919800.png",
+            "source_pts_seconds": 1120.9198,
+            "sha256": "a166db9a8c2ee8ab7cee9f95544639193a218972d13af4411434c1d956607004",
+            "bgr_sha256": "1899ea1a05897203fa4e18a8351fa16cee5adf3a5e7bd712195e15814ae840da",
+            "sample_index": 6,
+            "relative_native_index": 6,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Leading ball silhouette becomes visibly extended beyond front housing/post edge toward downstream ramp. Native endpoints checked individually. Wider than one frame where blur makes a touching silhouette ambiguous. Screen-space proxy only; not final seated-ball time, 3D crossing, permanent isolation or electrical selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1124.089633,
+          "upper_pts_seconds": 1126.091633,
+          "bracket_width_seconds": 2.002,
+          "before": {
+            "file": "evidence/replication_01374_overview/pts_1124.089633.png",
+            "source_pts_seconds": 1124.089633,
+            "sha256": "3ecaa453fbff439b44fe4b533203ef11a5c22d732abba4da81ae31d94cc189ac",
+            "bgr_sha256": "0fdd0f2200b40bab4afa576e146c615581361b5f6b037e1f350d7deb9d63629b",
+            "sample_index": 37,
+            "relative_native_index": 2220,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "after": {
+            "file": "evidence/replication_01374_overview/pts_1126.091633.png",
+            "source_pts_seconds": 1126.091633,
+            "sha256": "2e09b7e92b8df526a03fb4dcc9b727346aa0ab9411ff5cd3ea63dad1a0de4d3a",
+            "bgr_sha256": "b6d11df2c99cd46c9c4d8de3e2940f9fdda37c8d20a2b70d93a839995e2310a3",
+            "sample_index": 38,
+            "relative_native_index": 2280,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "status": "observed_image_state_transition_coarse",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Graphic gains the corresponding result token between two overview samples, 60 native frame intervals apart. This is a separate broadcast graphic event; audio announcement not reviewed. Number values were not used to choose motion parameters."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 3,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Electrical command onset is not observed. Button-view samples, where present, do not bound actual contact/command; no electrical log or synchronized audio reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1131.7306,
+          "upper_pts_seconds": 1131.9308,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap3_six/pts_1131.730600.png",
+            "source_pts_seconds": 1131.7306,
+            "sha256": "b46d69154184033f66fa131fb914ae454438fd961e789c28f2885a5770e199ba",
+            "bgr_sha256": "fd8940eed9d665b878a0ed59b85dd0fd6fa2ee8ab8a253a43f8119ecfced6d67",
+            "sample_index": 1,
+            "relative_native_index": 6,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap3_six/pts_1131.930800.png",
+            "source_pts_seconds": 1131.9308,
+            "sha256": "8041c1dc7578b55d1a99a84bb82aaa6b43f234237a4f04404fe2547077b95b67",
+            "bgr_sha256": "b9884f1dfebb5a7249a08194c21c72b60626f811413d1499d8f69dcfa77b24b0",
+            "sample_index": 2,
+            "relative_native_index": 12,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible collector/frame motion in reviewed samples; earlier subpixel/hidden motion not excluded. This is not rotor motion or electrical command timing."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1131.9308,
+          "upper_pts_seconds": 1132.131,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap3_six/pts_1131.930800.png",
+            "source_pts_seconds": 1131.9308,
+            "sha256": "8041c1dc7578b55d1a99a84bb82aaa6b43f234237a4f04404fe2547077b95b67",
+            "bgr_sha256": "b9884f1dfebb5a7249a08194c21c72b60626f811413d1499d8f69dcfa77b24b0",
+            "sample_index": 2,
+            "relative_native_index": 12,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap3_six/pts_1132.131000.png",
+            "source_pts_seconds": 1132.131,
+            "sha256": "9f5f36e765525c3e176ea3a3e862bad7c0fb0a5d7e018cada3bdc14c739ec4e0",
+            "bgr_sha256": "b87c3deea066711c6e12a3d526037393a08003413e49bf3ebdbd420adfa61131",
+            "sample_index": 3,
+            "relative_native_index": 18,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible ball patch in upper collector; an image visibility change, not entry across a calibrated surface. Occlusion/blur prevent claiming the earlier true entry time."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Internal one-way gate/selection plane and irreversibility are not visible. A visibly held ball is not proof of permanent isolation."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1133.365567,
+          "upper_pts_seconds": 1133.4323,
+          "bracket_width_seconds": 0.066733,
+          "before": {
+            "file": "evidence/replication_01374_cap3_native/pts_1133.365567.png",
+            "source_pts_seconds": 1133.365567,
+            "sha256": "ac75b16b67723c5565d1877f21de794b8d5bf6a4c5976dbd92223ab00233737a",
+            "bgr_sha256": "41bf7e9e10efec53fb7f3e1a8d749626cc06fcdc04622e704d828c8e78ea3384",
+            "sample_index": 13,
+            "relative_native_index": 13,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap3_native/pts_1133.432300.png",
+            "source_pts_seconds": 1133.4323,
+            "sha256": "776ab1e05f5414c0555c27a498a42876ca1acc7139f591c474607adcc80c6c16",
+            "bgr_sha256": "3f9d44499a816cc396f92eb81495b91efb459379e2b2795b3b0ef274301f95f8",
+            "sample_index": 15,
+            "relative_native_index": 15,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Leading ball silhouette becomes visibly extended beyond front housing/post edge toward downstream ramp. Native endpoints checked individually. Wider than one frame where blur makes a touching silhouette ambiguous. Screen-space proxy only; not final seated-ball time, 3D crossing, permanent isolation or electrical selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1136.101633,
+          "upper_pts_seconds": 1138.103633,
+          "bracket_width_seconds": 2.002,
+          "before": {
+            "file": "evidence/replication_01374_overview/pts_1136.101633.png",
+            "source_pts_seconds": 1136.101633,
+            "sha256": "6879a519b1a7b6f50e8b0c57fd9f740965606e62bf12e28f1647dfb4a48bbdb3",
+            "bgr_sha256": "0566053808aeffe2b9a983ea9fd2e3ce849ef84aee43fc250e05ccafcf4c9055",
+            "sample_index": 43,
+            "relative_native_index": 2580,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "after": {
+            "file": "evidence/replication_01374_overview/pts_1138.103633.png",
+            "source_pts_seconds": 1138.103633,
+            "sha256": "16e7a5074ff9c79595966218b649de644834028cbf0a63e0553a065094e48264",
+            "bgr_sha256": "fb457d4764c20e71876f0089191821c56b259ab06640596fdcc3a55cd4a1ca50",
+            "sample_index": 44,
+            "relative_native_index": 2640,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "status": "observed_image_state_transition_coarse",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Graphic gains the corresponding result token between two overview samples, 60 native frame intervals apart. This is a separate broadcast graphic event; audio announcement not reviewed. Number values were not used to choose motion parameters."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 4,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Electrical command onset is not observed. Button-view samples, where present, do not bound actual contact/command; no electrical log or synchronized audio reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1144.309833,
+          "upper_pts_seconds": 1144.510033,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap4_six/pts_1144.309833.png",
+            "source_pts_seconds": 1144.309833,
+            "sha256": "1f8bfdc8601f2e3215e3722a6efe1f62b8a039894be54e8b7aa10ebf274bdf11",
+            "bgr_sha256": "c6c657d13870e1e8fdad2c7a348bebcbaac692c053a85114bef3b1f31b6811df",
+            "sample_index": 4,
+            "relative_native_index": 24,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap4_six/pts_1144.510033.png",
+            "source_pts_seconds": 1144.510033,
+            "sha256": "ebe023730e3b394ec660ae7ffa1e8f9cea57b1465b9d73dd948ee53b122e07f8",
+            "bgr_sha256": "60081193b9bcd9fc60de12da217723f0c61014c449e99ee7ec25b2da144104a2",
+            "sample_index": 5,
+            "relative_native_index": 30,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible collector/frame motion in reviewed samples; earlier subpixel/hidden motion not excluded. This is not rotor motion or electrical command timing."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1144.309833,
+          "upper_pts_seconds": 1144.510033,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap4_six/pts_1144.309833.png",
+            "source_pts_seconds": 1144.309833,
+            "sha256": "1f8bfdc8601f2e3215e3722a6efe1f62b8a039894be54e8b7aa10ebf274bdf11",
+            "bgr_sha256": "c6c657d13870e1e8fdad2c7a348bebcbaac692c053a85114bef3b1f31b6811df",
+            "sample_index": 4,
+            "relative_native_index": 24,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap4_six/pts_1144.510033.png",
+            "source_pts_seconds": 1144.510033,
+            "sha256": "ebe023730e3b394ec660ae7ffa1e8f9cea57b1465b9d73dd948ee53b122e07f8",
+            "bgr_sha256": "60081193b9bcd9fc60de12da217723f0c61014c449e99ee7ec25b2da144104a2",
+            "sample_index": 5,
+            "relative_native_index": 30,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible ball patch in upper collector; an image visibility change, not entry across a calibrated surface. Occlusion/blur prevent claiming the earlier true entry time."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Internal one-way gate/selection plane and irreversibility are not visible. A visibly held ball is not proof of permanent isolation."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1145.5444,
+          "upper_pts_seconds": 1145.6445,
+          "bracket_width_seconds": 0.1001,
+          "before": {
+            "file": "evidence/replication_01374_cap4_native/pts_1145.544400.png",
+            "source_pts_seconds": 1145.5444,
+            "sha256": "126e7973eade9e900022811e60687a58bae5576aebc469d6d6e2cbae47627e94",
+            "bgr_sha256": "183b61f2481d59a7ce9fbfea66734ede162780075ea5d3f08c529793d038897d",
+            "sample_index": 7,
+            "relative_native_index": 7,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap4_native/pts_1145.644500.png",
+            "source_pts_seconds": 1145.6445,
+            "sha256": "ff7f24eb775bf12d1f5ff9f6fad578227374fea192a61fe4e8055350419b02e3",
+            "bgr_sha256": "81bcf7f47ec8820734f73ab089c0cc0c05d3016a0d2bc403f572e9c357aecd51",
+            "sample_index": 10,
+            "relative_native_index": 10,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Leading ball silhouette becomes visibly extended beyond front housing/post edge toward downstream ramp. Native endpoints checked individually. Wider than one frame where blur makes a touching silhouette ambiguous. Screen-space proxy only; not final seated-ball time, 3D crossing, permanent isolation or electrical selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1148.113633,
+          "upper_pts_seconds": 1150.115633,
+          "bracket_width_seconds": 2.002,
+          "before": {
+            "file": "evidence/replication_01374_overview/pts_1148.113633.png",
+            "source_pts_seconds": 1148.113633,
+            "sha256": "76153b50f0284a497c3f49085798aedee22925b7c84e296c2698ffbcfdd77802",
+            "bgr_sha256": "ac654665a49cb10eb1f5e0645179452811447028b75c91601a09d4b64539babb",
+            "sample_index": 49,
+            "relative_native_index": 2940,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "after": {
+            "file": "evidence/replication_01374_overview/pts_1150.115633.png",
+            "source_pts_seconds": 1150.115633,
+            "sha256": "b60837e5cd1cb6c025b413cd176395f6e3350e6303cc5f8bb26745187d47b0d9",
+            "bgr_sha256": "692d04f821f361a9bde02b8e1eeaedeeeb839b3f2bd108b67480a23a6126b789",
+            "sample_index": 50,
+            "relative_native_index": 3000,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "status": "observed_image_state_transition_coarse",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Graphic gains the corresponding result token between two overview samples, 60 native frame intervals apart. This is a separate broadcast graphic event; audio announcement not reviewed. Number values were not used to choose motion parameters."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 5,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Electrical command onset is not observed. Button-view samples, where present, do not bound actual contact/command; no electrical log or synchronized audio reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1156.522033,
+          "upper_pts_seconds": 1156.722233,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap5_six/pts_1156.522033.png",
+            "source_pts_seconds": 1156.522033,
+            "sha256": "0e7055725acc7dd846090b9dfba5d4184a61c82ba74de95181a5190eff06a5df",
+            "bgr_sha256": "6bf939a797399f6f0e44081cb6347cd01801aa3facd856fe8cd7dddf80a3a430",
+            "sample_index": 0,
+            "relative_native_index": 0,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap5_six/pts_1156.722233.png",
+            "source_pts_seconds": 1156.722233,
+            "sha256": "80669ac6e326e7024ecb4b7ed5b8b523d6df3adfeaade62ea4cfe39433a134d3",
+            "bgr_sha256": "b70db70245af799e8b9a0d874676f461ed41eecd75b6cc01ccb849b73fcef0eb",
+            "sample_index": 1,
+            "relative_native_index": 6,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible collector/frame motion in reviewed samples; earlier subpixel/hidden motion not excluded. This is not rotor motion or electrical command timing."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1157.322833,
+          "upper_pts_seconds": 1157.523033,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap5_six/pts_1157.322833.png",
+            "source_pts_seconds": 1157.322833,
+            "sha256": "6ecff02be94440a39ecb92c788101e23956f5981a5ade6fcf8003a31f03fa9b4",
+            "bgr_sha256": "3dda701ed593cce600841c75933b8e6344a04fb28c344175ffa7a86e0853c25f",
+            "sample_index": 4,
+            "relative_native_index": 24,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap5_six/pts_1157.523033.png",
+            "source_pts_seconds": 1157.523033,
+            "sha256": "677924c8edac82ec91ab6cff28dc92630cb4fe81b3e0a6ab3cfbe8a7e51cc4b6",
+            "bgr_sha256": "2d8d180c0bb368efcc8281e4ce6214de6a39919d8a9cbaffee3fc492dde9f898",
+            "sample_index": 5,
+            "relative_native_index": 30,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible ball patch in upper collector; an image visibility change, not entry across a calibrated surface. Occlusion/blur prevent claiming the earlier true entry time."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Internal one-way gate/selection plane and irreversibility are not visible. A visibly held ball is not proof of permanent isolation."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1159.525033,
+          "upper_pts_seconds": 1159.625133,
+          "bracket_width_seconds": 0.1001,
+          "before": {
+            "file": "evidence/replication_01374_cap5_native/pts_1159.525033.png",
+            "source_pts_seconds": 1159.525033,
+            "sha256": "6382a19dc5953de558ff0305c3f5ee143d72013707aebfda144a56aa67f8aaa7",
+            "bgr_sha256": "45889747f8e8e6299f53177be90dacf6c80acc8d1e773ead6e6e3b0e610457e3",
+            "sample_index": 45,
+            "relative_native_index": 45,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap5_native/pts_1159.625133.png",
+            "source_pts_seconds": 1159.625133,
+            "sha256": "2b29d952df82efafaf86a49150f82fcf736a7914669260cc51864df6ab8f204f",
+            "bgr_sha256": "282ccd80a6b873327c9f97b4e0c08c40b3c4ffe231d0cdc959d4b1f4f415dbfc",
+            "sample_index": 48,
+            "relative_native_index": 48,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Leading ball silhouette becomes visibly extended beyond front housing/post edge toward downstream ramp. Native endpoints checked individually. Wider than one frame where blur makes a touching silhouette ambiguous. Screen-space proxy only; not final seated-ball time, 3D crossing, permanent isolation or electrical selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1162.127633,
+          "upper_pts_seconds": 1164.129633,
+          "bracket_width_seconds": 2.002,
+          "before": {
+            "file": "evidence/replication_01374_overview/pts_1162.127633.png",
+            "source_pts_seconds": 1162.127633,
+            "sha256": "55ded8bdacb790b405d26939843639220470adf4d9dc146fe1bd2531959ec3db",
+            "bgr_sha256": "239b0b2002eaa129976177f4d0d3e0f669c7f28f863c90a70252d45537758935",
+            "sample_index": 56,
+            "relative_native_index": 3360,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "after": {
+            "file": "evidence/replication_01374_overview/pts_1164.129633.png",
+            "source_pts_seconds": 1164.129633,
+            "sha256": "edb1ccd6956cd00786ea4eb29fb7ff186aa3aec1e287bd0764d05fda66415e4f",
+            "bgr_sha256": "fc9b76790112cca2931bd248e0a5eb78db85f51083c4fbcd957181db0cc96d70",
+            "sample_index": 57,
+            "relative_native_index": 3420,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "status": "observed_image_state_transition_coarse",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Graphic gains the corresponding result token between two overview samples, 60 native frame intervals apart. This is a separate broadcast graphic event; audio announcement not reviewed. Number values were not used to choose motion parameters."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 6,
+      "capture_type": "main",
+      "events": [
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Electrical command onset is not observed. Button-view samples, where present, do not bound actual contact/command; no electrical log or synchronized audio reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Collector onset hidden by view or already underway at selected native window start; do not substitute later release as first capture onset."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1171.703867,
+          "upper_pts_seconds": 1171.904067,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap6_six/pts_1171.703867.png",
+            "source_pts_seconds": 1171.703867,
+            "sha256": "b0ee9d5bd9aa6c250025a53cdbdd187abcd2d22236c8a5c58b3ba68ad8958c65",
+            "bgr_sha256": "236f3875107d1480e452e07c69beecad156ec6c10ce0ff202789e741e73e8820",
+            "sample_index": 6,
+            "relative_native_index": 36,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap6_six/pts_1171.904067.png",
+            "source_pts_seconds": 1171.904067,
+            "sha256": "eaca46e41c996952e4d0c78302934b95e8ffce9a1c6e17b1048a6c66ea77db44",
+            "bgr_sha256": "520e3fc8e4b55e3b1c52124ac7997fdbdce247c109649b85b659b9ad0edb1434",
+            "sample_index": 7,
+            "relative_native_index": 42,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible ball patch in upper collector; an image visibility change, not entry across a calibrated surface. Occlusion/blur prevent claiming the earlier true entry time."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Internal one-way gate/selection plane and irreversibility are not visible. A visibly held ball is not proof of permanent isolation."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1173.338833,
+          "upper_pts_seconds": 1173.438933,
+          "bracket_width_seconds": 0.1001,
+          "before": {
+            "file": "evidence/replication_01374_cap6_native/pts_1173.338833.png",
+            "source_pts_seconds": 1173.338833,
+            "sha256": "a2f6d4ff7e564e1685820880693fafcdd5cde956c6180062b8bfbc221f61291b",
+            "bgr_sha256": "24563ae6c35dd426ff54c09641f6034c85edb472a63986ffdc53bfd328723e73",
+            "sample_index": 16,
+            "relative_native_index": 16,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap6_native/pts_1173.438933.png",
+            "source_pts_seconds": 1173.438933,
+            "sha256": "0b63283d7abb33b6bd3af831ee782d1120cd607474980051094970b7c513eeaf",
+            "bgr_sha256": "2529c7412ed0f1cabd2ed5a323c3b510da13ff57a6cf366d9fe69e8a49dad545",
+            "sample_index": 19,
+            "relative_native_index": 19,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Leading ball silhouette becomes visibly extended beyond front housing/post edge toward downstream ramp. Native endpoints checked individually. Wider than one frame where blur makes a touching silhouette ambiguous. Screen-space proxy only; not final seated-ball time, 3D crossing, permanent isolation or electrical selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1176.141633,
+          "upper_pts_seconds": 1178.143633,
+          "bracket_width_seconds": 2.002,
+          "before": {
+            "file": "evidence/replication_01374_overview/pts_1176.141633.png",
+            "source_pts_seconds": 1176.141633,
+            "sha256": "a87b948bfed0774c55063bfd18f58e865603561b5e4754f1a5609d33865baa32",
+            "bgr_sha256": "409d91b101564d4b5073afa21ccb479077f7e1feaef9a27598e7e3dbee6878cf",
+            "sample_index": 63,
+            "relative_native_index": 3780,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "after": {
+            "file": "evidence/replication_01374_overview/pts_1178.143633.png",
+            "source_pts_seconds": 1178.143633,
+            "sha256": "7399d6636a888e016ef3e0d0d72ce09bc03f841f26840b561a13c167310f802a",
+            "bgr_sha256": "7578f717f0721c3d7106d4da5ad4edec06ed1eff30059bf0d25770a9662cba8d",
+            "sample_index": 64,
+            "relative_native_index": 3840,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "status": "observed_image_state_transition_coarse",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Graphic gains the corresponding result token between two overview samples, 60 native frame intervals apart. This is a separate broadcast graphic event; audio announcement not reviewed. Number values were not used to choose motion parameters."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "empirical_physical_event_accuracy_frames": null
+    },
+    {
+      "capture_index": 7,
+      "capture_type": "special",
+      "events": [
+        {
+          "event_type": "control_command_onset",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Electrical command onset is not observed. Button-view samples, where present, do not bound actual contact/command; no electrical log or synchronized audio reviewed."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Collector onset hidden by view or already underway at selected native window start; do not substitute later release as first capture onset."
+        },
+        {
+          "event_type": "ball_first_visible_in_upper_collector",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1185.918067,
+          "upper_pts_seconds": 1186.118267,
+          "bracket_width_seconds": 0.2002,
+          "before": {
+            "file": "evidence/replication_01374_cap7_six/pts_1185.918067.png",
+            "source_pts_seconds": 1185.918067,
+            "sha256": "c1a112a6d6f165699cc13df99a23befeedadada5d7e05102273c7b5566319771",
+            "bgr_sha256": "af9543927b4d6331b2ddef8375685f1777a547c4467d2e991ad70d6651b34063",
+            "sample_index": 7,
+            "relative_native_index": 42,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap7_six/pts_1186.118267.png",
+            "source_pts_seconds": 1186.118267,
+            "sha256": "ebd5b32224dce6daf05dec67613f835cef7fe495a9a21943aa482186d2de3e5c",
+            "bgr_sha256": "6de453b81706f5a2c10160ff003a26dfa4994f1a0f89895e7e86112313c884ec",
+            "sample_index": 8,
+            "relative_native_index": 48,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "First clearly visible ball patch in upper collector; an image visibility change, not entry across a calibrated surface. Occlusion/blur prevent claiming the earlier true entry time."
+        },
+        {
+          "event_type": "permanent_ball_isolation",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "bracket_width_seconds": null,
+          "before": null,
+          "after": null,
+          "status": "NA_not_observable",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Internal one-way gate/selection plane and irreversibility are not visible. A visibly held ball is not proof of permanent isolation."
+        },
+        {
+          "event_type": "leading_edge_exit_onto_downstream_ramp_proxy",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1187.186,
+          "upper_pts_seconds": 1187.2861,
+          "bracket_width_seconds": 0.1001,
+          "before": {
+            "file": "evidence/replication_01374_cap7_native/pts_1187.186000.png",
+            "source_pts_seconds": 1187.186,
+            "sha256": "a9010da30e8c0cb1075df4202ddd823cff172a3f03bcfae863ca40714128a254",
+            "bgr_sha256": "609f6cb070ec9c7679e88b6de18b8c11efa3a9b1baa64f101cc4a6b62fae453b",
+            "sample_index": 17,
+            "relative_native_index": 17,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "after": {
+            "file": "evidence/replication_01374_cap7_native/pts_1187.286100.png",
+            "source_pts_seconds": 1187.2861,
+            "sha256": "d575889aa72ab63de807e36e9cec1f1f029331abd1a418140bfbcf26d5f3c7ed",
+            "bgr_sha256": "20914d4f45d6f6b2225e30fbae1b874437fc3e322668fbb3701d2982ea6d22d9",
+            "sample_index": 20,
+            "relative_native_index": 20,
+            "native_crop_width": 1100,
+            "native_crop_height": 700
+          },
+          "status": "observed_image_state_transition",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Leading ball silhouette becomes visibly extended beyond front housing/post edge toward downstream ramp. Native endpoints checked individually. Wider than one frame where blur makes a touching silhouette ambiguous. Screen-space proxy only; not final seated-ball time, 3D crossing, permanent isolation or electrical selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "event_timestamp_seconds": null,
+          "lower_pts_seconds": 1190.155633,
+          "upper_pts_seconds": 1192.157633,
+          "bracket_width_seconds": 2.002,
+          "before": {
+            "file": "evidence/replication_01374_overview/pts_1190.155633.png",
+            "source_pts_seconds": 1190.155633,
+            "sha256": "aac936f4cf0a3b8a641b82a8cc524c90f990c1d78e7ff6543cd7e5ae254ddf01",
+            "bgr_sha256": "2a36d2c2bb61d5a659e1e36b11f31bb22948e1671ec2495f009ec738ea4ad64a",
+            "sample_index": 70,
+            "relative_native_index": 4200,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "after": {
+            "file": "evidence/replication_01374_overview/pts_1192.157633.png",
+            "source_pts_seconds": 1192.157633,
+            "sha256": "e49bf26fbdf22944e7094bd90077885528bdaedb3ec0575e6a5afc886717042d",
+            "bgr_sha256": "630d1c0b55d54e711ea538fb77e630e92ac966e43d329f8862769051da2d1d29",
+            "sample_index": 71,
+            "relative_native_index": 4260,
+            "native_crop_width": 480,
+            "native_crop_height": 270
+          },
+          "status": "observed_image_state_transition_coarse",
+          "confidence_class": "qualitative_AI_visual_review_unvalidated",
+          "note": "Graphic gains the corresponding result token between two overview samples, 60 native frame intervals apart. This is a separate broadcast graphic event; audio announcement not reviewed. Number values were not used to choose motion parameters."
+        }
+      ],
+      "physical_capture_selection_timestamp_seconds": null,
+      "permanent_isolation_timestamp_seconds": null,
+      "empirical_physical_event_accuracy_frames": null
+    }
+  ],
+  "sampling_windows": [
+    {
+      "extraction_json": "evidence/replication_01374_overview/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_overview",
+        "start": 1050.0,
+        "duration": 170.0,
+        "every": 60,
+        "crop": null,
+        "width": 480,
+        "cols": 4,
+        "rows": 5,
+        "native": false
+      },
+      "count": 85,
+      "first_pts": 1050.015633,
+      "last_pts": 1218.183633
+    },
+    {
+      "extraction_json": "evidence/replication_01374_rotor_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_rotor_native",
+        "start": 1088.05,
+        "duration": 0.03,
+        "every": 1,
+        "crop": null,
+        "width": 480,
+        "cols": 3,
+        "rows": 8,
+        "native": true
+      },
+      "count": 1,
+      "first_pts": 1088.053633,
+      "last_pts": 1088.053633
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap1_six/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap1_six",
+        "start": 1106.5,
+        "duration": 4.0,
+        "every": 6,
+        "crop": [
+          1400,
+          80,
+          520,
+          720
+        ],
+        "width": 300,
+        "cols": 5,
+        "rows": 4,
+        "native": true
+      },
+      "count": 20,
+      "first_pts": 1106.5054,
+      "last_pts": 1110.3092
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap1_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap1_native",
+        "start": 1108.1,
+        "duration": 0.4,
+        "every": 1,
+        "crop": [
+          1400,
+          80,
+          520,
+          720
+        ],
+        "width": 300,
+        "cols": 4,
+        "rows": 5,
+        "native": true
+      },
+      "count": 12,
+      "first_pts": 1108.107,
+      "last_pts": 1108.474033
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap2_six/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap2_six",
+        "start": 1119.5,
+        "duration": 4.0,
+        "every": 6,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 5,
+        "rows": 4,
+        "native": true
+      },
+      "count": 20,
+      "first_pts": 1119.5184,
+      "last_pts": 1123.3222
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap2_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap2_native",
+        "start": 1120.7,
+        "duration": 0.5,
+        "every": 1,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 4,
+        "rows": 5,
+        "native": true
+      },
+      "count": 15,
+      "first_pts": 1120.7196,
+      "last_pts": 1121.186733
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap3_six/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap3_six",
+        "start": 1131.5,
+        "duration": 4.0,
+        "every": 6,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 5,
+        "rows": 4,
+        "native": true
+      },
+      "count": 20,
+      "first_pts": 1131.5304,
+      "last_pts": 1135.3342
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap3_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap3_native",
+        "start": 1132.9,
+        "duration": 0.6,
+        "every": 1,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 4,
+        "rows": 5,
+        "native": true
+      },
+      "count": 18,
+      "first_pts": 1132.9318,
+      "last_pts": 1133.499033
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap4_six/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap4_six",
+        "start": 1143.5,
+        "duration": 4.0,
+        "every": 6,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 5,
+        "rows": 4,
+        "native": true
+      },
+      "count": 20,
+      "first_pts": 1143.509033,
+      "last_pts": 1147.312833
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap4_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap4_native",
+        "start": 1145.3,
+        "duration": 0.6,
+        "every": 1,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 4,
+        "rows": 5,
+        "native": true
+      },
+      "count": 18,
+      "first_pts": 1145.310833,
+      "last_pts": 1145.878067
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap5_six/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap5_six",
+        "start": 1156.5,
+        "duration": 4.0,
+        "every": 6,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 5,
+        "rows": 4,
+        "native": true
+      },
+      "count": 20,
+      "first_pts": 1156.522033,
+      "last_pts": 1160.325833
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap5_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap5_native",
+        "start": 1158.0,
+        "duration": 1.7,
+        "every": 1,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 4,
+        "rows": 5,
+        "native": true
+      },
+      "count": 51,
+      "first_pts": 1158.023533,
+      "last_pts": 1159.691867
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap6_six/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap6_six",
+        "start": 1170.5,
+        "duration": 4.0,
+        "every": 6,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 5,
+        "rows": 4,
+        "native": true
+      },
+      "count": 20,
+      "first_pts": 1170.502667,
+      "last_pts": 1174.306467
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap6_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap6_native",
+        "start": 1172.8,
+        "duration": 1.0,
+        "every": 1,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 4,
+        "rows": 5,
+        "native": true
+      },
+      "count": 30,
+      "first_pts": 1172.804967,
+      "last_pts": 1173.7726
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap7_six/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap7_six",
+        "start": 1184.5,
+        "duration": 4.0,
+        "every": 6,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 5,
+        "rows": 4,
+        "native": true
+      },
+      "count": 20,
+      "first_pts": 1184.516667,
+      "last_pts": 1188.320467
+    },
+    {
+      "extraction_json": "evidence/replication_01374_cap7_native/extraction.json",
+      "source_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "arguments": {
+        "input": "C:\\vietlott-research-output\\phase2-inputs\\Eid9PPhMn_0_f137_ranges.mp4",
+        "tag": "replication_01374_cap7_native",
+        "start": 1186.6,
+        "duration": 1.0,
+        "every": 1,
+        "crop": [
+          800,
+          180,
+          1100,
+          700
+        ],
+        "width": 300,
+        "cols": 4,
+        "rows": 5,
+        "native": true
+      },
+      "count": 30,
+      "first_pts": 1186.618767,
+      "last_pts": 1187.5864
+    }
+  ],
+  "motion_transfer": {
+    "status": "refused_camera_geometry_mismatch",
+    "locked_roi": [
+      480,
+      80,
+      900,
+      900
+    ],
+    "locked_center_source": [
+      932,
+      525
+    ],
+    "locked_annulus": [
+      130,
+      350
+    ],
+    "representative_native_evidence": {
+      "file": "evidence/replication_01374_rotor_native/pts_1088.053633.png",
+      "source_pts_seconds": 1088.053633,
+      "sha256": "bcc76798d482f7aa7d6e1572539beed8ad20813a09d9ab84d070caab681de78e",
+      "bgr_sha256": "07677cc5b9448fa9a8b07c1cc5863b04b41a3522c54849549aebbe64bf1767ec",
+      "sample_index": 0,
+      "relative_native_index": 0,
+      "native_crop_width": 1920,
+      "native_crop_height": 1080
+    },
+    "note": "Native rotor image has hub around source x1045 rather than locked x932; chamber framing/radius and neighboring-machine visibility differ. This rough visual locator is not calibrated measurement. Balls are green, so the unchanged yellow exclusion also has unverified transfer validity. No recenter/rescale, color retuning or motion run.",
+    "physical_angle_deg": null,
+    "physical_rpm": null
+  },
+  "changed_camera_details": "First transfer uses longer ramp view; subsequent outlet close-up and ramp cameras switch. For event inspection only, crops are source x1400,y80,w520,h720 for attempt1 and x800,y180,w1100,h700 for attempts2\u20137. These are logged native-pixel viewing crops, not retuned motion ROIs. Every six-frame search is followed by one-frame bounded review near the ramp proxy.",
+  "reviewed_contact_sheets": [
+    "evidence/replication_01374_cap1_native/sheet_000.jpg",
+    "evidence/replication_01374_cap1_six/sheet_000.jpg",
+    "evidence/replication_01374_cap2_native/sheet_000.jpg",
+    "evidence/replication_01374_cap2_six/sheet_000.jpg",
+    "evidence/replication_01374_cap3_native/sheet_000.jpg",
+    "evidence/replication_01374_cap3_six/sheet_000.jpg",
+    "evidence/replication_01374_cap4_native/sheet_000.jpg",
+    "evidence/replication_01374_cap4_six/sheet_000.jpg",
+    "evidence/replication_01374_cap5_native/sheet_000.jpg",
+    "evidence/replication_01374_cap5_native/sheet_001.jpg",
+    "evidence/replication_01374_cap5_native/sheet_002.jpg",
+    "evidence/replication_01374_cap5_six/sheet_000.jpg",
+    "evidence/replication_01374_cap6_native/sheet_000.jpg",
+    "evidence/replication_01374_cap6_native/sheet_001.jpg",
+    "evidence/replication_01374_cap6_six/sheet_000.jpg",
+    "evidence/replication_01374_cap7_native/sheet_000.jpg",
+    "evidence/replication_01374_cap7_native/sheet_001.jpg",
+    "evidence/replication_01374_cap7_six/sheet_000.jpg",
+    "evidence/replication_01374_overview/sheet_000.jpg",
+    "evidence/replication_01374_overview/sheet_001.jpg",
+    "evidence/replication_01374_overview/sheet_002.jpg",
+    "evidence/replication_01374_overview/sheet_003.jpg",
+    "evidence/replication_01374_overview/sheet_004.jpg",
+    "evidence/replication_01374_rotor_native/sheet_000.jpg"
+  ],
+  "summary": {
+    "capture_attempts": 7,
+    "ramp_proxy_brackets": 7,
+    "all_ramp_proxy_brackets_meet_target": true,
+    "physical_angles_available": false,
+    "physical_rpm_available": false,
+    "permanent_isolation_observed": false
+  },
+  "builder_sha256": "6f55603e199a1e923753125759e46b39e6055b7e16f6a044436a5cbac893fefa"
+}

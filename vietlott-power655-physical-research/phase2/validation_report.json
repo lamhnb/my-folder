@@ -1,0 +1,148 @@
+{
+  "generated_utc": "2026-10-21T12:51:59.865580+00:00",
+  "integrity_status": "passed",
+  "study_status": "completed_with_explicit_observability_limits",
+  "decision": "NO-GO_calibratable_3D",
+  "scientific_validation": "No physical angle/RPM/permanent-isolation timing or calibrated physical accuracy established. Software pass is not real-world calibration.",
+  "counts": {
+    "source_renditions": 5,
+    "draw_clusters": 5,
+    "capture_attempts": 35,
+    "event_and_context_rows": 261,
+    "downstream_visibility_bounds": 35,
+    "retained_event_endpoint_aliases": 291,
+    "physical_RPM_measurements": 0,
+    "physical_angle_measurements": 0,
+    "certified_isolation_times": 0,
+    "software_tests_expected": 30
+  },
+  "source_hash_checks": [
+    {
+      "source_id": "IUU05082QtE",
+      "sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+      "expected_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+      "status": "passed"
+    },
+    {
+      "source_id": "LUEP3hWibQw",
+      "sha256": "d597df58886773aabebd43af13c580536783656d6474bd92a9c872518a46da9b",
+      "expected_sha256": "d597df58886773aabebd43af13c580536783656d6474bd92a9c872518a46da9b",
+      "status": "passed"
+    },
+    {
+      "source_id": "Eid9PPhMn_0",
+      "sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "expected_sha256": "820f17539aecf3761ebb8ff004e8e939498311ab4a086236d02a9f9e2f5974cb",
+      "status": "passed"
+    },
+    {
+      "source_id": "is8GgE2gQu8",
+      "sha256": "27b3c1bec5d9ef460d63a004f8ef666c63c168c0dbb7792421c89be286b8f1dc",
+      "expected_sha256": "27b3c1bec5d9ef460d63a004f8ef666c63c168c0dbb7792421c89be286b8f1dc",
+      "status": "passed"
+    },
+    {
+      "source_id": "diq_elyRXjo",
+      "sha256": "fb70d4caef192914dae178180b81b22894ecfaf199cf8fd18fcdf299ac784a3d",
+      "expected_sha256": "fb70d4caef192914dae178180b81b22894ecfaf199cf8fd18fcdf299ac784a3d",
+      "status": "passed"
+    }
+  ],
+  "software_tests": [
+    {
+      "name": "Phase1 regressions",
+      "command": [
+        "C:\\vietlott-power655-env\\Scripts\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_pipeline.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "expected_test_count": 8,
+      "stdout": "",
+      "stderr": "test_alias_rejected (test_pipeline.TestPipeline.test_alias_rejected) ... ok\ntest_clockwise (test_pipeline.TestPipeline.test_clockwise) ... ok\ntest_collision_ambiguity_ends_tracks (test_pipeline.TestPipeline.test_collision_ambiguity_ends_tracks) ... ok\ntest_empty_not_success (test_pipeline.TestPipeline.test_empty_not_success) ... ok\ntest_gated_unique_association (test_pipeline.TestPipeline.test_gated_unique_association) ... ok\ntest_known_rpm_two_methods (test_pipeline.TestPipeline.test_known_rpm_two_methods) ... ok\ntest_local_native_frame_pts_alignment (test_pipeline.TestPipeline.test_local_native_frame_pts_alignment) ... ok\ntest_nonmonotone_pts_rejected (test_pipeline.TestPipeline.test_nonmonotone_pts_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.371s\n\nOK\n",
+      "status": "passed"
+    },
+    {
+      "name": "Phase2 motion synthetic",
+      "command": [
+        "C:\\vietlott-power655-env\\Scripts\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "phase2/scripts",
+        "-p",
+        "test_motion_diagnostics.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "expected_test_count": 8,
+      "stdout": "",
+      "stderr": "test_cli_provenance_separation_and_refuses_overwrite (test_motion_diagnostics.SyntheticMotionTests.test_cli_provenance_separation_and_refuses_overwrite) ... ok\ntest_irregular_pts_refuse_fft_instead_of_interpolation (test_motion_diagnostics.SyntheticMotionTests.test_irregular_pts_refuse_fft_instead_of_interpolation) ... ok\ntest_known_frequency_and_alias_are_indistinguishable (test_motion_diagnostics.SyntheticMotionTests.test_known_frequency_and_alias_are_indistinguishable) ... ok\ntest_mask_unavailable_sector_is_missing_not_zero (test_motion_diagnostics.SyntheticMotionTests.test_mask_unavailable_sector_is_missing_not_zero) ... ok\ntest_native_decode_matches_ffprobe_with_nonzero_source_pts (test_motion_diagnostics.SyntheticMotionTests.test_native_decode_matches_ffprobe_with_nonzero_source_pts) ... ok\ntest_small_counterclockwise_rotation_flow_sign_and_scale (test_motion_diagnostics.SyntheticMotionTests.test_small_counterclockwise_rotation_flow_sign_and_scale) ... ok\ntest_threefold_pattern_has_multiple_equally_good_shifts (test_motion_diagnostics.SyntheticMotionTests.test_threefold_pattern_has_multiple_equally_good_shifts) ... ok\ntest_unique_asymmetric_profile_known_shift (test_motion_diagnostics.SyntheticMotionTests.test_unique_asymmetric_profile_known_shift) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 3.356s\n\nOK\n",
+      "status": "passed"
+    },
+    {
+      "name": "Phase2 interval and unknown contracts",
+      "command": [
+        "C:\\vietlott-power655-env\\Scripts\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "phase2/scripts",
+        "-p",
+        "test_phase2_results.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "expected_test_count": 7,
+      "stdout": "",
+      "stderr": "test_incomplete_capture_review_cannot_be_complete_study (test_phase2_results.ResultsTests.test_incomplete_capture_review_cannot_be_complete_study) ... ok\ntest_interval_conservative_bounds (test_phase2_results.ResultsTests.test_interval_conservative_bounds) ... ok\ntest_missing_review_is_failure_before_writing (test_phase2_results.ResultsTests.test_missing_review_is_failure_before_writing) ... ok\ntest_missing_state_does_not_become_zero (test_phase2_results.ResultsTests.test_missing_state_does_not_become_zero) ... ok\ntest_point_time_cannot_replace_interval (test_phase2_results.ResultsTests.test_point_time_cannot_replace_interval) ... ok\ntest_reversed_and_nonfinite_intervals_rejected (test_phase2_results.ResultsTests.test_reversed_and_nonfinite_intervals_rejected) ... ok\ntest_separate_ball_proxy_cannot_certify_permanent_isolation (test_phase2_results.ResultsTests.test_separate_ball_proxy_cannot_certify_permanent_isolation) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.003s\n\nOK\n",
+      "status": "passed"
+    },
+    {
+      "name": "Legacy RPM synthetic and scalar reproduction",
+      "command": [
+        "C:\\vietlott-power655-env\\Scripts\\python.exe",
+        "phase2/scripts/rpm_audit.py",
+        "--validate-only"
+      ],
+      "returncode": 0,
+      "expected_test_count": 7,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"fixture_count\": 7,\n  \"experimental_validation\": false,\n  \"fixtures\": [\n    {\n      \"name\": \"analytic_40rpm_h3_positive\",\n      \"status\": \"passed\",\n      \"expected_candidate_rpm\": 40\n    },\n    {\n      \"name\": \"negative_direction_real_spectrum_sign_ambiguity\",\n      \"status\": \"passed\"\n    },\n    {\n      \"name\": \"40_and_640rpm_h3_indistinguishable_at_30hz\",\n      \"status\": \"passed\",\n      \"maximum_coefficient_difference\": 9.999221067226688e-14\n    },\n    {\n      \"name\": \"threefold_absolute_angle_120deg_ambiguity\",\n      \"status\": \"passed\",\n      \"maximum_coefficient_difference\": 7.395285487712793e-15\n    },\n    {\n      \"name\": \"static_background_rotating_exclusion_mask_false_motion\",\n      \"status\": \"passed\",\n      \"static_background_rpm\": 0,\n      \"apparent_candidate_rpm\": 30.000000000000004,\n      \"interpretation\": \"Mask-only confound is possible; does not prove it caused the real-video discrepancy.\"\n    },\n    {\n      \"name\": \"duplicate_pts_rejected\",\n      \"status\": \"passed\"\n    },\n    {\n      \"name\": \"decreasing_pts_rejected\",\n      \"status\": \"passed\"\n    }\n  ]\n}\n",
+      "stderr": "",
+      "status": "passed"
+    }
+  ],
+  "tracked_outside_phase2_changes": [],
+  "untracked_root_note": "Managed MEMORY_AGENT_STATE.md excluded from commit. Original video/audio inputs and redundant preview PNGs stay local.",
+  "protocol_sha256": "ba89fe62bc72b1dabdda10be2411a7202f6c183a828efdd540e59e1d1b4fc15b",
+  "code_base_commit": "b2b1938cf38cc976a302cd8fd6a29bd4dd3c3df5",
+  "code_state_note": "Phase2 scripts were additions in working tree at validation; exact per-script hashes and final Git commit identify implementation.",
+  "script_sha256": {
+    "scripts/acquire.py": "3052332c0d1e3172e4d0150ddd7627faf61a2385df94dcc7b9a82887bae00abd",
+    "scripts/build_replication_annotations.py": "a9b2fd14e6543342c338a365f1bac9bd6c420ce1c26d68660f91d3a7f510e5ef",
+    "scripts/build_results.py": "023f716370d04b3654932ce094b9ee30a309b8105cbc64709af61c18781f6d4e",
+    "scripts/download_source.py": "6a3f46aecd8c7bd46612c04e77dbfd1f090cc60d97b4524a6d6ebe108499fce7",
+    "scripts/final_tables.py": "ca5736221c7f668ab785773ea3db983499124d437ed258b99a32776f73556cbd",
+    "scripts/inspect_local.py": "774000d799ff9ea558d175ec66d5d9ac076c270dd452a075d29783f3322de204",
+    "scripts/motion_diagnostics.py": "a7a1b61833b1fbcde3f66aa8efd19c2ce8dd073e73488fbb18ae321fe66a80e2",
+    "scripts/plot_motion_diagnostics.py": "719d828400eac2ecffc43e5d31c8f7e713f3011a657d88fe8930ef9f452991e1",
+    "scripts/plot_results.py": "7a4c2e08732f0f6502bc86d63083141fa100b9de4f74f57c84e44f13623fc2ed",
+    "scripts/record_boundaries.py": "8b1f89e3f3b9d5ca91f82d26614d6ace478e2093d48f93aedd1b8b53e67f933a",
+    "scripts/record_replication_01375_01376.py": "ad13e61159d12c6b291cff6977af63a7563a14198ba53e4d7ac393449341426f",
+    "scripts/rpm_audit.py": "2db30ed7f7e3ef9aeabbee22a797883085579ee4f65ac5dc6dd56873d25040cf",
+    "scripts/summarize_motion_quality.py": "94f1899706e8ef42882a900da2627ed4257a0c7cfcd0ed569e63402ea37d2d29",
+    "scripts/test_motion_diagnostics.py": "7c95e88b7bf3ac60dab5f51b7d49bbfb0c6e61b155240e5468c71b343d8acabf",
+    "scripts/test_phase2_results.py": "be5da2f75aaeb16dee703df3f299cef9bde5d39fc5524059a437529b79c161d1",
+    "scripts/validate_phase2.py": "3e23273f8992fc298605d8328a1a676c6e747238ae7a4ed22ca0717df109e954",
+    "scripts/verify_legacy_crop_hashes.py": "5572260e7872527b4b60a7ee5dfc528850e875c882d6f311dc53bc9ebcc09e59"
+  },
+  "problems": []
+}

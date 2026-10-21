@@ -1,0 +1,156 @@
+{
+  "draw_id": "01372",
+  "manual_AI_visual_review": true,
+  "human_review": false,
+  "audio_status": "retrieved_not_directly_listened",
+  "ASR": "navigation_only_not_physical_oracle",
+  "events": [
+    {
+      "event_type": "pretest_end",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": null,
+      "status": "NA_exact_boundary_not_established",
+      "before": {
+        "file": "evidence/pilot_overview/pts_1018.050367.png",
+        "source_pts_seconds": 1018.050367
+      },
+      "after": {
+        "file": "evidence/pilot_overview/pts_1020.052367.png",
+        "source_pts_seconds": 1020.052367
+      },
+      "note": "ASR navigation at1013.36\u20131019.96 concerns equipment-check conclusion; speaker/phase change observed. Audio fetched but not directly listened. Neither speech ASR nor stage graphic certifies last physical check action.",
+      "data_class": "unknown"
+    },
+    {
+      "event_type": "official_ball_set_selection",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": null,
+      "status": "NA_no_verified_set_selection_or_ID",
+      "before": null,
+      "after": {
+        "file": "evidence/setup_overview/pts_1045.044000.png",
+        "source_pts_seconds": 1045.044
+      },
+      "note": "Visible manual ball/rack rearrangement does not identify selection among sets or ball-set serial. No exact set-choice event is established.",
+      "data_class": "unknown"
+    },
+    {
+      "event_type": "official_rack_loading_start",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": 1045.0442,
+      "status": "left_censored_preparation_already_underway",
+      "before": null,
+      "after": {
+        "file": "evidence/setup_overview/pts_1045.044000.png",
+        "source_pts_seconds": 1045.044
+      },
+      "note": "First close-up already shows a gloved operator at rack. Start of manual preparation and first ball insertion are not continuously resolved. Upper bound concerns activity already underway, not identity/certification of55balls.",
+      "data_class": "unknown"
+    },
+    {
+      "event_type": "rack_preparation_observed_span",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": 1045.0442,
+      "upper_pts_seconds": 1061.8608,
+      "status": "observation_coverage_not_duration",
+      "before": {
+        "file": "evidence/setup_overview/pts_1045.044000.png",
+        "source_pts_seconds": 1045.044
+      },
+      "after": {
+        "file": "evidence/setup_overview/pts_1061.860800.png",
+        "source_pts_seconds": 1061.8608
+      },
+      "note": "Manual rack rearrangement/loading motions are visible during this span. Coverage endpoints are snapshots, not certified start/end of complete official-set loading.",
+      "data_class": "observation_context"
+    },
+    {
+      "event_type": "official_rack_loading_end",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": null,
+      "status": "NA_last_ball_and_full_set_not_verified",
+      "before": {
+        "file": "evidence/setup_overview/pts_1061.660600.png",
+        "source_pts_seconds": 1061.6606
+      },
+      "after": {
+        "file": "evidence/setup_overview/pts_1062.061000.png",
+        "source_pts_seconds": 1062.061
+      },
+      "note": "Operator lowers hand and camera returns wide. Completeness/identity of55balls and final physical insertion frame are not certified.",
+      "data_class": "unknown"
+    },
+    {
+      "event_type": "official_mixing_onset",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": 1088.120367,
+      "status": "left_censored_running_seen_after_cut",
+      "before": {
+        "file": "evidence/mixing_before_native/pts_1085.117367.png",
+        "source_pts_seconds": 1085.117367
+      },
+      "after": {
+        "file": "evidence/mixing_after_native/pts_1088.120367.png",
+        "source_pts_seconds": 1088.120367
+      },
+      "note": "Control shot and changed camera framing obscure onset. Native1088.087000/1088.120367 show moving blade/ball departure. The wide before frame is context, not proof motor remained off until its PTS. Do not subtract this upper bound to report exact mixing duration.",
+      "data_class": "unknown"
+    },
+    {
+      "event_type": "official_ball_release_from_rack_onset",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": 1088.087,
+      "status": "left_censored_release_already_underway",
+      "before": {
+        "file": "evidence/mixing_before_native/pts_1085.084000.png",
+        "source_pts_seconds": 1085.084
+      },
+      "after": {
+        "file": "evidence/mixing_after_native/pts_1088.087000.png",
+        "source_pts_seconds": 1088.087
+      },
+      "note": "First close-up after control shot already shows rack balls dropping/partly departed. No exact first-release frame is asserted.",
+      "data_class": "unknown"
+    },
+    {
+      "event_type": "rotor_stop_onset",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": 1206.238367,
+      "status": "left_censored_stationary_state_after_cut",
+      "before": {
+        "file": "evidence/pilot_overview/pts_1198.230367.png",
+        "source_pts_seconds": 1198.230367
+      },
+      "after": {
+        "file": "evidence/pilot_overview/pts_1206.238367.png",
+        "source_pts_seconds": 1206.238367
+      },
+      "note": "Rail shot hides rotor. Following repeated stage samples1200.232367\u20131206.238367 show same clear blade orientation and settled balls. This bounds an observed stopped state only; stop command and deceleration are not measured.",
+      "data_class": "unknown"
+    },
+    {
+      "event_type": "official_draw_end",
+      "event_timestamp_seconds": null,
+      "lower_pts_seconds": null,
+      "upper_pts_seconds": null,
+      "status": "NA_semantic_end_not_physically_timed",
+      "before": {
+        "file": "evidence/pilot_overview/pts_1232.264367.png",
+        "source_pts_seconds": 1232.264367
+      },
+      "after": {
+        "file": "evidence/pilot_overview/pts_1234.266367.png",
+        "source_pts_seconds": 1234.266367
+      },
+      "note": "Power result summary transitions toward another product in stage graphics. Final spoken declaration/audio timing and official procedural end are not independently verified. Last result display is not a motor/gate event.",
+      "data_class": "unknown"
+    }
+  ]
+}

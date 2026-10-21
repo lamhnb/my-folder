@@ -1,0 +1,141 @@
+{
+  "review_kind": "bounded_independent_second_AI_table_and_provenance_audit",
+  "generated_utc": "2026-10-21T12:54:36.258290+00:00",
+  "scope": "Primary table arithmetic, canonical JSON alignment, retained aliases, input provenance, protocol gates and scientific limitations. Does not independently rereview every source video or calibrate physical accuracy.",
+  "human_review": false,
+  "checks": {
+    "row_counts": {
+      "events": 261,
+      "capture_audit": 35,
+      "sources": 5,
+      "paddle": 5,
+      "hypotheses": 5,
+      "observability": 17,
+      "retained_alias_manifest": 291,
+      "visible_intervals": 30,
+      "draw_summaries": 5
+    },
+    "point_timestamps_all_NA": true,
+    "physical_paddle_fields_all_NA": true,
+    "hypothesis_p_and_CI_all_NA": true,
+    "hidden_isolation_and_control_bounds_all_NA": true,
+    "ramp_count": 35,
+    "all_ramp_brackets_meet_0_2002s": true,
+    "alias_SHA_and_PNG_dimensions_pass": true,
+    "event_endpoint_ledger_and_PTS_pass": true,
+    "draw_01372_source_sha_matches": true,
+    "draw_01373_motion_transfer_refused": true,
+    "draw_01373_source_sha_matches": true,
+    "draw_01374_motion_transfer_refused": true,
+    "draw_01374_source_sha_matches": true,
+    "draw_01375_motion_transfer_refused": true,
+    "draw_01375_source_sha_matches": true,
+    "draw_01376_motion_transfer_refused": true,
+    "draw_01376_source_sha_matches": true,
+    "canonical_native_replication_values_match_CSV": true,
+    "wide_capture_table_matches_long_events": true,
+    "cadence_clustered_by_draw_and_special_separate": true,
+    "cadence_counts": {
+      "main_to_main": 25,
+      "main_to_special": 5,
+      "source_clusters": 5
+    },
+    "cadence_mean_SD_arithmetic_pass": true,
+    "cadence_p_value_and_CI_null": true,
+    "protocol_sha_matches_summary": true,
+    "source_full_decode_and_master_claims_false": true,
+    "five_local_input_SHA256_and_size_match": true,
+    "context_span_correctly_excluded_from_event_bracket_width": true,
+    "transition_bracket_width_and_encoded_interval_arithmetic_pass": true,
+    "ramp_widths_by_draw": {
+      "01372": {
+        "count": 7,
+        "width_min_seconds": 0.03336699999999837,
+        "width_max_seconds": 0.06673299999988558,
+        "encoded_intervals_min": 1.0,
+        "encoded_intervals_max": 2.0
+      },
+      "01373": {
+        "count": 7,
+        "width_min_seconds": 0.03336600000011458,
+        "width_max_seconds": 0.1334670000001097,
+        "encoded_intervals_min": 1.0,
+        "encoded_intervals_max": 4.0
+      },
+      "01374": {
+        "count": 7,
+        "width_min_seconds": 0.06673299999988558,
+        "width_max_seconds": 0.10010000000011132,
+        "encoded_intervals_min": 2.0,
+        "encoded_intervals_max": 3.0
+      },
+      "01375": {
+        "count": 7,
+        "width_min_seconds": 0.13346599999999853,
+        "width_max_seconds": 0.1334670000001097,
+        "encoded_intervals_min": 4.0,
+        "encoded_intervals_max": 4.0
+      },
+      "01376": {
+        "count": 7,
+        "width_min_seconds": 0.13346599999999853,
+        "width_max_seconds": 0.1334670000001097,
+        "encoded_intervals_min": 4.0,
+        "encoded_intervals_max": 4.0
+      }
+    },
+    "superseded_01374_c6_alias_bytes_match_pre_correction_JSON": true,
+    "event_frame_PNG_file_count": 293
+  },
+  "actionable_issues": [],
+  "scientific_assessment": {
+    "H2": "Five source/draw clusters with descriptive downstream visibility cadence; no p-value/CI or timer identification. Same visible definition is used, but identical calibrated3Dplane, machine/ball-set serial and statistical independence of physical draws are not established.",
+    "eligibility": "Timing localization target may pass for ramp image proxies while physical event/motion gates remain failed. Frame cache and protocol timestamp alone do not establish preregistration, measurement accuracy or independent physical validation.",
+    "physical_simulation": "NO-GO is scoped to calibratable3Dmodel from this data; qualitative illustration remains possible. Physical angle/RPM/isolation/control onset remain missing.",
+    "H2_independence_wording": "Use five source/draw clusters or draw-level descriptive units; physical stochastic independence and same-machine/ball-set identity are assumptions, not verified facts. Existing summaries provide no CI/p-value."
+  },
+  "reviewed_files_sha256": {
+    "DATA_DICTIONARY.md": "c775637c8c718de8ece891e0454e037004c837a18d6299bcb9cb3df5e3debb92",
+    "capture_event_audit.csv": "52209727bc1bf1a8dd27d62ca5429612b1654162acfb2348136c8afb4148dbc3",
+    "evidence/cadence_summary.json": "1f17755cf3243a09897cb7a4059887f547ea72d78171ee90c040dcb711ee500c",
+    "evidence/event_frame_manifest.csv": "13459061b0de2af3ea5c5414157467d089fee0a891c35405cbc6d4a2b1dad8a5",
+    "evidence/native_refinement.json": "055b898479467b8d7e81b9cad12da2d2376364a5901afffffbc15f459de11487",
+    "evidence/replication_01373.json": "16e9612045c7c1b7db0a4e60b78e00fd1fda085d2829939543a15a9762b418f4",
+    "evidence/replication_01373_01374_comparison.md": "ba40b08f7e7451a320c9a2d47490fe1d819c69bb823aaf9c52da959ea5c55f59",
+    "evidence/replication_01374.json": "c9e78edb93dcaf9a867bf315e96b2ec9ead420fe8df15d3622bf5dab8561a91e",
+    "evidence/replication_01375.json": "c10f1ec70f3b3492566d163caf2fe3d573e9102e82e000039757d22bfeac5d94",
+    "evidence/replication_01376.json": "d81f0dd5893ddfe67564ca60efe89ff192bd7459f33191cdf443a600e34fee48",
+    "evidence/source_Eid9PPhMn_0_ranges.json": "5c1242dbafdca5843e0455d1769311a8b1c6db999f3609d5096e4de6bc2326b9",
+    "evidence/source_IUU05082QtE_ranges.json": "14114bcedab2be3a2f68f68c1928de6bc0fab1e2d68c8d8060ece7570b9b922f",
+    "evidence/source_LUEP3hWibQw_ranges.json": "2fc06d953f506839b1dc20d003bdd263c4f58430a61751a772d98ddf5862ca94",
+    "evidence/source_diq_elyRXjo_ranges.json": "9cf3bc04149d3715059bdaf1263a573b8b6acbbfb452d55f37a550ba918cd557",
+    "evidence/source_is8GgE2gQu8_ranges.json": "cbd94f94fc26c2af3d510f169c73c6414593a560ece63d1a6a28233651440e0a",
+    "evidence/visible_cadence_by_draw.csv": "725da6349a8fe82c24b9666183c2f48cfb4136cc5cb880253ec6e7e95e8a39ab",
+    "evidence/visible_cadence_intervals.csv": "0ab7665e6f543bd7d674b6b83ae33afe12d07174319c81e3c74ecfc620245e5a",
+    "locked_protocol.json": "ba89fe62bc72b1dabdda10be2411a7202f6c183a828efdd540e59e1d1b4fc15b",
+    "observability_matrix.csv": "eead1e3100df2f315fa06c4fd27eeabb8d01729eac9a3f39d70cad55f3b594b0",
+    "official_draw_events.csv": "ce7abd63b6afb32bcbedb4a963e087b5eddd412f370d8c73bc671acdfd49b232",
+    "paddle_motion.csv": "4e445b40673576d5e15fe03b3ec1e45653fc4f4a35e4793bb17d422b02ed22e1",
+    "phase2_hypothesis_results.csv": "d134a3e9ac7197b50cbc0075f65af3d78dc1a331636c47271a9bb50af9b60712",
+    "phase2_sources.csv": "8b0f22dbdf583905ba1fa3124bd62d5119ac28fc796d7f32700df0258d54b013",
+    "replication_01375_01376_comparison.md": "a5aeb176f0abdb201e3bf3f71b9b71a7b6139e50d6dcebcdd01425f029fe5e2a",
+    "simulation_readiness.md": "07ac7e88fe6d40faaa2707221f0d3b189bff7b5c2581e465c0af9278a8aeff1c",
+    "unresolved_parameters.md": "37c7adaa28859c60d2a7f347d36ecf49a0c788d577117a4718947573283b37a7",
+    "evidence/replication_01374_pre_correction.json": "7636c705677a1997aa3694cff844e0fd1acea64b9c632ebce3eb4a0e0ec55142",
+    "evidence/pilot_boundary_review.json": "cf0cb5dba441e9ba456f3c958d33fd17cc0325a9eec70a32d35fa79e9520b507"
+  },
+  "primary_csvs_modified": false,
+  "additional_retained_superseded_alias_SHA256": {
+    "evidence/event_frames/draw01374_capture06_collector_ball_first_visible_before.png": "b0ee9d5bd9aa6c250025a53cdbdd187abcd2d22236c8a5c58b3ba68ad8958c65",
+    "evidence/event_frames/draw01374_capture06_collector_ball_first_visible_after.png": "eaca46e41c996952e4d0c78302934b95e8ffce9a1c6e17b1048a6c66ea77db44"
+  },
+  "resolved_during_review": [
+    {
+      "code": "PILOT_CONTEXT_PTS_200_MICROSECOND_INCONSISTENCY",
+      "original_verified_problem": "pilot_boundary_review official_rack_loading_start upper and rack_preparation_observed_span lower were1045.0442 while referenced sourceframe/ledgerPTS1045.044000.",
+      "resolution_verified": "Canonical boundaryJSON and derivedCSV now use1045.044000. Endpoint-sourcePTScheck passes.",
+      "scientific_impact": "No timing conclusion changed; repaired exact provenance consistency."
+    }
+  ],
+  "status": "passed_bounded_review_no_unresolved_actionable_issues"
+}

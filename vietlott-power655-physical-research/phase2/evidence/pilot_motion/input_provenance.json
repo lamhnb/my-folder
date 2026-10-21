@@ -1,0 +1,65 @@
+{
+  "source_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+  "review": {
+    "stable_camera_reviewed": true,
+    "source_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+    "start_pts": 1098.030267,
+    "end_pts": 1103.035267,
+    "evidence_refs": [
+      "evidence/rotor_stability/sheet_000.jpg",
+      "evidence/rotor_stability/frames.csv",
+      "evidence/rotor_stability/extraction.json",
+      "evidence/rotor_native_reference/pts_1098.030267.png",
+      "evidence/rotor_stability/pts_1098.030267.png",
+      "evidence/rotor_stability/pts_1099.031267.png",
+      "evidence/rotor_stability/pts_1100.032267.png",
+      "evidence/rotor_stability/pts_1101.033267.png",
+      "evidence/rotor_stability/pts_1102.034267.png",
+      "evidence/rotor_stability/pts_1103.035267.png"
+    ],
+    "marker_status": "not_observable",
+    "marker_notes": "Three apparent similar transparent blades; a uniquely identifiable material feature is not verified. No assumption of shared axis or speed. Ball blur, transparency and occlusion limit feature identity.",
+    "camera_notes": "Six native one-second samples plus contact sheet and first native reference inspected. Chamber ring and hub appear stable after preceding zoom. Subtle camera drift unquantified; no calibration, camera-original shutter or motion blur correction. This is an exploratory stable-view gate, not a claim of calibrated camera stability.",
+    "reviewer": "Codex motion-methods subagent, following parent-supplied fixed interval/ROI; same-session review, not independent human review",
+    "roi_source_pixels": [
+      480,
+      80,
+      900,
+      900
+    ],
+    "center_source_pixels": [
+      932,
+      525
+    ],
+    "annulus_pixels": [
+      130,
+      350
+    ],
+    "selection_note": "Parent selected before diagnostics output, on direct visual inspection; no parameter tuning based on lottery results or diagnostic agreement."
+  },
+  "arguments": {
+    "source": "C:\\vietlott-research-output\\phase2-inputs\\IUU05082QtE_f137_ranges.mp4",
+    "start": 1098.030267,
+    "end": 1103.035267,
+    "roi": [
+      480,
+      80,
+      900,
+      900
+    ],
+    "center_source": [
+      932.0,
+      525.0
+    ],
+    "annulus": [
+      130.0,
+      350.0
+    ],
+    "harmonic": 3,
+    "review": "phase2\\evidence\\pilot_motion_review.json",
+    "out": "phase2\\evidence\\pilot_motion",
+    "max_frames": 300
+  },
+  "script_sha256": "a7a1b61833b1fbcde3f66aa8efd19c2ce8dd073e73488fbb18ae321fe66a80e2",
+  "status": "started_not_yet_verified"
+}

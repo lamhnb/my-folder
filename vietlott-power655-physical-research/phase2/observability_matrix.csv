@@ -1,0 +1,18 @@
+quantity,epistemic_class,observable,value_or_scope,limitation,evidence
+source_PTS,observation,yes,30000/1001 encoded rendition timing,microsecond text precision is not event accuracy,ffprobe/showinfo and extraction.json
+physical_absolute_paddle_angle,unknown,no,NA,unique material marker and camera calibration absent,evidence/pilot_motion/interpretation.md
+threefold_symmetry_shared_axis,assumption,not_verified,NA,apparent three blades do not certify shared axis/speed;h3 remains an image hypothesis,locked_protocol.json
+physical_RPM,unknown,no,NA,legacy candidates and new same-pixel image frequencies cannot resolve marker/alias/calibration,evidence/legacy_rpm_audit.md
+image_pattern_frequency,estimate,pilot_only,3.596368Hz unmasked h3 spectrum,bin0.199798Hz is notCI; shared signal autocorrelation compatible within bin,evidence/pilot_motion/diagnostics.json
+collector_external_motion,observation,partial,pilot5initial-onset brackets;2cut-censored,orientation of exposed element only; not complete gate_open state,evidence/native_refinement.json
+collector_ball_visibility,observation,partial,pilot6appearance brackets;firstalreadyvisible,hidden true entry plane and earlier occluded occupancy unknown,evidence/native_refinement.json
+permanent_ball_isolation_time,unknown,no,NA,internal separation/closure topology and irreversibility unknown,evidence/native_refinement.json
+downstream_transport_proxy,observation,yes,35bounds;pilot1–2encoded intervals;replication1–4intervals,localization width is not empirical physical accuracy;different manual view crops disclosed,official_draw_events.csv
+bottom_result_graphic,observation,yes_but_quality_varies,pilot0.1001–0.2002s;replication2.002s coarsebounds,graphic latencies differ from selection;replication graphics fail0.2002s target,official_draw_events.csv
+button_electrical_command,unknown,no,NA,finger contact/light not electrical actuation or latency,capture_event_audit.csv
+official_mixing_duration,unknown,no,NA,start hidden by cut; ASR not physical oracle,evidence/pilot_boundary_review.json
+visible_cadence,estimate,descriptive_only,five draw-level summaries,draw is independent unit;special separate;no timer/null inference,evidence/cadence_summary.json
+individual_ball_identity_through_collisions,unknown,no,NA,no calibrated ID associations through occlusion/depth,unresolved_parameters.md
+camera_original_FPS_shutter,unknown,no,NA,24/149near-duplicate candidate pairs in pilot;encodedFPS not independent-frame rate,evidence/pilot_motion/source_frame_quality.json
+machine_geometry_material_parameters,unknown,no,NA,"dimensions,serials,mass/friction/restitution not recoverable uniquely from these views",unresolved_parameters.md
+calibratable_3D_simulation,decision,NO-GO,NA,missing identifiable physical parameters and state;qualitative illustration remains possible,simulation_readiness.md

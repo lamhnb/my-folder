@@ -1,0 +1,1330 @@
+{
+  "schema_version": "1.0",
+  "draw_id": "01375",
+  "protocol": "phase2/locked_protocol.json",
+  "review_kind": "manual_AI_visual_review_of_real_pinned_video",
+  "manual_AI_visual_review": true,
+  "human_review": false,
+  "blind_review": false,
+  "reviewer_calibrated": false,
+  "source": {
+    "id": "is8GgE2gQu8",
+    "draw_id_context": "01375",
+    "input_file": "C:\\vietlott-research-output\\phase2-inputs\\is8GgE2gQu8_f137_ranges.mp4",
+    "input_sha256": "27b3c1bec5d9ef460d63a004f8ef666c63c168c0dbb7792421c89be286b8f1dc",
+    "source_pin": "evidence/source_is8GgE2gQu8_ranges.json",
+    "source_dimensions": [
+      1920,
+      1080
+    ],
+    "source_frame_rate": "30000/1001",
+    "native_encoded_interval_seconds": 0.03336666666666667,
+    "camera_original_frame_rate": null,
+    "shutter_exposure_seconds": null,
+    "physical_clock_accuracy_seconds": null
+  },
+  "reviewed_contact_sheets_and_frames": [
+    "evidence/rep01375_overview/sheet_000.jpg",
+    "evidence/rep01375_overview/sheet_001.jpg",
+    "evidence/rep01375_overview/sheet_002.jpg",
+    "evidence/rep01375_overview/sheet_003.jpg",
+    "evidence/rep01375_overview/sheet_004.jpg",
+    "evidence/rep01375_c1_nav/sheet_000.jpg",
+    "evidence/rep01375_c1_nav/sheet_001.jpg",
+    "evidence/rep01375_c1_entry_native/sheet_000.jpg",
+    "evidence/rep01375_c2_nav/sheet_000.jpg",
+    "evidence/rep01375_c2_nav/sheet_001.jpg",
+    "evidence/rep01375_c2_entry_native/sheet_000.jpg",
+    "evidence/rep01375_c3_nav/sheet_000.jpg",
+    "evidence/rep01375_c3_nav/sheet_001.jpg",
+    "evidence/rep01375_c3_entry_native/sheet_000.jpg",
+    "evidence/rep01375_c4_nav/sheet_000.jpg",
+    "evidence/rep01375_c4_nav/sheet_001.jpg",
+    "evidence/rep01375_c4_entry_native/sheet_000.jpg",
+    "evidence/rep01375_c5_nav/sheet_000.jpg",
+    "evidence/rep01375_c5_nav/sheet_001.jpg",
+    "evidence/rep01375_c5_entry_native/sheet_000.jpg",
+    "evidence/rep01375_c6_nav/sheet_000.jpg",
+    "evidence/rep01375_c6_nav/sheet_001.jpg",
+    "evidence/rep01375_c6_entry_native/sheet_000.jpg",
+    "evidence/rep01375_c7_nav/sheet_001.jpg",
+    "evidence/rep01375_c7_nav/sheet_002.jpg",
+    "evidence/rep01375_c7_entry_native/sheet_000.jpg",
+    "evidence/rep01375_geometry/pts_1113.512400.png",
+    "evidence/rep01375_rotor/pts_1070.002267.png",
+    "evidence/rotor_native_reference/pts_1098.030267.png"
+  ],
+  "extraction_manifests": [
+    {
+      "path": "evidence/rep01375_overview/frames.csv",
+      "sha256": "1e50a2df4ab97c47e2dbab2dacb28a727205c0289f455860479a67847002f1a5",
+      "inspected_pts_seconds": [
+        1030.029,
+        1032.031,
+        1034.033,
+        1036.035,
+        1038.037,
+        1040.039,
+        1042.041,
+        1044.043,
+        1046.045,
+        1048.047,
+        1050.049,
+        1052.051,
+        1054.053,
+        1056.055,
+        1058.057,
+        1060.059,
+        1062.061,
+        1064.063,
+        1066.065,
+        1068.067,
+        1070.069,
+        1072.071,
+        1074.073,
+        1076.075,
+        1078.077,
+        1080.079,
+        1082.081,
+        1084.083,
+        1086.085,
+        1088.087,
+        1090.089,
+        1092.091,
+        1094.093,
+        1096.095,
+        1098.097,
+        1100.099,
+        1102.101,
+        1104.103,
+        1106.105,
+        1108.107,
+        1110.109,
+        1112.111,
+        1114.113,
+        1116.115,
+        1118.117,
+        1120.119,
+        1122.121,
+        1124.123,
+        1126.125,
+        1128.127,
+        1130.129,
+        1132.131,
+        1134.133,
+        1136.135,
+        1138.137,
+        1140.139,
+        1142.141,
+        1144.143,
+        1146.145,
+        1148.147,
+        1150.149,
+        1152.151,
+        1154.153,
+        1156.155,
+        1158.157,
+        1160.159,
+        1162.161,
+        1164.163,
+        1166.165,
+        1168.167,
+        1170.169,
+        1172.171,
+        1174.173,
+        1176.175,
+        1178.177,
+        1180.179,
+        1182.181,
+        1184.183,
+        1186.185,
+        1188.187,
+        1190.189,
+        1192.191,
+        1194.193,
+        1196.195,
+        1198.197,
+        1200.199,
+        1202.201,
+        1204.203,
+        1206.205,
+        1208.207
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_geometry/frames.csv",
+      "sha256": "4dc2b714e65d0580d93680a5a468bb929a626a33ad642050c4bb3727e0167628",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_rotor/frames.csv",
+      "sha256": "df0b3847f69d8e93d5983f1e7a4e080fb9b62de09abf0547055e1997409425af",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c1_nav/frames.csv",
+      "sha256": "034365419756ddea21b15a997f4711ae31c0d7ff3bc541d0f63c25cb9e67fb92",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c1_entry_native/frames.csv",
+      "sha256": "ea11397a70b3db4120de147f7b24a2c0a987c3b071fed952b0db99faba1d26a8",
+      "inspected_pts_seconds": [
+        1103.669233,
+        1103.7026,
+        1103.735967,
+        1103.769333,
+        1103.8027,
+        1103.836067,
+        1103.869433,
+        1103.9028,
+        1103.936167,
+        1103.969533,
+        1104.0029,
+        1104.036267,
+        1104.069633,
+        1104.103,
+        1104.136367
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c2_nav/frames.csv",
+      "sha256": "cc0ed487cde6575398c9f0c81cedd30708d6e3ff57883f979dd1d0b50b8376a3",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c2_entry_native/frames.csv",
+      "sha256": "b77894433f1a9deb070aa2060539d34d5a34ede33bef064bf11d95b74413305f",
+      "inspected_pts_seconds": [
+        1117.683233,
+        1117.7166,
+        1117.749967,
+        1117.783333,
+        1117.8167,
+        1117.850067,
+        1117.883433,
+        1117.9168,
+        1117.950167,
+        1117.983533,
+        1118.0169,
+        1118.050267,
+        1118.083633,
+        1118.117,
+        1118.150367
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c3_nav/frames.csv",
+      "sha256": "94fd4ccb2bbdd4fad321dcf524b3f145f67a503c81d66edb7aa31017c402178f",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c3_entry_native/frames.csv",
+      "sha256": "a6f847c1e5401a91a21d313f9830d03aefe044ea3ce477494584bd8fbcd69c74",
+      "inspected_pts_seconds": [
+        1131.3302,
+        1131.363567,
+        1131.396933,
+        1131.4303,
+        1131.463667,
+        1131.497033,
+        1131.5304,
+        1131.563767,
+        1131.597133,
+        1131.6305,
+        1131.663867,
+        1131.697233,
+        1131.7306,
+        1131.763967,
+        1131.797333
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c4_nav/frames.csv",
+      "sha256": "35f8e5b7f48575b8e984a245c5b409f6e81e02a8ee0744cdc189ec78d691f9fa",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c4_entry_native/frames.csv",
+      "sha256": "023f6fd42b11cd000c1442539d8d65ca2a9a58eb58c8495668f4d7f7e4e459b2",
+      "inspected_pts_seconds": [
+        1145.511033,
+        1145.5444,
+        1145.577767,
+        1145.611133,
+        1145.6445,
+        1145.677867,
+        1145.711233,
+        1145.7446,
+        1145.777967,
+        1145.811333,
+        1145.8447,
+        1145.878067,
+        1145.911433,
+        1145.9448,
+        1145.978167
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c5_nav/frames.csv",
+      "sha256": "3aaa2e221979f09fc0bb5021fb9907db5be14f0aecec5f07120b081886cb2d75",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c5_entry_native/frames.csv",
+      "sha256": "2c236a7f9452949ef7a5c4eb2f8ded97706077a5b3b1bd66e036fc56a0c00098",
+      "inspected_pts_seconds": [
+        1159.6585,
+        1159.691867,
+        1159.725233,
+        1159.7586,
+        1159.791967,
+        1159.825333,
+        1159.8587,
+        1159.892067,
+        1159.925433,
+        1159.9588,
+        1159.992167,
+        1160.025533,
+        1160.0589,
+        1160.092267,
+        1160.125633
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c6_nav/frames.csv",
+      "sha256": "1d2fa09085fb6d9a3fb5566b1d65d972ba93b789a76f941374292b5b58fdf9c2",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c6_entry_native/frames.csv",
+      "sha256": "be6ae7e4105f64c116b53f5886bcc9db083595aacbfe7891ee0bb7ec2eb73ce2",
+      "inspected_pts_seconds": [
+        1173.305467,
+        1173.338833,
+        1173.3722,
+        1173.405567,
+        1173.438933,
+        1173.4723,
+        1173.505667,
+        1173.539033,
+        1173.5724,
+        1173.605767,
+        1173.639133,
+        1173.6725,
+        1173.705867,
+        1173.739233,
+        1173.7726
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c7_nav/frames.csv",
+      "sha256": "2dbea6ba477cb0ae6186f7154ced7546001e4dec223f39569eee5592d16ae85a",
+      "inspected_pts_seconds": null,
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    },
+    {
+      "path": "evidence/rep01375_c7_entry_native/frames.csv",
+      "sha256": "f742497ad1c1d81d6653d04762eef57f438e54ca5b49f90a5b0378263d0d3659",
+      "inspected_pts_seconds": [
+        1187.252733,
+        1187.2861,
+        1187.319467,
+        1187.352833,
+        1187.3862,
+        1187.419567,
+        1187.452933,
+        1187.4863,
+        1187.519667,
+        1187.553033,
+        1187.5864,
+        1187.619767,
+        1187.653133,
+        1187.6865,
+        1187.719867
+      ],
+      "note": "PTS list is extraction coverage for nav; exact reviewed sheets and event endpoints identify actual visual review."
+    }
+  ],
+  "sampling": {
+    "overview_every_native_frames": 60,
+    "navigation_every_native_frames": 6,
+    "entry_refinement_every_native_frames": 1,
+    "overview_requested_seconds": [
+      1030,
+      1210
+    ],
+    "overview_actual_first_pts": 1030.029,
+    "overview_actual_last_pts": 1208.207,
+    "time_basis": "native source rendition PTS, not frame/30"
+  },
+  "camera_gate": {
+    "status": "fixed_ROI_transfer_refused",
+    "comparison": "At 1070.002267 s the hub is near the pilot center but magnification is much larger and chamber rim extends outside frame; fixed annulus/ROI transfer refused.",
+    "pilot_reference": "evidence/rotor_native_reference/pts_1098.030267.png",
+    "replication_reference": "evidence/rep01375_rotor/pts_1070.002267.png",
+    "motion_metrics_run": false,
+    "physical_rpm": null,
+    "physical_angle": null,
+    "manual_event_crop_adjustment": {
+      "xywh": [
+        1450,
+        0,
+        470,
+        750
+      ],
+      "purpose": "View downstream collector mouth in close-up transport camera. Separate from locked motion ROI; crop logged in every extraction.json.",
+      "metric_tuning": false
+    }
+  },
+  "captures": [
+    {
+      "capture_index": 1,
+      "capture_role": "main",
+      "events": [
+        {
+          "event_type": "control_onset",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Control downward actuation onset not established. First-attempt close-up already shows finger contact; later controls are off camera. Contact/light is not electrical command time."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Collector moving element changes from preceding stationary orientation; bracket from six-native-frame navigation, preview pixels. First attempt onset cut-occluded, hence NA."
+        },
+        {
+          "event_type": "collector_ball_first_visible",
+          "lower_pts_seconds": 1102.634867,
+          "upper_pts_seconds": 1102.835067,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c1_nav/pts_1102.634867.png",
+            "source_pts_seconds": 1102.634867,
+            "sha256": "f8b3f094e31d07b3f46995c41eac41a078bb3180a5ca7ba3f51c21ee42e7c7d5",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c1_nav/pts_1102.835067.png",
+            "source_pts_seconds": 1102.835067,
+            "sha256": "40495904099346434d957a09ba76d621bf5eb32417af5457fef3c837f71e5c8a",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Yellow surface first resolved below rim within housing after preceding empty housing sample; six-native-frame navigation visibility proxy, hidden entry plane unknown."
+        },
+        {
+          "event_type": "permanent_isolation",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Irreversible separation plane and closure topology not established from broadcast; pocket presence does not establish permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "lower_pts_seconds": 1103.769333,
+          "upper_pts_seconds": 1103.9028,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c1_entry_native/pts_1103.769333.png",
+            "source_pts_seconds": 1103.769333,
+            "sha256": "8734e12af9ec4cb213b21f59ef0e45b24256207eab13a029a7f80745cf258cad",
+            "width": 470,
+            "height": 750
+          },
+          "after": {
+            "file": "evidence/rep01375_c1_entry_native/pts_1103.902800.png",
+            "source_pts_seconds": 1103.9028,
+            "sha256": "311b0148c5116dc1fcbd23c73f8d44ac0658d3411fb19c73a712e15822e7be12",
+            "width": 470,
+            "height": 750
+          },
+          "note": "Leading physical ball edge passes collector mouth into downstream ramp/result channel. Every native frame reviewed in the local crop. Four-frame bracket retained for blur/refraction and edge-plane ambiguity; resolution is not empirical accuracy or selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "lower_pts_seconds": 1106.105,
+          "upper_pts_seconds": 1108.107,
+          "event_timestamp_seconds": null,
+          "status": "bounded_coarse_graphic",
+          "before": {
+            "file": "evidence/rep01375_overview/pts_1106.105000.png",
+            "source_pts_seconds": 1106.105,
+            "sha256": "9370cf90e6cb8b8c04e5f2b2821324d6fa8e44721a6382f8af2fe4a63b1ef6db",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_overview/pts_1108.107000.png",
+            "source_pts_seconds": 1108.107,
+            "sha256": "8190859890ff510ae876d55f7970cbd7f16e79c9204bcdb3e73a9cb86991009f",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Coarse bottom result-overlay bracket: preceding bottom graphic lacks new readable number, later sample has it. Venue background display is a separate graphic and may update sooner. Animation/first-readable transition not natively refined; timing quality target not met. Graphic event is separate from capture."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Audio not reviewed directly; no ASR substitution."
+        },
+        {
+          "event_type": "overlay_slot_filled",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "First slot-filled transition not separately refined; first-readable overview bracket cannot distinguish animation from slot placement."
+        }
+      ]
+    },
+    {
+      "capture_index": 2,
+      "capture_role": "main",
+      "events": [
+        {
+          "event_type": "control_onset",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Control downward actuation onset not established. First-attempt close-up already shows finger contact; later controls are off camera. Contact/light is not electrical command time."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "lower_pts_seconds": 1114.6135,
+          "upper_pts_seconds": 1114.8137,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c2_nav/pts_1114.613500.png",
+            "source_pts_seconds": 1114.6135,
+            "sha256": "f1952011931b3476d624fc497e910a0a06f88ebdadf9485d567b12b18073ae45",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c2_nav/pts_1114.813700.png",
+            "source_pts_seconds": 1114.8137,
+            "sha256": "7bb860c21b063b99777c138437d3b5c578ea75898741bcd2d7b7635dafe1f2e4",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Collector moving element changes from preceding stationary orientation; bracket from six-native-frame navigation, preview pixels. First attempt onset cut-occluded, hence NA."
+        },
+        {
+          "event_type": "collector_ball_first_visible",
+          "lower_pts_seconds": 1116.2151,
+          "upper_pts_seconds": 1116.4153,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c2_nav/pts_1116.215100.png",
+            "source_pts_seconds": 1116.2151,
+            "sha256": "e053c65fd2e540e6a0c5c7fb08ec56f7bb9fe22ea1192b79a60507649b5f6af0",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c2_nav/pts_1116.415300.png",
+            "source_pts_seconds": 1116.4153,
+            "sha256": "c5fa246dc251a572e3db3ba05cf864cc388e4c2585525d013d80916539c3d514",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Yellow surface first resolved below rim within housing after preceding empty housing sample; six-native-frame navigation visibility proxy, hidden entry plane unknown."
+        },
+        {
+          "event_type": "permanent_isolation",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Irreversible separation plane and closure topology not established from broadcast; pocket presence does not establish permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "lower_pts_seconds": 1117.7166,
+          "upper_pts_seconds": 1117.850067,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c2_entry_native/pts_1117.716600.png",
+            "source_pts_seconds": 1117.7166,
+            "sha256": "96a3eda8b8d349462284f66c638c7b5a3ee80693bd900ce748d23ef68b9c576c",
+            "width": 470,
+            "height": 750
+          },
+          "after": {
+            "file": "evidence/rep01375_c2_entry_native/pts_1117.850067.png",
+            "source_pts_seconds": 1117.850067,
+            "sha256": "b8b0d9853d386aeeabc9d6668a6f7452a557ad5f2c80dcc6b4bd25d23026a400",
+            "width": 470,
+            "height": 750
+          },
+          "note": "Leading physical ball edge passes collector mouth into downstream ramp/result channel. Every native frame reviewed in the local crop. Four-frame bracket retained for blur/refraction and edge-plane ambiguity; resolution is not empirical accuracy or selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "lower_pts_seconds": 1120.119,
+          "upper_pts_seconds": 1122.121,
+          "event_timestamp_seconds": null,
+          "status": "bounded_coarse_graphic",
+          "before": {
+            "file": "evidence/rep01375_overview/pts_1120.119000.png",
+            "source_pts_seconds": 1120.119,
+            "sha256": "9d2a5cf767879491f66b32d2a9a6b6e3cea009cc1d7fc74011c8ff7604042278",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_overview/pts_1122.121000.png",
+            "source_pts_seconds": 1122.121,
+            "sha256": "d5caa2c7c88b730fd6a100546c7fc760f323d71b2edf5d3257274f47f9ba9a97",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Coarse bottom result-overlay bracket: preceding bottom graphic lacks new readable number, later sample has it. Venue background display is a separate graphic and may update sooner. Animation/first-readable transition not natively refined; timing quality target not met. Graphic event is separate from capture."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Audio not reviewed directly; no ASR substitution."
+        },
+        {
+          "event_type": "overlay_slot_filled",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "First slot-filled transition not separately refined; first-readable overview bracket cannot distinguish animation from slot placement."
+        }
+      ]
+    },
+    {
+      "capture_index": 3,
+      "capture_role": "main",
+      "events": [
+        {
+          "event_type": "control_onset",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Control downward actuation onset not established. First-attempt close-up already shows finger contact; later controls are off camera. Contact/light is not electrical command time."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "lower_pts_seconds": 1128.6275,
+          "upper_pts_seconds": 1128.8277,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c3_nav/pts_1128.627500.png",
+            "source_pts_seconds": 1128.6275,
+            "sha256": "66f7f31335140efd7177ead349e7156d38c5d65fd1872d1f0164f31626b77767",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c3_nav/pts_1128.827700.png",
+            "source_pts_seconds": 1128.8277,
+            "sha256": "57d083b27bcbaa7e9f79334fa8599ee6e5fbbf9d75d3d2ab3ab334de3f75c452",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Collector moving element changes from preceding stationary orientation; bracket from six-native-frame navigation, preview pixels. First attempt onset cut-occluded, hence NA."
+        },
+        {
+          "event_type": "collector_ball_first_visible",
+          "lower_pts_seconds": 1130.0289,
+          "upper_pts_seconds": 1130.2291,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c3_nav/pts_1130.028900.png",
+            "source_pts_seconds": 1130.0289,
+            "sha256": "f56b76e2d0422fde5f016f1aafd90c409c78e4f104854cb6398a42dc6a3ec80b",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c3_nav/pts_1130.229100.png",
+            "source_pts_seconds": 1130.2291,
+            "sha256": "9d3e93e89a5dbe8b90599f37d3db21aacf01e821bcec03e7bc429fac9b7bd648",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Yellow surface first resolved below rim within housing after preceding empty housing sample; six-native-frame navigation visibility proxy, hidden entry plane unknown."
+        },
+        {
+          "event_type": "permanent_isolation",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Irreversible separation plane and closure topology not established from broadcast; pocket presence does not establish permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "lower_pts_seconds": 1131.4303,
+          "upper_pts_seconds": 1131.563767,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c3_entry_native/pts_1131.430300.png",
+            "source_pts_seconds": 1131.4303,
+            "sha256": "06c70434505ef5a39462bdd7f2913ff8443b84e5e1262625113f9cb860d0fe43",
+            "width": 470,
+            "height": 750
+          },
+          "after": {
+            "file": "evidence/rep01375_c3_entry_native/pts_1131.563767.png",
+            "source_pts_seconds": 1131.563767,
+            "sha256": "71f8a297484596c4e3b6016e8c4e546723290063b62c417face8eaad689cd510",
+            "width": 470,
+            "height": 750
+          },
+          "note": "Leading physical ball edge passes collector mouth into downstream ramp/result channel. Every native frame reviewed in the local crop. Four-frame bracket retained for blur/refraction and edge-plane ambiguity; resolution is not empirical accuracy or selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "lower_pts_seconds": 1134.133,
+          "upper_pts_seconds": 1136.135,
+          "event_timestamp_seconds": null,
+          "status": "bounded_coarse_graphic",
+          "before": {
+            "file": "evidence/rep01375_overview/pts_1134.133000.png",
+            "source_pts_seconds": 1134.133,
+            "sha256": "9a96e885d4308a30b46ada561fb6d5e5d854f4125c8e04926b9c5837efe3d48a",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_overview/pts_1136.135000.png",
+            "source_pts_seconds": 1136.135,
+            "sha256": "dc59f14d0448db07b474ea465882fc9c2f01f8ffd9ed6b78dec3a4b35ebf385d",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Coarse bottom result-overlay bracket: preceding bottom graphic lacks new readable number, later sample has it. Venue background display is a separate graphic and may update sooner. Animation/first-readable transition not natively refined; timing quality target not met. Graphic event is separate from capture."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Audio not reviewed directly; no ASR substitution."
+        },
+        {
+          "event_type": "overlay_slot_filled",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "First slot-filled transition not separately refined; first-readable overview bracket cannot distinguish animation from slot placement."
+        }
+      ]
+    },
+    {
+      "capture_index": 4,
+      "capture_role": "main",
+      "events": [
+        {
+          "event_type": "control_onset",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Control downward actuation onset not established. First-attempt close-up already shows finger contact; later controls are off camera. Contact/light is not electrical command time."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "lower_pts_seconds": 1142.207733,
+          "upper_pts_seconds": 1142.407933,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c4_nav/pts_1142.207733.png",
+            "source_pts_seconds": 1142.207733,
+            "sha256": "e680fffbe2fefd54cc91c2960ef88240a948f437449b17cfd512108ae7c8afa2",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c4_nav/pts_1142.407933.png",
+            "source_pts_seconds": 1142.407933,
+            "sha256": "ee3a2fc1a9629521fb228c2074ba57ef2bb08219170eba77fab3a79422a3c877",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Collector moving element changes from preceding stationary orientation; bracket from six-native-frame navigation, preview pixels. First attempt onset cut-occluded, hence NA."
+        },
+        {
+          "event_type": "collector_ball_first_visible",
+          "lower_pts_seconds": 1144.209733,
+          "upper_pts_seconds": 1144.409933,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c4_nav/pts_1144.209733.png",
+            "source_pts_seconds": 1144.209733,
+            "sha256": "26f98f0fddb0390d827eb7c87556815ddd933b0ad76a5e245836204c19e563eb",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c4_nav/pts_1144.409933.png",
+            "source_pts_seconds": 1144.409933,
+            "sha256": "fd017bc5ce7f2d0dcc20f408cbdfae944356fbaff2687196b73f78291f0a0735",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Yellow surface first resolved below rim within housing after preceding empty housing sample; six-native-frame navigation visibility proxy, hidden entry plane unknown."
+        },
+        {
+          "event_type": "permanent_isolation",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Irreversible separation plane and closure topology not established from broadcast; pocket presence does not establish permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "lower_pts_seconds": 1145.611133,
+          "upper_pts_seconds": 1145.7446,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c4_entry_native/pts_1145.611133.png",
+            "source_pts_seconds": 1145.611133,
+            "sha256": "5d834a26c016d857edbe98ea974390b7fb7155998e8dc651cb23aeb0d45eb307",
+            "width": 470,
+            "height": 750
+          },
+          "after": {
+            "file": "evidence/rep01375_c4_entry_native/pts_1145.744600.png",
+            "source_pts_seconds": 1145.7446,
+            "sha256": "6d73e70f0e5dbf0b5b15151730ef5fdf8438c9b6cee68b4104df9eebeb41f11e",
+            "width": 470,
+            "height": 750
+          },
+          "note": "Leading physical ball edge passes collector mouth into downstream ramp/result channel. Every native frame reviewed in the local crop. Four-frame bracket retained for blur/refraction and edge-plane ambiguity; resolution is not empirical accuracy or selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "lower_pts_seconds": 1148.147,
+          "upper_pts_seconds": 1150.149,
+          "event_timestamp_seconds": null,
+          "status": "bounded_coarse_graphic",
+          "before": {
+            "file": "evidence/rep01375_overview/pts_1148.147000.png",
+            "source_pts_seconds": 1148.147,
+            "sha256": "38e9d6958dc7cbc94e6e5a763a15fd75837ac6091a3b237bab7422d12c978e11",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_overview/pts_1150.149000.png",
+            "source_pts_seconds": 1150.149,
+            "sha256": "88455806b2215ad65e6d015eda0b6cd95e2ada59aa10833a3636b9bcb2e14469",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Coarse bottom result-overlay bracket: preceding bottom graphic lacks new readable number, later sample has it. Venue background display is a separate graphic and may update sooner. Animation/first-readable transition not natively refined; timing quality target not met. Graphic event is separate from capture."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Audio not reviewed directly; no ASR substitution."
+        },
+        {
+          "event_type": "overlay_slot_filled",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "First slot-filled transition not separately refined; first-readable overview bracket cannot distinguish animation from slot placement."
+        }
+      ]
+    },
+    {
+      "capture_index": 5,
+      "capture_role": "main",
+      "events": [
+        {
+          "event_type": "control_onset",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Control downward actuation onset not established. First-attempt close-up already shows finger contact; later controls are off camera. Contact/light is not electrical command time."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "lower_pts_seconds": 1156.421933,
+          "upper_pts_seconds": 1156.622133,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c5_nav/pts_1156.421933.png",
+            "source_pts_seconds": 1156.421933,
+            "sha256": "2b3377f2a70adcefa7de0962e1ecf5bc0f93e7d2627081b325b6beb820d93250",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c5_nav/pts_1156.622133.png",
+            "source_pts_seconds": 1156.622133,
+            "sha256": "bbdb3a6a20b6554dd8bee993d71e8e29ea021ecd3e08c8226618e5e5d2efccf6",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Collector moving element changes from preceding stationary orientation; bracket from six-native-frame navigation, preview pixels. First attempt onset cut-occluded, hence NA."
+        },
+        {
+          "event_type": "collector_ball_first_visible",
+          "lower_pts_seconds": 1158.423933,
+          "upper_pts_seconds": 1158.624133,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c5_nav/pts_1158.423933.png",
+            "source_pts_seconds": 1158.423933,
+            "sha256": "a805267a4a80e21c02c59d19c9ed29c4c14a531a07889f4b4112bebf737b9aa6",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c5_nav/pts_1158.624133.png",
+            "source_pts_seconds": 1158.624133,
+            "sha256": "d3b9adc133092928932afa41cef129c6d9d3223ce18658605b906ab78ecbe06c",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Yellow surface first resolved below rim within housing after preceding empty housing sample; six-native-frame navigation visibility proxy, hidden entry plane unknown."
+        },
+        {
+          "event_type": "permanent_isolation",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Irreversible separation plane and closure topology not established from broadcast; pocket presence does not establish permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "lower_pts_seconds": 1159.8587,
+          "upper_pts_seconds": 1159.992167,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c5_entry_native/pts_1159.858700.png",
+            "source_pts_seconds": 1159.8587,
+            "sha256": "5d3a77e15a55bb5bae40d99f4d4a5bebad97890ef1242902390008a367576db8",
+            "width": 470,
+            "height": 750
+          },
+          "after": {
+            "file": "evidence/rep01375_c5_entry_native/pts_1159.992167.png",
+            "source_pts_seconds": 1159.992167,
+            "sha256": "4f1495971a8731e3b38f6b58041ecd48c41b71de9f4380ca4f54cca540d0799f",
+            "width": 470,
+            "height": 750
+          },
+          "note": "Leading physical ball edge passes collector mouth into downstream ramp/result channel. Every native frame reviewed in the local crop. Four-frame bracket retained for blur/refraction and edge-plane ambiguity; resolution is not empirical accuracy or selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "lower_pts_seconds": 1162.161,
+          "upper_pts_seconds": 1164.163,
+          "event_timestamp_seconds": null,
+          "status": "bounded_coarse_graphic",
+          "before": {
+            "file": "evidence/rep01375_overview/pts_1162.161000.png",
+            "source_pts_seconds": 1162.161,
+            "sha256": "f1725b4b856003e7d80df69335103877264124b3e0658e556a3ff67102d056ed",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_overview/pts_1164.163000.png",
+            "source_pts_seconds": 1164.163,
+            "sha256": "49663bea497c4a72e78ece781b08f00c299df9d4b1f056e0c3903c59f5e56c98",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Coarse bottom result-overlay bracket: preceding bottom graphic lacks new readable number, later sample has it. Venue background display is a separate graphic and may update sooner. Animation/first-readable transition not natively refined; timing quality target not met. Graphic event is separate from capture."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Audio not reviewed directly; no ASR substitution."
+        },
+        {
+          "event_type": "overlay_slot_filled",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "First slot-filled transition not separately refined; first-readable overview bracket cannot distinguish animation from slot placement."
+        }
+      ]
+    },
+    {
+      "capture_index": 6,
+      "capture_role": "main",
+      "events": [
+        {
+          "event_type": "control_onset",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Control downward actuation onset not established. First-attempt close-up already shows finger contact; later controls are off camera. Contact/light is not electrical command time."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "lower_pts_seconds": 1170.802967,
+          "upper_pts_seconds": 1171.003167,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c6_nav/pts_1170.802967.png",
+            "source_pts_seconds": 1170.802967,
+            "sha256": "1b65b5f9fa31eb4aa76e39b21e6d7ddb7957b74024c26df2eba0d31d0687c3e1",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c6_nav/pts_1171.003167.png",
+            "source_pts_seconds": 1171.003167,
+            "sha256": "247fbc24a82f0e263831a4f8bbb5fba88caea4b89c0caef6ded3a51062456def",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Collector moving element changes from preceding stationary orientation; bracket from six-native-frame navigation, preview pixels. First attempt onset cut-occluded, hence NA."
+        },
+        {
+          "event_type": "collector_ball_first_visible",
+          "lower_pts_seconds": 1172.204367,
+          "upper_pts_seconds": 1172.404567,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c6_nav/pts_1172.204367.png",
+            "source_pts_seconds": 1172.204367,
+            "sha256": "61b7ed6d8eb5323c150bcf2acaea5bdb836100fe12d28521b875d774d70acfb5",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c6_nav/pts_1172.404567.png",
+            "source_pts_seconds": 1172.404567,
+            "sha256": "540b027a2f9e1a7e47cac7d9a02b2a2542ed9b70a8a99eab9da26488cbf85423",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Yellow surface first resolved below rim within housing after preceding empty housing sample; six-native-frame navigation visibility proxy, hidden entry plane unknown."
+        },
+        {
+          "event_type": "permanent_isolation",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Irreversible separation plane and closure topology not established from broadcast; pocket presence does not establish permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "lower_pts_seconds": 1173.3722,
+          "upper_pts_seconds": 1173.505667,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c6_entry_native/pts_1173.372200.png",
+            "source_pts_seconds": 1173.3722,
+            "sha256": "a304cd6bcf5c410c7fdf1170a6eef6118c1ffbf9d666b58382af57fc47049065",
+            "width": 470,
+            "height": 750
+          },
+          "after": {
+            "file": "evidence/rep01375_c6_entry_native/pts_1173.505667.png",
+            "source_pts_seconds": 1173.505667,
+            "sha256": "475019ae698f60db17f5502773cc6805c14df808acaef8a5204c75e415d5af83",
+            "width": 470,
+            "height": 750
+          },
+          "note": "Leading physical ball edge passes collector mouth into downstream ramp/result channel. Every native frame reviewed in the local crop. Four-frame bracket retained for blur/refraction and edge-plane ambiguity; resolution is not empirical accuracy or selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "lower_pts_seconds": 1176.175,
+          "upper_pts_seconds": 1178.177,
+          "event_timestamp_seconds": null,
+          "status": "bounded_coarse_graphic",
+          "before": {
+            "file": "evidence/rep01375_overview/pts_1176.175000.png",
+            "source_pts_seconds": 1176.175,
+            "sha256": "20fffff2da16c3017cbb5af09847483e807a46c253a33d627c6e4644d3754ba5",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_overview/pts_1178.177000.png",
+            "source_pts_seconds": 1178.177,
+            "sha256": "13cad1361507d027538f79fa72ac16bebf80945783c68d03e6db1fce593453ac",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Coarse bottom result-overlay bracket: preceding bottom graphic lacks new readable number, later sample has it. Venue background display is a separate graphic and may update sooner. Animation/first-readable transition not natively refined; timing quality target not met. Graphic event is separate from capture."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Audio not reviewed directly; no ASR substitution."
+        },
+        {
+          "event_type": "overlay_slot_filled",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "First slot-filled transition not separately refined; first-readable overview bracket cannot distinguish animation from slot placement."
+        }
+      ]
+    },
+    {
+      "capture_index": 7,
+      "capture_role": "special",
+      "events": [
+        {
+          "event_type": "control_onset",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Control downward actuation onset not established. First-attempt close-up already shows finger contact; later controls are off camera. Contact/light is not electrical command time."
+        },
+        {
+          "event_type": "mechanism_first_visible_motion",
+          "lower_pts_seconds": 1184.216367,
+          "upper_pts_seconds": 1184.416567,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c7_nav/pts_1184.216367.png",
+            "source_pts_seconds": 1184.216367,
+            "sha256": "ce22146e1aa2539e97094bc89e3bf5b10678cf37c16e74cf5a82b33b0e19ba52",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c7_nav/pts_1184.416567.png",
+            "source_pts_seconds": 1184.416567,
+            "sha256": "2b174bbdb519b58f255328d949d328de42c6015ef2c62fff5b9a7c76b246493c",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Collector moving element changes from preceding stationary orientation; bracket from six-native-frame navigation, preview pixels. First attempt onset cut-occluded, hence NA."
+        },
+        {
+          "event_type": "collector_ball_first_visible",
+          "lower_pts_seconds": 1185.017167,
+          "upper_pts_seconds": 1185.217367,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c7_nav/pts_1185.017167.png",
+            "source_pts_seconds": 1185.017167,
+            "sha256": "6ca165ed98bb138548ec53b5e29151ca6a41dce6731068d93053c054dc29d0ae",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_c7_nav/pts_1185.217367.png",
+            "source_pts_seconds": 1185.217367,
+            "sha256": "133c54f162ba2bda669780b08d10c64219fad619478a3b18dea27ebb2f8b5f87",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Yellow surface first resolved below rim within housing after preceding empty housing sample; six-native-frame navigation visibility proxy, hidden entry plane unknown."
+        },
+        {
+          "event_type": "permanent_isolation",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Irreversible separation plane and closure topology not established from broadcast; pocket presence does not establish permanent isolation."
+        },
+        {
+          "event_type": "trough_entry_visible_proxy",
+          "lower_pts_seconds": 1187.319467,
+          "upper_pts_seconds": 1187.452933,
+          "event_timestamp_seconds": null,
+          "status": "bounded_visibility",
+          "before": {
+            "file": "evidence/rep01375_c7_entry_native/pts_1187.319467.png",
+            "source_pts_seconds": 1187.319467,
+            "sha256": "37d3fa4502c8ef442841e02ed235d6f1fc7568632ade250133c02d11bfaf18d0",
+            "width": 470,
+            "height": 750
+          },
+          "after": {
+            "file": "evidence/rep01375_c7_entry_native/pts_1187.452933.png",
+            "source_pts_seconds": 1187.452933,
+            "sha256": "a83542032c6cd4dc886a2d48865bc7e7f11768eb912b7625d66c446da1312581",
+            "width": 470,
+            "height": 750
+          },
+          "note": "Leading physical ball edge passes collector mouth into downstream ramp/result channel. Every native frame reviewed in the local crop. Four-frame bracket retained for blur/refraction and edge-plane ambiguity; resolution is not empirical accuracy or selection time."
+        },
+        {
+          "event_type": "overlay_number_first_clearly_readable",
+          "lower_pts_seconds": 1190.189,
+          "upper_pts_seconds": 1192.191,
+          "event_timestamp_seconds": null,
+          "status": "bounded_coarse_graphic",
+          "before": {
+            "file": "evidence/rep01375_overview/pts_1190.189000.png",
+            "source_pts_seconds": 1190.189,
+            "sha256": "e293da7c5a47855472c9b7ec0053602b3f772eca83682850f307a70d75c6a477",
+            "width": 480,
+            "height": 270
+          },
+          "after": {
+            "file": "evidence/rep01375_overview/pts_1192.191000.png",
+            "source_pts_seconds": 1192.191,
+            "sha256": "21ce74653b5c042ccc6f2f886502eba5be45bc5a958ca6875196bac262f382ed",
+            "width": 480,
+            "height": 270
+          },
+          "note": "Coarse bottom result-overlay bracket: preceding bottom graphic lacks new readable number, later sample has it. Venue background display is a separate graphic and may update sooner. Animation/first-readable transition not natively refined; timing quality target not met. Graphic event is separate from capture."
+        },
+        {
+          "event_type": "spoken_announcement",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "Audio not reviewed directly; no ASR substitution."
+        },
+        {
+          "event_type": "overlay_slot_filled",
+          "lower_pts_seconds": null,
+          "upper_pts_seconds": null,
+          "event_timestamp_seconds": null,
+          "status": "NA",
+          "before": null,
+          "after": null,
+          "note": "First slot-filled transition not separately refined; first-readable overview bracket cannot distinguish animation from slot placement."
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "All event point times remain NA; bounds describe physical visibility/graphic visibility, not latent selection time.",
+    "Navigation images are 480x270 full-frame previews of native-PTS samples; native pixel refinement is limited to transport entry.",
+    "No human or calibrated independent event review; no empirical temporal accuracy claim.",
+    "No winning numbers used for parameter selection; visible result graphics only identify graphical transition state.",
+    "Main six versus special transition separated; seven attempts are not seven independent draws."
+  ]
+}

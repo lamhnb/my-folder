@@ -1,0 +1,47 @@
+{
+  "status": "passed_structural_hash_and_time_checks",
+  "human_review": false,
+  "independent_physical_accuracy_validated": false,
+  "endpoint_references_checked": 100,
+  "draws": {
+    "01373": {
+      "attempts": 7,
+      "six_state_records": 42,
+      "ramp_bracket_widths_seconds": [
+        0.033366,
+        0.1001,
+        0.066733,
+        0.1001,
+        0.133467,
+        0.1001,
+        0.1001
+      ],
+      "file_sha256": "16e9612045c7c1b7db0a4e60b78e00fd1fda085d2829939543a15a9762b418f4"
+    },
+    "01374": {
+      "attempts": 7,
+      "six_state_records": 42,
+      "ramp_bracket_widths_seconds": [
+        0.1001,
+        0.1001,
+        0.066733,
+        0.1001,
+        0.1001,
+        0.1001,
+        0.1001
+      ],
+      "file_sha256": "c9e78edb93dcaf9a867bf315e96b2ec9ead420fe8df15d3622bf5dab8561a91e"
+    }
+  },
+  "software_failures_corrected": [
+    {
+      "type": "UnicodeDecodeError_before_output",
+      "resolution": "Explicit UTF-8 JSON read"
+    },
+    {
+      "type": "capture6_upper_visibility_review_correction",
+      "preserved_prior_file": "evidence/replication_01374_pre_correction.json",
+      "resolution": "Corrected empty-to-visible pair after individual native image inspection"
+    }
+  ]
+}

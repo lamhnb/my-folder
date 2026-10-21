@@ -1,0 +1,48 @@
+{
+  "generated_utc": "2026-10-21T12:51:49.723368+00:00",
+  "independent_draws_with_descriptive_cadence": 5,
+  "by_draw": [
+    {
+      "draw_id": "01372",
+      "main_intervals_available": 5,
+      "mean_main_visible_interval_midpoint_seconds": 12.922910000000025,
+      "min_main_visible_interval_midpoint_seconds": 12.112100000000055,
+      "max_main_visible_interval_midpoint_seconds": 13.646967000000132
+    },
+    {
+      "draw_id": "01373",
+      "main_intervals_available": 5,
+      "mean_main_visible_interval_midpoint_seconds": 13.32664659999998,
+      "min_main_visible_interval_midpoint_seconds": 12.112099999999941,
+      "max_main_visible_interval_midpoint_seconds": 14.397716500000001
+    },
+    {
+      "draw_id": "01374",
+      "main_intervals_available": 5,
+      "mean_main_visible_interval_midpoint_seconds": 13.039693199999988,
+      "min_main_visible_interval_midpoint_seconds": 12.195516500000053,
+      "max_main_visible_interval_midpoint_seconds": 13.980632999999898
+    },
+    {
+      "draw_id": "01375",
+      "main_intervals_available": 5,
+      "mean_main_visible_interval_midpoint_seconds": 13.92057339999999,
+      "min_main_visible_interval_midpoint_seconds": 13.513499999999908,
+      "max_main_visible_interval_midpoint_seconds": 14.247567000000004
+    },
+    {
+      "draw_id": "01376",
+      "main_intervals_available": 5,
+      "mean_main_visible_interval_midpoint_seconds": 13.566886699999987,
+      "min_main_visible_interval_midpoint_seconds": 13.27993349999997,
+      "max_main_visible_interval_midpoint_seconds": 13.813800000000015
+    }
+  ],
+  "mean_of_draw_means_seconds": 13.355341979999993,
+  "sample_sd_of_draw_means_seconds": 0.4036374366899762,
+  "p_value": null,
+  "confidence_interval": null,
+  "interval_bounds_are": "observation-localization bounds, not confidence intervals or physical accuracy",
+  "H2_status": "visible_downstream_cadence_descriptive_only; physical mixing/capture timer not identified",
+  "locked_protocol_sha256": "ba89fe62bc72b1dabdda10be2411a7202f6c183a828efdd540e59e1d1b4fc15b"
+}

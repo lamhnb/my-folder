@@ -1,0 +1,251 @@
+{
+  "status": "exploratory_image_motion_not_physical_measurement",
+  "source_file": "C:\\vietlott-research-output\\phase2-inputs\\IUU05082QtE_f137_ranges.mp4",
+  "source_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+  "source_stream": {
+    "index": 0,
+    "codec_name": "h264",
+    "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+    "profile": "High",
+    "codec_type": "video",
+    "codec_tag_string": "avc1",
+    "codec_tag": "0x31637661",
+    "mime_codec_string": "avc1.640028",
+    "width": 1920,
+    "height": 1080,
+    "coded_width": 1920,
+    "coded_height": 1080,
+    "has_b_frames": 1,
+    "sample_aspect_ratio": "1:1",
+    "display_aspect_ratio": "16:9",
+    "pix_fmt": "yuv420p",
+    "level": 40,
+    "color_range": "tv",
+    "color_space": "bt709",
+    "color_transfer": "bt709",
+    "color_primaries": "bt709",
+    "chroma_location": "left",
+    "field_order": "progressive",
+    "is_avc": "true",
+    "nal_length_size": "4",
+    "id": "0x1",
+    "r_frame_rate": "30000/1001",
+    "avg_frame_rate": "30000/1001",
+    "time_base": "1/30000",
+    "start_pts": 0,
+    "start_time": "0.000000",
+    "duration_ts": 62946884,
+    "duration": "2098.229467",
+    "bit_rate": "1850306",
+    "bits_per_raw_sample": "8",
+    "extradata_size": 44,
+    "disposition": {
+      "default": 1,
+      "dub": 0,
+      "original": 0,
+      "comment": 0,
+      "lyrics": 0,
+      "karaoke": 0,
+      "forced": 0,
+      "hearing_impaired": 0,
+      "visual_impaired": 0,
+      "clean_effects": 0,
+      "attached_pic": 0,
+      "timed_thumbnails": 0,
+      "non_diegetic": 0,
+      "captions": 0,
+      "descriptions": 0,
+      "metadata": 0,
+      "dependent": 0,
+      "still_image": 0,
+      "multilayer": 0
+    },
+    "tags": {
+      "creation_time": "2026-07-16T12:04:29.000000Z",
+      "language": "und",
+      "handler_name": "ISO Media file produced by Google Inc."
+    }
+  },
+  "source_format": {
+    "filename": "C:\\vietlott-research-output\\phase2-inputs\\IUU05082QtE_f137_ranges.mp4",
+    "nb_streams": 1,
+    "nb_programs": 0,
+    "nb_stream_groups": 0,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "format_long_name": "QuickTime / MOV",
+    "start_time": "0.000000",
+    "duration": "2098.229467",
+    "size": "493136124",
+    "bit_rate": "1880199",
+    "probe_score": 100,
+    "tags": {
+      "major_brand": "dash",
+      "minor_version": "0",
+      "compatible_brands": "iso6avc1mp41",
+      "creation_time": "2026-07-16T12:04:29.000000Z"
+    }
+  },
+  "manual_review": {
+    "stable_camera_reviewed": true,
+    "source_sha256": "c4740a0cbe28ea595ebb39487629a50b5bc8c7c88d91f777a4731660e07bce9c",
+    "start_pts": 1098.030267,
+    "end_pts": 1103.035267,
+    "evidence_refs": [
+      "evidence/rotor_stability/sheet_000.jpg",
+      "evidence/rotor_stability/frames.csv",
+      "evidence/rotor_stability/extraction.json",
+      "evidence/rotor_native_reference/pts_1098.030267.png",
+      "evidence/rotor_stability/pts_1098.030267.png",
+      "evidence/rotor_stability/pts_1099.031267.png",
+      "evidence/rotor_stability/pts_1100.032267.png",
+      "evidence/rotor_stability/pts_1101.033267.png",
+      "evidence/rotor_stability/pts_1102.034267.png",
+      "evidence/rotor_stability/pts_1103.035267.png"
+    ],
+    "marker_status": "not_observable",
+    "marker_notes": "Three apparent similar transparent blades; a uniquely identifiable material feature is not verified. No assumption of shared axis or speed. Ball blur, transparency and occlusion limit feature identity.",
+    "camera_notes": "Six native one-second samples plus contact sheet and first native reference inspected. Chamber ring and hub appear stable after preceding zoom. Subtle camera drift unquantified; no calibration, camera-original shutter or motion blur correction. This is an exploratory stable-view gate, not a claim of calibrated camera stability.",
+    "reviewer": "Codex motion-methods subagent, following parent-supplied fixed interval/ROI; same-session review, not independent human review",
+    "roi_source_pixels": [
+      480,
+      80,
+      900,
+      900
+    ],
+    "center_source_pixels": [
+      932,
+      525
+    ],
+    "annulus_pixels": [
+      130,
+      350
+    ],
+    "selection_note": "Parent selected before diagnostics output, on direct visual inspection; no parameter tuning based on lottery results or diagnostic agreement."
+  },
+  "arguments": {
+    "source": "C:\\vietlott-research-output\\phase2-inputs\\IUU05082QtE_f137_ranges.mp4",
+    "start": 1098.030267,
+    "end": 1103.035267,
+    "roi": [
+      480,
+      80,
+      900,
+      900
+    ],
+    "center_source": [
+      932.0,
+      525.0
+    ],
+    "annulus": [
+      130.0,
+      350.0
+    ],
+    "harmonic": 3,
+    "review": "phase2\\evidence\\pilot_motion_review.json",
+    "out": "phase2\\evidence\\pilot_motion",
+    "max_frames": 300
+  },
+  "source_pts_first": 1098.030267,
+  "source_pts_last": 1103.0019,
+  "native_frame_count": 150,
+  "source_frame_index": null,
+  "source_pts_origin_note": "Local packet-copy source timestamps; upstream source mapping requires acquisition provenance.",
+  "marker_feasibility": "not_observable",
+  "physical_angle_deg": null,
+  "physical_rpm": null,
+  "calibration_status": "not_implemented_or_verified",
+  "analyses": {
+    "yellow_masked": {
+      "status": "not_computed_irregular_pts_short_or_missing",
+      "max_dt_deviation_seconds": 1.0000001111620804e-06
+    },
+    "unmasked_control": {
+      "status": "exploratory_pattern_only",
+      "sampling_hz_from_pts": 29.96973057212362,
+      "max_dt_deviation_seconds": 1.0000001111620804e-06,
+      "candidate_pattern_frequency_hz": 3.5963676686548345,
+      "bin_width_hz": 0.19979820381415747,
+      "autocorrelation_peak_lag_seconds": 0.26693599999998696,
+      "nyquist_hz": 14.98486528606181,
+      "alias_resolved": false,
+      "warning": "Lag and spectrum can select different harmonics; no automatic RPM conversion or CI."
+    },
+    "moving_yellow_mask_control": {
+      "status": "exploratory_pattern_only",
+      "sampling_hz_from_pts": 29.96973057212362,
+      "max_dt_deviation_seconds": 1.0000001111620804e-06,
+      "candidate_pattern_frequency_hz": 1.5983856305132598,
+      "bin_width_hz": 0.19979820381415747,
+      "autocorrelation_peak_lag_seconds": 0.20020199999999022,
+      "nyquist_hz": 14.98486528606181,
+      "alias_resolved": false,
+      "warning": "Lag and spectrum can select different harmonics; no automatic RPM conversion or CI."
+    }
+  },
+  "warnings": [
+    "Image signals do not identify a paddle, common shaft, physical angle, direction or RPM.",
+    "Threefold image symmetry creates 120-degree ambiguity; harmonic order is a hypothesis.",
+    "Sampling cannot exclude alias branches without an independent speed bound and marker identity.",
+    "Perspective, refraction, blur, unknown shutter and occlusion are uncalibrated systematics.",
+    "Yellow HSV masks are heuristic: moving masks can themselves create periodic signals.",
+    "A stable-camera review is required. Cut scores are diagnostics, not automatic cut certification.",
+    "Agreement between methods on the same pixels is not independent physical validation."
+  ],
+  "commands": {
+    "decode": [
+      "ffmpeg",
+      "-hide_banner",
+      "-loglevel",
+      "info",
+      "-ss",
+      "1096.030267",
+      "-copyts",
+      "-noautorotate",
+      "-i",
+      "C:\\vietlott-research-output\\phase2-inputs\\IUU05082QtE_f137_ranges.mp4",
+      "-an",
+      "-vf",
+      "trim=start=1098.030267:end=1103.035267,showinfo,crop=900:900:480:80:exact=1",
+      "-frames:v",
+      "301",
+      "-fps_mode",
+      "passthrough",
+      "-f",
+      "rawvideo",
+      "-pix_fmt",
+      "bgr24",
+      "pipe:1"
+    ],
+    "probe_frames": [
+      "ffprobe",
+      "-v",
+      "error",
+      "-select_streams",
+      "v:0",
+      "-read_intervals",
+      "1098.030267%1103.035267",
+      "-show_frames",
+      "-show_entries",
+      "frame=best_effort_timestamp_time",
+      "-of",
+      "json",
+      "C:\\vietlott-research-output\\phase2-inputs\\IUU05082QtE_f137_ranges.mp4"
+    ]
+  },
+  "code_commit": "b2b1938cf38cc976a302cd8fd6a29bd4dd3c3df5",
+  "script_sha256": "a7a1b61833b1fbcde3f66aa8efd19c2ce8dd073e73488fbb18ae321fe66a80e2",
+  "phase1_requirements_lock_sha256": "30d5f2cc63346970ec9dc5d9dc047dc0a150686cb89d248c1c767d10a0979fc3",
+  "environment": {
+    "python": "3.12.13 (main, Jun 23 2026, 15:23:43) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "opencv": "5.0.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "ffmpeg": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "ffprobe": "ffprobe version 8.1.1-full_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+  },
+  "spatial_sampling": "native crop; bilinear polar remap only; no new temporal frames",
+  "frames_saved": false,
+  "confidence_intervals": null,
+  "synthetic_is_real_evidence": false
+}

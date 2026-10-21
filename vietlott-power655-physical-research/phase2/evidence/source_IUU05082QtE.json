@@ -1,0 +1,345 @@
+{
+  "video_id": "IUU05082QtE",
+  "url": "https://www.youtube.com/watch?v=IUU05082QtE",
+  "accessed_utc": "2026-10-21T12:11:55.923514+00:00",
+  "network": "IPv4",
+  "status": "failed",
+  "full_video_decoded": false,
+  "metadata": {
+    "id": "IUU05082QtE",
+    "title": "Ngày 16/07/2026 - Quay Thưởng Kết Quả Xổ Số Tự Chọn Power 6/55 và Max3d Pro – Vietlott",
+    "channel": "Công ty Xổ số Điện toán Việt Nam - Vietlott",
+    "channel_id": "UCVMkZX9ciaYRghvpNlSQVnQ",
+    "channel_url": "https://www.youtube.com/channel/UCVMkZX9ciaYRghvpNlSQVnQ",
+    "uploader": "Công ty Xổ số Điện toán Việt Nam - Vietlott",
+    "uploader_id": "@CongtyXosoientoanVietNam-Vietl",
+    "upload_date": "20260716",
+    "release_date": "20260716",
+    "release_timestamp": 1784199301,
+    "timestamp": 1784201991,
+    "duration": 2098,
+    "license": null,
+    "availability": "public",
+    "live_status": "was_live",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "webpage_url": "https://www.youtube.com/watch?v=IUU05082QtE",
+    "formats": [
+      {
+        "format_id": "602",
+        "width": 256,
+        "height": 144,
+        "fps": 15.0,
+        "vcodec": "vp09.00.10.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "269",
+        "width": 256,
+        "height": 144,
+        "fps": 30.0,
+        "vcodec": "avc1.4D400C",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "160",
+        "width": 256,
+        "height": 144,
+        "fps": 30,
+        "vcodec": "avc1.4D400C",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "603",
+        "width": 256,
+        "height": 144,
+        "fps": 30.0,
+        "vcodec": "vp09.00.11.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "278",
+        "width": 256,
+        "height": 144,
+        "fps": 30,
+        "vcodec": "vp9",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "394",
+        "width": 256,
+        "height": 144,
+        "fps": 30,
+        "vcodec": "av01.0.00M.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "229",
+        "width": 426,
+        "height": 240,
+        "fps": 30.0,
+        "vcodec": "avc1.4D4015",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "133",
+        "width": 426,
+        "height": 240,
+        "fps": 30,
+        "vcodec": "avc1.4D4015",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "604",
+        "width": 426,
+        "height": 240,
+        "fps": 30.0,
+        "vcodec": "vp09.00.20.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "242",
+        "width": 426,
+        "height": 240,
+        "fps": 30,
+        "vcodec": "vp9",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "395",
+        "width": 426,
+        "height": 240,
+        "fps": 30,
+        "vcodec": "av01.0.00M.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "230",
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "vcodec": "avc1.4D401E",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "134",
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "vcodec": "avc1.4D401E",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "605",
+        "width": 640,
+        "height": 360,
+        "fps": 30.0,
+        "vcodec": "vp09.00.21.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "243",
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "vcodec": "vp9",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "396",
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "vcodec": "av01.0.01M.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "231",
+        "width": 854,
+        "height": 480,
+        "fps": 30.0,
+        "vcodec": "avc1.4D401F",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "135",
+        "width": 854,
+        "height": 480,
+        "fps": 30,
+        "vcodec": "avc1.4D401F",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "606",
+        "width": 854,
+        "height": 480,
+        "fps": 30.0,
+        "vcodec": "vp09.00.30.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "244",
+        "width": 854,
+        "height": 480,
+        "fps": 30,
+        "vcodec": "vp9",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "397",
+        "width": 854,
+        "height": 480,
+        "fps": 30,
+        "vcodec": "av01.0.04M.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "232",
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "vcodec": "avc1.64001F",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "136",
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "vcodec": "avc1.64001F",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "609",
+        "width": 1280,
+        "height": 720,
+        "fps": 30.0,
+        "vcodec": "vp09.00.31.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "247",
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "vcodec": "vp9",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "398",
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "vcodec": "av01.0.05M.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "270",
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "vcodec": "avc1.640028",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "137",
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "vcodec": "avc1.640028",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "614",
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "vcodec": "vp09.00.40.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "m3u8_native"
+      },
+      {
+        "format_id": "248",
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "vcodec": "vp9",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      },
+      {
+        "format_id": "399",
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "vcodec": "av01.0.08M.08",
+        "acodec": "none",
+        "has_drm": false,
+        "protocol": "https"
+      }
+    ]
+  },
+  "error_type": "ValueError",
+  "ffmpeg_version": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "script_sha256": "6a3f46aecd8c7bd46612c04e77dbfd1f090cc60d97b4524a6d6ebe108499fce7",
+  "code_base_commit": "b2b1938cf38cc976a302cd8fd6a29bd4dd3c3df5"
+}

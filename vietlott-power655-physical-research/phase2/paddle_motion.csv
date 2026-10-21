@@ -1,0 +1,6 @@
+draw_id,source_id,paddle_id,physical_angle_deg,physical_rpm,physical_direction,empirical_angle_error_deg,status,reason
+01372,IUU05082QtE,NA,NA,NA,NA,NA,not_identifiable,"No verified unique material marker, camera calibration or independent alias bound; see pilot_motion and replication camera quality gates."
+01373,LUEP3hWibQw,NA,NA,NA,NA,NA,not_identifiable,"No verified unique material marker, camera calibration or independent alias bound; see pilot_motion and replication camera quality gates."
+01374,Eid9PPhMn_0,NA,NA,NA,NA,NA,not_identifiable,"No verified unique material marker, camera calibration or independent alias bound; see pilot_motion and replication camera quality gates."
+01375,is8GgE2gQu8,NA,NA,NA,NA,NA,not_identifiable,"No verified unique material marker, camera calibration or independent alias bound; see pilot_motion and replication camera quality gates."
+01376,diq_elyRXjo,NA,NA,NA,NA,NA,not_identifiable,"No verified unique material marker, camera calibration or independent alias bound; see pilot_motion and replication camera quality gates."
