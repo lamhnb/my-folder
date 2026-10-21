@@ -1,0 +1,7 @@
+issue_id,stage,status,observed_problem,resolution_or_limit
+F01,result_lookup,unresolved,Five original official HTTP requests returned 403,No official numerical confirmation claimed
+F02,result_parser,resolved,Initial li-only parser missed numeric div children in five successful secondary HTML responses,Reparsed same SHA256-pinned local responses with bool-div parser; no network refetch or ball-label change
+F03,independent_review,not_performed,Only one visual reviewer in current run,All 35 rows provisional_one_review; no independent agreement or accuracy claim
+F04,pilot_sampling,recorded,Later samples in some capture windows cut to wide studio view,Physical digits read in fixed first two samples before cut; no graphic-only ball labels
+F05,official_url_discovery,recorded,Initial guessed drawId query differs from observed official id query,Correct id plus nocatche endpoints separately attempted with web tool and also unavailable; original failed requests preserved
+F06,historical_expansion,gate_unmet,Independent second review and official reconciliation incomplete,Additional historical video acquisition not started; target 100 not met; not a claim that 95 videos are missing

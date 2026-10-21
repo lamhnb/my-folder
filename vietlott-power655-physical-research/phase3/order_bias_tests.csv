@@ -1,0 +1,6 @@
+hypothesis,analysis_population,status,n_eligible_draws,n_analyzed_draws,statistic,effect_size,uncertainty,permutations,p_value,holm_fwer_p,reason
+H1,primary_verified_only,not_testable,0,0,NA,NA,NA,0,NA,NA,No independently reviewed and officially reconciled draws; expansion/holdout gates not passed
+H2,primary_verified_only,not_testable,0,0,NA,NA,NA,0,NA,NA,No independently reviewed and officially reconciled draws; expansion/holdout gates not passed
+H3,primary_verified_only,not_testable,0,0,NA,NA,NA,0,NA,NA,No independently reviewed and officially reconciled draws; expansion/holdout gates not passed
+H4,primary_verified_only,not_testable,0,0,NA,NA,NA,0,NA,NA,No independently reviewed and officially reconciled draws; expansion/holdout gates not passed
+SPECIAL,primary_verified_only,not_testable,0,0,NA,NA,NA,0,NA,NA,No independently reviewed and officially reconciled draws; expansion/holdout gates not passed

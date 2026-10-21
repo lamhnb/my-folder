@@ -1,0 +1,44 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\vietlott-research-output\phase2-inputs\diq_elyRXjo_f137_ranges.mp4':
+  Metadata:
+    major_brand     : dash
+    minor_version   : 0
+    compatible_brands: iso6avc1mp41
+    creation_time   : 2026-07-25T11:52:54.000000Z
+  Duration: 00:35:31.96, start: 0.000000, bitrate: 1858 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], 1498 kb/s, 29.97 fps, 29.97 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2026-07-25T11:52:54.000000Z
+      handler_name    : ISO Media file produced by Google Inc.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> rawvideo (native))
+[h264 @ 000002247d058d00] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 000002247d058d00] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[Parsed_showinfo_1 @ 000002247cfc3000] config in time_base: 1/30000, frame_rate: 30000/1001
+[Parsed_showinfo_1 @ 000002247cfc3000] config out time_base: 0/0, frame_rate: 0/0
+[Parsed_showinfo_1 @ 000002247cfc3000] n:   0 pts:32119087 pts_time:1070.636233 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:4D994DC1 plane_checksum:[4D994DC1] mean:[151] stdev:[84.1]
+[Parsed_showinfo_1 @ 000002247cfc3000] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+Output #0, rawvideo, to 'pipe:1':
+  Metadata:
+    major_brand     : dash
+    minor_version   : 0
+    compatible_brands: iso6avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: rawvideo (BGR[24] / 0x18524742), bgr24(pc, gbr/bt709/bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 1491500 kb/s, 29.97 fps, 29.97 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 rawvideo
+      creation_time   : 2026-07-25T11:52:54.000000Z
+      handler_name    : ISO Media file produced by Google Inc.
+[h264 @ 000002247f54e840] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 000002247f54e840] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[Parsed_showinfo_1 @ 000002247cfc3000] n:   1 pts:32134102 pts_time:1071.136733 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:76E1523C plane_checksum:[76E1523C] mean:[151] stdev:[83.6]
+[Parsed_showinfo_1 @ 000002247cfc3000] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 000002247cfc3000] n:   2 pts:32149117 pts_time:1071.637233 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:12177C24 plane_checksum:[12177C24] mean:[106] stdev:[71.3]
+[Parsed_showinfo_1 @ 000002247cfc3000] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 000002247cfc3000] n:   3 pts:32164132 pts_time:1072.137733 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:P checksum:9D063593 plane_checksum:[9D063593] mean:[107] stdev:[71.6]
+[Parsed_showinfo_1 @ 000002247cfc3000] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 000002247cfc3000] n:   4 pts:32179147 pts_time:1072.638233 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:D4E6CA85 plane_checksum:[D4E6CA85] mean:[107] stdev:[71.8]
+[Parsed_showinfo_1 @ 000002247cfc3000] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 000002247cfc3000] n:   5 pts:32194162 pts_time:1073.138733 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:8165DD7A plane_checksum:[8165DD7A] mean:[107] stdev:[71.6]
+[Parsed_showinfo_1 @ 000002247cfc3000] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[out#0/rawvideo @ 000002247cfc29c0] video:36450KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%
+frame=    6 fps=0.0 q=-0.0 Lsize=   36450KiB time=00:00:00.00 bitrate=N/A speed=   0x elapsed=0:00:00.26    

@@ -1,0 +1,25 @@
+{
+  "observation_date": "2026-10-21",
+  "provider": "web.run",
+  "official_date_source": {
+    "url": "https://vietlott.vn/vi/trung-thuong/linh-thuong/thoi-gian-linh-thuong-655",
+    "scope": "Search-retrieved official schedule confirms the five requested IDs/dates, not numerical results"
+  },
+  "corrected_official_result_url_template": "https://vietlott.vn/vi/trung-thuong/ket-qua-trung-thuong/655?id={draw_id}&nocatche=1",
+  "corrected_query_discovery_evidence_url": "https://vietlott.vn/vi/trung-thuong/ket-qua-trung-thuong/655?id=01371&nocatche=1",
+  "attempts": [
+    {"draw_id": "01372", "outcome": "HTTP_403"},
+    {"draw_id": "01373", "outcome": "HTTP_403"},
+    {"draw_id": "01374", "outcome": "HTTP_403"},
+    {"draw_id": "01375", "outcome": "HTTP_403"},
+    {"draw_id": "01376", "outcome": "tool_reported_inaccessible"}
+  ],
+  "official_pdf_attempt": {
+    "url": "https://media.vietlott.vn/main/07.2026/system/game.pdf.result/01376_power_a6_01376.pdf",
+    "url_status": "candidate_constructed_from_observed_official_naming_pattern; not asserted existing",
+    "web_tool_outcome": "inaccessible",
+    "direct_urllib_outcome": "HTTP_403"
+  },
+  "official_numerical_results_verified": false,
+  "note": "No response body or successful numerical result is asserted for an inaccessible URL. See separately saved secondary publisher result extracts and SHA256s."
+}

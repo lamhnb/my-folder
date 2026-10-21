@@ -1,0 +1,1548 @@
+{
+  "generated_utc": "2026-10-21T15:41:40.230137+00:00",
+  "base_commit": "e55fd8dba5bac41c7c157a5a3bc0d7ff2718de7a",
+  "branch": "research/power655-draw-order-phase3",
+  "software_and_integrity_passed": true,
+  "checks": [
+    {
+      "name": "35_rows_five_unique_draws",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_seven_distinct_valid_roles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_source_sha256",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_secondary_set_reconciliation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_1_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_2_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_3_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_4_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_5_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_6_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01372_7_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_seven_distinct_valid_roles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_source_sha256",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_secondary_set_reconciliation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_1_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_2_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_3_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_4_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_5_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_6_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01373_7_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_seven_distinct_valid_roles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_source_sha256",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_secondary_set_reconciliation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_1_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_2_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_3_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_4_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_5_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_6_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01374_7_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_seven_distinct_valid_roles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_source_sha256",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_secondary_set_reconciliation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_1_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_2_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_3_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_4_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_5_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_6_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01375_7_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_seven_distinct_valid_roles",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_source_sha256",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_secondary_set_reconciliation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_1_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_2_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_3_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_4_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_5_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_6_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_bounds_bind_samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_row_hash_binding",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_0_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_0_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_1_native_image_and_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_1_PTS_ticks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_frozen_analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "01376_7_source_redecode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "all_current_rows_remain_provisional",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "primary_results_not_fabricated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "correct_branch",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "protected_tracked_files_unchanged",
+      "passed": true,
+      "detail": "['vietlott-power655-physical-research/phase3/.gitignore', 'vietlott-power655-physical-research/phase3/PHASE3_HANDOFF.md', 'vietlott-power655-physical-research/phase3/analysis_plan.md', 'vietlott-power655-physical-research/phase3/draw_order_verified.csv', 'vietlott-power655-physical-research/phase3/evidence/README.md', 'vietlott-power655-physical-research/phase3/evidence/eligibility.json', 'vietlott-power655-physical-research/phase3/evidence/expansion_status.json', 'vietlott-power655-physical-research/phase3/evidence/known_failures.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_descriptive.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture01/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture01/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture01/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture01/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture01/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture02/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture02/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture02/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture02/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture02/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture03/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture03/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture03/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture03/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture03/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture04/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture04/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture04/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture04/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture04/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture05/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture05/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture05/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture05/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture05/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture06/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture06/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture06/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture06/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture06/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture07/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture07/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture07/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture07/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01372_capture07/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture01/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture01/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture01/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture01/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture01/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture02/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture02/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture02/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture02/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture02/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture03/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture03/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture03/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture03/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture03/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture04/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture04/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture04/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture04/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture04/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture05/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture05/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture05/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture05/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture05/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture06/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture06/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture06/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture06/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture06/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture07/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture07/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture07/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture07/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01373_capture07/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture01/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture01/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture01/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture01/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture01/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture02/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture02/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture02/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture02/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture02/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture03/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture03/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture03/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture03/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture03/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture04/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture04/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture04/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture04/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture04/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture05/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture05/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture05/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture05/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture05/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture06/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture06/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture06/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture06/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture06/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture07/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture07/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture07/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture07/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01374_capture07/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture01/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture01/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture01/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture01/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture01/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture02/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture02/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture02/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture02/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture02/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture03/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture03/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture03/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture03/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture03/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture04/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture04/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture04/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture04/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture04/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture05/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture05/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture05/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture05/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture05/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture06/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture06/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture06/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture06/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture06/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture07/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture07/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture07/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture07/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01375_capture07/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture01/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture01/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture01/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture01/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture01/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture02/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture02/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture02/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture02/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture02/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture03/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture03/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture03/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture03/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture03/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture04/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture04/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture04/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture04/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture04/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture05/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture05/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture05/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture05/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture05/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture06/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture06/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture06/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture06/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture06/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture07/extraction.json', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture07/ffmpeg.log', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture07/frame_00.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture07/frame_01.png', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1/draw01376_capture07/frames.csv', 'vietlott-power655-physical-research/phase3/evidence/pilot_v1_source_check.json', 'vietlott-power655-physical-research/phase3/evidence/primary_labels.json', 'vietlott-power655-physical-research/phase3/evidence/published_results.csv', 'vietlott-power655-physical-research/phase3/evidence/readability_draw01372.jpg', 'vietlott-power655-physical-research/phase3/evidence/readability_draw01373.jpg', 'vietlott-power655-physical-research/phase3/evidence/readability_draw01374.jpg', 'vietlott-power655-physical-research/phase3/evidence/readability_draw01375.jpg', 'vietlott-power655-physical-research/phase3/evidence/readability_draw01376.jpg', 'vietlott-power655-physical-research/phase3/evidence/result_sources/draw01372.json', 'vietlott-power655-physical-research/phase3/evidence/result_sources/draw01373.json', 'vietlott-power655-physical-research/phase3/evidence/result_sources/draw01374.json', 'vietlott-power655-physical-research/phase3/evidence/result_sources/draw01375.json', 'vietlott-power655-physical-research/phase3/evidence/result_sources/draw01376.json', 'vietlott-power655-physical-research/phase3/evidence/review_draw01372.jpg', 'vietlott-power655-physical-research/phase3/evidence/review_draw01373.jpg', 'vietlott-power655-physical-research/phase3/evidence/review_draw01374.jpg', 'vietlott-power655-physical-research/phase3/evidence/review_draw01375.jpg', 'vietlott-power655-physical-research/phase3/evidence/review_draw01376.jpg', 'vietlott-power655-physical-research/phase3/evidence/sensitivity_scope.md', 'vietlott-power655-physical-research/phase3/evidence/unit_test_output.txt', 'vietlott-power655-physical-research/phase3/evidence/web_lookup_attempts.json', 'vietlott-power655-physical-research/phase3/order_bias_tests.csv', 'vietlott-power655-physical-research/phase3/pilot_sensitivity.csv', 'vietlott-power655-physical-research/phase3/quality_audit.csv', 'vietlott-power655-physical-research/phase3/requirements-lock.txt', 'vietlott-power655-physical-research/phase3/scripts/artifact_manifest.py', 'vietlott-power655-physical-research/phase3/scripts/build_tables.py', 'vietlott-power655-physical-research/phase3/scripts/extract_pilot.py', 'vietlott-power655-physical-research/phase3/scripts/fetch_results.py', 'vietlott-power655-physical-research/phase3/scripts/order_tests.py', 'vietlott-power655-physical-research/phase3/scripts/review_sheets.py', 'vietlott-power655-physical-research/phase3/scripts/test_phase3.py', 'vietlott-power655-physical-research/phase3/scripts/validate_phase3.py', 'vietlott-power655-physical-research/phase3/source_registry.csv', 'vietlott-power655-physical-research/phase3/validation_report.json']"
+    },
+    {
+      "name": "unit_tests",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "sample_counts": {
+    "collected_distinct_draws": 5,
+    "capture_rows": 35,
+    "readable_primary_labels": 35,
+    "native_frames_extracted": 210,
+    "native_frames_published": 70,
+    "fully_readable_single_reviewer_draws": 5,
+    "fully_verified_two_review_official_draws": 0,
+    "recognition_completion_fraction": 1.0,
+    "recognition_accuracy": null,
+    "independent_secondary_reviews": 0,
+    "cross_review_agreement": null
+  },
+  "scientific_gates": {
+    "A": "physical_reading_complete_official_reconciliation_incomplete",
+    "B": "independent_second_review_missing",
+    "C": "historical_expansion_and_holdout_not_complete",
+    "primary_analysis_executed": false,
+    "predictive_evaluation_executed": false,
+    "target_100_draws_met": false
+  },
+  "limitations": [
+    "independent_second_review_missing",
+    "official_numeric_result_HTTP_403",
+    "five_nonrandom_draws_only",
+    "no_equipment_ids",
+    "no_future_holdout"
+  ],
+  "source_redecode_verified": true,
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "opencv": "5.0.0",
+    "scipy": "1.18.1"
+  }
+}

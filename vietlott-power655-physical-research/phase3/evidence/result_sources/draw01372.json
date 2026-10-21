@@ -1,0 +1,31 @@
+{
+  "draw_id": "01372",
+  "retrieved_utc": "2026-10-21T15:31:02.159462+00:00",
+  "official": {
+    "url": "https://vietlott.vn/vi/trung-thuong/ket-qua-trung-thuong/655?drawId=01372",
+    "request_purpose": "official_result_lookup_attempt",
+    "http_status": 403,
+    "error": "HTTP Error 403: Forbidden",
+    "parser_status": "unavailable"
+  },
+  "secondary": {
+    "url": "https://www.minhngoc.net.vn/ket-qua-xo-so/dien-toan-vietlott/power-6x55/16-07-2026.html",
+    "request_purpose": "independent_published_unordered_result",
+    "http_status": 200,
+    "response_sha256": "7a38ed4fe42486999aec882c0b0d5b5db30ff6c932a6fc8f7e8798871e19b198",
+    "published_numbers": [
+      19,
+      20,
+      33,
+      45,
+      48,
+      53,
+      21
+    ],
+    "result_extract": "Kỳ vé: #01372 | Ngày quay thưởng 16/07/2026 19 20 33 45 48 53 21",
+    "parser_status": "parsed_seven",
+    "parser_history": [
+      "initial_li_text_only_parser_returned_zero_labels"
+    ]
+  }
+}

@@ -1,0 +1,2 @@
+# Preserve raw ffmpeg stderr exactly, including progress-line trailing spaces.
+evidence/pilot_v1/*/ffmpeg.log -text -whitespace

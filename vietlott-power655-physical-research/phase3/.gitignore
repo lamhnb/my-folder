@@ -1,0 +1,4 @@
+__pycache__/
+# All 210 samples remain local; publish two full native evidence frames/capture.
+evidence/pilot_v1/*/frame_0[2-5].png
+evidence/pilot_v1/*/sheet.jpg

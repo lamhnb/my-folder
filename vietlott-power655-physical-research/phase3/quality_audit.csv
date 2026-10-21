@@ -1,0 +1,6 @@
+draw_id,n_captures,n_readable,readable_fraction,n_independent_reviewers,n_two_review_labels,cross_review_agreement,distinct_seven_numbers,unordered_main_secondary_match,special_secondary_match,official_result_status,primary_analysis_eligible,observed_reading_errors,estimated_recognition_accuracy,sorted_order_flag,issue
+01372,7,7,1.0,1,0,NA,True,True,True,unavailable_http_403,False,0,NA,False,Independent second review and independently sourced official numeric result missing
+01373,7,7,1.0,1,0,NA,True,True,True,unavailable_http_403,False,0,NA,False,Independent second review and independently sourced official numeric result missing
+01374,7,7,1.0,1,0,NA,True,True,True,unavailable_http_403,False,0,NA,False,Independent second review and independently sourced official numeric result missing
+01375,7,7,1.0,1,0,NA,True,True,True,unavailable_http_403,False,0,NA,False,Independent second review and independently sourced official numeric result missing
+01376,7,7,1.0,1,0,NA,True,True,True,unavailable_http_403,False,0,NA,False,Independent second review and independently sourced official numeric result missing

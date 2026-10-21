@@ -1,0 +1,11 @@
+{
+  "accepted": [],
+  "exclusions": {
+    "01372": "independent_second_review_missing",
+    "01373": "independent_second_review_missing",
+    "01374": "independent_second_review_missing",
+    "01375": "independent_second_review_missing",
+    "01376": "independent_second_review_missing"
+  },
+  "primary_executed": false
+}

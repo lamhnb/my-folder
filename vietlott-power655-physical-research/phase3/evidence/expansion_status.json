@@ -1,0 +1,14 @@
+{
+  "target_distinct_draws": 100,
+  "collected_distinct_draws": 5,
+  "additional_historical_draws_attempted": 0,
+  "additional_historical_draws_verified": 0,
+  "status": "not_started_pilot_quality_gate_unmet",
+  "not_missing_video_evidence": true,
+  "reasons": [
+    "independent_second_review_not_available_in_this_run",
+    "official_numeric_result_lookup_http_403"
+  ],
+  "holdout_status": "No sealed historical cohort; pilot is development data; no heldout outcomes analyzed",
+  "required_next": "Independent blinded reading of 35 events and official numeric reconciliation; freeze cohort then reserve latest 20 percent"
+}

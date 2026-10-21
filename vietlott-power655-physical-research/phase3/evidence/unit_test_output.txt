@@ -1,0 +1,16 @@
+test_deterministic_draw_cluster_permutation (test_phase3.Phase3Tests.test_deterministic_draw_cluster_permutation) ... ok
+test_duplicate_capture_and_invalid_number_rejected (test_phase3.Phase3Tests.test_duplicate_capture_and_invalid_number_rejected) ... ok
+test_exact_enumeration_position_and_transition_expectation (test_phase3.Phase3Tests.test_exact_enumeration_position_and_transition_expectation) ... ok
+test_holm_includes_fixed_family (test_phase3.Phase3Tests.test_holm_includes_fixed_family) ... ok
+test_invalid_role_pts_and_mixed_source_rejected (test_phase3.Phase3Tests.test_invalid_role_pts_and_mixed_source_rejected) ... ok
+test_mc_add_one_and_interval_edge_cases (test_phase3.Phase3Tests.test_mc_add_one_and_interval_edge_cases) ... ok
+test_official_403_or_secondary_result_cannot_qualify (test_phase3.Phase3Tests.test_official_403_or_secondary_result_cannot_qualify) ... ok
+test_primary_excludes_provisional_and_same_reviewer (test_phase3.Phase3Tests.test_primary_excludes_provisional_and_same_reviewer) ... ok
+test_published_result_parser_never_uses_sorted_order_as_labels (test_phase3.Phase3Tests.test_published_result_parser_never_uses_sorted_order_as_labels) ... ok
+test_remaining49_and_special_mechanism (test_phase3.Phase3Tests.test_remaining49_and_special_mechanism) ... ok
+test_single_draw_sparse_statistics_are_constant (test_phase3.Phase3Tests.test_single_draw_sparse_statistics_are_constant) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.048s
+
+OK

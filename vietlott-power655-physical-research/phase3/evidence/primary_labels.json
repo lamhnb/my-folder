@@ -1,0 +1,18 @@
+{
+  "reviewer_id": "codex_primary_20261021",
+  "review_type": "single_agent_visual_reading",
+  "independent_secondary_review": null,
+  "method": "Read actual printed digits on newest physical rail ball, using samples 00 and 01 and the cumulative rail sequence. Reduced contact sheets exclude bottom broadcast overlay. Same-agent repeat check is not independent.",
+  "labels": {
+    "01372": [20, 19, 48, 53, 33, 45, 21],
+    "01373": [54, 45, 41, 48, 55, 22, 16],
+    "01374": [32, 11, 8, 24, 39, 22, 13],
+    "01375": [55, 38, 3, 8, 1, 40, 36],
+    "01376": [5, 50, 37, 27, 33, 9, 48]
+  },
+  "sample_numbers_read": [0, 1],
+  "confidence": "high_visual_readability_not_calibrated_accuracy",
+  "recognition_errors_observed": 0,
+  "recognition_accuracy": null,
+  "accuracy_note": "No independent ground truth for per-position labels; zero observed errors is not a measured error rate. Published unordered results cannot validate position."
+}

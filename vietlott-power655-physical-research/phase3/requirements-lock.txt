@@ -1,0 +1,4 @@
+# Observed local runtime: CPython 3.12.13; ffmpeg 8.1.1-full_build-www.gyan.dev.
+numpy==2.5.4
+scipy==1.18.1
+opencv-python-headless==5.0.0.93

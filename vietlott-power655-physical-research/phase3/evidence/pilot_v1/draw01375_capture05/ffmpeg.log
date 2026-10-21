@@ -1,0 +1,42 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\vietlott-research-output\phase2-inputs\is8GgE2gQu8_f137_ranges.mp4':
+  Metadata:
+    major_brand     : dash
+    minor_version   : 0
+    compatible_brands: iso6avc1mp41
+    creation_time   : 2026-07-23T12:27:29.000000Z
+  Duration: 00:34:54.89, start: 0.000000, bitrate: 1869 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], 1278 kb/s, 29.97 fps, 29.97 tbr, 30k tbn (default)
+    Metadata:
+      creation_time   : 2026-07-23T12:27:29.000000Z
+      handler_name    : ISO Media file produced by Google Inc.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> rawvideo (native))
+[h264 @ 0000028bca6f00c0] Late SEI is not implemented. Update your FFmpeg version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[h264 @ 0000028bca6f00c0] If you want to help, upload a sample of this file to https://streams.videolan.org/upload/ and contact the ffmpeg-devel mailing list. (ffmpeg-devel@ffmpeg.org)
+[Parsed_showinfo_1 @ 0000028bc8751d80] config in time_base: 1/30000, frame_rate: 30000/1001
+[Parsed_showinfo_1 @ 0000028bc8751d80] config out time_base: 0/0, frame_rate: 0/0
+[Parsed_showinfo_1 @ 0000028bc8751d80] n:   0 pts:34859825 pts_time:1161.994167 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:28CF5660 plane_checksum:[28CF5660] mean:[165] stdev:[83.2]
+[Parsed_showinfo_1 @ 0000028bc8751d80] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+Output #0, rawvideo, to 'pipe:1':
+  Metadata:
+    major_brand     : dash
+    minor_version   : 0
+    compatible_brands: iso6avc1mp41
+    encoder         : Lavf62.12.101
+  Stream #0:0(und): Video: rawvideo (BGR[24] / 0x18524742), bgr24(pc, gbr/bt709/bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 1491500 kb/s, 29.97 fps, 29.97 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.101 rawvideo
+      creation_time   : 2026-07-23T12:27:29.000000Z
+      handler_name    : ISO Media file produced by Google Inc.
+[Parsed_showinfo_1 @ 0000028bc8751d80] n:   1 pts:34874840 pts_time:1162.494667 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:P checksum:BF9AF538 plane_checksum:[BF9AF538] mean:[165] stdev:[83.2]
+[Parsed_showinfo_1 @ 0000028bc8751d80] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 0000028bc8751d80] n:   2 pts:34889855 pts_time:1162.995167 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:68E9B12D plane_checksum:[68E9B12D] mean:[105] stdev:[75.3]
+[Parsed_showinfo_1 @ 0000028bc8751d80] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 0000028bc8751d80] n:   3 pts:34904870 pts_time:1163.495667 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:P checksum:44590489 plane_checksum:[44590489] mean:[105] stdev:[75.5]
+[Parsed_showinfo_1 @ 0000028bc8751d80] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 0000028bc8751d80] n:   4 pts:34919885 pts_time:1163.996167 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:D14CE4B3 plane_checksum:[D14CE4B3] mean:[106] stdev:[75.7]
+[Parsed_showinfo_1 @ 0000028bc8751d80] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_1 @ 0000028bc8751d80] n:   5 pts:34934900 pts_time:1164.496667 duration:   1001 duration_time:0.0333667 fmt:bgr24 cl:unspecified sar:1/1 s:1920x1080 i:P iskey:0 type:B checksum:EB243909 plane_checksum:[EB243909] mean:[106] stdev:[75.7]
+[Parsed_showinfo_1 @ 0000028bc8751d80] color_range:pc color_space:gbr color_primaries:bt709 color_trc:bt709
+[out#0/rawvideo @ 0000028bc8752800] video:36450KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%
+frame=    6 fps=0.0 q=-0.0 Lsize=   36450KiB time=00:00:00.00 bitrate=N/A speed=   0x elapsed=0:00:00.17    
