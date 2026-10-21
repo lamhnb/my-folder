@@ -1,0 +1,1336 @@
+[
+  {
+    "video_id": "IUU05082QtE",
+    "status": "navigation_only_not_verified_speech",
+    "landmarks": [
+      {
+        "source_caption_seconds": 26.88,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 317.6,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 332.84,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 351.28,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 374.44,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 383.88,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 425.56,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 437.76,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 460.76,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 469.92,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 475.96,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 539.48,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 547.52,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 568.2,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 682.48,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 694.08,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 763.4,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 785.8,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 831.76,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 847.28,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 849.16,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 861.6,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 952.24,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 954.2,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 971.2,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1013.36,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1018.32,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1026.839,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1036.16,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1056.64,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1078.84,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1081.12,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1097.32,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1105.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1127.6,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1174.56,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1185.44,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1200.84,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1224.6,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1227.2,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1830.8,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      }
+    ]
+  },
+  {
+    "video_id": "diq_elyRXjo",
+    "status": "navigation_only_not_verified_speech",
+    "landmarks": [
+      {
+        "source_caption_seconds": 266.64,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 280.28,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 304.52,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 316.76,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 339.72,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 348.88,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 354.88,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 418.44,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 426.44,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 466.2,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 631.92,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 645.72,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 701.88,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 754.96,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 783.56,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 790.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 803.4,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 839.2,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 880.96,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 882.64,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 893.44,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 895.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 927.76,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 947.36,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 968.72,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1141.16,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1685.48,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1915.0,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1934.12,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1948.2,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      }
+    ]
+  },
+  {
+    "video_id": "LUEP3hWibQw",
+    "status": "navigation_only_not_verified_speech",
+    "landmarks": [
+      {
+        "source_caption_seconds": 18.4,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 66.28,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 316.919,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 339.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 413.919,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 426.039,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 449.039,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 458.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 463.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 527.839,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 534.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 556.519,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 685.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 692.44,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 697.839,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 740.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 760.199,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 842.24,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 844.079,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 851.32,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 859.8,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 861.279,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 876.639,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 893.8,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 936.48,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 960.92,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 979.0,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 987.12,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1014.92,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1020.6,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1032.799,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1058.36,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1079.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1082.76,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1211.72,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1236.679,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1686.48,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1711.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1951.559,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      }
+    ]
+  },
+  {
+    "video_id": "Eid9PPhMn_0",
+    "status": "navigation_only_not_verified_speech",
+    "landmarks": [
+      {
+        "source_caption_seconds": 22.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 320.759,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 342.88,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 364.44,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 374.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 415.879,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 428.0,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 451.0,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 460.199,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 465.319,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 529.839,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 536.24,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 559.16,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 682.6,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 698.892,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 770.68,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 794.079,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 835.279,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 850.079,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 851.92,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 865.079,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 951.6,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 953.68,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 970.079,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1009.88,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1017.279,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1026.64,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1035.679,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1073.2,
+        "categories": [
+          "official",
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1085.36,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1089.88,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1096.039,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1168.28,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1178.36,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1194.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1214.919,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1217.88,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1771.48,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      }
+    ]
+  },
+  {
+    "video_id": "is8GgE2gQu8",
+    "status": "navigation_only_not_verified_speech",
+    "landmarks": [
+      {
+        "source_caption_seconds": 20.039,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 65.439,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 320.6,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 340.4,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 408.0,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 420.12,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 443.12,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 452.319,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 457.44,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 521.959,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 528.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 552.079,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 678.36,
+        "categories": [
+          "pretest",
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 723.32,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 740.399,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 815.519,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 817.079,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 824.0,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 831.92,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 833.32,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 849.16,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 862.959,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 936.519,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 954.319,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 963.24,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 992.279,
+        "categories": [
+          "pretest"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 997.88,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1010.48,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1012.279,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1027.799,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1035.36,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1051.28,
+        "categories": [
+          "official"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1055.039,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1058.12,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1071.16,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1192.08,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1711.519,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      },
+      {
+        "source_caption_seconds": 1735.36,
+        "categories": [
+          "power"
+        ],
+        "evidence_level": "automatic_caption_navigation_only"
+      }
+    ]
+  }
+]

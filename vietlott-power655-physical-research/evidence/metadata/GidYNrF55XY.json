@@ -1,0 +1,124 @@
+{
+  "id": "GidYNrF55XY",
+  "title": "Trực Tiếp Quay Thưởng Kết Quả Xổ Số Tự Chọn Power 6/55 - Trường Quay Vietlott",
+  "channel": "Xổ Sổ TV -Vietlott",
+  "channel_id": "UCnTVCAO-YlRhgqdVeqI98bg",
+  "channel_url": "https://www.youtube.com/channel/UCnTVCAO-YlRhgqdVeqI98bg",
+  "uploader": "Xổ Sổ TV -Vietlott",
+  "uploader_id": "@XoSooTV",
+  "upload_date": "20170930",
+  "release_date": "20170930",
+  "release_timestamp": 1506768631,
+  "timestamp": 1506773133,
+  "duration": 2195,
+  "license": null,
+  "availability": "public",
+  "live_status": "was_live",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "webpage_url": "https://www.youtube.com/watch?v=GidYNrF55XY",
+  "formats": [
+    {
+      "format_id": "269",
+      "width": 256,
+      "height": 144,
+      "fps": 30.0,
+      "vcodec": "avc1.4D400C",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "m3u8_native"
+    },
+    {
+      "format_id": "160",
+      "width": 256,
+      "height": 144,
+      "fps": 30,
+      "vcodec": "avc1.4D400C",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "https"
+    },
+    {
+      "format_id": "230",
+      "width": 640,
+      "height": 360,
+      "fps": 30.0,
+      "vcodec": "avc1.4D401E",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "m3u8_native"
+    },
+    {
+      "format_id": "134",
+      "width": 640,
+      "height": 360,
+      "fps": 30,
+      "vcodec": "avc1.4D401E",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "https"
+    },
+    {
+      "format_id": "605",
+      "width": 640,
+      "height": 360,
+      "fps": 30.0,
+      "vcodec": "vp09.00.21.08",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "m3u8_native"
+    },
+    {
+      "format_id": "243",
+      "width": 640,
+      "height": 360,
+      "fps": 30,
+      "vcodec": "vp9",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "https"
+    },
+    {
+      "format_id": "232",
+      "width": 1280,
+      "height": 720,
+      "fps": 30.0,
+      "vcodec": "avc1.64001F",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "m3u8_native"
+    },
+    {
+      "format_id": "136",
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "vcodec": "avc1.64001F",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "https"
+    },
+    {
+      "format_id": "270",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "vcodec": "avc1.640028",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "m3u8_native"
+    },
+    {
+      "format_id": "137",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "vcodec": "avc1.640028",
+      "acodec": "none",
+      "has_drm": false,
+      "protocol": "https"
+    }
+  ],
+  "collected_at_utc": "2026-10-20T16:38:31.486119+00:00"
+}

@@ -1,0 +1,31 @@
+draw_id,event_type,timestamp_seconds,frame_index,confidence,evidence_frame,notes
+00027,observed_slate_power655_draw00027_date20170930_visible,0.0,NA,high,https://www.youtube.com/watch?v=GidYNrF55XY&t=0.000000s,reviewed=true; reviewer=Codex; state_snapshot_not_event_onset; no independent second review; global index unavailable; source_id=GidYNrF55XY; phase=opening_slate; display_count=None
+00027,observed_collector_ball_visible,1190.0,NA,high,https://www.youtube.com/watch?v=GidYNrF55XY&t=1190.000000s,reviewed=true; reviewer=Codex; state_snapshot_not_event_onset; no independent second review; global index unavailable; source_id=GidYNrF55XY; phase=historical_phase_unverified; display_count=1
+00027,observed_seven_result_balls_visible,1240.0,NA,medium,https://www.youtube.com/watch?v=GidYNrF55XY&t=1240.000000s,reviewed=true; reviewer=Codex; state_snapshot_not_event_onset; no independent second review; global index unavailable; source_id=GidYNrF55XY; phase=historical_phase_unverified; display_count=7
+00027,power_segment_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_loading_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_loading_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,mixing_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,mixing_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,power_segment_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_1_capture_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_1_capture_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_1_selected,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_2_capture_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_2_capture_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_2_selected,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_3_capture_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_3_capture_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_3_selected,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_4_capture_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_4_capture_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_4_selected,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_5_capture_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_5_capture_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_5_selected,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_6_capture_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_6_capture_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_6_selected,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_7_capture_start,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_7_capture_end,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv
+00027,ball_7_selected,NA,NA,NA,NA,not_measured; required_annotation_placeholder_not_observation; actual mechanical onset not validated frame-by-frame; see manual_observations.csv

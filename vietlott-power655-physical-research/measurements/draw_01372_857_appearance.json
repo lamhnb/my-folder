@@ -1,0 +1,52 @@
+{
+  "status": "exploratory_unvalidated_appearance_only",
+  "arguments": {
+    "video_id": "IUU05082QtE",
+    "draw_id": "01372",
+    "start": 857.0,
+    "count": 120,
+    "roi": [
+      510,
+      60,
+      900,
+      900
+    ],
+    "center": [
+      450.0,
+      450.0
+    ],
+    "annulus": [
+      130.0,
+      400.0
+    ],
+    "harmonic": 3
+  },
+  "source_format_id": "137",
+  "source_width": 1920,
+  "source_height": 1080,
+  "fps_metadata": 30,
+  "sample_count": 120,
+  "source_pts_first": 857.022833,
+  "source_pts_last": 860.993467,
+  "observed_sample_rate_hz": 29.96973057212362,
+  "method1_candidate_signed_rpm": 63.78904987441208,
+  "method2_pattern_spectrum_candidate_abs_rpm": 94.9041468117248,
+  "spectrum_bin_width_hz": 0.24974775476769684,
+  "spectral_rpm_bin_width": 4.994955095353936,
+  "alias_rpm_spacing": 599.3946114424724,
+  "principal_alias_rpm_limit": 299.6973057212362,
+  "physical_rpm": null,
+  "physical_direction": null,
+  "physical_paddle_ids": null,
+  "signal_note": "Threefold white/gray appearance amid moving balls. Symmetry, camera stability, feature identity, and alias branch are not independently verified. Values cannot be reported as machine RPM.",
+  "ball_detections": 109,
+  "ball_identity": "unknown; rows are unlinked color-component candidates, not tracked balls",
+  "occlusion": "unknown; no hidden center or trajectory imputed",
+  "frames_saved": false,
+  "source_video_sha256": null,
+  "accessed_at_utc": "2026-10-20T16:55:18.245400+00:00",
+  "transport": {
+    "bytes_sent": 4980736,
+    "errors": []
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "video_id": "is8GgE2gQu8",
+  "requested_start": 1030.0,
+  "duration_requested": 180.0,
+  "source_format_id": "137",
+  "source_width": 1920,
+  "source_height": 1080,
+  "fps_metadata": 30,
+  "frames_decoded": 37,
+  "frame_index_global": null,
+  "frame_index_note": "Global native index not verified; PTS is the primary source locator.",
+  "sampling_every_native_frames": 150,
+  "media_saved": false,
+  "ffmpeg_exit_code": 0,
+  "preview_width": 320,
+  "preview_height": 180,
+  "crop_source_pixels": null,
+  "accessed_at_utc": "2026-10-21T03:24:49.650119+00:00",
+  "transport_errors": [],
+  "bytes_sent": 54263808,
+  "samples": [
+    {
+      "source_pts_seconds": 1030.029,
+      "preview_bgr_sha256": "f99db726fa04c3366e71143a76475e942d97f72a807de03e0144b7f07d997cf7"
+    },
+    {
+      "source_pts_seconds": 1035.034,
+      "preview_bgr_sha256": "ed050edfae403518d0b16fff88223ec3f75910d4d4c70998059fd3b11a1db50a"
+    },
+    {
+      "source_pts_seconds": 1040.039,
+      "preview_bgr_sha256": "87ba6039ff6884ff7e690dd7ed648f18c4978ef866000e98b33abc9d7f0d0975"
+    },
+    {
+      "source_pts_seconds": 1045.044,
+      "preview_bgr_sha256": "843a90c201b9014221fb2c2d1f54836a7d84c2deb74694d2cccf1c4537389463"
+    },
+    {
+      "source_pts_seconds": 1050.049,
+      "preview_bgr_sha256": "279fbc1bc88581ce044191569968d7f82086364bb0ecb191a4587d9c826bff21"
+    },
+    {
+      "source_pts_seconds": 1055.054,
+      "preview_bgr_sha256": "5268b3f45dfe1a76183bab45c668e29c9ad5773dcecf556806ee03fac672ac7c"
+    },
+    {
+      "source_pts_seconds": 1060.059,
+      "preview_bgr_sha256": "24c92ddd2e7df7dbb30eba5bf8e61f52fa749b9dee5cfd4cdf92e621d4168fab"
+    },
+    {
+      "source_pts_seconds": 1065.064,
+      "preview_bgr_sha256": "b29c8d3be94859c25fd75c590026794701b0bf268d729fec5ad1e5923c8c1203"
+    },
+    {
+      "source_pts_seconds": 1070.069,
+      "preview_bgr_sha256": "a55b66ad8f754e84ffaa6342cc988c4f3efc5c6be97ef464f859df00fa8a77a7"
+    },
+    {
+      "source_pts_seconds": 1075.074,
+      "preview_bgr_sha256": "0f442f7daf9e51f15ce9da64a9a2a565b0da645b2497ef6784859f0adbca1099"
+    },
+    {
+      "source_pts_seconds": 1080.079,
+      "preview_bgr_sha256": "7c331d2915f957caa468d13a14dbcadc001d62b1be521edfba00f0639d4c924c"
+    },
+    {
+      "source_pts_seconds": 1085.084,
+      "preview_bgr_sha256": "10bc4a6da7fe83e32bc423aa8678c5730eafd3c69aae480801090d4e1d130cc9"
+    },
+    {
+      "source_pts_seconds": 1090.089,
+      "preview_bgr_sha256": "daa68449386358b08fc3ce3f2f072ec6632aa2b6161c45053c3216c76d8143fb"
+    },
+    {
+      "source_pts_seconds": 1095.094,
+      "preview_bgr_sha256": "320f1c80a4574b8ce96f64cc7c937237c364d88f39f0dd08818bad4a66e76411"
+    },
+    {
+      "source_pts_seconds": 1100.099,
+      "preview_bgr_sha256": "53dd0243389928fa8aa30b56fd6a63bbac0f47c59ba361cd856b302ef07c36fa"
+    },
+    {
+      "source_pts_seconds": 1105.104,
+      "preview_bgr_sha256": "a67ce595416d621ca7fc21838080fc85dc81a3eab28fc451c90f3cb745a8dce3"
+    },
+    {
+      "source_pts_seconds": 1110.109,
+      "preview_bgr_sha256": "10e923559542eb73c46a415603fe133bc7bb6e2f984593a28a446aa47e5e3e2e"
+    },
+    {
+      "source_pts_seconds": 1115.114,
+      "preview_bgr_sha256": "3549c7a39a2fddbf6da5eb962d89c334141396d17ddeeeecabf63f8e4235c04d"
+    },
+    {
+      "source_pts_seconds": 1120.119,
+      "preview_bgr_sha256": "f4f10f3e78655e764073da331722d65cdeac232ce1cf6d1400e2ab1f5390a72d"
+    },
+    {
+      "source_pts_seconds": 1125.124,
+      "preview_bgr_sha256": "08774407e3ea047c555bcc9e8b0668358eab5ec0b084d51cc88ce1844653586a"
+    },
+    {
+      "source_pts_seconds": 1130.129,
+      "preview_bgr_sha256": "b472f74807c1d3ac840b3031268d6502fd4db0bde310ce5ec26deb24ef23bc2c"
+    },
+    {
+      "source_pts_seconds": 1135.134,
+      "preview_bgr_sha256": "2c67cc13cbf1817f1619d22ab86ce462021e455fa119c893e2777bf45bf04aaa"
+    },
+    {
+      "source_pts_seconds": 1140.139,
+      "preview_bgr_sha256": "b3cb7adc8bdc9b598ec8661a237b6de8a93bee2a418a7c3a2776f98f85e4e8b9"
+    },
+    {
+      "source_pts_seconds": 1145.144,
+      "preview_bgr_sha256": "4d113ee8ed66712a2fb58fa40cedb8931972211e9835802d3573dbe1fda2bac8"
+    },
+    {
+      "source_pts_seconds": 1150.149,
+      "preview_bgr_sha256": "1beecd4f649f4dadfb930dc4f10727a7156c7a0587781717b1459921eab3e4fc"
+    },
+    {
+      "source_pts_seconds": 1155.154,
+      "preview_bgr_sha256": "114e654fd588aa9c5c802c75b7fb5b25e37bd8483e6a0ff5f59e6ea73c4ecf73"
+    },
+    {
+      "source_pts_seconds": 1160.159,
+      "preview_bgr_sha256": "8e50fac42a00e6318c9c68abaceb3ef1c56c8fb5abc2e405f29c66061b390993"
+    },
+    {
+      "source_pts_seconds": 1165.164,
+      "preview_bgr_sha256": "8735d09eca7b49aa50fd0b0314dae241571bdd56580a47109b47f58164789be1"
+    },
+    {
+      "source_pts_seconds": 1170.169,
+      "preview_bgr_sha256": "e2df6a97aa51f319be1ce92e039df9a24641cf82bb7f2f0157fd968b89b77b0a"
+    },
+    {
+      "source_pts_seconds": 1175.174,
+      "preview_bgr_sha256": "029dcaad999cbdb0466cba116feb83ea55f41c3e5c39be7fa58fc2955e38ccdc"
+    },
+    {
+      "source_pts_seconds": 1180.179,
+      "preview_bgr_sha256": "5017edc0319d450c5bbd5df09daf4d3d1de5c087d14b9f64688ba0e6313c8f3d"
+    },
+    {
+      "source_pts_seconds": 1185.184,
+      "preview_bgr_sha256": "67e6a2fdbc2d5c4e85f457c7baa10fd0cba698fb53861633052695695e7fbffa"
+    },
+    {
+      "source_pts_seconds": 1190.189,
+      "preview_bgr_sha256": "88c2e3e45864ca4377d59ddb9c7daccadc70013686c56893ed6ebf218f70276a"
+    },
+    {
+      "source_pts_seconds": 1195.194,
+      "preview_bgr_sha256": "35f34c254c00d414719a46d6b50fafc37814a3cd0062c557cf6ba25e4fa56985"
+    },
+    {
+      "source_pts_seconds": 1200.199,
+      "preview_bgr_sha256": "d62071098364f7e787339bf6e4a50581fa5c570a3dbc798f28616c9506c66b6b"
+    },
+    {
+      "source_pts_seconds": 1205.204,
+      "preview_bgr_sha256": "4152e5206714b0968fe1b90590ab73c907904d7fcda76272aceb0383cceece20"
+    },
+    {
+      "source_pts_seconds": 1210.209,
+      "preview_bgr_sha256": "49d5fd00c6883361b683f6711c3cfab717d6df8a9245809d40ff7556c4ecf5b2"
+    }
+  ],
+  "status": "decoded"
+}

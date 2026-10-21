@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2026-10-21T03:37:40.128064+00:00",
+  "python": "3.12.13 (main, Jun 23 2026, 15:23:43) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "opencv-python-headless": "5.0.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "yt-dlp": "2026.08.19",
+    "pypdf": "6.21.1"
+  },
+  "ffmpeg": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "source_original_camera_fps_known": false,
+  "media_included": false,
+  "charts_visual_qa": "passed: three plots inspected; generated graphics only"
+}

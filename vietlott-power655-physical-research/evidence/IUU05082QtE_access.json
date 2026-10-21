@@ -1,0 +1,30 @@
+{
+  "video_id": "IUU05082QtE",
+  "accessed_at_utc": "2026-10-20T16:40:37.732859+00:00",
+  "resources": [
+    {
+      "status": 200,
+      "content_type": "video/mp4",
+      "bytes_read": 1024,
+      "kind": "video_https",
+      "format_id": "137"
+    },
+    {
+      "status": 200,
+      "content_type": "application/vnd.apple.mpegurl",
+      "bytes_read": 2048,
+      "kind": "hls_manifest",
+      "format_id": "614"
+    },
+    {
+      "status": 200,
+      "content_type": "image/webp",
+      "bytes_read": 48622,
+      "kind": "storyboard",
+      "format_id": "sb0",
+      "thumbnail_width": 320,
+      "thumbnail_height": 180,
+      "fps": 0.1005719733079123
+    }
+  ]
+}

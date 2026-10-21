@@ -1,0 +1,72 @@
+{
+  "video_id": "is8GgE2gQu8",
+  "requested_start": 850.0,
+  "duration_requested": 120.0,
+  "source_format_id": "137",
+  "source_width": 1920,
+  "source_height": 1080,
+  "fps_metadata": 30,
+  "frames_decoded": 13,
+  "frame_index_global": null,
+  "frame_index_note": "Global native index not verified; PTS is the primary source locator.",
+  "sampling_every_native_frames": 300,
+  "media_saved": false,
+  "ffmpeg_exit_code": 0,
+  "accessed_at_utc": "2026-10-20T16:53:04.374159+00:00",
+  "transport_errors": [],
+  "bytes_sent": 39583744,
+  "samples": [
+    {
+      "source_pts_seconds": 850.015833,
+      "preview_bgr_sha256": "f0479ebf97029341b0f3bf668614375c51bacad172639bddd889f0dfc8309956"
+    },
+    {
+      "source_pts_seconds": 860.025833,
+      "preview_bgr_sha256": "de3b5e32b8f1a0832ab5e7a0bbf1abcaf386492dd1284b9f427c70bbda1c6ba5"
+    },
+    {
+      "source_pts_seconds": 870.035833,
+      "preview_bgr_sha256": "55559ce5bf75b6f38f004f0283533dfb09211f8e4eb06f7a874970c3fc04f4c5"
+    },
+    {
+      "source_pts_seconds": 880.045833,
+      "preview_bgr_sha256": "f94108e1b6c06ec8130c5adc2781cc5ee43666bb705b67cadda1be1cf447198e"
+    },
+    {
+      "source_pts_seconds": 890.055833,
+      "preview_bgr_sha256": "0a18e19569ec4de78b3026d3a9d05a797d9ab221f4aa772cf2c25a8df70c4963"
+    },
+    {
+      "source_pts_seconds": 900.065833,
+      "preview_bgr_sha256": "2fafaf6ca0c3cd5911ac438441aaef4009039b6b0c91f3e92ba1f13cc862bbf4"
+    },
+    {
+      "source_pts_seconds": 910.075833,
+      "preview_bgr_sha256": "3c600f8a257371c695a604c6509166bf7bc308c5a02b5c1fc8588a228f06363a"
+    },
+    {
+      "source_pts_seconds": 920.085833,
+      "preview_bgr_sha256": "1dea8670ded8b98861b8df584a742b31bc12819593dd0a0b0a9e63d4fae29c02"
+    },
+    {
+      "source_pts_seconds": 930.095833,
+      "preview_bgr_sha256": "efef8745831005cf0c3b73c499919e301a1bc46ff96257bbefe6e5267d873de8"
+    },
+    {
+      "source_pts_seconds": 940.105833,
+      "preview_bgr_sha256": "83cca55b4c2b6c168b3ff22e2e00f96ee05c3d8027c6661f26e041e8a1ce67d0"
+    },
+    {
+      "source_pts_seconds": 950.115833,
+      "preview_bgr_sha256": "085557efea3177b88422c6aa39f4b1eceb618f561bbc957aca6516068cf4d2dc"
+    },
+    {
+      "source_pts_seconds": 960.125833,
+      "preview_bgr_sha256": "eb7d15dc0a6c07c6e948678aa4f70457e2bee3027790e2a07fdf7e0f21e60895"
+    },
+    {
+      "source_pts_seconds": 970.135833,
+      "preview_bgr_sha256": "cd2b66e6e6d853bbb499378cee33160ef3a6cdf144687b804e7c879b546cf23b"
+    }
+  ]
+}

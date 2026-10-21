@@ -1,0 +1,10 @@
+{
+  "video_id": "IUU05082QtE",
+  "operation": "initial ffmpeg direct public HTTPS URL decode",
+  "attempted_seek_seconds": [120, 360, 600, 840, 1080, 1320],
+  "frames_decoded": 0,
+  "status": "all_attempts_timed_out",
+  "signed_media_urls_retained": false,
+  "resolution": "Public bytes accessible using urllib; localhost volatile byte bridge subsequently decoded successfully",
+  "scientific_use": "none; this failure produced no image measurements"
+}

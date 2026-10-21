@@ -1,0 +1,15 @@
+{
+  "video_id": "IUU05082QtE",
+  "format_id": "137",
+  "width": 1920,
+  "height": 1080,
+  "fps_reported": 30,
+  "started_utc": "2026-10-20T16:41:22.936351+00:00",
+  "media_saved": false,
+  "bytes_in_memory": 16777216,
+  "sha256_memory_buffer": "2f88cec9047c9c593862c89e3fc1407ccc3f874d6e034cba68f54bb5b02a78f6",
+  "ffmpeg_exit_code": 0,
+  "decoder_stderr": "",
+  "preview_frames_decoded": 3,
+  "elapsed_seconds": 36.32799999997951
+}

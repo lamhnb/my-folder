@@ -1,0 +1,11 @@
+{
+  "schema_integrity": "passed",
+  "counts": {
+    "events": 198,
+    "paddle_motion": 0,
+    "ball_tracking": 109
+  },
+  "timestamped_rows": 145,
+  "experimental_completion": "requires_scientific_review",
+  "problems": []
+}

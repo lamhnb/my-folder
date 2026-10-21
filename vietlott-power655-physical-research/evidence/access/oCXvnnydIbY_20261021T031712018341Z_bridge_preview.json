@@ -1,0 +1,33 @@
+{
+  "video_id": "oCXvnnydIbY",
+  "accessed_at_utc": "2026-10-21T03:17:11.587424+00:00",
+  "media_saved": false,
+  "frames": [
+    {
+      "seek_seconds": 810.0,
+      "ffmpeg_exit_code": 0,
+      "decoded": true,
+      "stderr": ""
+    },
+    {
+      "seek_seconds": 900.0,
+      "ffmpeg_exit_code": 0,
+      "decoded": true,
+      "stderr": ""
+    },
+    {
+      "seek_seconds": 960.0,
+      "ffmpeg_exit_code": 0,
+      "decoded": true,
+      "stderr": ""
+    },
+    {
+      "seek_seconds": 1100.0,
+      "ffmpeg_exit_code": 0,
+      "decoded": true,
+      "stderr": ""
+    }
+  ],
+  "bytes_sent": 10747904,
+  "transport_errors": []
+}

@@ -1,0 +1,14 @@
+{
+  "source_id": "IUU05082QtE",
+  "source_format_id": "137",
+  "source_pts_first": 857.022833,
+  "source_pts_last": 860.993467,
+  "phase": "operational_check_indicated_by_ASR_and_context; not official outcome data",
+  "method": "unlinked HSV connected-component candidates; not persistent physical-ball tracks",
+  "candidate_rows": 109,
+  "physical_identity_validated": false,
+  "occlusion_known": false,
+  "positions_imputed": false,
+  "pixel_error_or_detection_accuracy": "unknown; no independently labelled validation set",
+  "classification_ref": "measurements/phase_assignments.csv"
+}

@@ -1,0 +1,6 @@
+hypothesis,status,independent_draws_with_required_validated_measurements,statistic,p_value,ci95,reason
+H1,not_testable,0,NA,NA,NA,no calibrated physical paddle phase at validated capture times
+H2,not_testable,0,NA,NA,NA,native event onset series incomplete; coarse snapshot times are not event times
+H3,not_testable,0,NA,NA,NA,detector/visibility not validated; no collector vs chamber eligible sample
+H4,not_testable,0,NA,NA,NA,no persistent ball ID or controlled initial state
+H5,not_testable,0,NA,NA,NA,no verified machine/ball-set IDs with repeated measurements

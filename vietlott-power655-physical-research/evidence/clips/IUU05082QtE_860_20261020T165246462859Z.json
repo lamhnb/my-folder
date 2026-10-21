@@ -1,0 +1,24 @@
+{
+  "video_id": "IUU05082QtE",
+  "requested_start": 860.0,
+  "duration_requested": 0.01,
+  "source_format_id": "137",
+  "source_width": 1920,
+  "source_height": 1080,
+  "fps_metadata": 30,
+  "frames_decoded": 1,
+  "frame_index_global": null,
+  "frame_index_note": "Global native index not verified; PTS is the primary source locator.",
+  "sampling_every_native_frames": 1,
+  "media_saved": false,
+  "ffmpeg_exit_code": 0,
+  "accessed_at_utc": "2026-10-20T16:52:46.266138+00:00",
+  "transport_errors": [],
+  "bytes_sent": 4194304,
+  "samples": [
+    {
+      "source_pts_seconds": 860.025833,
+      "preview_bgr_sha256": "65c744c074d82e4a889169896fc09ff7483291b4f77fb1896fbe8314b6b56f42"
+    }
+  ]
+}

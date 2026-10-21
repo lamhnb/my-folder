@@ -1,0 +1,16 @@
+operation,status,reason,resolution,scientific_impact
+web_open_three_original_urls,failed,web fetch cache miss or fetch error,metadata via yt-dlp and actual decode via public byte bridge,web text failure was not taken as evidence video absent
+cua_browser_and_native_initialization,failed,MXC sandbox permission path cannot be represented losslessly,no browser UI available; public resource decode used,no claim to have watched in Cloud Browser
+sandbox_network_first_metadata_attempt,failed,DNS getaddrinfo failure,retried with required approved network escalation,no media inference from this failure
+ffmpeg_direct_url_six_seeks,failed,all six direct decoder calls timed out; public HTTPS bytes were accessible,localhost byte bridge using Python public HTTPS reader succeeded,no frames or measurements claimed from failed direct calls
+yt_dlp_js_runtime,warning,no supported JS runtime selected; some formats may be missing,used listed public non-DRM 1080p H264 rendition,highest listed resolution verified but absolute best available format not independently established
+inspect_clip_crop_first_attempt,failed,XYWH supplied to ffmpeg in wrong order; 0 frames; nonzero exit code,corrected to WHXY; rerun 34 native frames; original failure ledger retained,zero-frame run excluded from evidence counts
+inspect_clip_zero_frame_status_label,corrected,early stdout said decoded even when frames=0,final script explicitly marks decode_failed_or_incomplete and logs error,refer to persisted frame count and exit code not old stdout label
+harmonic_phase_vs_spectrum,failed_validation,63.789 versus 94.904 candidate RPM under unverified harmonic-3 assumption,retained both numerical outputs; physical RPM NA,cannot use for H1 or calibrated simulation
+ball_color_candidates,unvalidated,109 unlinked components; no hand labels; precision recall and physical ID unknown,retained as candidate detections only,cannot infer paths speed probability or H3
+early_phase_assignment,corrected,first measured clip was operational-check section according to ASR plus context,phase_assignments.csv separates it from official section,no official-draw mechanical or probability claim uses the clip
+caption_keyword_trial,corrected,accent-stripped substring quay thu also matched quay thuong and quay thu numbered draws,use exact accented quay thử; refreshed navigation-only ledger,keyword matches are not phase event timestamps
+official_channel_identity,unknown,company-like channel name not independently bound to operator; old published alias did not resolve,channel_official_verified NA and channel IDs retained,not treated as primary operator channel merely by display name
+global_frame_index,unknown,full-file native PTS map not decoded,index NA; source PTS and clip sample index retained,no frame index computed as time multiplied by rounded 30 fps
+event_onsets_all_five_official_draws,incomplete,sampled states do not identify exact mechanical capture or start times,requested event placeholders NA; raw source locators provided,minimum of five frame-audited full event sets not achieved
+media_redistribution,not_established,user chose URLs and data; no rights to complete video copy,all video audio and source frame pixels omitted from archive and commit,reviewer must reaccess source or obtain licensed master

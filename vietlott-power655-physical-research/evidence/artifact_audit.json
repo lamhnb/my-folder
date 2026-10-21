@@ -1,0 +1,12 @@
+{
+  "integrity_status": "passed",
+  "failures": [],
+  "software_tests_exit_code": 0,
+  "software_tests_output": "test_alias_rejected (__main__.TestPipeline.test_alias_rejected) ... ok\ntest_clockwise (__main__.TestPipeline.test_clockwise) ... ok\ntest_collision_ambiguity_ends_tracks (__main__.TestPipeline.test_collision_ambiguity_ends_tracks) ... ok\ntest_empty_not_success (__main__.TestPipeline.test_empty_not_success) ... ok\ntest_gated_unique_association (__main__.TestPipeline.test_gated_unique_association) ... ok\ntest_known_rpm_two_methods (__main__.TestPipeline.test_known_rpm_two_methods) ... ok\ntest_local_native_frame_pts_alignment (__main__.TestPipeline.test_local_native_frame_pts_alignment) ... ok\ntest_nonmonotone_pts_rejected (__main__.TestPipeline.test_nonmonotone_pts_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.453s\n\nOK\n",
+  "appearance_native_frames": 120,
+  "unlinked_candidate_rows": 109,
+  "physical_validated_paddle_rows": 0,
+  "unmeasured_required_event_rows": 162,
+  "source_frame_pixels_included": false,
+  "scientific_completion": "partial; no certified RPM, per-ball tracks, full event annotation or bias test"
+}

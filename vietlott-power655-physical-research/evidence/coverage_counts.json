@@ -1,0 +1,12 @@
+{
+  "metadata_urls": 8,
+  "machine_footage_urls": 7,
+  "graphics_only_candidate_urls": 1,
+  "distinct_2026_dates_sampled_load_mix_7_display": 5,
+  "historical_dates_sampled": 1,
+  "full_files_decoded": 0,
+  "frame_ledger_rows_including_duplicate_samples_and_transforms": 508,
+  "manual_observations": 36,
+  "physical_rpm_validated_draws": 0,
+  "all_captures_frame_audited_draws": 0
+}

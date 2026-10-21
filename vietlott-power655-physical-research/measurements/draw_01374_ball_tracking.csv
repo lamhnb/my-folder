@@ -1,0 +1,1 @@
+draw_id,timestamp_seconds,frame_index,track_id,center_x_px,center_y_px,radius_px,identity_confidence,occluded

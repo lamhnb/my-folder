@@ -1,0 +1,120 @@
+{
+  "video_id": "IUU05082QtE",
+  "requested_start": 874.0,
+  "duration_requested": 8.0,
+  "source_format_id": "137",
+  "source_width": 1920,
+  "source_height": 1080,
+  "fps_metadata": 30,
+  "frames_decoded": 25,
+  "frame_index_global": null,
+  "frame_index_note": "Global native index not verified; PTS is the primary source locator.",
+  "sampling_every_native_frames": 10,
+  "media_saved": false,
+  "ffmpeg_exit_code": 0,
+  "accessed_at_utc": "2026-10-20T16:56:42.602623+00:00",
+  "transport_errors": [],
+  "bytes_sent": 3670016,
+  "samples": [
+    {
+      "source_pts_seconds": 874.006467,
+      "preview_bgr_sha256": "755b0eb419400f0feb39f83ffadfdd43afb20d604711b4afedae7d810401c622"
+    },
+    {
+      "source_pts_seconds": 874.340133,
+      "preview_bgr_sha256": "e62899f4c86510e35b951b2ee3deaa2dc1fb7cf179c2b0d5ca7a28f89e71bb9e"
+    },
+    {
+      "source_pts_seconds": 874.6738,
+      "preview_bgr_sha256": "ae7dc4d9b13c0aad5055faf5e537064a491f2edbe3e8266d3851a21b6cc80265"
+    },
+    {
+      "source_pts_seconds": 875.007467,
+      "preview_bgr_sha256": "c97fd26dd38c4766c92e03bcf6795f14b8cbf0987649d8389d17f1f99101b59f"
+    },
+    {
+      "source_pts_seconds": 875.341133,
+      "preview_bgr_sha256": "0ee22ae583d1c340b720aa3f9d50f2640fcebce4ca00e31658dff13f4b680508"
+    },
+    {
+      "source_pts_seconds": 875.6748,
+      "preview_bgr_sha256": "50b586cb1e379174ebb64e25f4ba536e6d94fc03dbebeaa12c17b18ab963de9e"
+    },
+    {
+      "source_pts_seconds": 876.008467,
+      "preview_bgr_sha256": "52ed9de7764fbdb9928231b310511f3a970bc0c5396bab3316dc3207be3acde7"
+    },
+    {
+      "source_pts_seconds": 876.342133,
+      "preview_bgr_sha256": "2609dd2d3ae12c81d9ceaad51a2cb978a8497749f11cd3cb5e180be8bc9f48dd"
+    },
+    {
+      "source_pts_seconds": 876.6758,
+      "preview_bgr_sha256": "87b1c48a36df16e3b8c24f019723adcb54c82cb1b878b73928e2377f40701089"
+    },
+    {
+      "source_pts_seconds": 877.009467,
+      "preview_bgr_sha256": "d1893af901dc41917604c5302d58f2a1d186b129d0111acdcb0249aca8ef4573"
+    },
+    {
+      "source_pts_seconds": 877.343133,
+      "preview_bgr_sha256": "0b979e2ee95229cf9de66e940302676d16f3069bd6fa08072223119a87b5762b"
+    },
+    {
+      "source_pts_seconds": 877.6768,
+      "preview_bgr_sha256": "bef6f623d0b7ab7de01bdf6553135e59fd945131ba46e44278209debbf46d74a"
+    },
+    {
+      "source_pts_seconds": 878.010467,
+      "preview_bgr_sha256": "686a84ee5969f9b7cc7cab49065e6035192240b04bb89f79cc2be985c520292a"
+    },
+    {
+      "source_pts_seconds": 878.344133,
+      "preview_bgr_sha256": "c4b1919a50a140caa6537caea5504eabe753de635e78da0d126c133e9a8942a5"
+    },
+    {
+      "source_pts_seconds": 878.6778,
+      "preview_bgr_sha256": "121fbb5bcf7e38adc6d0dad32677b482dbdd31a11cea2e2968e91a9af559b3ee"
+    },
+    {
+      "source_pts_seconds": 879.011467,
+      "preview_bgr_sha256": "f85edc04d4a516ada8fb075b7050805b9b937d3a80dc555a8e00cf235b024a8c"
+    },
+    {
+      "source_pts_seconds": 879.345133,
+      "preview_bgr_sha256": "508891684fd97e1f976a67c41f8715d18e30b95b8158630d7b71eebc9bde877b"
+    },
+    {
+      "source_pts_seconds": 879.6788,
+      "preview_bgr_sha256": "75fd84aedbb6706e151ed4b9dc4d53568e88aea8bdd5e94d6d142cece760adb4"
+    },
+    {
+      "source_pts_seconds": 880.012467,
+      "preview_bgr_sha256": "0bf373706f5d16d23f07dfffcd8650b1815e6ab35396a0654b0a933d1c955b2a"
+    },
+    {
+      "source_pts_seconds": 880.346133,
+      "preview_bgr_sha256": "d5fc3141d073e7123bab37daea309aaab9915acb1756f515b813f015457636ca"
+    },
+    {
+      "source_pts_seconds": 880.6798,
+      "preview_bgr_sha256": "c1d9c39fbe07af8b45b0775454fe33a78e4bb9a8c893b4de184a9549a9004f25"
+    },
+    {
+      "source_pts_seconds": 881.013467,
+      "preview_bgr_sha256": "c7fbdce1d4ee342beddaba6563088b638b18f9aad8f1f9a87777bec50c5ad467"
+    },
+    {
+      "source_pts_seconds": 881.347133,
+      "preview_bgr_sha256": "ec799574c0c2b0522911b81cfac4c5d0aa880069866ef903dd5f745e59fe965d"
+    },
+    {
+      "source_pts_seconds": 881.6808,
+      "preview_bgr_sha256": "f068daa218d1adee8e28c7354f1ca7438e549f5d49bf93aedc778ccb78f8bc99"
+    },
+    {
+      "source_pts_seconds": 882.014467,
+      "preview_bgr_sha256": "48018e0efc37dd4894656407a0faeab0a2d2c4ce7eba703e04c73e55b56d24a0"
+    }
+  ]
+}

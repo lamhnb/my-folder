@@ -1,0 +1,2 @@
+source_id,first_pts,last_pts,phase,evidence,status
+IUU05082QtE,857.022833,860.993467,operational_check_indicated,ASR pretest landmarks 847.28 and 861.60; official draw follows after 1078; different visible result at 960 vs 1210,provisional_asr_plus_context; not manually listened or independently reviewed
