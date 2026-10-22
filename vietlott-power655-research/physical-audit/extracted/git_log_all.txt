@@ -1,0 +1,156 @@
+548042930af23a7cb37996db464f53b27ad9148f|2026-10-22T19:28:14+07:00| (origin/research/power655-b1-adaptive-momentum30)|docs(power655): record adaptive momentum30 results and limitations
+f5c965107eb3aaf7c8bc47f79d02fc6d55217b58|2026-10-22T19:27:51+07:00||research(power655): add strict-past B1 adaptive momentum30 backtest
+3dbcfa14d112865b51189eaccc1cbd766ac8fbb0|2026-10-22T12:31:12+07:00| (origin/research/power655-b1-physical-a)|research(power655): freeze B1 rank-to-position physical challenger A
+01a56ea5f1f453960bf662ac64b0c129b1aa2006|2026-10-22T01:26:45+07:00| (HEAD -> audit/power655-physical-data-recovery, origin/research/power655-physical-digital-twin, research/power655-physical-digital-twin)|research(power655): add auditable 3D simulator and sensitivity evidence
+f329cab62a64c081d635eac8033a7029f7b4d51a|2026-10-21T23:10:48+07:00| (origin/research/power655-draw-order-phase4)|research(power655): stage blind label review and chronological expansion
+3356895595426eb7d57c8a83445aa06ca79e254a|2026-10-21T22:42:25+07:00| (origin/research/power655-draw-order-phase3, research/power655-draw-order-phase3)|research(power655): reconstruct five provisional draw orders with pixel evidence and gated bias audit
+e55fd8dba5bac41c7c157a5a3bc0d7ff2718de7a|2026-10-21T21:40:30+07:00||research(power655): define phase3 draw-order verification and bias audit protocol
+dae213662171d1066876de0095b44b1f2cad12cd|2026-10-21T19:59:00+07:00| (origin/research/power655-physical-phase2, research/power655-physical-phase2)|research: audit Power 6/55 physical observability across five draws
+b2b1938cf38cc976a302cd8fd6a29bd4dd3c3df5|2026-10-21T10:40:23+07:00| (origin/research/power655-physical-20261020, research/power655-physical-20261020)|Add auditable Power 6/55 physical-video reconnaissance
+8d53901feedc9027a370dd9b4e1a1d10ba0448c1|2026-10-20T22:46:07+07:00| (origin/master, origin/HEAD, master)|docs(power655): detailed research history, B1/C50/B7 versions and audit handoff
+d0d3aa65f8566e9b2f710dca060b204856a6dad8|2026-10-20T22:23:58+07:00||research(power655): implement 200-ticket B7 marginal coverage with consistent rank indices
+061ac07e40fa458291c2039a83205e72e840e620|2026-10-20T22:20:08+07:00||research(power655): archive B7-100 original mixed-coordinate generator snapshot v0.1.0
+092d8463cb82dd27e2ea5aa0940f5a12856a5832|2026-10-20T21:03:03+07:00||feat(power655): freeze experimental C50 hybrid frequency v1.0.0
+528bbeb327dcc811618ccf221ad36bcbe4f51cca|2026-10-20T20:40:45+07:00||feat(power655): freeze B1 rolling-156 stride baseline v1.0.0
+2b2586ed36bc37da4756da0ff2a0cc6cc86a2a64|2026-10-20T20:38:06+07:00||feat(power655): freeze A1 Stride frequency baseline v1.0.0
+f79093c380952fa301b5343e9fd580f6a73fdab2|2026-10-08T23:56:59+07:00||feat(power655): v0.5.0 fixed-size probabilistic signal gate
+3ebd004646727710c3e4e421e18f21f128d6a993|2026-10-08T23:43:08+07:00||feat(power655): v0.4.0 strict-past calibrated probability ensemble baseline
+d36505a79e658bd0505e36275b7800afbfb35192|2026-10-08T23:26:40+07:00||feat(power655): challenger v0.3.0 with 55-number replacement and shrunk pair/triple score
+b71ae7bc618bc3b7a4f4455d72a741827a40e578|2026-10-08T23:26:22+07:00||chore(power655): freeze Pair-60 and Stride-365 champion candidates v0.2.1
+d63eb384f47dc5ddd1d2d99e31eaeafa190e96d3|2026-10-08T23:18:57+07:00||docs(power655): document experimental v0.2.0 workflow
+7d6e360170484ad99588d548d749d5fa59a1a154|2026-10-08T23:18:49+07:00||feat(power655): v0.2.0 adaptive ensemble and constrained portfolio optimizer
+95794a243f0480ed0851b7b90e0e781817601fa7|2026-10-08T23:15:18+07:00||feat(power655): add strict-past portfolio learner v0.1.0
+9d5af95e8fc4f12bddc2e54128676ee760bac281|2026-10-08T23:14:57+07:00||feat(power655): initialize research project v0.1.0
+20cf4a96a3bf3765628473b6d9270cf4c9905faf|2026-07-28T08:51:08+07:00| (origin/temp-v117-july27-tvfullscan)|temp: trigger V1.17 July-27 TV full-universe capture
+ea12e6edfbfa2b2f26071fe3bdc4edb31edf26c3|2026-07-28T08:50:58+07:00||temp: add V1.17 July-27 TradingView full-universe matrix capture
+7c65749bb455ec5feb1d6daf02f0eb22c32d602b|2026-07-28T08:42:51+07:00| (origin/temp-july27-v117-scan)|temp: trigger robust V1.17 July-27 full-universe fetch
+67d47f79a8c817ccf35dea09ebb908a143c73e2a|2026-07-28T08:42:42+07:00||temp: add robust V1.17 July-27 full-universe fetch v3
+cedb0d009702ec7acd3f19fafe51fb833f38f60c|2026-07-28T08:37:17+07:00||temp: trigger fixed V1.17 July-27 full-universe fetch
+d8c21d107d57780afb6eed728d64063d5649a30b|2026-07-28T08:36:59+07:00||temp: add fixed V1.17 July-27 full-universe fetch v2
+004a8ab25ecbb54f156ee3d73aee39b6d32f95e0|2026-07-28T08:29:33+07:00||temp: trigger V1.17 July-27 full-universe data fetch
+e604cd654254291509f60f37bdcec37ea402b3e0|2026-07-28T08:29:23+07:00||temp: add V1.17 July-27 full-universe data fetch
+00883f480290af514e6c2869f5ae5f100f330598|2026-07-27T23:39:27+07:00| (origin/temp/v117-temporal-validation-a-20260727)|temp: trigger pre-registered V1.17 temporal validation A fetch
+3969f649adcf3b53df90ae302f3158b83b4f4571|2026-07-27T23:39:12+07:00||temp: add pre-registered V1.17 temporal validation data fetch
+8aea3549aebe0784aec8b1e19d408d4dfcf3df5c|2026-07-27T22:36:35+07:00| (origin/temp/v151-failed10-research-20260727)|temp: trigger failed-10 fetch
+5495012fde242d6d71477587aec8c9358ef60271|2026-07-27T22:36:26+07:00||temp: add failed-10 research fetch
+08b0b64c3c8b47ad42ca2796633bc1066d50c4a9|2026-07-27T17:30:46+07:00| (origin/temp/v115-ontag-check-20260727)|temp: trigger 10-day four-target fetch
+65034b236dbba6a894c715c21e1d87d60b667d2e|2026-07-27T17:30:22+07:00||temp: fetch 10-day four-target history
+eeeae3a191f1355dbb8314ede6ed2c4dcd82544e|2026-07-27T17:23:46+07:00||temp: expand target fetch to ON TAG BTW AKE
+8d720a9b2fc2b02ffb4c8425c3efa9001cb6f2bf|2026-07-27T17:21:48+07:00||temp: enable PR-triggered ON TAG fetch
+ed04d22639cf714dbb4bf47794648d68d7a2b940|2026-07-27T17:20:59+07:00||temp: trigger ON TAG fetch
+2c0ec9c8a141999cd7834003d053653835244182|2026-07-27T17:20:50+07:00||temp: add ON TAG data fetch workflow
+8cba0bdce3dd806699c4db0e25449d619a23face|2026-07-27T08:15:25+07:00| (origin/temp/v115-live-scan-20260727)|ci: trigger V1.15 candidate depth refresh
+918439cb16d51a2fe3325a56d4f874600b016cc4|2026-07-27T08:15:16+07:00||ci: add V1.15 candidate depth refresh
+167f80beaa0809dd9450c103f6242a8e3ff6cd55|2026-07-27T08:09:29+07:00||ci: capture current full Futures universe via mark stream
+6881e8ba0af30ed398ed1f614d22a01eb0c244ac|2026-07-27T08:05:22+07:00||ci: capture V1.15 current inputs without stage-1 depth
+be74515b3d620fa1304d3203ba8e24f50211f1f0|2026-07-27T08:03:04+07:00||ci: capture full-universe current V1.15 scan inputs
+831c8ac101fa49159514286cfba9147f7cc55623|2026-07-27T07:58:55+07:00||ci: probe Binance futures and OI through tvDatafeed
+c00ba8f9c1963c744986c1d8eb1c4f1bcf0f5260|2026-07-27T07:57:44+07:00||ci: probe TradingView websocket endpoints
+7c65980afb74df0565cdd970507a85fd549582ea|2026-07-27T07:56:18+07:00||ci: probe TradingView Binance perpetual candles and OI
+8b75c576a08f9986e4ef8d442853ee6ca6849f77|2026-07-27T07:54:31+07:00||ci: discover Tokyo proxy route and certificate identity
+e5ad1c379b18adad388ca1d0f0da5253dc1754af|2026-07-27T07:53:04+07:00||ci: retry Tokyo kline proxy without certificate verification
+c09872c47f50c14ac0546cd23ef54062b1bedccd|2026-07-27T07:52:03+07:00||ci: probe Tokyo Binance kline proxy
+2da5e6f72740a3ea5cbfdb3ba773845c5fcf2651|2026-07-27T07:50:52+07:00||temp: expose exact Binance API links for current scan transport test
+b349cc58161fe0e546c83cac6febf93ee4866612|2026-07-27T07:50:17+07:00||ci: discover Binance web market-data endpoints
+9d5e176d6c46980b5fb22c290bb756794e41e10d|2026-07-27T07:49:26+07:00||temp: add exact Binance API links for scan transport test
+d7313c2490ee44a393a93374df96989de0640e2a|2026-07-27T07:46:22+07:00||ci: recheck July 26 Binance archives
+07668d221e4344c58e9e5eea766bfb9136995113|2026-07-27T07:43:05+07:00||ci: probe futures historical-data proxy routes
+6e5f319f4a6f96bd17febada77d80d1408cf0db0|2026-07-27T07:39:33+07:00||ci: fix concurrent current endpoint probe
+482c22d4d41f197948ac53627a001aef1b263802|2026-07-27T07:36:10+07:00||ci: probe current Binance market-data routes
+41811b83415cde77f5edb3e870f52040e840d212|2026-07-27T07:21:46+07:00||fix: run asynchronous full-universe fetch through coroutine wrapper
+bd955c35b46e0da6ae50eed13569d1c0e8ce8553|2026-07-27T07:21:09+07:00||temp: fetch exact current full-universe inputs for V1.15 dry-run
+0f7c50a146e5b726fd3ebe5ee7a0b3012656841a|2026-07-27T07:16:57+07:00||temp: probe cached futures gateway and official spot market-data API
+2eae270e6ecd406d066793b02a83ed298e1ff189|2026-07-27T07:14:43+07:00||temp: fetch Primit OpenAPI schema for cached kline endpoint audit
+e0badf6fce1b7f640090734628b724380da46e89|2026-07-27T07:11:39+07:00||temp: parallelize Primit endpoint probe
+243d0ac87165f729951b0cb1e6c223a27b394952|2026-07-27T07:09:48+07:00||temp: probe current futures data through Primit gateway and mirror
+aacf71f1043df4560fc5e29fbf74638725a828f7|2026-07-27T07:05:56+07:00||temp: probe official Binance Futures and Spot WebSocket APIs
+ce292d9dfb4fccfa03c5afc1a263b7b3a8f30ad1|2026-07-27T07:01:44+07:00||fix: probe official Binance public S3 endpoint directly
+e836a2bfe526f9f693ce8ddfda2273414d20fd98|2026-07-27T07:00:27+07:00||temp: probe current official Binance archive availability and symbol listings
+768c14a2c5691a562e22baccc156671ab75e1c50|2026-07-27T06:54:21+07:00||fix: add market-data mirror and Binance data-api endpoints
+8e928c2b75ccde299bb0bcdbdaf4673d36e6310c|2026-07-27T06:50:26+07:00||fix: add alternate Binance endpoints and partial-data artifact handling
+228d3268b0c4e343ac959ebb9d71bbe7c9ac1be6|2026-07-27T06:48:28+07:00||fix: correct async progress counter for current Binance fetch
+36e9f60e2237a93d739a986a9c39d190af6d525a|2026-07-27T06:46:40+07:00||temp: trigger V1.15 current full-universe data fetch
+6de0946ebb8af3d028acb2cf7e65775e6c8e5f42|2026-07-27T06:46:27+07:00||temp: add current Binance data fetch workflow for V1.15 scan
+e39e15fa77a63b175e4dcf8aea657fdca1f769c5|2026-07-26T17:50:42+07:00||chore: remove accidental empty temporary file
+e86c30c14bc7e2eff4e6b148fd6a002b022642c9|2026-07-26T17:50:34+07:00||noop
+c3b73a8138b81224f7d150c23f7a0e92189622aa|2026-07-26T17:50:26+07:00| (origin/temp/dia-fresh-backtest-20260726)|chore: remove temporary cleanup marker
+c3c64b821b92846328816fd91481e53aa94cc84a|2026-07-26T17:50:18+07:00||chore: mark temporary data-fetch branch cleanup
+876127679e5c144334f214a3425da22609d0092b|2026-07-26T17:50:09+07:00||chore: remove temporary casebook branch trigger
+615cedabf05731bbb0970e08fa75f3505428f47b|2026-07-26T17:50:02+07:00||chore: remove temporary DIA metrics branch trigger
+5d1020923b6cb260cb63e7ae4ab4751bedf3d70c|2026-07-26T17:49:54+07:00||chore: remove temporary DIA fetch branch trigger
+e06767174d6e0e3bc4a05bc16cf594febe5bc858|2026-07-26T17:49:34+07:00||chore: remove temporary Binance casebook workflow
+061b24e831f74ebccbba6d5154150448e24913f1|2026-07-26T17:49:18+07:00||chore: remove temporary Binance DIA metrics workflow
+b237fcec1632e912364e4a4428b7acb163ef242d|2026-07-26T17:49:11+07:00||chore: remove temporary robust Binance DIA workflow
+11257fd771cb05a19df73a6ebed97737a7bd6f3f|2026-07-26T17:49:04+07:00||chore: remove temporary Binance DIA PR workflow
+35bbce10a18ef24e52253bae58f9b321bd832e68|2026-07-26T17:48:57+07:00||chore: remove temporary Binance DIA fetch workflow
+9deecce55712b9996f11f71608723bc64a49e13c|2026-07-26T17:48:50+07:00||chore: remove temporary Binance fetch trigger
+939c811afa74edb660888f1f715c43f37a49bf36|2026-07-26T17:48:43+07:00||chore: remove temporary Binance archive links
+1f26b6fbc752ce4aa38762f3c6a4359c1f44f2cc|2026-07-26T17:11:33+07:00||temp: trigger official Binance casebook raw-data fetch
+1b193635a606c6f14a3c6a70ca51912393c6e8a1|2026-07-26T17:11:24+07:00||temp: add official Binance casebook raw-data fetch workflow
+c23fa15a200ac876d5b620ba0e412462d3dbc6a5|2026-07-26T17:06:30+07:00||temp: trigger official Binance DIA metrics fetch
+6d374f85a8d0bc5f4d26c56495f528655e7800e8|2026-07-26T17:06:22+07:00||temp: add official Binance DIA metrics archive fetch workflow
+84ec4d163f7312e2e92c2843447461ec24f3f6b8|2026-07-26T17:00:57+07:00||temp: retrigger robust official Binance DIA data fetch
+0021e35a1ab1e52e81d830c876d05853d2308c66|2026-07-26T17:00:45+07:00||temp: add robust PR-triggered Binance DIA data fetch workflow
+f5f43a03855709a814d7242471229b411692e7cd|2026-07-26T16:58:31+07:00||temp: trigger PR official Binance DIA data fetch
+3002f7ed4a3cbe2038ff7f8907a8a6661892628c|2026-07-26T16:58:14+07:00||temp: add PR-triggered official Binance DIA data fetch workflow
+d87099a06f581345c7e6a4847e55bfd9da6efbe4|2026-07-26T16:57:14+07:00||temp: trigger official Binance DIA data fetch
+8b13fba555ccb8cfa1d36f114ef93ad70709a877|2026-07-26T16:57:06+07:00||temp: add official Binance DIA data fetch workflow
+fbeb3aefee4435bf93131467bc5382ab9c5236b9|2026-07-26T16:55:52+07:00||temp: add Binance DIA archive links for validation
+235d131f3a4ece1c5e4c637fc7e0e03e3522ffd9|2026-07-25T16:56:07+07:00| (origin/scanner-v110-cutoff23-20260724)|Download official data for V1.10 cutoff before 24 July
+69dc88b2f6f53286de3cb3f8e663832624bbcba8|2026-07-25T15:25:43+07:00||Audit recovered LAB POL EDGE setups from 21 July
+b16ce344993a4921f6806e1e549a46daebe8eee3|2026-07-24T12:20:46+07:00||Download official data for local exact V1.10 cutoff replay
+4007b9c0ae0b39f649505f47c8f6b93764da43e9|2026-07-24T12:18:34+07:00||Debug V1.10 reconstructed payload hashes
+bed02f5bd1586763b04d8d9ac9c94cc1c3fda7d3|2026-07-24T12:15:43+07:00||Run exact V1.10 replay before 23 July cutoff
+72c1732b59ef5ee164ef57a0f63ff0e19bcf3b87|2026-07-24T12:13:03+07:00||Add V1.10 cutoff replay harness chunk 03
+0731665f6ccf711e260f5996838631679d847fac|2026-07-24T12:11:30+07:00||Add V1.10 cutoff replay harness chunk 02
+9c275e043e7d3d082a59cb6af368bcfb6a89e0fa|2026-07-24T12:10:00+07:00||Add V1.10 cutoff replay harness chunk 01
+21c2ff608531512fd212a47a37182d98ccb26be6|2026-07-24T12:08:38+07:00||Add V1.10 cutoff replay harness chunk 00
+02126c25456485053f9ef8c52830feac1768ffd9|2026-07-24T12:02:35+07:00||Add V1.10 replay annotation patch chunk 05
+c62daac9bce636b1badba83597f957e7dc2bd6eb|2026-07-24T12:01:36+07:00||Add V1.10 replay annotation patch chunk 04
+4d9c686206aa93efda5f8343412bfce920f6036d|2026-07-24T11:58:44+07:00||Add V1.10 replay annotation patch chunk 03
+afeb65f52f0c045190f243eb9d1f84e4c583125f|2026-07-24T11:57:20+07:00||Add V1.10 replay annotation patch chunk 02
+ccfd874e3b987da1073a5ea08faecd5a034cd1bf|2026-07-24T11:55:34+07:00||Add V1.10 replay annotation patch chunk 01
+e9aa33dcabd8e96efc95b89f91b3697789b56892|2026-07-24T11:54:25+07:00||Add V1.10 replay annotation patch chunk 00
+1d802319d5004bc3e6c8813f5094876bb39ed674|2026-07-23T17:57:32+07:00| (origin/scanner-live-v18-20260723)|Audit exact V1.8 alerts over 48-hour Futures outcomes
+98582145c4d3859eeab4212bad06f847d9ff68c8|2026-07-23T17:56:19+07:00||Freeze exact V1.8 Telegram candidates for 48h outcome audit
+6eea74404580923a7f6cadb3152fb559d79d577d|2026-07-23T16:08:57+07:00||Retry exact V1.8 using official Binance market-data endpoints
+ff7c96a2b164ccf1ad7735a6517123b45ae0a79a|2026-07-23T16:04:58+07:00||Use verified split chunk for exact V1.8 live bundle
+3bc51bda3a2b25a5390a22cd6b301dffcd34edcd|2026-07-23T16:04:19+07:00||Upload corrected V1.8 live bundle chunk 01b
+3aacf0f3098a1e009ac27e163a88f40f140cf79c|2026-07-23T16:02:20+07:00||Upload corrected V1.8 live bundle chunk 01a
+e2474f9576fc38712d7d06aae72990f8a6abac04|2026-07-23T15:56:16+07:00||Fix V1.8 live workflow Python setup
+4a9c36178c3883744c4647edc48a0d961f1886b3|2026-07-23T15:53:59+07:00||Trigger exact V1.8 live scan workflow
+4712ef5a8b694d9d5406f4820a3a2f8faf9c972d|2026-07-23T15:53:48+07:00||Document V1.8 exact live run request
+1bdc04823c24437103e86b2cb2eb643b84f1b39b|2026-07-23T15:53:36+07:00||Add exact V1.8 full-universe live dry-run workflow
+61c00b5c7d61f05c244e567c5b4bf0689e8d5d7e|2026-07-23T15:52:30+07:00||Upload V1.8 minimal live runner chunk 04
+77563bb1a2f526818c8272ce7b20ae2d6b1c1376|2026-07-23T15:51:57+07:00||Upload V1.8 minimal live runner chunk 03
+5685236129a23cfcc60e717e723114cf71cf0f11|2026-07-23T15:48:17+07:00||Upload V1.8 minimal live runner chunk 02
+49cc757b2e68fce2eab1483666c5bdfe12de1b9b|2026-07-23T15:43:22+07:00||Upload V1.8 minimal live runner chunk 01
+3872008b05de739f32855040538655ff6a9d37dd|2026-07-23T15:39:14+07:00||Upload V1.8 minimal live runner chunk 00
+ae4837b7f40a711b9c1dde67d3d1d183fc58a193|2026-07-23T14:03:34+07:00| (origin/scanner-bank-backtest-20260721)|Download official Spot Futures and metrics archives for V1.7 cutoff validation
+1433270d93cd346c0978a43d325b30fe711b1d60|2026-07-23T14:02:32+07:00||Add historical universe proxy list for 2026-07-19 validation
+fad26ff8002f12dac56fc5dba837f8b2051d18c6|2026-07-23T13:19:43+07:00||Download blind cutoff dataset before 20 July
+912063d3ec0e6251629ec4bd87aa306babc5c2e9|2026-07-22T22:38:37+07:00||Probe LISTAUSDT at 19:00 cutoff
+85665b83fdc9d97d12e7834263d713b92da9aec6|2026-07-22T22:28:53+07:00||Run V1.6 cutoff spot fallback scan for 2026-07-22 19:00 VN
+ae885218852739f90971fa5c50b1cefa12a828a9|2026-07-22T00:11:19+07:00||Probe official Binance Futures current-tail routes
+49926d172fdb3f00e91c3f183bda2ff92cbd7e3d|2026-07-22T00:08:05+07:00||Probe alternate official Binance market data hosts
+ab75973c8dea7b81bcf99086797df03c5e1856f7|2026-07-21T23:48:51+07:00||Download full scanner regression raw data
+ccad4a72e101c9d578fbe2b063b4f912eb8a5c7c|2026-07-21T15:08:20+07:00||Download TAGUSDT history for April 30 replay
+19fb385741c633805732c03ec2487ee953895bb7|2026-07-21T13:23:20+07:00||Always upload partial TLM history diagnostics
+19c29365077ddeac0dbc80ea9e7d49350a0a493f|2026-07-21T13:21:58+07:00||Download TLMUSDT history for July 1 pump replay
+45f6c8e1f9f04d61094e3cf198df397afa53127c|2026-07-21T12:26:18+07:00||Make pump benchmark download resilient
+ce60b87434b81becade1cfb1aad11511691c47d7|2026-07-21T12:23:46+07:00||Download ON and AVAAI benchmark history
+3518827ebe8468e51986ccc283b379404609661c|2026-07-21T12:05:51+07:00||Trigger frozen holdout workflow
+dc5189aaa8424bcd1eb0b658edd9e5d30d4ee1a4|2026-07-21T12:05:16+07:00||Download frozen holdout universe archives
+f15eabef53ec101e26e7288af59c263c33da6f13|2026-07-21T11:42:29+07:00||Download extended benchmark and control universe
+366ac769c80503e152757f85773445b7fe09b55e|2026-07-21T11:23:15+07:00||Download AIA and VELVET benchmark archives
+267319e024264408c769d3990656f0b62ac54552|2026-07-21T10:35:10+07:00||Inject recovery models into BANK replay package
+2b402566a9c2a3adb61575e8925e655c8e3195f2|2026-07-21T10:34:40+07:00||Add recovery domain models required by replay
+2e288b67a0eb4d0980fa7336217c1de320a090c8|2026-07-21T10:32:55+07:00||Reassemble complete BANK scanner package
+a942377a76026ff526eb38f88857223c001ee2c5|2026-07-21T10:32:25+07:00||Add BANK backtest package missing middle part
+82a1c4e4a9f9e8aabb0cdfe2601d19c431bee965|2026-07-21T10:30:28+07:00||Add BANK backtest package final part
+68e28c95724b0ea44a2a2e555f60228f4a38007b|2026-07-21T10:28:30+07:00||Add BANK backtest package part 02
+ddd9d4ebe5fce472f55641d95356e835375263b2|2026-07-21T10:26:06+07:00||Add BANK backtest package part 01
+90b973c68ecb851c16ea95e54c93161ee70d845f|2026-07-21T10:22:21+07:00||Add package decode diagnostics
+04b8a95fb0dbb7abd8abc97391bc1bb925788c42|2026-07-21T10:19:52+07:00||Add BANK historical backtest workflow
+eb8410aa7cfbf3fc582e09440ed1d36668753a4d|2026-07-21T10:18:44+07:00||Add minimal BANK backtest package
+bed0bd06f6254a73a8047101359692ac96baba17|2025-12-20T16:39:52+07:00||Init Folder

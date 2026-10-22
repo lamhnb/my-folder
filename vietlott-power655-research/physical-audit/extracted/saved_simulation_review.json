@@ -1,0 +1,26 @@
+{
+  "scope": "Recomputed saved-result integrity/counts only; no new simulator or Monte Carlo execution",
+  "runs": 78,
+  "valid_runs": 66,
+  "incomplete_runs": 9,
+  "complete_with_failures": 3,
+  "failure_counts": {
+    "incomplete_seven": 9,
+    "penetration_limit": 3
+  },
+  "baseline_runs": 20,
+  "baseline_valid": 18,
+  "baseline_max_penetration_m": 0.001452811212745174,
+  "all_implementation_hashes_match": true,
+  "implementation_hashes": {
+    "core.py": "3449d7397d3551b0c9d93aa9ff54875ec36a633e919476eec397d2054ef64a3c",
+    "geometry.py": "1813a24346c17f5d291f68eccb2ee93fdfc9ebcd87d677645fe43d4b8790fb56"
+  },
+  "stored_summary_total_runs": 78,
+  "stored_summary_valid_runs": 66,
+  "stored_numerical_checks": 9,
+  "stored_numerical_all_pass": true,
+  "stored_system_checks": 14,
+  "stored_system_all_pass": true,
+  "independent_physical_validation": false
+}

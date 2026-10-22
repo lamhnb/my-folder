@@ -1,0 +1,19 @@
+{
+  "source_pdf_sha256": "9819e0a0d18696d98438e37b4c4ab5caf8b285b7e0edf6c8acfba7a712be4b8e",
+  "pages": 16,
+  "visual_pages_reviewed": 16,
+  "pypdf_text_characters": 0,
+  "render_command": [
+    "pdftoppm",
+    "-r",
+    "120",
+    "-png",
+    "C:\\vietlott-research-output\\physical-audit-20261022\\documents\\CURRENT_LINKED_POWER_RULE.pdf",
+    "C:\\vietlott-research-output\\physical-audit-20261022\\documents\\power2022-page"
+  ],
+  "poppler_version": "pdftoppm version 26.07.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+  "source_discovery": "Direct href on official process page, not guessed model resemblance",
+  "scope": "Public operator-documented model/specification, not actual serial/metrology or proof latest unamended configuration for every draw",
+  "reviewer": "codex_auditor_20261022",
+  "independent_second_review": false
+}

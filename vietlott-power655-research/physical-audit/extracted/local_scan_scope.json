@@ -1,0 +1,92 @@
+{
+  "scans": [
+    {
+      "root": "C:\\vietlott-research-output",
+      "status": "SCANNED",
+      "files_seen": 25,
+      "matches": 25
+    },
+    {
+      "root": "C:\\vietlott-research-repo",
+      "status": "SCANNED",
+      "files_seen": 4832,
+      "matches": 4805
+    },
+    {
+      "root": "C:\\Users\\Ho Lam\\Desktop",
+      "status": "SCANNED",
+      "files_seen": 94717,
+      "matches": 0
+    },
+    {
+      "root": "C:\\Users\\Ho Lam\\Documents",
+      "status": "SCANNED",
+      "files_seen": 17282,
+      "matches": 0
+    },
+    {
+      "root": "C:\\Users\\Ho Lam\\Downloads",
+      "status": "SCANNED",
+      "files_seen": 1285,
+      "matches": 0
+    },
+    {
+      "root": "C:\\Users\\Ho Lam\\Claude",
+      "status": "SCANNED",
+      "files_seen": 2,
+      "matches": 0
+    },
+    {
+      "root": "C:\\Users\\Ho Lam\\source",
+      "status": "SCANNED",
+      "files_seen": 0,
+      "matches": 0
+    },
+    {
+      "root": "C:\\Users\\Ho Lam\\.codex\\worktrees",
+      "status": "ABSENT",
+      "files_seen": 0,
+      "matches": 0
+    },
+    {
+      "root": "D:\\workspace",
+      "status": "SCANNED",
+      "files_seen": 226,
+      "matches": 0
+    },
+    {
+      "root": "D:\\T\u1ed5ng h\u1ee3p",
+      "status": "SCANNED",
+      "files_seen": 3105,
+      "matches": 0
+    }
+  ],
+  "discovered_repos": [
+    "C:\\Users\\Ho Lam\\Desktop\\SSD-ASM\\ssd-assignment",
+    "C:\\Users\\Ho Lam\\Desktop\\ai_trade_v2",
+    "C:\\Users\\Ho Lam\\Desktop\\ai_trade_v2\\archive\\ai_trade_v2_snapshot",
+    "C:\\Users\\Ho Lam\\Desktop\\ai_trade_v2\\archive\\bot-trade_snapshot",
+    "C:\\Users\\Ho Lam\\Desktop\\ai_trade_v2\\memory_agent",
+    "C:\\Users\\Ho Lam\\Desktop\\bot-trade-v2",
+    "C:\\Users\\Ho Lam\\Downloads\\zalo-notification-service",
+    "C:\\vietlott-research-repo"
+  ],
+  "excluded": [
+    ".cache",
+    ".git",
+    ".next",
+    ".venv",
+    "__pycache__",
+    "cache",
+    "dist",
+    "logs",
+    "node_modules",
+    "physical-audit-20261022",
+    "session",
+    "sessions",
+    "site-packages",
+    "target",
+    "venv"
+  ],
+  "limitations": "Only accessible selected local roots; no other hosts, deleted branches, external Cowork accounts or undisclosed repositories. Private session/log bodies excluded."
+}

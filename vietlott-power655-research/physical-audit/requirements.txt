@@ -1,0 +1,6 @@
+numpy==2.2.6
+opencv-python-headless==4.11.0.86
+pypdf==6.1.1
+# External: ffmpeg/ffprobe 8.1.1 for exact frame replay; Poppler pdftoppm for scanned PDF review.
+# Optional official-link metadata probe uses yt-dlp in the existing acquisition environment.
+# This audit does not require PyBullet and does not rebuild the simulator.

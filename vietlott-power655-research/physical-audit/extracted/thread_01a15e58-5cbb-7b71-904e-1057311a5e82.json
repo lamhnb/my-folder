@@ -1,0 +1,38 @@
+{
+  "thread_id": "01a15e58-5cbb-7b71-904e-1057311a5e82",
+  "title": "Đo chuyển động vật lý Power 6/55",
+  "page": {
+    "order": "newest_first",
+    "limit": 10,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "turns": [
+    {
+      "id": "01a15e58-6562-7f50-9f9b-94ae56a8854a",
+      "status": "completed",
+      "startedAt": 1792584213,
+      "completedAt": 1792587835
+    }
+  ],
+  "visible_item_type_counts": {
+    "userMessage": 1,
+    "agentMessage": 13,
+    "commandExecution": 67,
+    "mcpToolCall": 9,
+    "webSearch": 1,
+    "subAgentActivity": 23,
+    "fileChange": 20,
+    "imageView": 57
+  },
+  "visible_search_queries": [
+    "https://www.youtube.com/watch?v=IUU05082QtE"
+  ],
+  "final_messages": [
+    {
+      "id": "msg_047f978723dbc32c016ad8b834970081918cc16e8f0b69c312",
+      "text": "Đã commit và push Phase 2; SHA remote khớp local.\n\n- [Branch Phase 2](https://github.com/lamhnb/my-folder/tree/research/power655-physical-phase2)\n- Commit: `dae213662171d1066876de0095b44b1f2cad12cd`\n- [PHASE2_FINAL_HANDOFF.md](https://github.com/lamhnb/my-folder/blob/dae213662171d1066876de0095b44b1f2cad12cd/vietlott-power655-physical-research/phase2/PHASE2_FINAL_HANDOFF.md)\n\nĐã định vị **35 chuyển bóng nhìn thấy trên 5 kỳ**, lưu ảnh/PTS/hash và hoàn tất 30 kiểm thử phần mềm. Góc, RPM vật lý và thời điểm cô lập thật vẫn **NA**; các mốc bị che/cắt cảnh được ghi rõ.\n\n**Kết luận: NO-GO cho mô phỏng 3D có thể hiệu chuẩn.** Phase 1 và các thuật toán xổ số giữ nguyên; không merge vào `master`."
+    }
+  ],
+  "limitations": "Tool/command outputs not requested. No reasoning or tool arguments retained. Visible final messages alone do not prove execution; linked Git artifacts and frozen result logs are the execution evidence."
+}

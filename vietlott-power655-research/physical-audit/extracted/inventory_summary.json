@@ -1,0 +1,13 @@
+{
+  "generated_at_utc": "2026-10-22T16:01:55.360240+00:00",
+  "base_commit": "01a56ea5f1f453960bf662ac64b0c129b1aa2006",
+  "ref_count": 24,
+  "inventory_rows": 17071,
+  "unique_committed_path_blobs": 1670,
+  "fsck_reported_unreachable_commits": 138,
+  "reported_unreachable_also_reachable": 138,
+  "genuinely_unreachable_lottery_commits": 0,
+  "historical_file_change_rows": 1671,
+  "local_only_rows": 3161,
+  "zip_members": 362
+}

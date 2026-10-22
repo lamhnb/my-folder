@@ -1,0 +1,31 @@
+{
+  "thread_id": "01a15f46-c595-76b3-a00a-5d1ee00072cc",
+  "title": "Build Vietlott Power 6/55 Twin",
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "turns": [
+    {
+      "id": "01a15f46-c90a-7f63-bcec-0982821b067f",
+      "status": "completed",
+      "startedAt": 1792599836,
+      "completedAt": 1792607392,
+      "visible_search_queries": [
+        "site.smartplay.com Vietlott Power 6/55 drawing machine balls ...",
+        "site.vietlott.vn \"máy quay\" \"Power 6/55\" kiểm định mua sắm ...",
+        "site.vietlott.vn \"Power 6/55\" \"Smartplay\" ...",
+        "site.vietlott.vn \"Power 6/55\" \"máy\" \"kiểm định\" ..."
+      ],
+      "final_messages": [
+        {
+          "id": "msg_00921a0af5a2d14f016ad90496ff70819198d6e82cbab6ec5c",
+          "text": "Đã commit, push và xác minh SHA trên GitHub.\n\n- [Branch research/power655-physical-digital-twin](https://github.com/lamhnb/my-folder/tree/research/power655-physical-digital-twin)\n- Commit: `01a56ea5f1f453960bf662ac64b0c129b1aa2006`\n- [FINAL_DIGITAL_TWIN_HANDOFF.md](https://github.com/lamhnb/my-folder/blob/01a56ea5f1f453960bf662ac64b0c129b1aa2006/vietlott-power655-physical-research/digital-twin/FINAL_DIGITAL_TWIN_HANDOFF.md)\n\nKết quả thực thi:\n\n- Qua **9 unit tests, 9 kiểm tra số học và 14 kiểm tra hệ thống cơ sở**.\n- **78 run / 23 cấu hình:** 66 hợp lệ, 9 timeout do kẹt/thu thiếu, 3 vượt ngưỡng xuyên khi dùng timestep 1 ms.\n- Baseline: **18/20 seed hợp lệ**; xuyên lớn nhất **1,453 mm**.\n- Hoán đổi nhãn và lặp lại cùng seed cho kết quả đúng yêu cầu.\n- Có thêm 3 run chẩn đoán mô-men; đã xuất GIF, PNG, CAD/mesh, quỹ đạo và manifest hash.\n\nChạy tại thư mục `digital-twin/`:\n\n```powershell\n$py = 'C:/vietlott-digital-twin-env/Scripts/python.exe'\n& $py scripts/cli.py run --seed 0 --trajectory results/seed0.npz\n& $py scripts/cli.py validate\n& $py scripts/cli.py monte-carlo --seeds 20\n```\n\n**Chưa giải quyết:** motor baseline chỉ đạt trung bình khoảng **5,124 RPM** so với lệnh 25 RPM; còn kẹt cửa; thiếu CAD/model/serial, thông số bộ bóng, RPM thật và dữ liệu hiệu chuẩn đa góc. Vì vậy đây là **simulator nghiên cứu giả định**, chưa phải bản sao 1:1 hay mô hình có lợi thế dự báo.\n\nKhông merge master; các phiên bản được bảo vệ và dữ liệu gốc giữ nguyên."
+        }
+      ]
+    }
+  ],
+  "limitation": "Visible completed-turn summaries only; no hidden reasoning/tool arguments/outputs retained."
+}

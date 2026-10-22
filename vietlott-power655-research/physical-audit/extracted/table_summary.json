@@ -1,0 +1,20 @@
+{
+  "generated_utc": "2026-10-22T16:30:41.587460+00:00",
+  "base_commit": "01a56ea5f1f453960bf662ac64b0c129b1aa2006",
+  "evidence_rows": 45,
+  "physical_status_rows": 143,
+  "parameter_dependency_rows": 99,
+  "history_rows": 6,
+  "persistent_machine_ids_verified": 0,
+  "persistent_ballset_ids_verified": 0,
+  "case_code_readings": 4,
+  "individual_ball_measurement_rows": 0,
+  "maintenance_events": 0,
+  "original_registry_classifications": {
+    "assumed": 55,
+    "documented": 7,
+    "unknown": 33,
+    "measured": 2,
+    "estimated": 2
+  }
+}

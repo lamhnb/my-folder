@@ -1,0 +1,29 @@
+01a56ea refs/heads/audit/power655-physical-data-recovery@{2026-10-22T22:43:43+07:00}: branch: Created from HEAD
+01a56ea HEAD@{2026-10-22T22:43:43+07:00}: checkout: moving from research/power655-physical-digital-twin to audit/power655-physical-data-recovery
+5480429 refs/remotes/origin/research/power655-b1-adaptive-momentum30@{2026-10-22T22:43:34+07:00}: fetch --append origin: storing head
+3dbcfa1 refs/remotes/origin/research/power655-b1-physical-a@{2026-10-22T22:43:34+07:00}: fetch --append origin: storing head
+01a56ea refs/remotes/origin/research/power655-physical-digital-twin@{2026-10-22T01:27:04+07:00}: update by push
+01a56ea refs/heads/research/power655-physical-digital-twin@{2026-10-22T01:26:45+07:00}: commit: research(power655): add auditable 3D simulator and sensitivity evidence
+01a56ea HEAD@{2026-10-22T01:26:45+07:00}: commit: research(power655): add auditable 3D simulator and sensitivity evidence
+f329cab refs/heads/research/power655-physical-digital-twin@{2026-10-21T23:24:50+07:00}: branch: Created from origin/research/power655-draw-order-phase4
+f329cab HEAD@{2026-10-21T23:24:50+07:00}: checkout: moving from research/power655-draw-order-phase3 to research/power655-physical-digital-twin
+f329cab refs/remotes/origin/research/power655-draw-order-phase4@{2026-10-21T23:24:17+07:00}: fetch origin: storing head
+3356895 refs/remotes/origin/research/power655-draw-order-phase3@{2026-10-21T22:43:42+07:00}: update by push
+3356895 refs/heads/research/power655-draw-order-phase3@{2026-10-21T22:42:25+07:00}: commit: research(power655): reconstruct five provisional draw orders with pixel evidence and gated bias audit
+3356895 HEAD@{2026-10-21T22:42:25+07:00}: commit: research(power655): reconstruct five provisional draw orders with pixel evidence and gated bias audit
+e55fd8d refs/heads/research/power655-draw-order-phase3@{2026-10-21T22:26:00+07:00}: branch: Created from origin/research/power655-draw-order-phase3
+e55fd8d HEAD@{2026-10-21T22:26:00+07:00}: checkout: moving from research/power655-physical-phase2 to research/power655-draw-order-phase3
+e55fd8d refs/remotes/origin/research/power655-draw-order-phase3@{2026-10-21T22:25:40+07:00}: fetch origin research/power655-draw-order-phase3: storing head
+dae2136 refs/remotes/origin/research/power655-physical-phase2@{2026-10-21T20:02:10+07:00}: update by push
+dae2136 refs/heads/research/power655-physical-phase2@{2026-10-21T19:59:00+07:00}: commit: research: audit Power 6/55 physical observability across five draws
+dae2136 HEAD@{2026-10-21T19:59:00+07:00}: commit: research: audit Power 6/55 physical observability across five draws
+b2b1938 refs/heads/research/power655-physical-phase2@{2026-10-21T19:05:00+07:00}: branch: Created from HEAD
+b2b1938 HEAD@{2026-10-21T19:05:00+07:00}: checkout: moving from research/power655-physical-20261020 to research/power655-physical-phase2
+b2b1938 refs/remotes/origin/research/power655-physical-20261020@{2026-10-21T10:40:50+07:00}: update by push
+b2b1938 refs/heads/research/power655-physical-20261020@{2026-10-21T10:40:23+07:00}: commit: Add auditable Power 6/55 physical-video reconnaissance
+b2b1938 HEAD@{2026-10-21T10:40:23+07:00}: commit: Add auditable Power 6/55 physical-video reconnaissance
+8d53901 refs/heads/research/power655-physical-20261020@{2026-10-20T23:35:39+07:00}: branch: Created from HEAD
+8d53901 HEAD@{2026-10-20T23:35:39+07:00}: checkout: moving from master to research/power655-physical-20261020
+8d53901 refs/heads/master@{2026-10-20T23:33:23+07:00}: clone: from https://github.com/lamhnb/my-folder.git
+8d53901 refs/remotes/origin/HEAD@{2026-10-20T23:33:23+07:00}: clone: from https://github.com/lamhnb/my-folder.git
+8d53901 HEAD@{2026-10-20T23:33:23+07:00}: clone: from https://github.com/lamhnb/my-folder.git
