@@ -1,0 +1,29 @@
+name: V110 reconstruct debug
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruct and hash
+        shell: bash
+        run: |
+          set -u
+          mkdir -p /tmp/v110_debug
+          cat scanner_validation/v110_patch.part*.b64 | tr -d '\n\r' > /tmp/v110_debug/patch.b64
+          base64 --decode /tmp/v110_debug/patch.b64 > /tmp/v110_debug/v110_patch.zip || true
+          cat scanner_validation/run_v110_cutoff23.part*.b64 | tr -d '\n\r' > /tmp/v110_debug/harness.b64
+          base64 --decode /tmp/v110_debug/harness.b64 > /tmp/v110_debug/run_v110_cutoff23.py || true
+          sha256sum /tmp/v110_debug/* | tee /tmp/v110_debug/hashes.txt
+          file /tmp/v110_debug/* | tee /tmp/v110_debug/file_types.txt
+          unzip -t /tmp/v110_debug/v110_patch.zip > /tmp/v110_debug/unzip_test.txt 2>&1 || true
+          python -m py_compile /tmp/v110_debug/run_v110_cutoff23.py > /tmp/v110_debug/compile.txt 2>&1 || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v110-reconstruct-debug
+          path: /tmp/v110_debug/**
+          retention-days: 2

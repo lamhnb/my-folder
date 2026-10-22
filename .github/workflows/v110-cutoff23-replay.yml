@@ -1,0 +1,190 @@
+name: V110 exact cutoff 23 July replay
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Reconstruct exact V1.8 core and apply V1.10 annotation layer
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat \
+            scanner_validation/v18_live_minimal.part00.b64 \
+            scanner_validation/v18_live_minimal.part01a.b64 \
+            scanner_validation/v18_live_minimal.part01b.b64 \
+            scanner_validation/v18_live_minimal.part02.b64 \
+            scanner_validation/v18_live_minimal.part03.b64 \
+            scanner_validation/v18_live_minimal.part04.b64 \
+            | tr -d '\n\r' | base64 --decode > /tmp/v18_live_minimal.zip
+          echo 'b51d034496d1f7e14bbf360ecb16f6d8abc1985fa1b5fdaa642f5e48930eba7b  /tmp/v18_live_minimal.zip' | sha256sum -c -
+          unzip -q /tmp/v18_live_minimal.zip -d /tmp
+
+          cat scanner_validation/v110_patch.part*.b64 \
+            | tr -d '\n\r' | base64 --decode > /tmp/v110_patch.zip
+          echo '081ddc8e1f533a674436ef4874a29d1726b26670e39ba697e70f56f02cad1090  /tmp/v110_patch.zip' | sha256sum -c -
+          cd /tmp/v18_live_minimal
+          unzip -oq /tmp/v110_patch.zip
+
+          mkdir -p tools
+          cat "$GITHUB_WORKSPACE"/scanner_validation/run_v110_cutoff23.part*.b64 \
+            | tr -d '\n\r' | base64 --decode > tools/run_v110_cutoff23.py
+          echo '9208a16edf4bbf31ade2980d486a7660d71188251b8de7d8ea43495a4308ce5a  tools/run_v110_cutoff23.py' | sha256sum -c -
+          python -m compileall -q scanner tools/run_v110_cutoff23.py
+
+      - name: Install exact runtime requirements
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r /tmp/v18_live_minimal/requirements.txt
+
+      - name: Download official pre-cutoff Spot Futures and OI archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/v18_live_minimal
+          python - <<'PY'
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          from pathlib import Path
+          from urllib.parse import quote
+          import json, time, urllib.error, urllib.request, zipfile
+
+          source = Path.home() / 'work' / 'my-folder' / 'my-folder' / 'scanner_validation' / 'universe_20260719_spotproxy.txt'
+          symbols = [line.strip() for line in source.read_text(encoding='utf-8').splitlines() if line.strip()]
+          root = Path('/tmp/v110_cutoff23_raw')
+          root.mkdir(parents=True, exist_ok=True)
+          replay_dates = ['2026-07-19', '2026-07-20', '2026-07-21', '2026-07-22']
+          outcome_date = '2026-07-23'
+
+          def archive_url(symbol, kind, stamp):
+              escaped = quote(symbol, safe='')
+              if kind == 'futures_klines':
+                  name = f'{symbol}-5m-{stamp}.zip'
+                  return f'https://data.binance.vision/data/futures/um/daily/klines/{escaped}/5m/{quote(name, safe="-._")}', name
+              if kind == 'spot_klines':
+                  name = f'{symbol}-5m-{stamp}.zip'
+                  return f'https://data.binance.vision/data/spot/daily/klines/{escaped}/5m/{quote(name, safe="-._")}', name
+              name = f'{symbol}-metrics-{stamp}.zip'
+              return f'https://data.binance.vision/data/futures/um/daily/metrics/{escaped}/{quote(name, safe="-._")}', name
+
+          def fetch(job):
+              symbol, kind, stamp = job
+              url, name = archive_url(symbol, kind, stamp)
+              out = root / symbol / kind / name
+              delay = 0.5
+              for attempt in range(4):
+                  try:
+                      req = urllib.request.Request(url, headers={'User-Agent': 'v110-cutoff23-exact-replay'})
+                      with urllib.request.urlopen(req, timeout=40) as response:
+                          data = response.read()
+                      out.parent.mkdir(parents=True, exist_ok=True)
+                      out.write_bytes(data)
+                      with zipfile.ZipFile(out) as archive:
+                          bad = archive.testzip()
+                          if bad:
+                              raise RuntimeError(f'bad zip member {bad}')
+                      return {'status': 'OK', 'symbol': symbol, 'kind': kind, 'date': stamp, 'bytes': len(data), 'url': url}
+                  except urllib.error.HTTPError as exc:
+                      if exc.code == 404:
+                          return {'status': 'MISS', 'symbol': symbol, 'kind': kind, 'date': stamp, 'error': '404', 'url': url}
+                      error = f'HTTP {exc.code}'
+                  except Exception as exc:
+                      error = f'{type(exc).__name__}: {exc}'
+                  if attempt < 3:
+                      time.sleep(delay)
+                      delay = min(6.0, delay * 2)
+              return {'status': 'ERROR', 'symbol': symbol, 'kind': kind, 'date': stamp, 'error': error, 'url': url}
+
+          jobs = []
+          for symbol in symbols:
+              for stamp in replay_dates:
+                  jobs.extend((symbol, kind, stamp) for kind in ('futures_klines', 'spot_klines', 'futures_metrics'))
+              jobs.append((symbol, 'futures_klines', outcome_date))
+
+          results = []
+          with ThreadPoolExecutor(max_workers=32) as pool:
+              futures = [pool.submit(fetch, job) for job in jobs]
+              for index, future in enumerate(as_completed(futures), 1):
+                  results.append(future.result())
+                  if index % 250 == 0:
+                      print(f'[DOWNLOAD] {index}/{len(futures)}', flush=True)
+
+          universe = []
+          for symbol in symbols:
+              probe = root / symbol / 'futures_klines' / f'{symbol}-5m-2026-07-22.zip'
+              if not probe.exists():
+                  continue
+              universe.append(symbol)
+              symbol_root = root / symbol
+              rest = symbol_root / 'rest'
+              rest.mkdir(parents=True, exist_ok=True)
+              for name in (
+                  'funding.json', 'open_interest_5m.json', 'global_long_short_5m.json',
+                  'taker_long_short_5m.json', 'top_account_long_short_5m.json',
+                  'top_position_long_short_5m.json'
+              ):
+                  (rest / name).write_text('[]', encoding='utf-8')
+              (symbol_root / 'metadata.json').write_text(json.dumps({
+                  'source': 'Binance Data Vision official daily archives',
+                  'requested_replay_dates': replay_dates,
+                  'requested_outcome_date': outcome_date,
+                  'cutoff_utc': '2026-07-22T17:00:00+00:00',
+              }, indent=2), encoding='utf-8')
+
+          (root / 'historical_futures_universe.txt').write_text('\n'.join(universe) + '\n', encoding='utf-8')
+          counts = {}
+          for row in results:
+              key = f"{row['kind']}:{row['status']}"
+              counts[key] = counts.get(key, 0) + 1
+          summary = {
+              'input_symbols': len(symbols),
+              'historical_futures_symbols': len(universe),
+              'replay_dates': replay_dates,
+              'outcome_date': outcome_date,
+              'counts': counts,
+          }
+          (root / 'download_summary.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')
+          (root / 'download_results.json').write_text(json.dumps(results), encoding='utf-8')
+          print(json.dumps(summary, indent=2), flush=True)
+          PY
+
+      - name: Run exact V1.10 point-in-time replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /tmp/v18_live_minimal
+          mkdir -p /tmp/v110_cutoff23_report
+          cp /tmp/v110_cutoff23_raw/download_summary.json /tmp/v110_cutoff23_report/
+          cp /tmp/v110_cutoff23_raw/download_results.json /tmp/v110_cutoff23_report/
+          cp /tmp/v110_cutoff23_raw/historical_futures_universe.txt /tmp/v110_cutoff23_report/
+          sha256sum config.yaml tools/run_v110_cutoff23.py > /tmp/v110_cutoff23_report/source_hashes.sha256
+          python tools/run_v110_cutoff23.py \
+            --raw-root /tmp/v110_cutoff23_raw \
+            --universe-file /tmp/v110_cutoff23_raw/historical_futures_universe.txt \
+            --config config.yaml \
+            --output-dir /tmp/v110_cutoff23_report \
+            --workers 8 \
+            --history-start-ms 1784419200000 \
+            --replay-start-ms 1784653200000 \
+            --cutoff-ms 1784739600000 \
+            --outcome-end-ms 1784851199999 \
+            2>&1 | tee /tmp/v110_cutoff23_report/replay.log
+
+      - name: Upload exact V1.10 cutoff report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v110-exact-cutoff23-replay
+          path: /tmp/v110_cutoff23_report/**
+          retention-days: 14
+          compression-level: 6
