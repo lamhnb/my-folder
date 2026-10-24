@@ -2,8 +2,9 @@
 """Research-only S3 source policy; DO NOT modify Hybrid6/R19 Frozen.
 
 Given a strict-past Hybrid6 baseline, generate top-3 excluded Momentum and top-3
-excluded longest-gap candidates, union them, then choose 3 via rolling historical
-source success. This predicts candidates only; it DOES NOT issue six tickets.
+excluded longest-gap candidates, union them, then choose 3 using ascending rolling historical source hit-rate.
+IMPORTANT: this reproduces the EXPLORATORY S3=222 observed in chat;
+it is an inverted historical-rate policy, NOT a validated predictor. This predicts candidates only; it DOES NOT issue six tickets.
 """
 import argparse
 import json
@@ -66,8 +67,8 @@ def predict_at(rows, target_index):
         for src, (hits, trials) in counters.items()
     }
     def key(c):
-        # Historical S3 V1 behavior: overlap source 2 receives G rate.
-        return (-probabilities[0 if c["source"] == 0 else 1],
+        # Historical S3 V1 behavior: prefer LOWER historical source hit rate.\n        # This counterintuitive ordering is intentional to reproduce 222.\n        # Overlap source 2 receives the G rate.
+        return (probabilities[0 if c["source"] == 0 else 1],
                 c["rank"], c["n"])
     picks = [c["n"] for c in sorted(current["labels"], key=key)[:3]]
     return {**current, "selected_three": picks,
