@@ -30,7 +30,7 @@ def rotate_recent_history(history, shift):
     return history[:-HISTORY] + rolled
 
 def selected_and_tickets(history, shift=0):
-    tickets = r19_predict(rotate_recent_history(history, shift))["tickets"]
+    tickets = r19_predict(rotate_recent_history(history, shift))["final"]
     selected = {n for ticket in tickets for n in ticket}
     assert len(tickets) == 6 and all(len(t) == 6 for t in tickets)
     assert len(selected) == 36
