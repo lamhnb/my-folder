@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Champion-X Phase 1: input sensitivity, RESEARCH ONLY.
 
-The actual registered Champions (Pair-60 and Stride-365) remain untouched.
-This pilot probes the previously studied Hybrid6 P3+R3 as a FROZEN reference,
+The registered Pair-60 and Stride-365 Champions remain untouched.
+This pilot probes R19 Frozen as the X0 reference,
 by cyclically rotating order of its most recent 156 historical draw rows.
 Rotating keeps the exact 156 draw multiset / F156 unchanged but changes F30.
 It is a counterfactual robustness probe, NOT a forecastable intervention.
@@ -13,9 +13,9 @@ import argparse
 import json
 import random
 from pathlib import Path
-from hybrid6_p3_r3 import predict as hybrid6_predict
+from r19_crossrank_frozen_20261024 import predict as r19_predict
 
-VERSION = "CHAMPION-X-PHASE1-2026-10-25"
+VERSION = "CHAMPION-X-R19-BASE-PHASE1-2026-10-25-V2"
 OFFSETS = (0, 5, 15, 30, 60, 90)
 HISTORY = 156
 
@@ -30,7 +30,7 @@ def rotate_recent_history(history, shift):
     return history[:-HISTORY] + rolled
 
 def selected_and_tickets(history, shift=0):
-    tickets = hybrid6_predict(rotate_recent_history(history, shift))["tickets"]
+    tickets = r19_predict(rotate_recent_history(history, shift))["tickets"]
     selected = {n for ticket in tickets for n in ticket}
     assert len(tickets) == 6 and all(len(t) == 6 for t in tickets)
     assert len(selected) == 36
