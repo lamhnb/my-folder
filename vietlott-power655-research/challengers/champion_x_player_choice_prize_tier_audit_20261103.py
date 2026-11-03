@@ -203,6 +203,21 @@ kpis["jackpot_event_sequence"]={
   "event_ids_multi_owner":[e["id"] for e in events if e["jackpot1_count"]>=2]
 }
 
+# Uniform-choice ownership benchmark using sales-equivalent (not actual sales).
+# A fair drawing of balls does not imply players choose combinations uniformly.
+for r in usable:
+    r["uniform_owner_expectation_proxy"]=-math.expm1(-r["sales_equivalent_from_n3"]/D)
+kpis["uniform_owner_proxy"]={
+  "expected_jackpot_winning_draws":sum(r["uniform_owner_expectation_proxy"] for r in usable),
+  "actual_jackpot_winning_draws":sum(r["jackpot_won"] for r in usable),
+  "by_low31":{key:{
+    "n":len(g),
+    "actual":sum(r["jackpot_won"] for r in g),
+    "expected_uniform":sum(r["uniform_owner_expectation_proxy"] for r in g)}
+    for key in ("0-2","3","4-6")
+    for g in [[r for r in usable if group_label(r["low31"])==key]]}
+}
+
 with (OUT/"matched_draw_prizes.csv").open("w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=list(usable[0]));w.writeheader();w.writerows(usable)
 (OUT/"summary.json").write_text(json.dumps(kpis,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
