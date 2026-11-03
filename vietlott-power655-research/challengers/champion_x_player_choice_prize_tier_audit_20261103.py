@@ -150,6 +150,35 @@ for _ in range(B):
 kpis["year_adjusted_ratio4_low31_r"]=obs4
 kpis["year_stratified_ratio4_p_exploratory"]=(ge4+1)/(B+1) if obs4 is not None else None
 
+# Pre-draw jackpot proxy: previous draw's displayed jackpot pool; after any Jackpot1
+# win the next cycle is reset to the guaranteed 30 billion VND minimum.
+by_id={int(r["id"]):r for r in usable}
+for r in usable:
+    p=by_id.get(int(r["id"])-1)
+    if p and p["date"]<r["date"]:
+        r["pre_draw_jackpot_proxy_vnd"] = 30_000_000_000 if p["jackpot_won"] else p["jackpot1_amount_vnd"]
+    else: r["pre_draw_jackpot_proxy_vnd"]=None
+pre=[r for r in usable if r["pre_draw_jackpot_proxy_vnd"] is not None]
+kpis["predraw_jackpot_proxy"]={
+    "n":len(pre),
+    "correlation_with_sales_equivalent":year_adjusted_corr(pre,"pre_draw_jackpot_proxy_vnd","sales_equivalent_from_n3"),
+    "correlation_with_normalized4":year_adjusted_corr(pre,"pre_draw_jackpot_proxy_vnd","ratio4_vs_uniform"),
+    "correlation_with_normalized5":year_adjusted_corr(pre,"pre_draw_jackpot_proxy_vnd","ratio5_vs_uniform"),
+    "correlation_with_jackpot_winner":year_adjusted_corr(pre,"pre_draw_jackpot_proxy_vnd","jackpot_won")
+}
+pool_groups={"<=60b":[],"60-150b":[],">150b":[]}
+for r in pre:
+    p=r["pre_draw_jackpot_proxy_vnd"]
+    group="<=60b" if p<=60_000_000_000 else ("60-150b" if p<=150_000_000_000 else ">150b")
+    pool_groups[group].append(r)
+kpis["predraw_jackpot_groups"]={
+    key:{"n":len(rows),"jackpot_owner_draws":sum(r["jackpot_won"] for r in rows),
+         "mean_sales_equivalent":average(rows,"sales_equivalent_from_n3"),
+         "mean_normalized4":average(rows,"ratio4_vs_uniform"),
+         "low31_ratio4_correlation":corr([r["low31"] for r in rows],
+                                          [r["ratio4_vs_uniform"] for r in rows])}
+    for key,rows in pool_groups.items()}
+
 with (OUT/"matched_draw_prizes.csv").open("w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=list(usable[0]));w.writeheader();w.writerows(usable)
 (OUT/"summary.json").write_text(json.dumps(kpis,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
