@@ -2,7 +2,7 @@
 """Champion-X: player-number preferences from prize-tier counts, research only.
 Fetches public Power 6/55 results. Never modifies Frozen code or predicts balls.
 """
-import csv, hashlib, io, json, math, random, statistics, urllib.request
+import csv, hashlib, io, json, math, random, re, statistics, urllib.request
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -21,8 +21,13 @@ def count(value):
     try: return int(str(value).replace(",","").replace(".","").strip())
     except (ValueError, TypeError): return None
 def amount(value):
+    """Read one currency value; some scraped fields contain concatenated HTML text."""
     if isinstance(value, dict): value=value.get("amount")
-    return count(str(value or "").replace("đ","").replace("₫","").replace(" ",""))
+    s=str(value or "")
+    m=re.search(r"(?<![0-9])(?:[0-9]{1,3}[.,]){3,5}[0-9]{3}(?![0-9])",s)
+    if m: return int(re.sub(r"[^0-9]","",m.group()))
+    if re.fullmatch(r"[0-9]{9,13}",s.strip()): return int(s.strip())
+    return None
 def corr(x,y):
     if len(x)<4: return None
     mx=sum(x)/len(x);my=sum(y)/len(y)
@@ -61,7 +66,7 @@ for item in details:
         if n3 is None or n3<=0 or n4 is None or n5 is None or jp is None:
             raise ValueError("missing/bogus prize counts")
         if not (0<=n5<=n4<=n3): raise ValueError("inconsistent tier counts")
-        if jackpot is None or jackpot<=0: raise ValueError("bad jackpot amount")
+        if jackpot is None or not 1_000_000_000 <= jackpot <= 1_000_000_000_000: raise ValueError("bad jackpot amount")
         features=feature(nums)
         row={"date":dt.isoformat(),"id":matching[0]["id"],"year":dt.year,
              "numbers":" ".join(f"{n:02d}" for n in nums),"bonus":matching[0]["result"][6],
@@ -233,6 +238,12 @@ kpis["sample_jackpot_amounts"]={str(r["id"]):r["jackpot1_amount_vnd"] for r in u
 kpis["jackpot_amount_quantiles"]=(
   {str(q):sorted(r["jackpot1_amount_vnd"] for r in usable)[min(len(usable)-1,int((len(usable)-1)*q))]
    for q in (0,.1,.25,.5,.75,.9,1)} )
+
+# Hard fail monetary findings when independently documented prize amounts do not match.
+for key,expected in _known.items():
+    integrity=kpis["jackpot_money_integrity"].get(key,{})
+    if "actual" not in integrity: continue
+    assert integrity["actual"]==expected, ("MONETARY_INTEGRITY_FAIL",key,integrity)
 
 with (OUT/"matched_draw_prizes.csv").open("w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=list(usable[0]));w.writeheader();w.writerows(usable)
