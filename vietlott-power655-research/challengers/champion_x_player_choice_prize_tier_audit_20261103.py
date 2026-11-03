@@ -179,6 +179,30 @@ kpis["predraw_jackpot_groups"]={
                                           [r["ratio4_vs_uniform"] for r in rows])}
     for key,rows in pool_groups.items()}
 
+# Jackpot 1 owner-event sequence from all validated draws (unlike 41-event press list).
+# Prize source 'amount' is treated as a per-winning-ticket value when owner count > 0;
+# total_pool is provisional until provider-specific units are independently confirmed.
+events=sorted([r for r in usable if r["jackpot1_count"]>0],key=lambda x:int(x["id"]))
+transitions=[]
+for prev,cur in zip(events,events[1:]):
+    transitions.append({"gap_draws":int(cur["id"])-int(prev["id"]),
+      "year":cur["year"],"later_pool":cur["jackpot1_amount_vnd"]*cur["jackpot1_count"],
+      "later_low31":cur["low31"],"later_sum":cur["sum"],"later_owners":cur["jackpot1_count"],
+      "prev_id":prev["id"],"later_id":cur["id"]})
+kpis["jackpot_event_sequence"]={
+  "events":len(events),"transitions":len(transitions),
+  "multi_owner_events":sum(e["jackpot1_count"]>=2 for e in events),
+  "max_owners":max(e["jackpot1_count"] for e in events) if events else None,
+  "mean_event_gap":average(transitions,"gap_draws"),
+  "corr_gap_with_pool":corr([e["gap_draws"] for e in transitions],[e["later_pool"] for e in transitions]),
+  "corr_pool_with_low31":corr([e["later_pool"] for e in transitions],[e["later_low31"] for e in transitions]),
+  "year_adj_pool_with_low31":year_adjusted_corr(transitions,"later_pool","later_low31"),
+  "corr_pool_with_sum":corr([e["later_pool"] for e in transitions],[e["later_sum"] for e in transitions]),
+  "multiholder_low31_mean":average([e for e in events if e["jackpot1_count"]>=2],"low31"),
+  "singleholder_low31_mean":average([e for e in events if e["jackpot1_count"]==1],"low31"),
+  "event_ids_multi_owner":[e["id"] for e in events if e["jackpot1_count"]>=2]
+}
+
 with (OUT/"matched_draw_prizes.csv").open("w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=list(usable[0]));w.writeheader();w.writerows(usable)
 (OUT/"summary.json").write_text(json.dumps(kpis,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
