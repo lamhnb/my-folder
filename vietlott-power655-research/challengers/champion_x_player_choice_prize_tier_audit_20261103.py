@@ -120,6 +120,36 @@ kpis={"main_source_sha256":hashlib.sha256(raw).hexdigest(),
       "association":associations,
       "years":{str(y):{"draws":len(v),"jackpot_winning_draws":sum(r["jackpot_won"] for r in v)}
                for y,v in sorted(groups.items())}}
+# Predefined diagnostic: relative 4-match/3-match payout concentration for birthdate-range groups.
+def group_label(n):
+    return "0-2" if n<=2 else ("3" if n==3 else "4-6")
+by_low={}
+for key in ("0-2","3","4-6"):
+    g=[r for r in usable if group_label(r["low31"])==key]
+    by_low[key]={"draws":len(g),"jackpot_won":sum(r["jackpot_won"] for r in g),
+                 "avg_normalized4":average(g,"ratio4_vs_uniform"),
+                 "avg_normalized5":average(g,"ratio5_vs_uniform"),
+                 "avg_sales_equivalent":average(g,"sales_equivalent_from_n3")}
+kpis["by_low31_groups"]=by_low
+kpis["ratio4_by_year"]={str(year):{"draws":len(group),
+    "corr_low31_vs_normalized4":corr([r["low31"] for r in group],
+                                      [r["ratio4_vs_uniform"] for r in group]),
+    "mean_normalized4":average(group,"ratio4_vs_uniform")}
+    for year,group in sorted(groups.items())}
+# Year-stratified permutation of the association (exploratory; same year, fixed group sizes).
+obs4=year_adjusted_corr(usable,"low31","ratio4_vs_uniform")
+ge4=0
+rng4=random.Random(20261104)
+for _ in range(B):
+    shuffled=[]
+    for year,items in groups.items():
+        perm=[r["ratio4_vs_uniform"] for r in items];rng4.shuffle(perm)
+        shuffled.extend([{**r,"ratio4_vs_uniform":v} for r,v in zip(items,perm)])
+    z=year_adjusted_corr(shuffled,"low31","ratio4_vs_uniform")
+    if obs4 is not None and z is not None and abs(z)>=abs(obs4): ge4+=1
+kpis["year_adjusted_ratio4_low31_r"]=obs4
+kpis["year_stratified_ratio4_p_exploratory"]=(ge4+1)/(B+1) if obs4 is not None else None
+
 with (OUT/"matched_draw_prizes.csv").open("w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=list(usable[0]));w.writeheader();w.writerows(usable)
 (OUT/"summary.json").write_text(json.dumps(kpis,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
