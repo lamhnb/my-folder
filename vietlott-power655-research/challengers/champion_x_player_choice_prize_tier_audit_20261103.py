@@ -245,6 +245,37 @@ for key,expected in _known.items():
     if "actual" not in integrity: continue
     assert integrity["actual"]==expected, ("MONETARY_INTEGRITY_FAIL",key,integrity)
 
+# Remove both year and rollover-gap linear effects before interpreting money-number links.
+def partial_after_year_and_gap(data,x,y):
+    groups=defaultdict(list)
+    for r in data: groups[r["year"]].append(r)
+    gap=[r["gap_draws"]-average(groups[r["year"]],"gap_draws") for r in data]
+    denom=sum(z*z for z in gap)
+    def residual(field):
+        vals=[r[field]-average(groups[r["year"]],field) for r in data]
+        beta=sum(a*b for a,b in zip(vals,gap))/denom if denom else 0
+        return [a-beta*b for a,b in zip(vals,gap)]
+    return corr(residual(x),residual(y))
+kpis["jackpot_event_sequence"]["partial_pool_low31_after_year_and_gap"]=(
+    partial_after_year_and_gap(transitions,"later_pool","later_low31"))
+kpis["jackpot_event_sequence"]["partial_pool_sum_after_year_and_gap"]=(
+    partial_after_year_and_gap(transitions,"later_pool","later_sum"))
+overlaps=[]
+bonus_to_main=0;bonus_repeat=0
+for prev,cur in zip(events,events[1:]):
+    old=set(int(v) for v in prev["numbers"].split())
+    current=set(int(v) for v in cur["numbers"].split())
+    overlaps.append(len(old&current))
+    bonus_to_main+=int(int(prev["bonus"]) in current)
+    bonus_repeat+=int(int(prev["bonus"])==int(cur["bonus"]))
+kpis["jackpot_event_sequence"].update({
+    "mean_shared_mains_between_winner_events":sum(overlaps)/len(overlaps),
+    "shared_mains_ge3":sum(n>=3 for n in overlaps),
+    "previous_bonus_in_next_main":bonus_to_main,
+    "repeated_bonus":bonus_repeat,
+    "fair_expected_mean_shared_mains":36/55,
+    "fair_expected_bonus_in_next_main":len(overlaps)*6/55})
+
 with (OUT/"matched_draw_prizes.csv").open("w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=list(usable[0]));w.writeheader();w.writerows(usable)
 (OUT/"summary.json").write_text(json.dumps(kpis,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
