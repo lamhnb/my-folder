@@ -218,6 +218,22 @@ kpis["uniform_owner_proxy"]={
     for g in [[r for r in usable if group_label(r["low31"])==key]]}
 }
 
+# Audit current prize-source monetary units against independently sourced official values.
+_known={"01415":199984640250,"01416":31758267450,"01417":33944640150,
+        "01418":36604726050,"01419":39296824950}
+kpis["jackpot_money_integrity"]={}
+for key,expected in _known.items():
+    candidates=[r for r in usable if str(r["id"]).zfill(5)==key]
+    kpis["jackpot_money_integrity"][key]=(
+      {"actual":candidates[0]["jackpot1_amount_vnd"],"expected":expected,
+       "ratio":candidates[0]["jackpot1_amount_vnd"]/expected}
+      if len(candidates)==1 else {"error":"missing_or_ambiguous"})
+_sample_ids={"00001","00100","00500","01000","01410","01415","01416","01417","01418","01419"}
+kpis["sample_jackpot_amounts"]={str(r["id"]):r["jackpot1_amount_vnd"] for r in usable if str(r["id"]).zfill(5) in _sample_ids}
+kpis["jackpot_amount_quantiles"]=(
+  {str(q):sorted(r["jackpot1_amount_vnd"] for r in usable)[min(len(usable)-1,int((len(usable)-1)*q))]
+   for q in (0,.1,.25,.5,.75,.9,1)} )
+
 with (OUT/"matched_draw_prizes.csv").open("w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=list(usable[0]));w.writeheader();w.writerows(usable)
 (OUT/"summary.json").write_text(json.dumps(kpis,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
