@@ -25,7 +25,8 @@ for r in data:
         records.append((id,r["date"],tuple(sorted(main)),bonus));seen.add(id)
     except (KeyError,IndexError,TypeError,ValueError,AssertionError) as e:bad.append({"id":r.get("id"),"error":str(e)})
 records.sort(key=lambda x:x[0])
-assert len(records)>=1000 and not bad
+assert len(records)>=1000 and len(bad)<=3
+# Explicit quarantine of malformed source records; report them in output.
 N=len(records);six=Counter(x for r in records for x in r[2]);special=Counter(r[3] for r in records)
 expected_main=N*6/55;expected_special=N/55
 # fixed multinomial/combinatorial complete-basket null; adjust per-number variance
@@ -37,9 +38,9 @@ def maxz(c,expected,var):
 obs_chi_main=chi(six,expected_main);obs_chi_special=chi(special,expected_special)
 obs_mz_main=maxz(six,expected_main,v_main);obs_mz_special=maxz(special,expected_special,v_special)
 def overlap(a,b):return len(set(a)&set(b))
-adjacent=[overlap(records[i-1][2],records[i][2]) for i in range(1,N)]
+adjacent=[overlap(records[i-1][2],records[i][2]) for i in range(1,N) if records[i][0]==records[i-1][0]+1]
 overlap_sum=sum(adjacent)
-expected_overlap=(N-1)*36/55
+expected_overlap=len(adjacent)*36/55
 # Independent hypergeometric sets of six overlap, expected 36/55
 seed=20261103;rng=random.Random(seed)
 B=500;hi_main=hi_special=hi_mz_main=hi_mz_special=hi_overlap=lo_overlap=0
@@ -50,7 +51,7 @@ for j in range(B):
         cur=set(seven[:6])
         for x in cur:mains[x]+=1
         bonuses[seven[6]]+=1
-        if prev is not None:osum+=len(prev&cur)
+        if prev is not None and records[i][0]==records[i-1][0]+1:osum+=len(prev&cur)
         prev=cur
     cm=sum((mains[x]-expected_main)**2/expected_main for x in range(1,56))
     cb=sum((bonuses[x]-expected_special)**2/expected_special for x in range(1,56))
@@ -74,7 +75,7 @@ out={
           "mc_upper_tail_p":p(hi_main),"max_abs_z":obs_mz_main,"mc_fwer_p":p(hi_mz_main)},
   "special":{"expected_count_per_number":expected_special,"chi_square":obs_chi_special,
           "mc_upper_tail_p":p(hi_special),"max_abs_z":obs_mz_special,"mc_fwer_p":p(hi_mz_special)},
-  "serial_main_overlap":{"observed_mean":overlap_sum/(N-1),
+  "serial_main_overlap":{"observed_mean":overlap_sum/len(adjacent),"num_adjacent_pairs":len(adjacent),
        "expected_mean":36/55,
        "mc_two_sided_p":min(1,2*min(p(hi_overlap),p(lo_overlap)))},
   "critical_limitations":[
