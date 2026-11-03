@@ -1,0 +1,29 @@
+name: Champion-X Physical Draw Pilot
+on:
+  push:
+    branches:
+      - research/power655-champion-x-input-sensitivity-20261025
+    paths:
+      - vietlott-power655-research/challengers/champion_x_physical_draw_pilot_20261103.py
+      - .github/workflows/champion-x-physical-draw-pilot.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate uniform-without-replacement draw null
+        run: python vietlott-power655-research/challengers/champion_x_physical_draw_pilot_20261103.py
+      - name: Upload audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-x-physical-draw-pilot
+          path: vietlott-power655-research/challengers/physical_draw_pilot_outputs/
+          if-no-files-found: warn
